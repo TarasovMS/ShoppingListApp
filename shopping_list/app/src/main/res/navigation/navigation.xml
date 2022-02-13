@@ -1,0 +1,158 @@
+<!--&lt;!&ndash;<?xml version="1.0" encoding="utf-8"?>&ndash;&gt;-->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@+id/shoppingList"
+    >
+
+    <fragment
+        android:id="@+id/shoppingList"
+        android:name="com.persAssistant.shopping_list.presentation.fragment.list_of_shopping_list_fragment.ListOfShoppingListFragment"
+        android:label="fragment_shoppingList"
+        tools:layout="@layout/recycler_shopping_list">
+<!--        <action-->
+<!--            android:id="@+id/action_shoppingList_creating_list"-->
+<!--            app:destination="@id/createShoppingList" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_shoppingList_editing_list"-->
+<!--            app:destination="@id/editShoppingList" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_shoppingList_opening_purchase"-->
+<!--            app:destination="@id/purchaseList" />-->
+<!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
+    </fragment>
+
+<!--    <activity-->
+<!--        android:id="@+id/createShoppingList"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListActivity"-->
+<!--        android:label="shoppingList_create"-->
+<!--        tools:layout="@layout/activity_shopping_list">-->
+<!--        &lt;!&ndash;        <action&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
+<!--    </activity>-->
+
+<!--    <activity-->
+<!--        android:id="@+id/editShoppingList"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListActivity"-->
+<!--        android:label="shoppingList_edit"-->
+<!--        tools:layout="@layout/activity_shopping_list">-->
+<!--        &lt;!&ndash;        <action&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
+<!--    </activity>-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/purchaseList"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.list_of_purchase_activity.ListOfPurchaseFragment"-->
+<!--        android:label="fragment_purchase"-->
+<!--        tools:layout="@layout/recycler_purchase">-->
+<!--        <action-->
+<!--            android:id="@+id/action_purchase_creating_list"-->
+<!--            app:destination="@id/createPurchase" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_purchase_editing_list"-->
+<!--            app:destination="@id/editPurchase" />-->
+<!--        &lt;!&ndash;        app:destination="@id/user_profile"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--    </fragment>-->
+
+<!--    <activity-->
+<!--        android:id="@+id/createPurchase"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListActivity"-->
+<!--        android:label="create_Purchase"-->
+<!--        tools:layout="@layout/activity_purchase">-->
+<!--        &lt;!&ndash;        <action&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
+<!--    </activity>-->
+
+<!--    <activity-->
+<!--        android:id="@+id/editPurchase"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListActivity"-->
+<!--        android:label="edit_Purchase"-->
+<!--        tools:layout="@layout/activity_purchase">-->
+<!--        &lt;!&ndash;        <action&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
+<!--    </activity>-->
+
+    <fragment
+        android:id="@+id/categoryList"
+        android:name="com.persAssistant.shopping_list.presentation.fragment.list_of_category_fragment.ListOfCategoryFragment"
+        android:label="fragment_category"
+        tools:layout="@layout/recycler_category">
+<!--        <action-->
+<!--            android:id="@+id/action_creating_category"-->
+<!--            app:destination="@id/createCategory" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_editing_category"-->
+<!--            app:destination="@id/editCategory" />-->
+<!--        <action-->
+<!--            android:id="@+id/action_category_opening_purchase"-->
+<!--            app:destination="@id/purchaseList" />-->
+<!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
+    </fragment>
+
+<!--    <activity-->
+<!--        android:id="@+id/createCategory"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryActivity"-->
+<!--        android:label="category_create"-->
+<!--        tools:layout="@layout/activity_category">-->
+<!--        &lt;!&ndash;        <action&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
+<!--    </activity>-->
+
+<!--    <activity-->
+<!--        android:id="@+id/editCategory"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryActivity"-->
+<!--        android:label="category_edit"-->
+<!--        tools:layout="@layout/activity_category">-->
+<!--        &lt;!&ndash;        <action&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
+<!--    </activity>-->
+
+</navigation>
+

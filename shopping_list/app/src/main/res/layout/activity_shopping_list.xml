@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="vmShoppingList"
+            type="com.persAssistant.shopping_list.presentation.activity.shopping_list.ShoppingListViewModel" />
+    </data>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/list_name"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <EditText
+            android:id="@+id/et_name_purchaseList"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="wrap_content"
+            android:text="@={vmShoppingList.name}"/>
+
+
+        <TextView
+            android:id="@+id/tv_date_shoppingList"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center_horizontal"
+            android:layout_height="match_parent"
+            android:hint="@string/select_the_time"
+            android:text="@={vmShoppingList.strDate}"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_save_shoppingList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@android:color/white"
+        android:onClick="@{view -> vmShoppingList.save()}"
+        android:text="@string/save"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lotti_activity_category"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading"
+        />
+
+</LinearLayout>
+</layout>
