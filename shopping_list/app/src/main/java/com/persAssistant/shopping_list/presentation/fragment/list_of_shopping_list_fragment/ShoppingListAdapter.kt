@@ -11,8 +11,10 @@ import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ShoppingListAdapter(private var items: LinkedList<ShoppingList>, private val onShoppingListClickListener: OnShoppingListClickListener)
+class ShoppingListAdapter( private val onShoppingListClickListener: OnShoppingListClickListener)
     : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
+
+    private var items: LinkedList<ShoppingList> = LinkedList()
 
     override fun getItemCount(): Int {
         return items.size

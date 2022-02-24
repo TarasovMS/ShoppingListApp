@@ -1,23 +1,27 @@
 package com.persAssistant.shopping_list.presentation.activity.main_activity
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.*
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.persAssistant.shopping_list.R
+import com.persAssistant.shopping_list.base.AppBaseActivity
+import com.persAssistant.shopping_list.databinding.ActivityMainBinding
 import com.persAssistant.shopping_list.presentation.util.goneWithOutFade
 import com.persAssistant.shopping_list.presentation.util.visibleWithOutFade
 import kotlinx.android.synthetic.main.activity_main.*
 
-open class MainActivity : AppCompatActivity() {
+open class MainActivity : AppBaseActivity() {
 
-    private val navController: NavController by lazy {
-        findNavController(R.id.activity_main_nav_host_fragment)
-    }
 
+    private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
+    private val viewModel: MainActivityViewModel by viewModels { viewModelFactory }
     private var currentDestination: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,7 +31,7 @@ open class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        activity_main_bottomNav.setupWithNavController(navController)
+        binding.activityMainBottomNav.setupWithNavController(navController)
         destinationListener()
     }
 
@@ -55,19 +59,19 @@ open class MainActivity : AppCompatActivity() {
     }
 
     private fun switchBottomNav(menuItem: Int) {
-        if (!activity_main_bottomNav.isVisible) {
-            activity_main_bottomNav.visibleWithOutFade()
+        if (!binding.activityMainBottomNav.isVisible) {
+            binding.activityMainBottomNav.visibleWithOutFade()
         }
-        activity_main_bottomNav.selectedItemId = menuItem
+        binding.activityMainBottomNav.selectedItemId = menuItem
     }
 
 
     private fun hideBottomNav() {
-        activity_main_bottomNav.goneWithOutFade()
+        binding.activityMainBottomNav.goneWithOutFade()
     }
 
     override fun onBackPressed() {
-        activity_main_bottomNav.run {
+        binding.activityMainBottomNav.run {
             if (isVisible) {
                 when {
                     selectedItemId != R.id.shoppingList -> {

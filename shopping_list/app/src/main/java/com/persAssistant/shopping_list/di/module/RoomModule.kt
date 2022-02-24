@@ -7,10 +7,10 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class RoomModule (val context: Context) {
+class RoomModule  {
     @Provides
     @Singleton
-    fun provideRoomDataBaseHelper (): RoomDataBaseHelper {
+    fun provideRoomDataBaseHelper (context: Context): RoomDataBaseHelper {
         return RoomDataBaseHelper.getInstance(context)
     }
 }

@@ -3,6 +3,7 @@ package com.persAssistant.shopping_list.presentation.fragment.list_of_shopping_l
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.persAssistant.shopping_list.base.AppBaseViewModel
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import com.persAssistant.shopping_list.domain.interactor_interfaces.ShoppingListInteractorInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,8 +11,8 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class ListOfShoppingListViewModel @Inject constructor(private val shoppingListInteractor: ShoppingListInteractorInterface):
-    ViewModel()  {
+class ListOfShoppingListViewModel @Inject constructor(private val shoppingListInteractor: ShoppingListInteractorInterface
+    ): AppBaseViewModel()  {
 
     var listOfShoppingList = MutableLiveData<LinkedList<ShoppingList>>()
     var deleteShoppingListId = MutableLiveData<Long>()

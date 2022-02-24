@@ -1,14 +1,17 @@
 package com.persAssistant.shopping_list.di
 
+import android.content.Context
 import com.persAssistant.shopping_list.data.database.RoomDataBaseHelper
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.ShoppingListInteractor
 import com.persAssistant.shopping_list.di.module.*
-import com.persAssistant.shopping_list.di.module.viewModelModule.CategoryViewModelModule
-import com.persAssistant.shopping_list.di.module.viewModelModule.PurchaseViewModelModule
-import com.persAssistant.shopping_list.di.module.viewModelModule.ShoppingListViewModelModule
+import com.persAssistant.shopping_list.di.viewModel.CategoryViewModelModule
+import com.persAssistant.shopping_list.di.viewModel.PurchaseViewModelModule
+import com.persAssistant.shopping_list.di.viewModel.ShoppingListViewModelModule
+import com.persAssistant.shopping_list.di.viewModel.ViewModelModule
+import com.persAssistant.shopping_list.presentation.App
 import com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryViewModel
 import com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryViewModel
 import com.persAssistant.shopping_list.presentation.fragment.list_of_category_fragment.ListOfCategoryViewModel
@@ -18,12 +21,16 @@ import com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPur
 import com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseViewModel
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListViewModel
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListViewModel
+import com.persAssistant.shopping_list.presentation.util.SUPPRESS_UNUSED
+import dagger.BindsInstance
 import dagger.Component
+import dagger.android.AndroidInjectionModule
+import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
-@Singleton
 @Component(
     modules = [
+        AndroidInjectionModule::class,
         RoomModule::class,
         DaoModule::class,
         ServiceModule::class,
@@ -31,15 +38,33 @@ import javax.inject.Singleton
         InteractorModule::class,
         CategoryViewModelModule::class,
         PurchaseViewModelModule::class,
-        ShoppingListViewModelModule::class
-    ])
+        ShoppingListViewModelModule::class,
 
-interface AppComponent {
+
+        // я думаю что надо добавить модуль для App и MainActivity
+        ViewModelModule::class
+    ])
+@Singleton
+@Suppress(SUPPRESS_UNUSED)
+interface AppComponent: AndroidInjector<App> {
+
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        fun application(application: App): Builder
+
+        @BindsInstance
+        fun context(context: Context): Builder
+
+        fun build(): AppComponent
+    }
+
+    fun getRoomDataBase(): RoomDataBaseHelper
+
     fun getCategoryInteractor(): CategoryInteractor
     fun getPurchaseInteractor(): PurchaseInteractor
     fun getShoppingListInteractor(): ShoppingListInteractor
     fun getFullPurchaseInteractor(): FullPurchaseInteractor
-    fun getRoomDataBase(): RoomDataBaseHelper
 
     fun getEditorCategoryViewModel(): EditorCategoryViewModel
     fun getCreatorCategoryViewModel(): CreatorCategoryViewModel

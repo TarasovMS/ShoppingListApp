@@ -7,42 +7,46 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.viewModels
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.databinding.RecyclerPurchaseBinding
 import com.persAssistant.shopping_list.presentation.App
-import com.persAssistant.shopping_list.base.BaseFragment
+import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPurchaseActivity
 import com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseActivity
-import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseViewModel.*
-import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.OnPurchaseClickListener
-import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.PurchaseAdapter
+import com.persAssistant.shopping_list.presentation.util.viewBinding
 import java.lang.Exception
 import java.util.*
 
-class ListOfPurchaseFragment: BaseFragment() {
+class ListOfPurchaseFragment: AppBaseFragment(R.layout.recycler_purchase) {
 
     private lateinit var purchaseAdapter: PurchaseAdapter
-    protected lateinit var ui: RecyclerPurchaseBinding
-    protected lateinit var viewModel: ListOfPurchaseViewModel
+//    protected lateinit var ui: RecyclerPurchaseBinding
+//    protected lateinit var viewModel: ListOfPurchaseViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        super.onCreateView(inflater, container, savedInstanceState)
-        return DataBindingUtil.setContentView<ViewDataBinding>(requireActivity(), R.layout
-            .recycler_purchase).root
-    }
+    private val binding: RecyclerPurchaseBinding by viewBinding(RecyclerPurchaseBinding::bind)
+    private val viewModel: ListOfPurchaseViewModel by viewModels { viewModelFactory }
+
+
+
+//    override fun onCreateView(
+//        inflater: LayoutInflater,
+//        container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View {
+//        super.onCreateView(inflater, container, savedInstanceState)
+//        return DataBindingUtil.setContentView<ViewDataBinding>(requireActivity(), R.layout
+//            .recycler_purchase).root
+//    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val ui = RecyclerPurchaseBinding.inflate(layoutInflater)
 
-        viewModel = app.appComponent.getListOfPurchaseViewModel()
+//        viewModel = app.appComponent.getListOfPurchaseViewModel()
 
         purchaseAdapter = PurchaseAdapter(LinkedList(), object : OnPurchaseClickListener {
             override fun clickedPurchaseItem(purchase: Purchase) {}

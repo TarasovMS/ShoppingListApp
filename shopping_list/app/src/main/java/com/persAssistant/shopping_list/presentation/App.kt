@@ -1,22 +1,33 @@
 package com.persAssistant.shopping_list.presentation
 
-import android.app.Application
 import com.persAssistant.shopping_list.di.AppComponent
 import com.persAssistant.shopping_list.di.DaggerAppComponent
-import com.persAssistant.shopping_list.di.module.RoomModule
+import dagger.android.AndroidInjector
+import dagger.android.DaggerApplication
 
-class App: Application() {
+class App: DaggerApplication() {
 
     lateinit var appComponent: AppComponent
 
     override fun onCreate() {
         super.onCreate()
-        initDagger()
+//        initDagger()
+    }
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+        appComponent = DaggerAppComponent
+            .builder()
+            .application(this)
+            .context(this)
+            .build()
+        return appComponent
     }
 
     private fun initDagger(){
-        appComponent = DaggerAppComponent.builder()
-            .roomModule(RoomModule(this))
+        appComponent = DaggerAppComponent.
+        builder()
+            .application(this)
+            .context(this)
             .build()
     }
 }

@@ -3,6 +3,7 @@ package com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_f
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.persAssistant.shopping_list.base.AppBaseViewModel
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.domain.interactor_interfaces.FullPurchaseInteractorInterface
@@ -13,8 +14,9 @@ import java.util.*
 import javax.inject.Inject
 
 
-class ListOfPurchaseViewModel @Inject constructor(val purchaseInteractor: PurchaseInteractorInterface,
-                                                  val fullPurchaseInteractor: FullPurchaseInteractorInterface): ViewModel() {
+class ListOfPurchaseViewModel @Inject constructor(val purchaseInteractor: PurchaseInteractorInterface, val fullPurchaseInteractor: FullPurchaseInteractorInterface
+    ): AppBaseViewModel() {
+
 
     var fullPurchaseList = MutableLiveData<LinkedList<FullPurchase>>()
     var deletePurchaseId = MutableLiveData<Long>()

@@ -56,5 +56,15 @@
       <option name="name" value="maven" />
       <option name="url" value="file:$PROJECT_DIR$/../../../GitHub(my%20Project)/Shoping_List_App/shopping_list/app/%20https:/oss.jfrog.org/libs-snapshot%20" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="file:$PROJECT_DIR$/../../../GitHub(my%20Project)/ShoppingListApp/shopping_list/%20https:/oss.jfrog.org/libs-snapshot%20" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="file:$PROJECT_DIR$/../../../GitHub(my%20Project)/ShoppingListApp/shopping_list/app/%20https:/oss.jfrog.org/libs-snapshot%20" />
+    </remote-repository>
   </component>
 </project>
