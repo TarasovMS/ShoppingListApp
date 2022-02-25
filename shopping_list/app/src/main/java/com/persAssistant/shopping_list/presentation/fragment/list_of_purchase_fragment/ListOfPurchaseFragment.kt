@@ -2,13 +2,9 @@ package com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_f
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.viewModels
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.databinding.RecyclerPurchaseBinding
@@ -24,29 +20,13 @@ import java.util.*
 class ListOfPurchaseFragment: AppBaseFragment(R.layout.recycler_purchase) {
 
     private lateinit var purchaseAdapter: PurchaseAdapter
-//    protected lateinit var ui: RecyclerPurchaseBinding
-//    protected lateinit var viewModel: ListOfPurchaseViewModel
-
     private val binding: RecyclerPurchaseBinding by viewBinding(RecyclerPurchaseBinding::bind)
     private val viewModel: ListOfPurchaseViewModel by viewModels { viewModelFactory }
 
-
-
-//    override fun onCreateView(
-//        inflater: LayoutInflater,
-//        container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View {
-//        super.onCreateView(inflater, container, savedInstanceState)
-//        return DataBindingUtil.setContentView<ViewDataBinding>(requireActivity(), R.layout
-//            .recycler_purchase).root
-//    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val ui = RecyclerPurchaseBinding.inflate(layoutInflater)
 
-//        viewModel = app.appComponent.getListOfPurchaseViewModel()
+        val parentId = Bundle().getLong(KEY_PARENT_ID)
 
         purchaseAdapter = PurchaseAdapter(LinkedList(), object : OnPurchaseClickListener {
             override fun clickedPurchaseItem(purchase: Purchase) {}
@@ -56,39 +36,41 @@ class ListOfPurchaseFragment: AppBaseFragment(R.layout.recycler_purchase) {
             }
 
             override fun editItem(purchase: Purchase) {
-                val intent = EditorPurchaseActivity.getIntent(requireContext(), purchase.id!!)
-                startActivity(intent)
+//                val intent = EditorPurchaseActivity.getIntent(requireContext(), purchase.id!!)
+//                startActivity(intent)
             }
         })
-        ui.recyclerViewPurchase.adapter = purchaseAdapter
+        binding.recyclerViewPurchase.adapter = purchaseAdapter
 
-        viewModel.fullPurchaseList.observe(this, androidx.lifecycle.Observer {
+        viewModel.fullPurchaseList.observe(this) {
             purchaseAdapter.updateItems(it)
-        })
+        }
 
-        viewModel.deletePurchaseId.observe(this, androidx.lifecycle.Observer {
+        viewModel.deletePurchaseId.observe(this) {
             purchaseAdapter.removePurchase(it)
-        })
+        }
 
-        val parentId = requireActivity().intent.getLongExtra(KEY_PARENT_ID, -1)
         if (parentId == -1L)
             throw Exception (" Ошибка в ListOfPurchaseActivity отсутствует parentId ")
+        Log.d("ListPurchase"," parentId = $parentId ")
 
-        val idTypeIndex =  requireActivity().intent.getIntExtra(KEY_INDEX_TYPE, -1)
+
+        val idTypeIndex = Bundle().getInt(KEY_INDEX_TYPE)
         if (idTypeIndex == -1)
             throw Exception (" Ошибка в ListOfPurchaseActivity отсутствует idTypeIndex ")
+        Log.d("ListPurchase"," idTypeIndex = $idTypeIndex ")
+
 
         val type = IdTypes.values()[idTypeIndex]
         viewModel.init(this, parentId, type)
 
-        val buttonAdd: FloatingActionButton = ui.btnAddPurchase
-        val buttonVisible = requireActivity().intent.getBooleanExtra(KEY_VISIBILITY_BUTTON,false)
+        val buttonVisible = Bundle().getBoolean(KEY_VISIBILITY_BUTTON)
         if (buttonVisible)
-            buttonAdd.visibility = View.VISIBLE
+            binding.btnAddPurchase.visibility = View.VISIBLE
+        Log.d("ListPurchase","Visibility button create purchase = $buttonVisible ")
 
-        buttonAdd.setOnClickListener {
-            val intent = CreatorPurchaseActivity.getIntent(requireContext(), requireActivity().intent
-                .getLongExtra(KEY_PARENT_ID, -1))
+        binding.btnAddPurchase.setOnClickListener {
+            val intent = CreatorPurchaseActivity.getIntent(requireContext(), parentId)
             startActivity(intent)
         }
     }

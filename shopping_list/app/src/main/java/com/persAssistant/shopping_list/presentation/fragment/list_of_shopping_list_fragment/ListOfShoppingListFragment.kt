@@ -2,6 +2,7 @@ package com.persAssistant.shopping_list.presentation.fragment.list_of_shopping_l
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
@@ -11,36 +12,30 @@ import com.persAssistant.shopping_list.databinding.RecyclerShoppingListBinding
 import com.persAssistant.shopping_list.presentation.App
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListActivity
 import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseViewModel
-import com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListActivity
 import com.persAssistant.shopping_list.presentation.util.viewBinding
 
 class  ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_list) {
 
-
-    private val ui: RecyclerShoppingListBinding by viewBinding (RecyclerShoppingListBinding::bind)
-
+    private val binding: RecyclerShoppingListBinding by viewBinding (RecyclerShoppingListBinding::bind)
     private val viewModel: ListOfShoppingListViewModel by viewModels { viewModelFactory }
-
     private lateinit var shoppingListAdapter: ShoppingListAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val bundle = Bundle()
-
-        // initialize Adapter
         shoppingListAdapter = ShoppingListAdapter( object: OnShoppingListClickListener {
-
             override fun clickedShoppingListItem(shoppingList: ShoppingList) {
+                val bundle = Bundle()
                 bundle.putLong(KEY_PARENT_ID, shoppingList.id!!)
                 bundle.putBoolean(KEY_VISIBILITY_BUTTON, true)
                 bundle.putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.SHOPPINGLIST.ordinal)
 
-//                val iuRouter = UiRouter(navController = nav)
-                /**
-                 * здесь выполнить клик item
-                 */
+                Log.d("ListPurchaseAfterShopp"," parentId = ${shoppingList.id}, " +
+                        "visibility = " +
+                        "true, " +
+                        "idTypeIndex = ${ListOfPurchaseViewModel.IdTypes.SHOPPINGLIST.ordinal}  ")
 
+                uiRouter.navigateById(R.id.purchaseList,bundle)
             }
 
             override fun deleteItem(shoppingList: ShoppingList) {
@@ -48,14 +43,12 @@ class  ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_li
             }
 
             override fun editItem(shoppingList: ShoppingList) {
-                val intent = EditorShoppingListActivity.getIntent(requireContext(), shoppingList.id!!)
-                startActivity(intent)
+//                val intent = EditorShoppingListActivity.getIntent(requireContext(), shoppingList.id!!)
+//                startActivity(intent)
             }
         })
-        ui.recyclerViewShoppingList.adapter = shoppingListAdapter
 
-        // initialize ViewModel
-//        viewModel = app.appComponent.getListOfShoppingListViewModel()
+        binding.recyclerViewShoppingList.adapter = shoppingListAdapter
 
         viewModel.deleteShoppingListId.observe(requireActivity()) {
             shoppingListAdapter.removeShoppingList(it)
@@ -67,11 +60,10 @@ class  ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_li
 
         viewModel.init(this)
 
-        ui.btnAddShoppingList.setOnClickListener {
+        binding.btnAddShoppingList.setOnClickListener {
             val intent = CreatorShoppingListActivity.getIntent(requireContext())
             startActivity(intent)
         }
-
     }
 
     override fun onAttach(context: Context) {
