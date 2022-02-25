@@ -1,6 +1,7 @@
 package com.persAssistant.shopping_list.presentation.activity.main_activity
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.*
@@ -26,13 +27,22 @@ open class MainActivity : AppBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(binding.root)
     }
 
     override fun onStart() {
         super.onStart()
-        binding.activityMainBottomNav.setupWithNavController(navController)
+        setUpBottomNavigation()
         destinationListener()
+    }
+
+    private fun setUpBottomNavigation() {
+        binding.activityMainBottomNav.itemIconTintList = null
+        binding.activityMainBottomNav.setupWithNavController(navController)
+        binding.activityMainBottomNav.setOnItemReselectedListener {
+            /* no-op */
+            Log.d("BottomNav","menuItem = $it")
+        }
     }
 
     private fun destinationListener() {
@@ -84,8 +94,7 @@ open class MainActivity : AppBaseActivity() {
                         super.onBackPressed()
                     }
                 }
-            } else
-                super.onBackPressed()
+            } else super.onBackPressed()
         }
     }
 

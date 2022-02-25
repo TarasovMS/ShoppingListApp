@@ -8,5 +8,4 @@ abstract class CategoryViewModel: ViewModel() {
     var name = MutableLiveData<String>()
 
     abstract fun save()
-
 }

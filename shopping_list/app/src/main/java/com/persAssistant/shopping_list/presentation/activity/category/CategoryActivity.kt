@@ -10,22 +10,20 @@ import com.persAssistant.shopping_list.databinding.ActivityCategoryBinding
 abstract class CategoryActivity : AppCompatActivity() {
 
     protected abstract fun createViewModel(): CategoryViewModel
-
-    protected lateinit var ui: ActivityCategoryBinding
+    protected val ui: ActivityCategoryBinding by lazy { ActivityCategoryBinding.inflate(layoutInflater) }
+//    protected lateinit var ui: ActivityCategoryBinding
     protected lateinit var viewModel: CategoryViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        ui = DataBindingUtil.setContentView(this, R.layout.activity_category)
-
+//        ui = DataBindingUtil.setContentView(this, R.layout.activity_category)
         viewModel = createViewModel()
-        viewModel.closeEvent.observe(this, Observer {
+        viewModel.closeEvent.observe(this) {
             finish()
-        })
+        }
 
         ui.vm = viewModel
         ui.lifecycleOwner = this
     }
-
 }

@@ -14,7 +14,7 @@ import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fr
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListActivity
 import com.persAssistant.shopping_list.presentation.util.viewBinding
 
-class ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_list) {
+class  ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_list) {
 
 
     private val ui: RecyclerShoppingListBinding by viewBinding (RecyclerShoppingListBinding::bind)
@@ -57,13 +57,13 @@ class ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_lis
         // initialize ViewModel
 //        viewModel = app.appComponent.getListOfShoppingListViewModel()
 
-        viewModel.deleteShoppingListId.observe(requireActivity(), androidx.lifecycle.Observer {
+        viewModel.deleteShoppingListId.observe(requireActivity()) {
             shoppingListAdapter.removeShoppingList(it)
-        })
+        }
 
-        viewModel.listOfShoppingList.observe(requireActivity(), androidx.lifecycle.Observer {
+        viewModel.listOfShoppingList.observe(requireActivity()) {
             shoppingListAdapter.updateItems(it)
-        })
+        }
 
         viewModel.init(this)
 

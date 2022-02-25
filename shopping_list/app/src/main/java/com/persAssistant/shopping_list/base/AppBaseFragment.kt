@@ -42,13 +42,13 @@ abstract class AppBaseFragment(
     }
 
     private fun observeNavData() {
-        navViewModel.directionData.observe(this.viewLifecycleOwner, {
+        navViewModel.directionData.observe(this.viewLifecycleOwner) {
             uiRouter.navigateByDirection(it)
-        })
+        }
 
-        navViewModel.idData.observe(this.viewLifecycleOwner, {
+        navViewModel.idData.observe(this.viewLifecycleOwner) {
             uiRouter.navigateById(it)
-        })
+        }
     }
 
     private fun handleToolBarBackPressed() {

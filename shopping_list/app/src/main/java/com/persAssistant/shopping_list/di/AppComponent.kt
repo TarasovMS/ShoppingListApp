@@ -2,6 +2,7 @@ package com.persAssistant.shopping_list.di
 
 import android.content.Context
 import com.persAssistant.shopping_list.data.database.RoomDataBaseHelper
+import com.persAssistant.shopping_list.di.activity.MainActivityModule
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
@@ -39,9 +40,7 @@ import javax.inject.Singleton
         CategoryViewModelModule::class,
         PurchaseViewModelModule::class,
         ShoppingListViewModelModule::class,
-
-
-        // я думаю что надо добавить модуль для App и MainActivity
+        MainActivityModule::class,
         ViewModelModule::class
     ])
 @Singleton
