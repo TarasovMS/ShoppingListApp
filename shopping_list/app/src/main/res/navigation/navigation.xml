@@ -76,7 +76,7 @@
 
     <activity
         android:id="@+id/createPurchase"
-        android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListActivity"
+        android:name="com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPurchaseActivity"
         android:label="create_Purchase"
         tools:layout="@layout/activity_purchase">
         <!--        <action-->
@@ -91,7 +91,7 @@
 
     <activity
         android:id="@+id/editPurchase"
-        android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListActivity"
+        android:name="com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseActivity"
         android:label="edit_Purchase"
         tools:layout="@layout/activity_purchase">
         <!--        <action-->

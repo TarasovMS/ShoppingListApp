@@ -11,7 +11,8 @@ import com.persAssistant.shopping_list.databinding.RecyclerPurchaseBinding
 import com.persAssistant.shopping_list.presentation.App
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPurchaseActivity
-import com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseActivity
+import com.persAssistant.shopping_list.presentation.activity.purchase.PurchaseActivity
+import com.persAssistant.shopping_list.presentation.activity.purchase.PurchaseActivity.Companion.KEY_SHOPPING_LIST_ID
 import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseViewModel.*
 import com.persAssistant.shopping_list.presentation.util.viewBinding
 import java.lang.Exception
@@ -26,18 +27,13 @@ class ListOfPurchaseFragment: AppBaseFragment(R.layout.recycler_purchase) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val parentId = Bundle().getLong(KEY_PARENT_ID)
-
         purchaseAdapter = PurchaseAdapter(LinkedList(), object : OnPurchaseClickListener {
             override fun clickedPurchaseItem(purchase: Purchase) {}
-
-            override fun deleteItem(purchase: Purchase) {
-                viewModel.deleteItemPurchase(purchase)
-            }
-
+            override fun deleteItem(purchase: Purchase) { viewModel.deleteItemPurchase(purchase) }
             override fun editItem(purchase: Purchase) {
-//                val intent = EditorPurchaseActivity.getIntent(requireContext(), purchase.id!!)
-//                startActivity(intent)
+                val bundle = Bundle()
+                bundle.putLong(PurchaseActivity.KEY_PURCHASE_ID,purchase.id!!)
+                uiRouter.navigateById(R.id.editPurchase,bundle)
             }
         })
         binding.recyclerViewPurchase.adapter = purchaseAdapter
@@ -50,33 +46,35 @@ class ListOfPurchaseFragment: AppBaseFragment(R.layout.recycler_purchase) {
             purchaseAdapter.removePurchase(it)
         }
 
-        if (parentId == -1L)
-            throw Exception (" Ошибка в ListOfPurchaseActivity отсутствует parentId ")
+        val parentId = arguments
+            ?.getLong(KEY_PARENT_ID)
+            ?: throw Exception (" Ошибка в ListOfPurchaseActivity отсутствует parentId ")
         Log.d("ListPurchase"," parentId = $parentId ")
 
-
-        val idTypeIndex = Bundle().getInt(KEY_INDEX_TYPE)
-        if (idTypeIndex == -1)
-            throw Exception (" Ошибка в ListOfPurchaseActivity отсутствует idTypeIndex ")
+        val idTypeIndex = arguments
+            ?.getInt(KEY_INDEX_TYPE)
+            ?: throw Exception (" Ошибка в ListOfPurchaseActivity отсутствует idTypeIndex ")
         Log.d("ListPurchase"," idTypeIndex = $idTypeIndex ")
-
 
         val type = IdTypes.values()[idTypeIndex]
         viewModel.init(this, parentId, type)
 
-        val buttonVisible = Bundle().getBoolean(KEY_VISIBILITY_BUTTON)
-        if (buttonVisible)
+        val buttonVisible = arguments?.getBoolean(KEY_VISIBILITY_BUTTON)
+        if (buttonVisible == true)
             binding.btnAddPurchase.visibility = View.VISIBLE
         Log.d("ListPurchase","Visibility button create purchase = $buttonVisible ")
 
         binding.btnAddPurchase.setOnClickListener {
-            val intent = CreatorPurchaseActivity.getIntent(requireContext(), parentId)
-            startActivity(intent)
+//            val intent = CreatorPurchaseActivity.getIntent(requireContext(), parentId)
+//            startActivity(intent)
+            val bundle = Bundle()
+            bundle.putLong(KEY_SHOPPING_LIST_ID,parentId)
+            uiRouter.navigateById(R.id.createPurchase, bundle)
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        app = (context.applicationContext as App)
-    }
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        app = (context.applicationContext as App)
+//    }
 }

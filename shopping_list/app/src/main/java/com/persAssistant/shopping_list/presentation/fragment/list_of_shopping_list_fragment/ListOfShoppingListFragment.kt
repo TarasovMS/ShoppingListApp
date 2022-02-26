@@ -11,6 +11,7 @@ import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import com.persAssistant.shopping_list.databinding.RecyclerShoppingListBinding
 import com.persAssistant.shopping_list.presentation.App
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListActivity
+import com.persAssistant.shopping_list.presentation.activity.shopping_list.ShoppingListActivity
 import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.presentation.util.viewBinding
 
@@ -45,6 +46,9 @@ class  ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_li
             override fun editItem(shoppingList: ShoppingList) {
 //                val intent = EditorShoppingListActivity.getIntent(requireContext(), shoppingList.id!!)
 //                startActivity(intent)
+                val bundle = Bundle()
+                bundle.putLong(ShoppingListActivity.SHOPPING_LIST_KEY, shoppingList.id!!)
+                uiRouter.navigateById(R.id.editShoppingList,bundle)
             }
         })
 
@@ -61,13 +65,14 @@ class  ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_li
         viewModel.init(this)
 
         binding.btnAddShoppingList.setOnClickListener {
-            val intent = CreatorShoppingListActivity.getIntent(requireContext())
-            startActivity(intent)
+//            val intent = CreatorShoppingListActivity.getIntent(requireContext())
+//            startActivity(intent)
+            uiRouter.navigateById(R.id.createShoppingList)
         }
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        app = (context.applicationContext as App)
-    }
+//    override fun onAttach(context: Context) {
+//        super.onAttach(context)
+//        app = (context.applicationContext as App)
+//    }
 }

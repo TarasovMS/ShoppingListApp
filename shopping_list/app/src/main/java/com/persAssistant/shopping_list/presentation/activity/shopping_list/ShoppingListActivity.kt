@@ -3,31 +3,29 @@ package com.persAssistant.shopping_list.presentation.activity.shopping_list
 import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.Observer
-import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.databinding.ActivityShoppingListBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
 abstract class ShoppingListActivity : AppCompatActivity() {
 
-    protected abstract fun createViewModel(): ShoppingListViewModel
+    companion object {
+        const val SHOPPING_LIST_KEY = "SHOPPINGLIST_ID"
+    }
 
-    protected lateinit var ui: ActivityShoppingListBinding
+    protected abstract fun createViewModel(): ShoppingListViewModel
+    private val binding: ActivityShoppingListBinding by lazy { ActivityShoppingListBinding.inflate(layoutInflater) }
+
     protected lateinit var viewModel: ShoppingListViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        ui = DataBindingUtil.setContentView(this, R.layout.activity_shopping_list)
+        setContentView(binding.root)
 
         viewModel = createViewModel()
-        viewModel.closeEvent.observe(this, Observer {
-            finish()
-        })
+        viewModel.closeEvent.observe(this) { finish() }
 
-        ui.tvDateShoppingList.setOnClickListener {
+        binding.tvDateShoppingList.setOnClickListener {
 
             val date = SimpleDateFormat("dd.MM.yyyy").parse(viewModel.strDate.value!!)
             val calendar = Calendar.getInstance()
@@ -43,8 +41,7 @@ abstract class ShoppingListActivity : AppCompatActivity() {
 
             datePickerDialog.show()
         }
-        ui.vmShoppingList = viewModel
-        ui.lifecycleOwner = this
+        binding.vmShoppingList = viewModel
+        binding.lifecycleOwner = this
     }
-
 }

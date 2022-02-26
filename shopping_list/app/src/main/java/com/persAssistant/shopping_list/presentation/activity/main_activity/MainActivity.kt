@@ -3,20 +3,14 @@ package com.persAssistant.shopping_list.presentation.activity.main_activity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.*
-import androidx.databinding.DataBindingUtil.setContentView
-import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.NavDestination
-import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseActivity
 import com.persAssistant.shopping_list.databinding.ActivityMainBinding
 import com.persAssistant.shopping_list.presentation.util.goneWithOutFade
 import com.persAssistant.shopping_list.presentation.util.visibleWithOutFade
-import kotlinx.android.synthetic.main.activity_main.*
 
 open class MainActivity : AppBaseActivity() {
 

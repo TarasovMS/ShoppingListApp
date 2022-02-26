@@ -36,7 +36,7 @@ class SelectionOfCategoryInDialog {
             val recyclerView: RecyclerView = dialogView.findViewById(R.id.recyclerView_category_custom_dialog)
             recyclerView.layoutManager = LinearLayoutManager(activity)
             recyclerView.itemAnimator = DefaultItemAnimator()
-            val categoryAdapter = CategoryAdapter(LinkedList(), object : OnCategoryClickListener {
+            val categoryAdapter = CategoryAdapter(object : OnCategoryClickListener {
 
                 override fun clickedCategoryItem(category: Category) {
                     showDialog.okClickListener(category)
