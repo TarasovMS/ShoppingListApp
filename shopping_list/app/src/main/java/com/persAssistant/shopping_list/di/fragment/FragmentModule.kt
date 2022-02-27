@@ -1,10 +1,12 @@
 package com.persAssistant.shopping_list.di.fragment
 
 import com.persAssistant.shopping_list.di.scopes.FragmentScope
-import com.persAssistant.shopping_list.di.viewModel.*
-import com.persAssistant.shopping_list.di.viewModel.vm.CategoryVmModule
-import com.persAssistant.shopping_list.di.viewModel.vm.PurchaseVmModule
-import com.persAssistant.shopping_list.di.viewModel.vm.ShoppingListVmModule
+import com.persAssistant.shopping_list.di.viewModel.categories.CategoryVmModule
+import com.persAssistant.shopping_list.di.viewModel.categories.ListOfCategoryVmModule
+import com.persAssistant.shopping_list.di.viewModel.purchase.ListOfPurchaseVmModule
+import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseVmModule
+import com.persAssistant.shopping_list.di.viewModel.shopping_list.ListOfShoppingListVmModule
+import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListVmModule
 import com.persAssistant.shopping_list.presentation.activity.category.fragment.CreatorCategoryFragment
 import com.persAssistant.shopping_list.presentation.activity.category.fragment.EditorCategoryFragment
 import com.persAssistant.shopping_list.presentation.activity.purchase.fragment.CreatorPurchaseFragment

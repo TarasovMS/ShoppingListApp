@@ -3,12 +3,12 @@ package com.persAssistant.shopping_list.presentation.activity.purchase
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.persAssistant.shopping_list.domain.entities.Category
-import com.persAssistant.shopping_list.databinding.ActivityPurchaseBinding
+import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import java.util.*
 
 abstract class PurchaseActivity: AppCompatActivity() {
     protected abstract fun createViewModel(): PurchaseViewModel
-    private val binding: ActivityPurchaseBinding by lazy { ActivityPurchaseBinding.inflate(layoutInflater) }
+    private val binding: FragmentPurchaseBinding by lazy { FragmentPurchaseBinding.inflate(layoutInflater) }
     protected lateinit var viewModel: PurchaseViewModel
 
     companion object {

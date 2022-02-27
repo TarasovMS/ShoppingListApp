@@ -30,7 +30,7 @@
         android:id="@+id/createShoppingList"
         android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListActivity"
         android:label="shoppingList_create"
-        tools:layout="@layout/activity_shopping_list">
+        tools:layout="@layout/fragment_shopping_list">
         <!--        <action-->
         <!--                android:id="@+id/action_register_to_match"-->
         <!--                app:destination="@id/match"-->
@@ -45,7 +45,7 @@
         android:id="@+id/editShoppingList"
         android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListActivity"
         android:label="shoppingList_edit"
-        tools:layout="@layout/activity_shopping_list">
+        tools:layout="@layout/fragment_shopping_list">
         <!--        <action-->
         <!--                android:id="@+id/action_register_to_match"-->
         <!--                app:destination="@id/match"-->
@@ -78,7 +78,7 @@
         android:id="@+id/createPurchase"
         android:name="com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPurchaseActivity"
         android:label="create_Purchase"
-        tools:layout="@layout/activity_purchase">
+        tools:layout="@layout/fragment_purchase">
         <!--        <action-->
         <!--                android:id="@+id/action_register_to_match"-->
         <!--                app:destination="@id/match"-->
@@ -93,7 +93,7 @@
         android:id="@+id/editPurchase"
         android:name="com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseActivity"
         android:label="edit_Purchase"
-        tools:layout="@layout/activity_purchase">
+        tools:layout="@layout/fragment_purchase">
         <!--        <action-->
         <!--                android:id="@+id/action_register_to_match"-->
         <!--                app:destination="@id/match"-->
@@ -143,7 +143,7 @@
         android:id="@+id/createCategory"
         android:name="com.persAssistant.shopping_list.presentation.activity.category.fragment.CreatorCategoryFragment"
         android:label="category_create"
-        tools:layout="@layout/activity_category">
+        tools:layout="@layout/fragment_category">
         <!--        <action-->
         <!--                android:id="@+id/action_register_to_match"-->
         <!--                app:destination="@id/match"-->
@@ -173,7 +173,7 @@
         android:id="@+id/editCategory"
         android:name="com.persAssistant.shopping_list.presentation.activity.category.fragment.EditorCategoryFragment"
         android:label="category_edit"
-        tools:layout="@layout/activity_category">
+        tools:layout="@layout/fragment_category">
         <!--        <action-->
         <!--                android:id="@+id/action_register_to_match"-->
         <!--                app:destination="@id/match"-->

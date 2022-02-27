@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.presentation.activity.category
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.persAssistant.shopping_list.databinding.ActivityCategoryBinding
+import com.persAssistant.shopping_list.databinding.FragmentCategoryBinding
 
 abstract class CategoryActivity : AppCompatActivity() {
 
@@ -11,7 +11,7 @@ abstract class CategoryActivity : AppCompatActivity() {
     }
 
     protected abstract fun createViewModel(): CategoryViewModel
-    protected val binding: ActivityCategoryBinding by lazy { ActivityCategoryBinding.inflate(layoutInflater) }
+    protected val binding: FragmentCategoryBinding by lazy { FragmentCategoryBinding.inflate(layoutInflater) }
     protected lateinit var viewModel: CategoryViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {

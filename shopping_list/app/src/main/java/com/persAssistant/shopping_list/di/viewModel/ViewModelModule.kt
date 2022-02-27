@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.di.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.persAssistant.shopping_list.di.NavigationViewModel
+import com.persAssistant.shopping_list.presentation.util.NavigationViewModel
 import com.persAssistant.shopping_list.presentation.util.SUPPRESS_UNUSED
 import com.persAssistant.shopping_list.presentation.util.ViewModelFactory
 import dagger.Binds

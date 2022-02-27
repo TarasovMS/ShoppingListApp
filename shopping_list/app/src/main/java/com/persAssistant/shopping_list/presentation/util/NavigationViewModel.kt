@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.di
+package com.persAssistant.shopping_list.presentation.util
 
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections

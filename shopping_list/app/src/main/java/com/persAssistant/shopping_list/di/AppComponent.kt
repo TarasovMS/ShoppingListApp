@@ -8,9 +8,9 @@ import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.ShoppingListInteractor
 import com.persAssistant.shopping_list.di.module.*
-import com.persAssistant.shopping_list.di.viewModel.CategoryViewModelModule
-import com.persAssistant.shopping_list.di.viewModel.PurchaseViewModelModule
-import com.persAssistant.shopping_list.di.viewModel.ShoppingListViewModelModule
+import com.persAssistant.shopping_list.di.viewModel.categories.CategoryViewModelModule
+import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseViewModelModule
+import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.ViewModelModule
 import com.persAssistant.shopping_list.presentation.App
 import com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryViewModel

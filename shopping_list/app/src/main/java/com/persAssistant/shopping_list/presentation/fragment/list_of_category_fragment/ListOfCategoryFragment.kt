@@ -8,7 +8,7 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.RecyclerCategoryBinding
-import com.persAssistant.shopping_list.presentation.activity.category.CategoryActivity.Companion.KEY_CATEGORY
+import com.persAssistant.shopping_list.presentation.activity.category.fragment.CategoryFragment.Companion.KEY_CATEGORY
 import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.presentation.util.viewBinding
 

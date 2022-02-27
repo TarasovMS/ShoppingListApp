@@ -3,12 +3,11 @@ package com.persAssistant.shopping_list.base
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.MaterialToolbar
-import com.persAssistant.shopping_list.di.NavigationViewModel
+import com.persAssistant.shopping_list.presentation.util.NavigationViewModel
 import com.persAssistant.shopping_list.presentation.App
 import com.persAssistant.shopping_list.presentation.util.UiRouter
 import dagger.android.support.DaggerFragment

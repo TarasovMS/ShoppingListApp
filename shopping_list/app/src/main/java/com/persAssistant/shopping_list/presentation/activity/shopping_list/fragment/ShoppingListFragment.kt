@@ -3,22 +3,21 @@ package com.persAssistant.shopping_list.presentation.activity.shopping_list.frag
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
-import com.persAssistant.shopping_list.databinding.ActivityShoppingListBinding
+import com.persAssistant.shopping_list.databinding.FragmentShoppingListBinding
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.ShoppingListViewModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-abstract class ShoppingListFragment : AppBaseFragment(R.layout.activity_shopping_list) {
+abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping_list) {
 
     companion object {
         const val SHOPPING_LIST_KEY = "SHOPPINGLIST_ID"
     }
 
     protected abstract fun createViewModel(): ShoppingListViewModel
-    private val binding: ActivityShoppingListBinding by lazy { ActivityShoppingListBinding.inflate(layoutInflater) }
+    private val binding: FragmentShoppingListBinding by lazy { FragmentShoppingListBinding.inflate(layoutInflater) }
 
     protected lateinit var viewModel: ShoppingListViewModel
 

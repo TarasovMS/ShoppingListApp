@@ -14,7 +14,6 @@ import com.persAssistant.shopping_list.presentation.util.visibleWithOutFade
 
 open class MainActivity : AppBaseActivity() {
 
-
     private val binding: ActivityMainBinding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     private val viewModel: MainActivityViewModel by viewModels { viewModelFactory }
     private var currentDestination: Int? = null

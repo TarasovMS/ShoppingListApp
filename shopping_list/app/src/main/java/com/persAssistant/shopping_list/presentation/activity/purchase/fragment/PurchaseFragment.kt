@@ -2,19 +2,17 @@ package com.persAssistant.shopping_list.presentation.activity.purchase.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.domain.entities.Category
-import com.persAssistant.shopping_list.databinding.ActivityPurchaseBinding
+import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.presentation.activity.purchase.PurchaseViewModel
 import com.persAssistant.shopping_list.presentation.activity.purchase.SelectionOfCategoryInDialog
-import java.util.*
 
-abstract class PurchaseFragment: AppBaseFragment(R.layout.activity_purchase) {
+abstract class PurchaseFragment: AppBaseFragment(R.layout.fragment_purchase) {
 
     protected abstract fun createViewModel(): PurchaseViewModel
-    private val binding: ActivityPurchaseBinding by lazy { ActivityPurchaseBinding.inflate(layoutInflater) }
+    private val binding: FragmentPurchaseBinding by lazy { FragmentPurchaseBinding.inflate(layoutInflater) }
     protected lateinit var viewModel: PurchaseViewModel
 
     companion object {

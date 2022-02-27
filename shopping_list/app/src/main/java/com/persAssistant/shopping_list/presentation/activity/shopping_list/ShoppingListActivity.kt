@@ -3,7 +3,7 @@ package com.persAssistant.shopping_list.presentation.activity.shopping_list
 import android.app.DatePickerDialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.persAssistant.shopping_list.databinding.ActivityShoppingListBinding
+import com.persAssistant.shopping_list.databinding.FragmentShoppingListBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -14,7 +14,7 @@ abstract class ShoppingListActivity : AppCompatActivity() {
     }
 
     protected abstract fun createViewModel(): ShoppingListViewModel
-    private val binding: ActivityShoppingListBinding by lazy { ActivityShoppingListBinding.inflate(layoutInflater) }
+    private val binding: FragmentShoppingListBinding by lazy { FragmentShoppingListBinding.inflate(layoutInflater) }
 
     protected lateinit var viewModel: ShoppingListViewModel
 
