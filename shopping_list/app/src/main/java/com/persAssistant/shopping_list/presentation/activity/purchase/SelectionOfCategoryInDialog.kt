@@ -54,7 +54,7 @@ class SelectionOfCategoryInDialog {
             app.appComponent.getCategoryInteractor().getAll()
                 .subscribeOn(Schedulers.single())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({/*Есть данные*/
+                .subscribe({
                     categoryAdapter.updateItems(it)
                 }, {/*Ошибка*/ })
         }

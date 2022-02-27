@@ -1,9 +1,16 @@
 package com.persAssistant.shopping_list.di.fragment
 
 import com.persAssistant.shopping_list.di.scopes.FragmentScope
-import com.persAssistant.shopping_list.di.viewModel.ListOfCategoryVmModule
-import com.persAssistant.shopping_list.di.viewModel.ListOfPurchaseVmModule
-import com.persAssistant.shopping_list.di.viewModel.ListOfShoppingListVmModule
+import com.persAssistant.shopping_list.di.viewModel.*
+import com.persAssistant.shopping_list.di.viewModel.vm.CategoryVmModule
+import com.persAssistant.shopping_list.di.viewModel.vm.PurchaseVmModule
+import com.persAssistant.shopping_list.di.viewModel.vm.ShoppingListVmModule
+import com.persAssistant.shopping_list.presentation.activity.category.fragment.CreatorCategoryFragment
+import com.persAssistant.shopping_list.presentation.activity.category.fragment.EditorCategoryFragment
+import com.persAssistant.shopping_list.presentation.activity.purchase.fragment.CreatorPurchaseFragment
+import com.persAssistant.shopping_list.presentation.activity.purchase.fragment.EditorPurchaseFragment
+import com.persAssistant.shopping_list.presentation.activity.shopping_list.fragment.CreatorShoppingListFragment
+import com.persAssistant.shopping_list.presentation.activity.shopping_list.fragment.EditorShoppingListFragment
 import com.persAssistant.shopping_list.presentation.fragment.list_of_category_fragment.ListOfCategoryFragment
 import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseFragment
 import com.persAssistant.shopping_list.presentation.fragment.list_of_shopping_list_fragment.ListOfShoppingListFragment
@@ -39,6 +46,53 @@ abstract class FragmentModule {
     )
     abstract fun contributeListOfPurchaseFragment(): ListOfPurchaseFragment
 
+    @FragmentScope
+    @ContributesAndroidInjector(
+        modules = [
+            PurchaseVmModule::class
+        ]
+    )
+    abstract fun contributeEditorPurchaseFragment(): EditorPurchaseFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(
+        modules = [
+            PurchaseVmModule::class
+        ]
+    )
+    abstract fun contributeCreatorPurchaseFragment(): CreatorPurchaseFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(
+        modules = [
+            CategoryVmModule::class
+        ]
+    )
+    abstract fun contributeCreatorCategoryFragment(): CreatorCategoryFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(
+        modules = [
+            CategoryVmModule::class
+        ]
+    )
+    abstract fun contributeEditorCategoryFragment(): EditorCategoryFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(
+        modules = [
+            ShoppingListVmModule::class
+        ]
+    )
+    abstract fun contributeEditorShoppingListFragment(): EditorShoppingListFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector(
+        modules = [
+            ShoppingListVmModule::class
+        ]
+    )
+    abstract fun contributeCreatorShoppingListFragment(): CreatorShoppingListFragment
 
 //    @FragmentScope
 //    @ContributesAndroidInjector

@@ -124,9 +124,24 @@
 <!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
     </fragment>
 
-    <activity
+<!--    <activity-->
+<!--        android:id="@+id/createCategory"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryActivity"-->
+<!--        android:label="category_create"-->
+<!--        tools:layout="@layout/activity_category">-->
+<!--        &lt;!&ndash;        <action&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
+<!--    </activity>-->
+
+    <fragment
         android:id="@+id/createCategory"
-        android:name="com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryActivity"
+        android:name="com.persAssistant.shopping_list.presentation.activity.category.fragment.CreatorCategoryFragment"
         android:label="category_create"
         tools:layout="@layout/activity_category">
         <!--        <action-->
@@ -137,11 +152,26 @@
         <!--                app:enterAnim="@anim/slide_in_right"-->
         <!--                app:exitAnim="@anim/slide_out_left"/>-->
         <!--    </activity>-->
-    </activity>
+    </fragment>
 
-    <activity
+<!--    <activity-->
+<!--        android:id="@+id/editCategory"-->
+<!--        android:name="com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryActivity"-->
+<!--        android:label="category_edit"-->
+<!--        tools:layout="@layout/activity_category">-->
+<!--        &lt;!&ndash;        <action&ndash;&gt;-->
+<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
+<!--    </activity>-->
+
+    <fragment
         android:id="@+id/editCategory"
-        android:name="com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryActivity"
+        android:name="com.persAssistant.shopping_list.presentation.activity.category.fragment.EditorCategoryFragment"
         android:label="category_edit"
         tools:layout="@layout/activity_category">
         <!--        <action-->
@@ -152,7 +182,7 @@
         <!--                app:enterAnim="@anim/slide_in_right"-->
         <!--                app:exitAnim="@anim/slide_out_left"/>-->
         <!--    </activity>-->
-    </activity>
+    </fragment>
 
 </navigation>
 

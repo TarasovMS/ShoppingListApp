@@ -2,7 +2,6 @@ package com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_f
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.persAssistant.shopping_list.base.AppBaseViewModel
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
@@ -14,8 +13,9 @@ import java.util.*
 import javax.inject.Inject
 
 
-class ListOfPurchaseViewModel @Inject constructor(val purchaseInteractor: PurchaseInteractorInterface, val fullPurchaseInteractor: FullPurchaseInteractorInterface
-    ): AppBaseViewModel() {
+class ListOfPurchaseViewModel @Inject constructor( val purchaseInteractor: PurchaseInteractorInterface,
+                                                   val fullPurchaseInteractor: FullPurchaseInteractorInterface
+                                                   ): AppBaseViewModel() {
 
 
     var fullPurchaseList = MutableLiveData<LinkedList<FullPurchase>>()
@@ -30,9 +30,9 @@ class ListOfPurchaseViewModel @Inject constructor(val purchaseInteractor: Purcha
     fun init(lifecycleOwner: LifecycleOwner, parentId: Long, type: IdTypes){
         initByIdType(parentId, type)
 
-        purchaseInteractor.getChangeSignal().observe(lifecycleOwner, androidx.lifecycle.Observer {
+        purchaseInteractor.getChangeSignal().observe(lifecycleOwner) {
             initByIdType(parentId, type)
-        })
+        }
     }
 
     private fun initByIdType(parentId: Long, type: IdTypes){

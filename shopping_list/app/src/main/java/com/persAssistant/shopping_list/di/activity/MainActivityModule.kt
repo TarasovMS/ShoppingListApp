@@ -12,6 +12,8 @@ import dagger.android.ContributesAndroidInjector
 @Suppress(SUPPRESS_UNUSED)
 abstract class MainActivityModule {
 
+   //TODO разделить все фрагменты поотдельности
+
    @ActivityScope
    @ContributesAndroidInjector(
       modules = [

@@ -28,7 +28,7 @@ class EditorPurchaseViewModel @Inject constructor(private val purchaseInteractor
             }, {})
     }
 
-    override fun save() {
+     override fun save() {
         if(listId != DbStruct.ShoppingListTable.Cols.INVALID_ID){
             if(price.value == null)
                 price.value = "0"

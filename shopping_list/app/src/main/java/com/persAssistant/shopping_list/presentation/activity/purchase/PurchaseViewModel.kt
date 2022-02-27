@@ -4,8 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.persAssistant.shopping_list.data.database.DbStruct
 import com.persAssistant.shopping_list.domain.entities.Category
+import javax.inject.Inject
 
-abstract class PurchaseViewModel: ViewModel() {
+open class PurchaseViewModel @Inject constructor(): ViewModel() {
     var closeEvent = MutableLiveData<Unit>()
     var name = MutableLiveData<String>()
     var price = MutableLiveData<String>()
@@ -17,5 +18,6 @@ abstract class PurchaseViewModel: ViewModel() {
         categoryId = category.id!!
         categoryName.value = category.name
     }
-    abstract fun save()
+
+    open fun save() {}
 }

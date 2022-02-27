@@ -29,6 +29,9 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
+// TODO разделить фрагменты
+
+
 @Component(
     modules = [
         AndroidInjectionModule::class,
@@ -57,6 +60,8 @@ interface AppComponent: AndroidInjector<App> {
 
         fun build(): AppComponent
     }
+
+    //TODO delete other all methods
 
     fun getRoomDataBase(): RoomDataBaseHelper
 

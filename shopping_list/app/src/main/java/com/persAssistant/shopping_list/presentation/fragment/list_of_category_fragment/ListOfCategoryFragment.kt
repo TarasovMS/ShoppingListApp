@@ -1,6 +1,5 @@
 package com.persAssistant.shopping_list.presentation.fragment.list_of_category_fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,12 +8,9 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.RecyclerCategoryBinding
-import com.persAssistant.shopping_list.presentation.App
 import com.persAssistant.shopping_list.presentation.activity.category.CategoryActivity.Companion.KEY_CATEGORY
-import com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryActivity
 import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.presentation.util.viewBinding
-import java.util.*
 
 class ListOfCategoryFragment: AppBaseFragment(R.layout.recycler_category) {
 
@@ -42,8 +38,6 @@ class ListOfCategoryFragment: AppBaseFragment(R.layout.recycler_category) {
             }
 
             override fun editItem(category: Category) {
-//                val intent = EditorCategoryActivity.getIntent(requireContext(), category.id!!)
-//                startActivity(intent)
                 val bundle = Bundle()
                 bundle.putLong(KEY_CATEGORY, category.id!!)
                 uiRouter.navigateById(R.id.editCategory,bundle)

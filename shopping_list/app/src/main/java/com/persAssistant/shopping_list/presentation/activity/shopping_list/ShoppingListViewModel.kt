@@ -4,8 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-abstract class ShoppingListViewModel : ViewModel() {
+open class ShoppingListViewModel @Inject constructor() : ViewModel() {
     var closeEvent = MutableLiveData<Unit>()
     var name = MutableLiveData<String>()
     var strDate = MutableLiveData<String>()
@@ -15,9 +16,7 @@ abstract class ShoppingListViewModel : ViewModel() {
         strDate.value = SimpleDateFormat("dd.MM.yyyy").format(date)
     }
 
-    init {
-        date = Date()
-    }
+    init { date = Date() }
 
-    abstract fun save()
+    open fun save() {}
 }
