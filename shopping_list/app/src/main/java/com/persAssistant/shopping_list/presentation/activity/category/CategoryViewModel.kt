@@ -2,12 +2,11 @@ package com.persAssistant.shopping_list.presentation.activity.category
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import javax.inject.Inject
 
-open class CategoryViewModel @Inject constructor() : ViewModel() {
+abstract class CategoryViewModel : ViewModel() {
 
     var closeEvent = MutableLiveData<Unit>()
     var name = MutableLiveData<String>()
 
-    open fun save() {}
+    abstract fun save()
 }

@@ -16,8 +16,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryActivity" />
-        <activity android:name="com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryActivity" />
+<!--        <activity android:name="com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryActivity" />-->
+<!--        <activity android:name="com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryActivity" />-->
         <activity android:name="com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPurchaseActivity" />
         <activity android:name="com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseActivity" />
 <!--        <activity android:name=".presentation.list_of_purchase_activity.ListOfPurchaseActivity" />-->

@@ -6,6 +6,7 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentCategoryBinding
 import com.persAssistant.shopping_list.presentation.activity.category.CategoryViewModel
+import com.persAssistant.shopping_list.presentation.util.viewBinding
 
 abstract class CategoryFragment : AppBaseFragment(R.layout.fragment_category) {
 
@@ -14,19 +15,14 @@ abstract class CategoryFragment : AppBaseFragment(R.layout.fragment_category) {
     }
 
     protected abstract fun createViewModel(): CategoryViewModel
-    protected val binding: FragmentCategoryBinding by lazy { FragmentCategoryBinding.inflate(layoutInflater) }
+    protected val binding: FragmentCategoryBinding by viewBinding( FragmentCategoryBinding::bind)
     protected lateinit var viewModel: CategoryViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = createViewModel()
-        viewModel.closeEvent.observe(this) {
-            // TODO сигнал о закрытия Edited и Created
-//            finish()
-            uiRouter.navigateById(R.id.recyclerView_category)
-
-        }
+        viewModel.closeEvent.observe(this) { uiRouter.navigateBack()}
 
         binding.vm = viewModel
         binding.lifecycleOwner = this

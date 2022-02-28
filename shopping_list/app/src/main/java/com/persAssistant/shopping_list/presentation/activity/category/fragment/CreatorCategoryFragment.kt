@@ -1,13 +1,15 @@
 package com.persAssistant.shopping_list.presentation.activity.category.fragment
 
-import com.persAssistant.shopping_list.presentation.App
+import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import com.persAssistant.shopping_list.presentation.activity.category.CategoryViewModel
 import com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryViewModel
+import javax.inject.Inject
 
 class CreatorCategoryFragment : CategoryFragment() {
 
+    @Inject lateinit var categoryInteract: CategoryInteractor
+
     override fun createViewModel(): CategoryViewModel {
-        val app = requireContext().applicationContext as App
-        return CreatorCategoryViewModel(app.appComponent.getCategoryInteractor())
+        return CreatorCategoryViewModel(categoryInteract)
     }
 }

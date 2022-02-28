@@ -19,9 +19,9 @@ class ListOfCategoryViewModel @Inject constructor(val categoryInteractor: Catego
     var deleteCategoryId = MutableLiveData<Long>()
 
     fun init(lifecycleOwner: LifecycleOwner){
-        categoryInteractor.getChangeSignal().observe(lifecycleOwner, androidx.lifecycle.Observer {
+        categoryInteractor.getChangeSignal().observe(lifecycleOwner){
             initCategoryList()
-        })
+        }
         initCategoryList()
     }
 
@@ -39,7 +39,7 @@ class ListOfCategoryViewModel @Inject constructor(val categoryInteractor: Catego
         .subscribeOn(Schedulers.single())
         .observeOn(AndroidSchedulers.mainThread())
         .subscribe({/*Выполнено*/
-            deleteCategoryId.value = category.id
+            deleteCategoryId.value = category.id!!
         }, {/*Ошибка*/ })
     }
 }
