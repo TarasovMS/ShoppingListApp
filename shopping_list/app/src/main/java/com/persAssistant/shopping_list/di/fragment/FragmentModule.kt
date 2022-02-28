@@ -7,21 +7,18 @@ import com.persAssistant.shopping_list.di.viewModel.purchase.ListOfPurchaseVmMod
 import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseVmModule
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ListOfShoppingListVmModule
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListVmModule
-import com.persAssistant.shopping_list.presentation.activity.category.fragment.CreatorCategoryFragment
-import com.persAssistant.shopping_list.presentation.activity.category.fragment.EditorCategoryFragment
-import com.persAssistant.shopping_list.presentation.activity.purchase.SelectionOfCategoryInDialog
-import com.persAssistant.shopping_list.presentation.activity.purchase.fragment.CreatorPurchaseFragment
-import com.persAssistant.shopping_list.presentation.activity.purchase.fragment.EditorPurchaseFragment
-import com.persAssistant.shopping_list.presentation.activity.shopping_list.fragment.CreatorShoppingListFragment
-import com.persAssistant.shopping_list.presentation.activity.shopping_list.fragment.EditorShoppingListFragment
-import com.persAssistant.shopping_list.presentation.fragment.list_of_category_fragment.ListOfCategoryFragment
-import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseFragment
-import com.persAssistant.shopping_list.presentation.fragment.list_of_shopping_list_fragment.ListOfShoppingListFragment
+import com.persAssistant.shopping_list.presentation.fragment.category.CreatorCategoryFragment
+import com.persAssistant.shopping_list.presentation.fragment.category.EditorCategoryFragment
+import com.persAssistant.shopping_list.presentation.fragment.purchase.CreatorPurchaseFragment
+import com.persAssistant.shopping_list.presentation.fragment.purchase.EditorPurchaseFragment
+import com.persAssistant.shopping_list.presentation.fragment.shopping_list.CreatorShoppingListFragment
+import com.persAssistant.shopping_list.presentation.fragment.shopping_list.EditorShoppingListFragment
+import com.persAssistant.shopping_list.presentation.fragment.category.ListOfCategoryFragment
+import com.persAssistant.shopping_list.presentation.fragment.purchase.ListOfPurchaseFragment
+import com.persAssistant.shopping_list.presentation.fragment.shopping_list.ListOfShoppingListFragment
 import com.persAssistant.shopping_list.presentation.util.SUPPRESS_UNUSED
-import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import dagger.multibindings.IntoMap
 
 @Module
 @Suppress(SUPPRESS_UNUSED)

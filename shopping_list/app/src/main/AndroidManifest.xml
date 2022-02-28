@@ -10,19 +10,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopping_list">
-        <activity android:name=".presentation.activity.main_activity.MainActivity">
+        <activity android:name=".presentation.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name="com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryActivity" />-->
-<!--        <activity android:name="com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryActivity" />-->
-        <activity android:name="com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPurchaseActivity" />
-        <activity android:name="com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseActivity" />
+<!--        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.category.CreatorCategoryActivity" />-->
+<!--        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.category.EditorCategoryActivity" />-->
+        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.purchase.CreatorPurchaseActivity" />
+        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.purchase.EditorPurchaseActivity" />
 <!--        <activity android:name=".presentation.list_of_purchase_activity.ListOfPurchaseActivity" />-->
-        <activity android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListActivity" />
-        <activity android:name="com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListActivity" />
+        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.shopping_list.CreatorShoppingListActivity" />
+        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.shopping_list.EditorShoppingListActivity" />
     </application>
 
 </manifest>

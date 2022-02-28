@@ -9,9 +9,6 @@ import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseViewModelMo
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.UtilViewModelModule
 import com.persAssistant.shopping_list.presentation.App
-import com.persAssistant.shopping_list.presentation.fragment.list_of_shopping_list_fragment.ListOfShoppingListViewModel
-import com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListViewModel
-import com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListViewModel
 import com.persAssistant.shopping_list.presentation.util.SUPPRESS_UNUSED
 import dagger.BindsInstance
 import dagger.Component
@@ -48,25 +45,5 @@ interface AppComponent: AndroidInjector<App> {
         fun build(): AppComponent
     }
 
-    //TODO delete other all methods
-
-//    fun getRoomDataBase(): RoomDataBaseHelper
-
     fun getCategoryInteractor(): CategoryInteractor
-//    fun getPurchaseInteractor(): PurchaseInteractor
-//    fun getShoppingListInteractor(): ShoppingListInteractor
-//    fun getFullPurchaseInteractor(): FullPurchaseInteractor
-//
-//    fun getEditorCategoryViewModel(): EditorCategoryViewModel
-//    fun getCreatorCategoryViewModel(): CreatorCategoryViewModel
-//    fun getListOfCategoryViewModel(): ListOfCategoryViewModel
-//
-//    fun getEditorPurchaseViewModel(): EditorPurchaseViewModel
-//    fun getCreatorPurchaseViewModel(): CreatorPurchaseViewModel
-//    fun getListOfPurchaseViewModel(): ListOfPurchaseViewModel
-
-    fun getEditorShoppingListViewModel(): EditorShoppingListViewModel
-    fun getCreatorShoppingListViewModel(): CreatorShoppingListViewModel
-    fun getListOfShoppingListViewModel(): ListOfShoppingListViewModel
-
 }

@@ -1,9 +1,9 @@
 package com.persAssistant.shopping_list.di.viewModel.categories
 
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
-import com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryViewModel
-import com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryViewModel
-import com.persAssistant.shopping_list.presentation.fragment.list_of_category_fragment.ListOfCategoryViewModel
+import com.persAssistant.shopping_list.presentation.fragment.category.view_model.CreatorCategoryViewModel
+import com.persAssistant.shopping_list.presentation.fragment.category.view_model.EditorCategoryViewModel
+import com.persAssistant.shopping_list.presentation.fragment.category.view_model.ListOfCategoryViewModel
 import dagger.Module
 import dagger.Provides
 
