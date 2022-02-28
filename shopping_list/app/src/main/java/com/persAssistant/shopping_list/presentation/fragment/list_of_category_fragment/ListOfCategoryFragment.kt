@@ -1,7 +1,6 @@
 package com.persAssistant.shopping_list.presentation.fragment.list_of_category_fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
@@ -24,18 +23,14 @@ class ListOfCategoryFragment: AppBaseFragment(R.layout.recycler_category) {
         categoryAdapter = CategoryAdapter (object : OnCategoryClickListener {
             override fun clickedCategoryItem(category: Category) {
                 val bundle = Bundle()
+                bundle.putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
                 bundle.putLong(KEY_PARENT_ID, category.id!!)
                 bundle.putBoolean(KEY_VISIBILITY_BUTTON, false)
-                bundle.putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
-
-                Log.d("ListPurchaseAfterCateg"," parentId = ${category.id}, visibility = false, idTypeIndex = ${ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal}")
 
                 uiRouter.navigateById(R.id.purchaseList,bundle)
             }
 
-            override fun deleteItem(category: Category) {
-                viewModel.deleteItemCategory(category)
-            }
+            override fun deleteItem(category: Category) { viewModel.deleteItemCategory(category) }
 
             override fun editItem(category: Category) {
                 val bundle = Bundle()
@@ -56,14 +51,7 @@ class ListOfCategoryFragment: AppBaseFragment(R.layout.recycler_category) {
         viewModel.init(this)
 
         binding.btnAddCategory.setOnClickListener {
-//            val intent = CreatorCategoryActivity.getIntent(requireContext())
-//            startActivity(intent)
             uiRouter.navigateById(R.id.createCategory)
         }
     }
-
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        app = (context.applicationContext as App)
-//    }
 }

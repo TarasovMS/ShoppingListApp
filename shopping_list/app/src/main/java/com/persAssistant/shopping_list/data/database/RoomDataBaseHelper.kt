@@ -5,12 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.persAssistant.shopping_list.data.database.dao.CategoryRoomDao
-import com.persAssistant.shopping_list.data.database.dao.ShoppingListRoomDao
-import com.persAssistant.shopping_list.data.database.dao.PurchaseRoomDao
-import com.persAssistant.shopping_list.data.database.dao.entity.RoomCategory
-import com.persAssistant.shopping_list.data.database.dao.entity.RoomPurchase
-import com.persAssistant.shopping_list.data.database.dao.entity.RoomShoppingList
+import com.persAssistant.shopping_list.data.dao.CategoryRoomDao
+import com.persAssistant.shopping_list.data.dao.ShoppingListRoomDao
+import com.persAssistant.shopping_list.data.dao.PurchaseRoomDao
+import com.persAssistant.shopping_list.data.dao.entity.RoomCategory
+import com.persAssistant.shopping_list.data.dao.entity.RoomPurchase
+import com.persAssistant.shopping_list.data.dao.entity.RoomShoppingList
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -28,7 +28,8 @@ abstract class RoomDataBaseHelper : RoomDatabase() {
             return Room.databaseBuilder(
                 context.applicationContext,
                 RoomDataBaseHelper::class.java,
-                DATABASE_NAME)
+                DATABASE_NAME
+            )
                 .addCallback(object : RoomDatabase.Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         // creating default category
@@ -37,18 +38,15 @@ abstract class RoomDataBaseHelper : RoomDatabase() {
                         val defaultRoomCategory = RoomCategory(DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT,"Универсальная категория")
 
                         Completable.fromAction {
-                            categoryDao.insert(defaultRoomCategory
-                        )}
+                            categoryDao.insert(defaultRoomCategory)}
                             .subscribeOn(Schedulers.single())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                            }, {})
+                            .subscribe({ }, { })
                     }
                 })
                 .build()
         }
     }
-
 
     abstract fun getCategoryRoomDao(): CategoryRoomDao
     abstract fun getPurchaseRoomDao(): PurchaseRoomDao

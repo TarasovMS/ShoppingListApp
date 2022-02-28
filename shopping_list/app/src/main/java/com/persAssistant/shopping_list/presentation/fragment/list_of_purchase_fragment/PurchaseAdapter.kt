@@ -11,10 +11,10 @@ import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import java.util.*
 
-class PurchaseAdapter(private var items: LinkedList<FullPurchase>,
-                      private val onPurchaseClickListener: OnPurchaseClickListener
-)
+class PurchaseAdapter(private val onPurchaseClickListener: OnPurchaseClickListener)
     : RecyclerView.Adapter<PurchaseAdapter.ViewHolder>() {
+
+    private var items: LinkedList<FullPurchase> = LinkedList()
 
     override fun getItemCount(): Int {
         return items.size

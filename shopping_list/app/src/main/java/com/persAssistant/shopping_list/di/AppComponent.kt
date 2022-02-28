@@ -1,25 +1,15 @@
 package com.persAssistant.shopping_list.di
 
 import android.content.Context
-import com.persAssistant.shopping_list.data.database.RoomDataBaseHelper
 import com.persAssistant.shopping_list.di.activity.MainActivityModule
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
-import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
-import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
-import com.persAssistant.shopping_list.domain.interactors.ShoppingListInteractor
 import com.persAssistant.shopping_list.di.module.*
 import com.persAssistant.shopping_list.di.viewModel.categories.CategoryViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListViewModelModule
-import com.persAssistant.shopping_list.di.viewModel.ViewModelModule
+import com.persAssistant.shopping_list.di.viewModel.UtilViewModelModule
 import com.persAssistant.shopping_list.presentation.App
-import com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryViewModel
-import com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryViewModel
-import com.persAssistant.shopping_list.presentation.fragment.list_of_category_fragment.ListOfCategoryViewModel
-import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.presentation.fragment.list_of_shopping_list_fragment.ListOfShoppingListViewModel
-import com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPurchaseViewModel
-import com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseViewModel
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.CreatorShoppingListViewModel
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.EditorShoppingListViewModel
 import com.persAssistant.shopping_list.presentation.util.SUPPRESS_UNUSED
@@ -28,9 +18,6 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
-
-// TODO разделить фрагменты
-
 
 @Component(
     modules = [
@@ -44,7 +31,7 @@ import javax.inject.Singleton
         PurchaseViewModelModule::class,
         ShoppingListViewModelModule::class,
         MainActivityModule::class,
-        ViewModelModule::class
+        UtilViewModelModule::class
     ])
 @Singleton
 @Suppress(SUPPRESS_UNUSED)
@@ -63,20 +50,20 @@ interface AppComponent: AndroidInjector<App> {
 
     //TODO delete other all methods
 
-    fun getRoomDataBase(): RoomDataBaseHelper
+//    fun getRoomDataBase(): RoomDataBaseHelper
 
     fun getCategoryInteractor(): CategoryInteractor
-    fun getPurchaseInteractor(): PurchaseInteractor
-    fun getShoppingListInteractor(): ShoppingListInteractor
-    fun getFullPurchaseInteractor(): FullPurchaseInteractor
-
-    fun getEditorCategoryViewModel(): EditorCategoryViewModel
-    fun getCreatorCategoryViewModel(): CreatorCategoryViewModel
-    fun getListOfCategoryViewModel(): ListOfCategoryViewModel
-
-    fun getEditorPurchaseViewModel(): EditorPurchaseViewModel
-    fun getCreatorPurchaseViewModel(): CreatorPurchaseViewModel
-    fun getListOfPurchaseViewModel(): ListOfPurchaseViewModel
+//    fun getPurchaseInteractor(): PurchaseInteractor
+//    fun getShoppingListInteractor(): ShoppingListInteractor
+//    fun getFullPurchaseInteractor(): FullPurchaseInteractor
+//
+//    fun getEditorCategoryViewModel(): EditorCategoryViewModel
+//    fun getCreatorCategoryViewModel(): CreatorCategoryViewModel
+//    fun getListOfCategoryViewModel(): ListOfCategoryViewModel
+//
+//    fun getEditorPurchaseViewModel(): EditorPurchaseViewModel
+//    fun getCreatorPurchaseViewModel(): CreatorPurchaseViewModel
+//    fun getListOfPurchaseViewModel(): ListOfPurchaseViewModel
 
     fun getEditorShoppingListViewModel(): EditorShoppingListViewModel
     fun getCreatorShoppingListViewModel(): CreatorShoppingListViewModel

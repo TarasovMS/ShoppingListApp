@@ -8,11 +8,12 @@ import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.presentation.activity.purchase.PurchaseViewModel
 import com.persAssistant.shopping_list.presentation.activity.purchase.SelectionOfCategoryInDialog
+import com.persAssistant.shopping_list.presentation.util.viewBinding
 
 abstract class PurchaseFragment: AppBaseFragment(R.layout.fragment_purchase) {
 
     protected abstract fun createViewModel(): PurchaseViewModel
-    private val binding: FragmentPurchaseBinding by lazy { FragmentPurchaseBinding.inflate(layoutInflater) }
+    private val binding: FragmentPurchaseBinding by viewBinding(FragmentPurchaseBinding::bind)
     protected lateinit var viewModel: PurchaseViewModel
 
     companion object {
@@ -25,9 +26,7 @@ abstract class PurchaseFragment: AppBaseFragment(R.layout.fragment_purchase) {
 
         viewModel = createViewModel()
         viewModel.closeEvent.observe(this) {
-            //TODO закрытие edited & created
-//            finish()
-            uiRouter.navigateById(R.id.recyclerView_purchase)
+            uiRouter.navigateBack()
         }
 
         binding.llSelectionOfCategoriesForPurchases.setOnClickListener {

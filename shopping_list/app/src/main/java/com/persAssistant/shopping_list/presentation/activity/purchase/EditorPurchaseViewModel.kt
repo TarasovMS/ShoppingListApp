@@ -30,8 +30,7 @@ class EditorPurchaseViewModel @Inject constructor(private val purchaseInteractor
 
      override fun save() {
         if(listId != DbStruct.ShoppingListTable.Cols.INVALID_ID){
-            if(price.value == null)
-                price.value = "0"
+            if(price.value == null) setPriceDefault()
 
             val purchase = Purchase(id = purchaseId, name = name.value ?: "", categoryId = categoryId, listId = listId, price = price.value?.toDouble(), isCompleted = 0)
             purchaseInteractor.update(purchase)

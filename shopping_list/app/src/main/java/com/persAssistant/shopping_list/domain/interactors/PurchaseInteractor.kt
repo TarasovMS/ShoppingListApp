@@ -1,7 +1,7 @@
 package com.persAssistant.shopping_list.domain.interactors
 
 import androidx.lifecycle.LiveData
-import com.persAssistant.shopping_list.data.database.dao.entity.RoomPurchase
+import com.persAssistant.shopping_list.data.dao.entity.RoomPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.domain.interactor_interfaces.PurchaseInteractorInterface
 import com.persAssistant.shopping_list.domain.interactor_repositories.PurchaseRepositoryInterface

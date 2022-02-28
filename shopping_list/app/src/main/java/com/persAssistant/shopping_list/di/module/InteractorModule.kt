@@ -1,8 +1,8 @@
 package com.persAssistant.shopping_list.di.module
 
-import com.persAssistant.shopping_list.data.database.repositories.CategoryRepository
-import com.persAssistant.shopping_list.data.database.repositories.PurchaseRepository
-import com.persAssistant.shopping_list.data.database.repositories.ShoppingListRepository
+import com.persAssistant.shopping_list.data.repositories.CategoryRepository
+import com.persAssistant.shopping_list.data.repositories.PurchaseRepository
+import com.persAssistant.shopping_list.data.repositories.ShoppingListRepository
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor

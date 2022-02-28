@@ -8,11 +8,12 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CreatorPurchaseViewModel @Inject constructor(val purchaseInteractor: PurchaseInteractor,
-                                                   val categoryInteractor: CategoryInteractor) : PurchaseViewModel() {
+                                                   val categoryInteractor: CategoryInteractor
+                                                   ) : PurchaseViewModel() {
 
     fun init (shoppingListId: Long){
-        listId = shoppingListId
         initCategoryName(categoryId)
+        listId = shoppingListId
     }
 
     private fun initCategoryName ( categoryId: Long){
@@ -25,10 +26,15 @@ class CreatorPurchaseViewModel @Inject constructor(val purchaseInteractor: Purch
     }
 
     override fun save() {
-        if(price.value == null)
-            price.value = "0"
+        if(price.value == null) setPriceDefault()
 
-        val purchase = Purchase(name = name.value ?: "", categoryId = categoryId, listId = listId, price = price.value?.toDouble(), isCompleted = 0)
+        val purchase = Purchase(
+            name = name.value ?: "",
+            categoryId = categoryId,
+            listId = listId,
+            price = price.value?.toDouble(),
+            isCompleted = 0
+        )
         purchaseInteractor.insert(purchase)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())

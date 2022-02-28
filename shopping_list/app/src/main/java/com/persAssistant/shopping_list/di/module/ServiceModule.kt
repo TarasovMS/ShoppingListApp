@@ -1,11 +1,11 @@
 package com.persAssistant.shopping_list.di.module
 
-import com.persAssistant.shopping_list.data.database.dao.CategoryRoomDao
-import com.persAssistant.shopping_list.data.database.dao.PurchaseRoomDao
-import com.persAssistant.shopping_list.data.database.dao.ShoppingListRoomDao
-import com.persAssistant.shopping_list.data.database.service.CategoryService
-import com.persAssistant.shopping_list.data.database.service.PurchaseService
-import com.persAssistant.shopping_list.data.database.service.ShoppingListService
+import com.persAssistant.shopping_list.data.dao.CategoryRoomDao
+import com.persAssistant.shopping_list.data.dao.PurchaseRoomDao
+import com.persAssistant.shopping_list.data.dao.ShoppingListRoomDao
+import com.persAssistant.shopping_list.data.service.CategoryService
+import com.persAssistant.shopping_list.data.service.PurchaseService
+import com.persAssistant.shopping_list.data.service.ShoppingListService
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

@@ -11,7 +11,7 @@ import dagger.multibindings.IntoMap
 
 @Module
 @Suppress(SUPPRESS_UNUSED)
-interface ViewModelModule {
+interface UtilViewModelModule {
 
     @Binds
     @IntoMap

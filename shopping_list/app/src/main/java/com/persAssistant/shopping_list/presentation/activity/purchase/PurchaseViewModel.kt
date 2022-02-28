@@ -19,5 +19,7 @@ open class PurchaseViewModel @Inject constructor(): ViewModel() {
         categoryName.value = category.name
     }
 
+    fun setPriceDefault() { price.value = "0" }
+
     open fun save() {}
 }

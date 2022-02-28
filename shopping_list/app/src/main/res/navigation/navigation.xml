@@ -61,6 +61,7 @@
         android:name="com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseFragment"
         android:label="fragment_purchase"
         tools:layout="@layout/recycler_purchase">
+
         <action
             android:id="@+id/action_purchase_creating_list"
             app:destination="@id/createPurchase" />
@@ -74,9 +75,9 @@
         <!--        app:popExitAnim="@anim/slide_out_right"-->
     </fragment>
 
-    <activity
+    <fragment
         android:id="@+id/createPurchase"
-        android:name="com.persAssistant.shopping_list.presentation.activity.purchase.CreatorPurchaseActivity"
+        android:name="com.persAssistant.shopping_list.presentation.activity.purchase.fragment.CreatorPurchaseFragment"
         android:label="create_Purchase"
         tools:layout="@layout/fragment_purchase">
         <!--        <action-->
@@ -87,11 +88,11 @@
         <!--                app:enterAnim="@anim/slide_in_right"-->
         <!--                app:exitAnim="@anim/slide_out_left"/>-->
         <!--    </activity>-->
-    </activity>
+    </fragment>
 
-    <activity
+    <fragment
         android:id="@+id/editPurchase"
-        android:name="com.persAssistant.shopping_list.presentation.activity.purchase.EditorPurchaseActivity"
+        android:name="com.persAssistant.shopping_list.presentation.activity.purchase.fragment.EditorPurchaseFragment"
         android:label="edit_Purchase"
         tools:layout="@layout/fragment_purchase">
         <!--        <action-->
@@ -102,7 +103,7 @@
         <!--                app:enterAnim="@anim/slide_in_right"-->
         <!--                app:exitAnim="@anim/slide_out_left"/>-->
         <!--    </activity>-->
-    </activity>
+    </fragment>
 
     <fragment
         android:id="@+id/categoryList"
@@ -124,21 +125,6 @@
 <!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
     </fragment>
 
-<!--    <activity-->
-<!--        android:id="@+id/createCategory"-->
-<!--        android:name="com.persAssistant.shopping_list.presentation.activity.category.CreatorCategoryActivity"-->
-<!--        android:label="category_create"-->
-<!--        tools:layout="@layout/activity_category">-->
-<!--        &lt;!&ndash;        <action&ndash;&gt;-->
-<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
-<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
-<!--    </activity>-->
-
     <fragment
         android:id="@+id/createCategory"
         android:name="com.persAssistant.shopping_list.presentation.activity.category.fragment.CreatorCategoryFragment"
@@ -153,21 +139,6 @@
         <!--                app:exitAnim="@anim/slide_out_left"/>-->
         <!--    </activity>-->
     </fragment>
-
-<!--    <activity-->
-<!--        android:id="@+id/editCategory"-->
-<!--        android:name="com.persAssistant.shopping_list.presentation.activity.category.EditorCategoryActivity"-->
-<!--        android:label="category_edit"-->
-<!--        tools:layout="@layout/activity_category">-->
-<!--        &lt;!&ndash;        <action&ndash;&gt;-->
-<!--        &lt;!&ndash;                android:id="@+id/action_register_to_match"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:destination="@id/match"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
-<!--        &lt;!&ndash;                app:exitAnim="@anim/slide_out_left"/>&ndash;&gt;-->
-<!--        &lt;!&ndash;    </activity>&ndash;&gt;-->
-<!--    </activity>-->
 
     <fragment
         android:id="@+id/editCategory"

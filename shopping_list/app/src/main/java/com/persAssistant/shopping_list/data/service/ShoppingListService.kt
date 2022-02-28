@@ -1,8 +1,8 @@
-package com.persAssistant.shopping_list.data.database.service
+package com.persAssistant.shopping_list.data.service
 
 import androidx.lifecycle.LiveData
-import com.persAssistant.shopping_list.data.database.dao.ShoppingListRoomDao
-import com.persAssistant.shopping_list.data.database.dao.entity.RoomShoppingList
+import com.persAssistant.shopping_list.data.dao.ShoppingListRoomDao
+import com.persAssistant.shopping_list.data.dao.entity.RoomShoppingList
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import io.reactivex.Completable
 import io.reactivex.Maybe

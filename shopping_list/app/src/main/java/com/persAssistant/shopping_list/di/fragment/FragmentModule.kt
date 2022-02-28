@@ -9,6 +9,7 @@ import com.persAssistant.shopping_list.di.viewModel.shopping_list.ListOfShopping
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListVmModule
 import com.persAssistant.shopping_list.presentation.activity.category.fragment.CreatorCategoryFragment
 import com.persAssistant.shopping_list.presentation.activity.category.fragment.EditorCategoryFragment
+import com.persAssistant.shopping_list.presentation.activity.purchase.SelectionOfCategoryInDialog
 import com.persAssistant.shopping_list.presentation.activity.purchase.fragment.CreatorPurchaseFragment
 import com.persAssistant.shopping_list.presentation.activity.purchase.fragment.EditorPurchaseFragment
 import com.persAssistant.shopping_list.presentation.activity.shopping_list.fragment.CreatorShoppingListFragment
@@ -17,8 +18,10 @@ import com.persAssistant.shopping_list.presentation.fragment.list_of_category_fr
 import com.persAssistant.shopping_list.presentation.fragment.list_of_purchase_fragment.ListOfPurchaseFragment
 import com.persAssistant.shopping_list.presentation.fragment.list_of_shopping_list_fragment.ListOfShoppingListFragment
 import com.persAssistant.shopping_list.presentation.util.SUPPRESS_UNUSED
+import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
+import dagger.multibindings.IntoMap
 
 @Module
 @Suppress(SUPPRESS_UNUSED)
@@ -96,8 +99,11 @@ abstract class FragmentModule {
     )
     abstract fun contributeCreatorShoppingListFragment(): CreatorShoppingListFragment
 
+
+//    @Binds
+//    @IntoMap
 //    @FragmentScope
 //    @ContributesAndroidInjector
-//    abstract fun contributeAppBaseFragment(): AppBaseFragment
+//    abstract fun contributeSelectionOfCategoryInDialog(): SelectionOfCategoryInDialog
 
 }
