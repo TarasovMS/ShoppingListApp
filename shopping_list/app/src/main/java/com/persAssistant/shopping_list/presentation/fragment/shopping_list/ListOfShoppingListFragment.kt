@@ -13,28 +13,26 @@ import com.persAssistant.shopping_list.presentation.fragment.purchase.view_model
 import com.persAssistant.shopping_list.presentation.fragment.shopping_list.view_model.ListOfShoppingListViewModel
 import com.persAssistant.shopping_list.presentation.util.viewBinding
 
-class  ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_list) {
+class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_list) {
 
     private lateinit var shoppingListAdapter: ShoppingListAdapter
-    private val binding: RecyclerShoppingListBinding by viewBinding (RecyclerShoppingListBinding::bind)
+    private val binding: RecyclerShoppingListBinding by viewBinding(RecyclerShoppingListBinding::bind)
     private val viewModel: ListOfShoppingListViewModel by viewModels { viewModelFactory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        shoppingListAdapter = ShoppingListAdapter( object: OnShoppingListClickListener {
+        shoppingListAdapter = ShoppingListAdapter(object : OnShoppingListClickListener {
             override fun clickedShoppingListItem(shoppingList: ShoppingList) {
                 val bundle = Bundle()
-                bundle.putLong(KEY_PARENT_ID, shoppingList.id!!)
-                bundle.putBoolean(KEY_VISIBILITY_BUTTON, true)
-                bundle.putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.SHOPPINGLIST.ordinal)
 
-                Log.d("ListPurchaseAfterShopp"," parentId = ${shoppingList.id}, " +
-                        "visibility = " +
-                        "true, " +
-                        "idTypeIndex = ${ListOfPurchaseViewModel.IdTypes.SHOPPINGLIST.ordinal}  ")
+                bundle.apply {
+                    putLong(KEY_PARENT_ID, shoppingList.id!!)
+                    putBoolean(KEY_VISIBILITY_BUTTON, true)
+                    putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.SHOPPINGLIST.ordinal)
+                }
 
-                uiRouter.navigateById(R.id.purchaseList,bundle)
+                uiRouter.navigateById(R.id.purchaseList, bundle)
             }
 
             override fun deleteItem(shoppingList: ShoppingList) {
@@ -44,19 +42,25 @@ class  ListOfShoppingListFragment: AppBaseFragment(R.layout.recycler_shopping_li
             override fun editItem(shoppingList: ShoppingList) {
                 val bundle = Bundle()
                 bundle.putLong(SHOPPING_LIST_KEY, shoppingList.id!!)
-                uiRouter.navigateById(R.id.editShoppingList,bundle)
+                uiRouter.navigateById(R.id.editShoppingList, bundle)
             }
         })
 
-        binding.recyclerViewShoppingList.adapter = shoppingListAdapter
+        binding.apply {
+            recyclerViewShoppingList.adapter = shoppingListAdapter
 
-        viewModel.deleteShoppingListId.observe(requireActivity()) { shoppingListAdapter.removeShoppingList(it) }
-        viewModel.listOfShoppingList.observe(requireActivity()) { shoppingListAdapter.updateItems(it) }
+            btnAddShoppingList.setOnClickListener {
+                uiRouter.navigateById(R.id.createShoppingList)
+            }
+        }
 
-        viewModel.init(this)
+        viewModel.apply {
+            init(this@ListOfShoppingListFragment)
+            listOfShoppingList.observe(requireActivity()) { shoppingListAdapter.updateItems(it) }
 
-        binding.btnAddShoppingList.setOnClickListener {
-            uiRouter.navigateById(R.id.createShoppingList)
+            deleteShoppingListId.observe(requireActivity()) {
+                shoppingListAdapter.removeShoppingList(it)
+            }
         }
     }
 }

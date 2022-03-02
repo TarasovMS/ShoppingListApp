@@ -11,17 +11,19 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class ListOfCategoryViewModel @Inject constructor(val categoryInteractor: CategoryInteractorInterface
-    ): AppBaseViewModel()  {
+class ListOfCategoryViewModel @Inject constructor(val categoryInteractor: CategoryInteractorInterface) :
+    AppBaseViewModel() {
 
 
     var categoryList = MutableLiveData<LinkedList<Category>>()
     var deleteCategoryId = MutableLiveData<Long>()
 
-    fun init(lifecycleOwner: LifecycleOwner){
-        categoryInteractor.getChangeSignal().observe(lifecycleOwner){
+    fun init(lifecycleOwner: LifecycleOwner) {
+
+        categoryInteractor.getChangeSignal().observe(lifecycleOwner) {
             initCategoryList()
         }
+
         initCategoryList()
     }
 
@@ -29,17 +31,19 @@ class ListOfCategoryViewModel @Inject constructor(val categoryInteractor: Catego
         categoryInteractor.getAll()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({/*Есть данные*/
-                categoryList.value = it
-            }, {/*Ошибка*/ })
+            .subscribe(
+                { categoryList.value = it },
+                { }
+            )
     }
 
-    fun deleteItemCategory(category: Category){
+    fun deleteItemCategory(category: Category) {
         categoryInteractor.delete(category)
-        .subscribeOn(Schedulers.single())
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe({/*Выполнено*/
-            deleteCategoryId.value = category.id!!
-        }, {/*Ошибка*/ })
+            .subscribeOn(Schedulers.single())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                { deleteCategoryId.value = category.id!! },
+                { }
+            )
     }
 }

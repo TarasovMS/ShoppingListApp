@@ -21,10 +21,16 @@ abstract class CategoryFragment : AppBaseFragment(R.layout.fragment_category) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /**
+         * TODO viewModel.apply{} ??
+         */
+
         viewModel = createViewModel()
         viewModel.closeEvent.observe(this) { uiRouter.navigateBack()}
 
-        binding.vm = viewModel
-        binding.lifecycleOwner = this
+        binding.apply {
+            vm = viewModel
+            lifecycleOwner = this@CategoryFragment
+        }
     }
 }

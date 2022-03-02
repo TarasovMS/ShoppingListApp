@@ -23,21 +23,25 @@ abstract class PurchaseFragment: AppBaseFragment(R.layout.fragment_purchase) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        /**
+         * TODO viewModel.apply{} ??
+         */
+
         viewModel = createViewModel()
-        viewModel.closeEvent.observe(this) {
-            uiRouter.navigateBack()
-        }
+        viewModel.closeEvent.observe(this) { uiRouter.navigateBack() }
 
-        binding.llSelectionOfCategoriesForPurchases.setOnClickListener {
-            SelectionOfCategoryInDialog.show(requireActivity(), object:
-                SelectionOfCategoryInDialog.DialogButtonsClickedListener{
-                override fun okClickListener(category: Category) {
-                    viewModel.setCategory(category)
-                }
-            })
-        }
+        binding.apply {
+            vmPurchase = viewModel
+            lifecycleOwner = this@PurchaseFragment
 
-        binding.vmPurchase = viewModel
-        binding.lifecycleOwner = this
+            llSelectionOfCategoriesForPurchases.setOnClickListener {
+                SelectionOfCategoryInDialog.show(requireActivity(),
+                    object: SelectionOfCategoryInDialog.DialogButtonsClickedListener{
+                        override fun okClickListener(category: Category) {
+                            viewModel.setCategory(category)
+                        }
+                    })
+            }
+        }
     }
 }

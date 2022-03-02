@@ -30,11 +30,13 @@ open class MainActivity : AppBaseActivity() {
     }
 
     private fun setUpBottomNavigation() {
-        binding.activityMainBottomNav.itemIconTintList = null
-        binding.activityMainBottomNav.setupWithNavController(navController)
-        binding.activityMainBottomNav.setOnItemReselectedListener {
-            /* no-op */
-            Log.d("BottomNav","menuItem = $it")
+        binding.apply {
+            activityMainBottomNav.itemIconTintList = null
+            activityMainBottomNav.setupWithNavController(navController)
+            activityMainBottomNav.setOnItemReselectedListener {
+                /* no-op */
+                Log.d("BottomNav", "menuItem = $it")
+            }
         }
     }
 
@@ -54,17 +56,13 @@ open class MainActivity : AppBaseActivity() {
     private fun switchBottomMenu(destination: NavDestination) {
         when (destination.id) {
             R.id.shoppingList -> switchBottomNav(R.id.shoppingList)
-
             R.id.categoryList -> switchBottomNav(R.id.categoryList)
-
             else -> hideBottomNav()
         }
     }
 
     private fun switchBottomNav(menuItem: Int) {
-        if (!binding.activityMainBottomNav.isVisible) {
-            binding.activityMainBottomNav.visibleWithOutFade()
-        }
+        if (!binding.activityMainBottomNav.isVisible) binding.activityMainBottomNav.visibleWithOutFade()
         binding.activityMainBottomNav.selectedItemId = menuItem
     }
 
@@ -77,18 +75,11 @@ open class MainActivity : AppBaseActivity() {
         binding.activityMainBottomNav.run {
             if (isVisible) {
                 when {
-                    selectedItemId != R.id.shoppingList -> {
-                        switchBottomNav(R.id.shoppingList)
-                    }
-                    selectedItemId == R.id.shoppingList -> {
-                        finish()
-                    }
-                    else -> {
-                        super.onBackPressed()
-                    }
+                    selectedItemId != R.id.shoppingList -> switchBottomNav(R.id.shoppingList)
+                    selectedItemId == R.id.shoppingList -> finish()
+                    else -> super.onBackPressed()
                 }
             } else super.onBackPressed()
         }
     }
-
 }

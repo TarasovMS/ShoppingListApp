@@ -32,6 +32,7 @@ class ListOfPurchaseFragment: AppBaseFragment(R.layout.recycler_purchase) {
                 uiRouter.navigateById(R.id.editPurchase,bundle)
             }
         })
+
         binding.recyclerViewPurchase.adapter = purchaseAdapter
 
         viewModel.fullPurchaseList.observe(this) {

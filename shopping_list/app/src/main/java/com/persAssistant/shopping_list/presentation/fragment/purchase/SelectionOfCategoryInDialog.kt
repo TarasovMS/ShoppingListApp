@@ -17,13 +17,13 @@ import io.reactivex.schedulers.Schedulers
 
 class SelectionOfCategoryInDialog {
 
-    interface DialogButtonsClickedListener{
+    interface DialogButtonsClickedListener {
         fun okClickListener(category: Category)
     }
 
-    companion object{
+    companion object {
 
-        fun show(activity: Activity, showDialog: DialogButtonsClickedListener){
+        fun show(activity: Activity, showDialog: DialogButtonsClickedListener) {
             val builder = AlertDialog.Builder(activity)
             val inflater: LayoutInflater = activity.layoutInflater
             val dialogView: View = inflater.inflate(R.layout.custom_dialog, null)
@@ -35,27 +35,31 @@ class SelectionOfCategoryInDialog {
             val recyclerView: RecyclerView = dialogView.findViewById(R.id.recyclerView_category_custom_dialog)
             recyclerView.layoutManager = LinearLayoutManager(activity)
             recyclerView.itemAnimator = DefaultItemAnimator()
-            val categoryAdapter = CategoryAdapter(object : OnCategoryClickListener {
 
+            val categoryAdapter = CategoryAdapter(object : OnCategoryClickListener {
                 override fun clickedCategoryItem(category: Category) {
                     showDialog.okClickListener(category)
                     mAlertDialog.dismiss()
                 }
+
                 override fun deleteItem(category: Category) {}
                 override fun editItem(category: Category) {}
             })
+
             initAdapter(activity, categoryAdapter)
             recyclerView.adapter = categoryAdapter
         }
 
         private fun initAdapter(activity: Activity, categoryAdapter: CategoryAdapter) {
             val app = (activity.applicationContext as App)
+
             app.appComponent.getCategoryInteractor().getAll()
                 .subscribeOn(Schedulers.single())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    categoryAdapter.updateItems(it)
-                }, {/*Ошибка*/ })
+                .subscribe(
+                    { categoryAdapter.updateItems(it) },
+                    {/*Ошибка*/ }
+                )
         }
     }
 }

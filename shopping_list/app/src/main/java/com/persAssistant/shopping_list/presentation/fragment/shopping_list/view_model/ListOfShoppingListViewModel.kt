@@ -11,16 +11,15 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class ListOfShoppingListViewModel @Inject constructor(private val shoppingListInteractor: ShoppingListInteractorInterface
-    ): AppBaseViewModel()  {
+class ListOfShoppingListViewModel @Inject constructor(
+    private val shoppingListInteractor: ShoppingListInteractorInterface
+) : AppBaseViewModel() {
 
     var listOfShoppingList = MutableLiveData<LinkedList<ShoppingList>>()
     var deleteShoppingListId = MutableLiveData<Long>()
 
-    fun init(lifecycleOwner: LifecycleOwner){
-        shoppingListInteractor.getChangeSignal().observe(lifecycleOwner, androidx.lifecycle.Observer {
-            initShoppingList()
-        })
+    fun init(lifecycleOwner: LifecycleOwner) {
+        shoppingListInteractor.getChangeSignal().observe(lifecycleOwner) { initShoppingList() }
         initShoppingList()
     }
 
@@ -28,17 +27,19 @@ class ListOfShoppingListViewModel @Inject constructor(private val shoppingListIn
         shoppingListInteractor.getAll()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({/*Есть данные*/
-                listOfShoppingList.value = it
-            }, {/*Ошибка*/ })
+            .subscribe(
+                {listOfShoppingList.value = it },
+                {/*Ошибка*/ }
+            )
     }
 
-    fun deleteItemShoppingList(shoppingList: ShoppingList){
+    fun deleteItemShoppingList(shoppingList: ShoppingList) {
         shoppingListInteractor.delete(shoppingList)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({/*Выполнено*/
-                deleteShoppingListId.value = shoppingList.id!!
-            }, {/*Ошибка*/ })
+            .subscribe(
+                {deleteShoppingListId.value = shoppingList.id!! },
+                {/*Ошибка*/ }
+            )
     }
 }

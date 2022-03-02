@@ -24,9 +24,12 @@ class ListOfCategoryFragment: AppBaseFragment(R.layout.recycler_category) {
         categoryAdapter = CategoryAdapter (object : OnCategoryClickListener {
             override fun clickedCategoryItem(category: Category) {
                 val bundle = Bundle()
-                bundle.putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
-                bundle.putLong(KEY_PARENT_ID, category.id!!)
-                bundle.putBoolean(KEY_VISIBILITY_BUTTON, false)
+
+                bundle.apply {
+                    putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
+                    putLong(KEY_PARENT_ID, category.id!!)
+                    putBoolean(KEY_VISIBILITY_BUTTON, false)
+                }
 
                 uiRouter.navigateById(R.id.purchaseList,bundle)
             }
@@ -39,20 +42,26 @@ class ListOfCategoryFragment: AppBaseFragment(R.layout.recycler_category) {
                 uiRouter.navigateById(R.id.editCategory,bundle)
             }
         })
-        binding.recyclerViewCategory.adapter = categoryAdapter
 
-        viewModel.deleteCategoryId.observe(requireActivity()){
-            categoryAdapter.removeCategory(it)
+        viewModel.apply {
+
+            deleteCategoryId.observe(requireActivity()){
+                categoryAdapter.removeCategory(it)
+            }
+
+            categoryList.observe(requireActivity()) {
+                categoryAdapter.updateItems(it)
+            }
+
+            init(this@ListOfCategoryFragment)
         }
 
-        viewModel.categoryList.observe(requireActivity()) {
-            categoryAdapter.updateItems(it)
-        }
+        binding.apply {
+            recyclerViewCategory.adapter = categoryAdapter
 
-        viewModel.init(this)
-
-        binding.btnAddCategory.setOnClickListener {
-            uiRouter.navigateById(R.id.createCategory)
+            btnAddCategory.setOnClickListener {
+                uiRouter.navigateById(R.id.createCategory)
+            }
         }
     }
 }

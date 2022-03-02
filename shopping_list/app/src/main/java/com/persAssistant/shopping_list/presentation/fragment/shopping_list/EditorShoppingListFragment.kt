@@ -7,7 +7,8 @@ import javax.inject.Inject
 
 class EditorShoppingListFragment : ShoppingListFragment() {
 
-    @Inject lateinit var shoppingListViewModel: EditorShoppingListViewModel
+    @Inject
+    lateinit var shoppingListViewModel: EditorShoppingListViewModel
 
     override fun createViewModel(): ShoppingListViewModel {
         val shoppingListId = arguments
@@ -15,6 +16,7 @@ class EditorShoppingListFragment : ShoppingListFragment() {
             ?: throw Exception("Error in EditorShoppingListActivity.getIntent absent Id ")
 
         shoppingListViewModel.init(shoppingListId)
+
         return viewModel
     }
 }

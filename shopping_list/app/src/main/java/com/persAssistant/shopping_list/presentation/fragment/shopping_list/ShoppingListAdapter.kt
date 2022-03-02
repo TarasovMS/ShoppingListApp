@@ -8,11 +8,12 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
+import com.persAssistant.shopping_list.presentation.util.DATE_FORMAT
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ShoppingListAdapter( private val onShoppingListClickListener: OnShoppingListClickListener)
-    : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
+class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingListClickListener) :
+    RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
 
     private var items: LinkedList<ShoppingList> = LinkedList()
 
@@ -22,14 +23,17 @@ class ShoppingListAdapter( private val onShoppingListClickListener: OnShoppingLi
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val shoppingListRecycleView = items[position]
-        holder.name.text = shoppingListRecycleView.name
-        holder.date.text = SimpleDateFormat("dd.MM.yyyy").format(shoppingListRecycleView.date)
-        holder.bindView(shoppingListRecycleView, onShoppingListClickListener)
+        holder.apply {
+            name.text = shoppingListRecycleView.name
+            date.text = SimpleDateFormat(DATE_FORMAT).format(shoppingListRecycleView.date)
+            bindView(shoppingListRecycleView, onShoppingListClickListener)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(
-            R.layout.recycler_info_shopping_list, parent, false)
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(R.layout.recycler_info_shopping_list, parent, false)
+
         return ViewHolder(itemView)
     }
 
@@ -38,10 +42,14 @@ class ShoppingListAdapter( private val onShoppingListClickListener: OnShoppingLi
         val date: TextView = view.findViewById(R.id.TV_date_recycler_shoppingList)
         val menu: TextView = view.findViewById(R.id.TV_list_menu_purchase)
 
-        fun bindView(shoppingList: ShoppingList, onShoppingListClickListener: OnShoppingListClickListener){
+        fun bindView(
+            shoppingList: ShoppingList,
+            onShoppingListClickListener: OnShoppingListClickListener
+        ) {
             name.setOnClickListener {
                 onShoppingListClickListener.clickedShoppingListItem(shoppingList)
             }
+
             menu.setOnClickListener {
                 // Creating a popup menu
                 val popup = PopupMenu(it.context, menu)
@@ -53,6 +61,7 @@ class ShoppingListAdapter( private val onShoppingListClickListener: OnShoppingLi
                         R.id.menu_delete -> {
                             onShoppingListClickListener.deleteItem(shoppingList)
                         }
+
                         R.id.menu_edit -> {
                             onShoppingListClickListener.editItem(shoppingList)
                         }
@@ -70,8 +79,8 @@ class ShoppingListAdapter( private val onShoppingListClickListener: OnShoppingLi
         notifyDataSetChanged()
     }
 
-    fun removeShoppingList(id: Long?){
-        val shoppingListToRemove = items.find {it.id == id}
+    fun removeShoppingList(id: Long?) {
+        val shoppingListToRemove = items.find { it.id == id }
         items.remove(shoppingListToRemove)
         notifyDataSetChanged()
     }

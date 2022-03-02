@@ -7,6 +7,7 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentShoppingListBinding
 import com.persAssistant.shopping_list.presentation.fragment.shopping_list.view_model.ShoppingListViewModel
+import com.persAssistant.shopping_list.presentation.util.DATE_FORMAT
 import com.persAssistant.shopping_list.presentation.util.viewBinding
 import java.text.SimpleDateFormat
 import java.util.*
@@ -18,7 +19,7 @@ abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping
     }
 
     protected abstract fun createViewModel(): ShoppingListViewModel
-    private val binding: FragmentShoppingListBinding by viewBinding( FragmentShoppingListBinding::bind )
+    private val binding: FragmentShoppingListBinding by viewBinding(FragmentShoppingListBinding::bind)
 
     protected lateinit var viewModel: ShoppingListViewModel
 
@@ -28,23 +29,26 @@ abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping
         viewModel = createViewModel()
         viewModel.closeEvent.observe(this) { uiRouter.navigateBack() }
 
-        binding.tvDateShoppingList.setOnClickListener {
+        binding.apply {
+            vmShoppingList = viewModel
+            lifecycleOwner = this@ShoppingListFragment
 
-            val date = SimpleDateFormat("dd.MM.yyyy").parse(viewModel.strDate.value!!)
-            val calendar = Calendar.getInstance()
-            calendar.time = date!!
-            val year = calendar.get(Calendar.YEAR)
-            val month = calendar.get(Calendar.MONTH)
-            val day = calendar.get(Calendar.DAY_OF_MONTH)
+            tvDateShoppingList.setOnClickListener {
 
-            val datePickerDialog = DatePickerDialog(requireContext(), { _, yearDPD, monthOfYear, dayOfMonth ->
-                calendar.set(yearDPD,monthOfYear,dayOfMonth)
-                viewModel.date = calendar.time
-            }, year, month, day)
+                val date = SimpleDateFormat(DATE_FORMAT).parse(viewModel.strDate.value!!)
+                val calendar = Calendar.getInstance()
+                calendar.time = date!!
+                val year = calendar.get(Calendar.YEAR)
+                val month = calendar.get(Calendar.MONTH)
+                val day = calendar.get(Calendar.DAY_OF_MONTH)
 
-            datePickerDialog.show()
+                val datePickerDialog = DatePickerDialog(requireContext(), { _, yearDPD, monthOfYear, dayOfMonth ->
+                        calendar.set(yearDPD, monthOfYear, dayOfMonth)
+                        viewModel.date = calendar.time
+                    }, year, month, day)
+
+                datePickerDialog.show()
+            }
         }
-        binding.vmShoppingList = viewModel
-        binding.lifecycleOwner = this
     }
 }

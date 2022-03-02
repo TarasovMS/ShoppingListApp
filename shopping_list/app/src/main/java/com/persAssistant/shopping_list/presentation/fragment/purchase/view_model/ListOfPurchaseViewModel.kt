@@ -13,10 +13,10 @@ import java.util.*
 import javax.inject.Inject
 
 
-class ListOfPurchaseViewModel @Inject constructor( val purchaseInteractor: PurchaseInteractorInterface,
-                                                   val fullPurchaseInteractor: FullPurchaseInteractorInterface
-                                                   ): AppBaseViewModel() {
-
+class ListOfPurchaseViewModel @Inject constructor(
+    val purchaseInteractor: PurchaseInteractorInterface,
+    val fullPurchaseInteractor: FullPurchaseInteractorInterface
+) : AppBaseViewModel() {
 
     var fullPurchaseList = MutableLiveData<LinkedList<FullPurchase>>()
     var deletePurchaseId = MutableLiveData<Long>()
@@ -27,7 +27,7 @@ class ListOfPurchaseViewModel @Inject constructor( val purchaseInteractor: Purch
         SHOPPINGLIST;
     }
 
-    fun init(lifecycleOwner: LifecycleOwner, parentId: Long, type: IdTypes){
+    fun init(lifecycleOwner: LifecycleOwner, parentId: Long, type: IdTypes) {
         initByIdType(parentId, type)
 
         purchaseInteractor.getChangeSignal().observe(lifecycleOwner) {
@@ -35,37 +35,37 @@ class ListOfPurchaseViewModel @Inject constructor( val purchaseInteractor: Purch
         }
     }
 
-    private fun initByIdType(parentId: Long, type: IdTypes){
-        if (type == IdTypes.SHOPPINGLIST)
-            initByListId(parentId)
-        else
-            initByCategoryId(parentId)
+    private fun initByIdType(parentId: Long, type: IdTypes) {
+        if (type == IdTypes.SHOPPINGLIST) initByListId(parentId) else initByCategoryId(parentId)
     }
 
-    fun deleteItemPurchase(purchase: Purchase){
+    fun deleteItemPurchase(purchase: Purchase) {
         purchaseInteractor.delete(purchase)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({/*Выполнено*/ }, {/*Ошибка*/ })
+            .subscribe(
+                {/*Выполнено*/ },
+                {/*Ошибка*/ }
+            )
     }
 
     private fun initByCategoryId(id: Long) {
         fullPurchaseInteractor.getAllByCategoryId(id)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                /*Есть данные*/
-                fullPurchaseList.value = it
-            }, {/*Ошибка*/ })
+            .subscribe(
+                { fullPurchaseList.value = it },
+                {/*Ошибка*/ }
+            )
     }
 
     private fun initByListId(id: Long) {
         fullPurchaseInteractor.getAllByListId(id)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                /*Есть данные*/
-                fullPurchaseList.value = it
-            }, {/*Ошибка*/ })
+            .subscribe(
+                { fullPurchaseList.value = it },
+                {/*Ошибка*/ }
+            )
     }
 }

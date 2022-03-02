@@ -7,14 +7,16 @@ import javax.inject.Inject
 
 class EditorPurchaseFragment: PurchaseFragment() {
 
-    @Inject lateinit var purchaseViewModel: EditorPurchaseViewModel
+    @Inject
+    lateinit var purchaseViewModel: EditorPurchaseViewModel
 
     override fun createViewModel(): PurchaseViewModel {
         val id = arguments
             ?.getLong(KEY_PURCHASE_ID)
-            ?: throw Exception("Ошибка в EditorPurchaseActivity.getIntent отсутствует Id")
+            ?: throw Exception("Error in EditorPurchaseActivity.getIntent absent Id")
 
         purchaseViewModel.init(id)
+
         return purchaseViewModel
     }
 }

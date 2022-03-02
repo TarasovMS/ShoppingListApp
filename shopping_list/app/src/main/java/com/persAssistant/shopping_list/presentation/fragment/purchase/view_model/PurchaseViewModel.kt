@@ -7,6 +7,7 @@ import com.persAssistant.shopping_list.domain.entities.Category
 import javax.inject.Inject
 
 open class PurchaseViewModel @Inject constructor(): ViewModel() {
+
     var closeEvent = MutableLiveData<Unit>()
     var name = MutableLiveData<String>()
     var price = MutableLiveData<String>()

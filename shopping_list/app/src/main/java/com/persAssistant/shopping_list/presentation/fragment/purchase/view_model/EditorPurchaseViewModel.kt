@@ -8,8 +8,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class EditorPurchaseViewModel @Inject constructor(private val purchaseInteractor: PurchaseInteractor,
-                                                  private val fullPurchaseInteractor: FullPurchaseInteractorInterface): PurchaseViewModel() {
+class EditorPurchaseViewModel @Inject constructor(
+    private val purchaseInteractor: PurchaseInteractor,
+    private val fullPurchaseInteractor: FullPurchaseInteractorInterface
+) : PurchaseViewModel() {
 
     private var purchaseId: Long = 0
 
@@ -19,26 +21,39 @@ class EditorPurchaseViewModel @Inject constructor(private val purchaseInteractor
         fullPurchaseInteractor.getById(purchaseId)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                categoryName.value = it.category.name
-                name.value = it.purchase.name
-                price.value = it.purchase.price.toString()
-                categoryId = it.purchase.categoryId
-                listId = it.purchase.listId
-            }, {})
+            .subscribe(
+                {
+                    categoryName.value = it.category.name
+                    name.value = it.purchase.name
+                    price.value = it.purchase.price.toString()
+                    categoryId = it.purchase.categoryId
+                    listId = it.purchase.listId
+                },
+                {}
+            )
     }
 
-     override fun save() {
-        if(listId != DbStruct.ShoppingListTable.Cols.INVALID_ID){
-            if(price.value == null) setPriceDefault()
+    override fun save() {
 
-            val purchase = Purchase(id = purchaseId, name = name.value ?: "", categoryId = categoryId, listId = listId, price = price.value?.toDouble(), isCompleted = 0)
+        if (listId != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
+
+            if (price.value == null) setPriceDefault()
+
+            val purchase = Purchase(
+                id = purchaseId,
+                name = name.value.orEmpty(),
+                categoryId = categoryId,
+                listId = listId,
+                price = price.value?.toDouble(),
+                isCompleted = 0
+            )
             purchaseInteractor.update(purchase)
                 .subscribeOn(Schedulers.single())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    closeEvent.value = Unit
-                }, {})
+                .subscribe(
+                    { closeEvent.value = Unit },
+                    {}
+                )
         }
     }
 }

@@ -7,39 +7,43 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class CreatorPurchaseViewModel @Inject constructor(val purchaseInteractor: PurchaseInteractor,
-                                                   val categoryInteractor: CategoryInteractor
-                                                   ) : PurchaseViewModel() {
+class CreatorPurchaseViewModel @Inject constructor(
+    val purchaseInteractor: PurchaseInteractor,
+    val categoryInteractor: CategoryInteractor
+) : PurchaseViewModel() {
 
-    fun init (shoppingListId: Long){
+    fun init(shoppingListId: Long) {
         initCategoryName(categoryId)
         listId = shoppingListId
     }
 
-    private fun initCategoryName ( categoryId: Long){
+    private fun initCategoryName(categoryId: Long) {
         categoryInteractor.getById(categoryId)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                categoryName.value = it.name
-            }, {})
+            .subscribe(
+                { categoryName.value = it.name },
+                {}
+            )
     }
 
     override fun save() {
-        if(price.value == null) setPriceDefault()
+        if (price.value.isNullOrEmpty()) setPriceDefault()
 
         val purchase = Purchase(
-            name = name.value ?: "",
+            name = name.value.orEmpty(),
             categoryId = categoryId,
             listId = listId,
             price = price.value?.toDouble(),
             isCompleted = 0
         )
+
         purchaseInteractor.insert(purchase)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                closeEvent.value = Unit
-            }, {})
+            .subscribe(
+                { closeEvent.value = Unit },
+                {}
+            )
     }
 }

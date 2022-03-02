@@ -7,7 +7,8 @@ import javax.inject.Inject
 
 class CreatorCategoryFragment : CategoryFragment() {
 
-    @Inject lateinit var categoryInteract: CategoryInteractor
+    @Inject
+    lateinit var categoryInteract: CategoryInteractor
 
     override fun createViewModel(): CategoryViewModel {
         return CreatorCategoryViewModel(categoryInteract)

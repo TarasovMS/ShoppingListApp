@@ -16,6 +16,7 @@ class CreatorPurchaseFragment: PurchaseFragment() {
             ?: throw Exception("Error in PurchaseActivity absent listId")
 
         purchaseViewModel.init(listId)
+
         return purchaseViewModel
     }
 }
