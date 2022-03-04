@@ -7,9 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.MaterialToolbar
-import com.persAssistant.shopping_list.presentation.util.NavigationViewModel
-import com.persAssistant.shopping_list.presentation.App
-import com.persAssistant.shopping_list.presentation.util.UiRouter
+import com.persAssistant.shopping_list.util.NavigationViewModel
+import com.persAssistant.shopping_list.ui.App
+import com.persAssistant.shopping_list.util.UiRouter
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 

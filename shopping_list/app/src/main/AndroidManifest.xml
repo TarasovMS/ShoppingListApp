@@ -3,26 +3,19 @@
     package="com.persAssistant.shopping_list">
 
     <application
-        android:name=".presentation.App"
+        android:name=".ui.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopping_list">
-        <activity android:name=".presentation.activity.MainActivity">
+        <activity android:name=".ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.category.CreatorCategoryActivity" />-->
-<!--        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.category.EditorCategoryActivity" />-->
-        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.purchase.CreatorPurchaseActivity" />
-        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.purchase.EditorPurchaseActivity" />
-<!--        <activity android:name=".presentation.list_of_purchase_activity.ListOfPurchaseActivity" />-->
-        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.shopping_list.CreatorShoppingListActivity" />
-        <activity android:name="com.persAssistant.shopping_list.presentation.fragment.shopping_list.EditorShoppingListActivity" />
     </application>
 
 </manifest>

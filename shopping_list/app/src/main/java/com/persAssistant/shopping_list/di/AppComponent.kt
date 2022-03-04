@@ -8,8 +8,8 @@ import com.persAssistant.shopping_list.di.viewModel.categories.CategoryViewModel
 import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.UtilViewModelModule
-import com.persAssistant.shopping_list.presentation.App
-import com.persAssistant.shopping_list.presentation.util.SUPPRESS_UNUSED
+import com.persAssistant.shopping_list.ui.App
+import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

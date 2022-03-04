@@ -5,7 +5,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
-import com.persAssistant.shopping_list.presentation.App
+import com.persAssistant.shopping_list.ui.App
 import org.junit.Test
 import org.junit.runner.RunWith
 

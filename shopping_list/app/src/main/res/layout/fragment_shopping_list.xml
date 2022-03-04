@@ -4,7 +4,7 @@
     <data>
         <variable
             name="vmShoppingList"
-            type="com.persAssistant.shopping_list.presentation.fragment.shopping_list.view_model.ShoppingListViewModel" />
+            type="com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model.ShoppingListViewModel" />
     </data>
 
 <LinearLayout

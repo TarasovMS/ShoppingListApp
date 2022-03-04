@@ -3,9 +3,9 @@ package com.persAssistant.shopping_list.di.viewModel.purchase
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
-import com.persAssistant.shopping_list.presentation.fragment.purchase.view_model.ListOfPurchaseViewModel
-import com.persAssistant.shopping_list.presentation.fragment.purchase.view_model.CreatorPurchaseViewModel
-import com.persAssistant.shopping_list.presentation.fragment.purchase.view_model.EditorPurchaseViewModel
+import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
+import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.CreatorPurchaseViewModel
+import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.EditorPurchaseViewModel
 import dagger.Module
 import dagger.Provides
 

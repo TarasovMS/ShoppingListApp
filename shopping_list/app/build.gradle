@@ -87,4 +87,7 @@ dependencies {
 
     // Navigation component
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
 }

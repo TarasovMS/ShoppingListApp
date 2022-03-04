@@ -21,5 +21,8 @@
     <string name="price">Цена</string>
     <string name="number">Колличество</string>
 
+    <string name="unknown_error_message">Произошла ошибка</string>
+    <string name="connection">Соединение…</string>
+    <string name="loading">Загрузка…</string>
 
 </resources>
