@@ -66,7 +66,6 @@ open class MainActivity : AppBaseActivity() {
         binding.activityMainBottomNav.selectedItemId = menuItem
     }
 
-
     private fun hideBottomNav() {
         binding.activityMainBottomNav.goneWithOutFade()
     }

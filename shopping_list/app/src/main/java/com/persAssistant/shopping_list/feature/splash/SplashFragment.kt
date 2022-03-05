@@ -21,9 +21,7 @@ class SplashFragment : AppBaseFragment(R.layout.splash_fragment) {
 
     private fun initObservers() {
         viewModel.initDataReceived.observe(viewLifecycleOwner) {
-            if (it) {
-                uiRouter.navigateBack()
-            }
+            if (it) uiRouter.navigateById(R.id.splash_screen_opens_shoppingList)
         }
 
         // инфа об ошибке

@@ -3,7 +3,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/shoppingList"
+    app:startDestination="@+id/splashFragment"
     >
 
     <fragment
@@ -12,7 +12,7 @@
         android:label="splash_fragment"
         tools:layout="@layout/splash_fragment" >
             <action
-                android:id="@+id/action_shoppingList_creating_list"
+                android:id="@+id/splash_screen_opens_shoppingList"
                 app:destination="@id/shoppingList" />
     </fragment>
 

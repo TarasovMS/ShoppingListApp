@@ -16,9 +16,7 @@ abstract class AppBaseActivity: DaggerAppCompatActivity() {
 
     protected val navController: NavController by lazy { findNavController(R.id.activity_main_nav_host_fragment) }
 
-    protected val uiRouter by lazy {
-        UiRouter(navController)
-    }
+    protected val uiRouter by lazy { UiRouter(navController) }
 
     companion object{
         const val KEY_INDEX_TYPE = "INDEX_TYPE"
