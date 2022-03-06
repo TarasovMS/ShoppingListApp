@@ -1,7 +1,7 @@
 package com.persAssistant.shopping_list.feature.splash.di
 
 import com.persAssistant.shopping_list.di.scopes.FragmentScope
-import com.persAssistant.shopping_list.feature.splash.SplashFragment
+import com.persAssistant.shopping_list.feature.splash.ui.SplashFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

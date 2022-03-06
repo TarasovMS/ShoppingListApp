@@ -1,10 +1,8 @@
-package com.persAssistant.shopping_list.feature.splash
+package com.persAssistant.shopping_list.feature.splash.ui
 
 import android.os.Bundle
-import android.util.EventLog
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 

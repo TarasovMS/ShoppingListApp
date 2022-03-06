@@ -30,7 +30,7 @@ class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListen
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.recycler_info_category, parent, false)
+            .inflate(R.layout.item_info_category, parent, false)
 
         return ViewHolder(itemView)
     }

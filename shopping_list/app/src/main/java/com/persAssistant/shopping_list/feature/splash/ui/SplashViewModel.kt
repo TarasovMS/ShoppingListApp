@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.splash
+package com.persAssistant.shopping_list.feature.splash.ui
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,12 +14,16 @@ class SplashViewModel @Inject constructor() : AppBaseViewModel() {
 
     fun getInitData() {
         viewModelScope.launch(context = Dispatchers.IO) {
-            delay(2000)
+            delay(TIME_MILLIS)
             postData()
         }
     }
 
     private fun postData() {
         initDataReceived.postValue(true)
+    }
+
+    companion object {
+        private const val TIME_MILLIS = 2000L
     }
 }

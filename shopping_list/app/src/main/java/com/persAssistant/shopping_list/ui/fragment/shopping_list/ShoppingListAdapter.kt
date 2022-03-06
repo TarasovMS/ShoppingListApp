@@ -32,7 +32,7 @@ class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingLis
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_info_shopping_list, parent, false)
+            .inflate(R.layout.item_info_shopping_list, parent, false)
 
         return ViewHolder(itemView)
     }

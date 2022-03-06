@@ -90,4 +90,8 @@ dependencies {
 
     // Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
+
+    // Billing v3
+    def billing_version = "3.0.2"
+    implementation "com.android.billingclient:billing-ktx:$billing_version"
 }

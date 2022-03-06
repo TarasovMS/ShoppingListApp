@@ -38,7 +38,7 @@ class PurchaseAdapter(private val onPurchaseClickListener: OnPurchaseClickListen
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.recycler_info_purchase, parent, false)
+            .inflate(R.layout.item_info_purchase, parent, false)
 
         return ViewHolder(itemView)
     }

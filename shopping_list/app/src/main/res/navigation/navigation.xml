@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.persAssistant.shopping_list.feature.splash.SplashFragment"
+        android:name="com.persAssistant.shopping_list.feature.splash.ui.SplashFragment"
         android:label="splash_fragment"
         tools:layout="@layout/splash_fragment" >
             <action
