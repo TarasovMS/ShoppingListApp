@@ -1,7 +1,7 @@
 package com.persAssistant.shopping_list.feature.billing.di
 
 import com.persAssistant.shopping_list.di.scopes.FragmentScope
-import com.persAssistant.shopping_list.feature.billing.ui.BillingFragment
+import com.persAssistant.shopping_list.feature.billing.ui.PricingFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -14,5 +14,5 @@ abstract class ContributeBilling {
             BillingViewModelModule::class
         ]
     )
-    abstract fun contributeBillingFragment(): BillingFragment
+    abstract fun contributeBillingFragment(): PricingFragment
 }
