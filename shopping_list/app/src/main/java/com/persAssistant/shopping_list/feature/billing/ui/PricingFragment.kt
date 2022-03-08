@@ -69,9 +69,9 @@ class PricingFragment : AppBaseFragment(R.layout.fragment_billing) {
             .setSkuDetails(product)
             .build()
 
-        val billingClient = viewModel.getBillingClient()
-        val responseCode = billingClient.launchBillingFlow(requireActivity(), flowParams)
-        Log.i(TAG, "launchPurchaseFlow result ${responseCode.responseCode}")
+//        val billingClient = viewModel.getBillingClient()
+//        val responseCode = billingClient.launchBillingFlow(requireActivity(), flowParams)
+//        Log.i(TAG, "launchPurchaseFlow result ${responseCode.responseCode}")
     }
 
     /**
@@ -80,9 +80,9 @@ class PricingFragment : AppBaseFragment(R.layout.fragment_billing) {
     private fun setProductsList(products: List<SkuDetails>) {
         binding.fragmentBillingProgressBar.isVisible = false
         binding.fragmentBillingEmpty.isVisible = false
-        binding.fragmentBillingProductsList.adapter = ProductAdapter(requireContext(), products) { skuDetails ->
-            launchPurchaseFlow(skuDetails)
-        }
+//        binding.fragmentBillingProductsList.adapter = ProductAdapter(requireContext(), products) { skuDetails ->
+//            launchPurchaseFlow(skuDetails)
+//        }
     }
 
 }

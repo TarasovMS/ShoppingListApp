@@ -79,9 +79,9 @@ class PricingViewModel(
     /**
      * Получаем клиента
      */
-    fun getBillingClient(): BillingClient {
-        return  BillingClient
-    }
+//    fun getBillingClient(): BillingClient {
+//        return  BillingClient
+//    }
 
 
 }
