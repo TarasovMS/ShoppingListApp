@@ -18,11 +18,11 @@ abstract class AppBaseActivity: DaggerAppCompatActivity() {
 
     protected val uiRouter by lazy { UiRouter(navController) }
 
+    protected lateinit var app: App
+
     companion object{
         const val KEY_INDEX_TYPE = "INDEX_TYPE"
         const val KEY_PARENT_ID = "PARENT_ID"
         const val KEY_VISIBILITY_BUTTON = "VISIBILITY_BUTTON"
     }
-
-    protected lateinit var app: App
 }

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Lists"
+            android:text="@string/lists"
             android:textSize="40sp">
 
         </TextView>

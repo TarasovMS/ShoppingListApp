@@ -6,9 +6,11 @@
     <string name="failed_update">Не удалось выполнить update</string>
     <string name="failed_delete">Не удалось выполнить delete</string>
 
-    <string name="list">Список</string>
+    <string name="lists">Списки</string>
     <string name="shopping_list">Список покупок</string>
     <string name="categories">Категории</string>
+    <string name="purchase">Покупки</string>
+    <string name="more">Еще</string>
     <string name="select_categories">Выберите категории</string>
     <string name="home">Home</string>
     <string name="list_name">Название списка</string>
@@ -24,5 +26,10 @@
     <string name="unknown_error_message">Произошла ошибка</string>
     <string name="connection">Соединение…</string>
     <string name="loading">Загрузка…</string>
+
+    //language
+    <string name="select_language">Выберите язык</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
 
 </resources>

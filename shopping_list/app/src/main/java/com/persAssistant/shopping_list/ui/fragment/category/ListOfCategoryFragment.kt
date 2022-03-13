@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.ui.fragment.category
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -7,6 +8,7 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.RecyclerCategoryBinding
+import com.persAssistant.shopping_list.ui.activity.LanguageActivity
 import com.persAssistant.shopping_list.ui.fragment.category.CategoryFragment.Companion.KEY_CATEGORY
 import com.persAssistant.shopping_list.ui.fragment.category.view_model.ListOfCategoryViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
@@ -61,6 +63,12 @@ class ListOfCategoryFragment: AppBaseFragment(R.layout.recycler_category) {
 
             btnAddCategory.setOnClickListener {
                 uiRouter.navigateById(R.id.createCategory)
+            }
+
+            // TODO убрать это все
+            tvRecyclerCategory.setOnClickListener {
+                val intent = Intent(requireContext(), LanguageActivity::class.java)
+                startActivity(intent)
             }
         }
     }

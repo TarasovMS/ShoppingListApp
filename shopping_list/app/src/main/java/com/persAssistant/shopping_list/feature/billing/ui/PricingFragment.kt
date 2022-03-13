@@ -80,9 +80,9 @@ class PricingFragment : AppBaseFragment(R.layout.fragment_billing) {
     private fun setProductsList(products: List<SkuDetails>) {
         binding.fragmentBillingProgressBar.isVisible = false
         binding.fragmentBillingEmpty.isVisible = false
-//        binding.fragmentBillingProductsList.adapter = ProductAdapter(requireContext(), products) { skuDetails ->
-//            launchPurchaseFlow(skuDetails)
-//        }
+        binding.fragmentBillingProductsList.adapter = ProductAdapter(products) { skuDetails ->
+            launchPurchaseFlow(skuDetails)
+        }
     }
 
 }

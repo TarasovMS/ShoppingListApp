@@ -164,5 +164,11 @@
         <!--                app:exitAnim="@anim/slide_out_left"/>-->
     </fragment>
 
+    <fragment
+        android:id="@+id/prefFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.pref.PrefFragment"
+        android:label="fragment_pref"
+        tools:layout="@layout/fragment_pref" />
+
 </navigation>
 

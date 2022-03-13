@@ -57,6 +57,7 @@ open class MainActivity : AppBaseActivity() {
         when (destination.id) {
             R.id.shoppingList -> switchBottomNav(R.id.shoppingList)
             R.id.categoryList -> switchBottomNav(R.id.categoryList)
+            R.id.prefFragment -> switchBottomNav(R.id.prefFragment)
             else -> hideBottomNav()
         }
     }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.pref.PrefFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fragment_pref_language"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="20dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_language_pref"
+            android:background="#9ABB9FE3"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/fragment_pref_"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="20dp">
+        
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_close"
+            android:background="#9ABB9FE3"/>
+
+    </androidx.cardview.widget.CardView>
+
+    
+
+</LinearLayout>
