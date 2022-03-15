@@ -27,9 +27,9 @@
     <string name="connection">Соединение…</string>
     <string name="loading">Загрузка…</string>
 
-    //language
-    <string name="select_language">Выберите язык</string>
-    <string name="english">Английский</string>
-    <string name="russian">Русский</string>
+    // Language
+    <string name="select_language" translatable="false">Выберите язык</string>
+    <string name="english" translatable="false">Английский</string>
+    <string name="russian" translatable="false">Русский</string>
 
 </resources>

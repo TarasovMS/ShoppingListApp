@@ -20,13 +20,15 @@ import android.content.ContextWrapper
 import com.persAssistant.shopping_list.databinding.ActivityLanguageBinding
 import com.persAssistant.shopping_list.databinding.ActivityMainBinding
 import com.persAssistant.shopping_list.util.ContextUtils
+import com.persAssistant.shopping_list.util.ENGLISH_USA
+import com.persAssistant.shopping_list.util.RUSSIAN
 
 
 class LanguageActivity: AppCompatActivity() {
 
-    lateinit var spinner: Spinner
-    lateinit var locale: Locale
-    private var currentLanguage = "ru"
+    private lateinit var spinner: Spinner
+    private lateinit var locale: Locale
+    private var currentLanguage = RUSSIAN
     private var currentLang: String? = null
     private val binding: ActivityLanguageBinding by lazy { ActivityLanguageBinding.inflate(layoutInflater) }
 
@@ -55,8 +57,8 @@ class LanguageActivity: AppCompatActivity() {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 when (position) {
                     0 -> { }
-                    1 -> setLocale("en")
-                    2 -> setLocale("ru")
+                    1 -> setLocale(ENGLISH_USA)
+                    2 -> setLocale(RUSSIAN)
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>) {}
