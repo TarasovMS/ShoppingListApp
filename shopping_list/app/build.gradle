@@ -97,4 +97,10 @@ dependencies {
     def billing_version = "4.1.0"
     implementation "com.android.billingclient:billing:$billing_version"
     implementation "com.android.billingclient:billing-ktx:$billing_version"
+
+    // Sentry
+    def sentry_version = "6.0.0-alpha.1"
+    api "io.sentry:sentry-android:$sentry_version"
+    api "io.sentry:sentry-android-okhttp:$sentry_version"
+
 }
