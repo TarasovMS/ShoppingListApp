@@ -5,6 +5,11 @@
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.21481481481481482" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.1685185185185185" />
+        <entry key="app/src/main/res/drawable/ic_language.xml" value="0.25794871794871793" />
+        <entry key="app/src/main/res/drawable/ic_language_pref.xml" value="0.25794871794871793" />
+        <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.25794871794871793" />
+        <entry key="app/src/main/res/drawable/ic_mail.xml" value="0.25794871794871793" />
+        <entry key="app/src/main/res/drawable/ic_menu_arrow.xml" value="0.25794871794871793" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/layout/activity_language.xml" value="0.13994565217391305" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
@@ -14,6 +19,7 @@
         <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/layout/fragment_billing.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.12447916666666667" />
+        <entry key="app/src/main/res/layout/fragment_pref.xml" value="0.375" />
         <entry key="app/src/main/res/layout/fragment_purchase.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/pref_fragment.xml" value="0.1" />

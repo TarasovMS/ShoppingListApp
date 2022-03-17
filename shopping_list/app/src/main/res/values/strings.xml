@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">shopping_list_app</string>
+    <string name="app_name">Shopping list</string>
     <string name="failed_insert">Не удалось выполнить insert</string>
     <string name="failed_getAll">Не удалось выполнить getAll</string>
     <string name="failed_getById">Не удалось выполнить getById</string>
@@ -31,5 +31,9 @@
     <string name="select_language" translatable="false">Выберите язык</string>
     <string name="english" translatable="false">Английский</string>
     <string name="russian" translatable="false">Русский</string>
+
+    // Preference fragment
+    <string name="send_handling">Написать письмо</string>
+    <string name="notifications">Уведомления</string>
 
 </resources>

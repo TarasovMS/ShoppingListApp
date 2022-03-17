@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">shopping_list_app</string>
+    <string name="app_name">Shopping list</string>
     <string name="failed_insert">Failed insert</string>
     <string name="failed_getAll">Failed getAll</string>
     <string name="failed_getById">Failed getById</string>
@@ -24,9 +24,13 @@
     <string name="price">Price</string>
     <string name="number">Number</string>
 
-    <string name="unknown_error_message">Произошла ошибка</string>
+    <string name="unknown_error_message">Unknown error</string>
     <string name="connection">Connection…</string>
     <string name="loading">Loading…</string>
+
+    //TODO
+    <string name="send_handling">Написать письмо</string>
+    <string name="notifications">Уведомления</string>
 
 
 
