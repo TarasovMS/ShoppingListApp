@@ -17,6 +17,6 @@ class EditorShoppingListFragment : ShoppingListFragment() {
 
         shoppingListViewModel.init(shoppingListId)
 
-        return viewModel
+        return shoppingListViewModel
     }
 }
