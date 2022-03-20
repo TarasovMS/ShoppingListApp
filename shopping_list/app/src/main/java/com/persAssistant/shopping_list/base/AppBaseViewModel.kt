@@ -19,7 +19,7 @@ open class AppBaseViewModel : ViewModel()
         fun isLoading() = this == LOADING
         fun isFinished() = this == FINISHED
     }
-
+ //TODO подключить чтобы работало
     fun handleFailure(failure: Failure) {
         failureData.postValue(Event(failure))
         Log.e("Failure", failure.toString())

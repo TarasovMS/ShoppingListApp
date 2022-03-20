@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentPrefBinding
@@ -32,8 +33,7 @@ class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pre
         }
 
         binding.fragmentPrefHandling.setOnClickListener {
-            //TODO сделать фрагмент для написания письма
-            sendEmail( "Заголовок", "Сообщение" )
+            uiRouter.navigateById(R.id.action_send_handling)
         }
     }
 
@@ -43,7 +43,7 @@ class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pre
         mIntent.apply {
             data = Uri.parse("mailto:") // TODO разобраться что это?
             type = "text/plain" // TODO разобраться что это?
-            putExtra(Intent.EXTRA_EMAIL, EMAIL_DEVELOPER)
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(EMAIL_DEVELOPER))
             putExtra(Intent.EXTRA_SUBJECT, subject)
             putExtra(Intent.EXTRA_TEXT, message)
         }

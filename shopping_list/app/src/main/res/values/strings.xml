@@ -24,6 +24,10 @@
     <string name="number">Колличество</string>
 
     <string name="unknown_error_message">Произошла ошибка</string>
+    <string name="email_incorrect">Введен некорректный почтовый адрес</string>
+    <string name="email_validation_incorrect">Почтовый адрес должен содержать символы \"@\" и \".\"</string>
+    <string name="name_incorrect">Неверное имя</string>
+    <string name="message_is_empty">Сообщение пустое</string>
     <string name="connection">Соединение…</string>
     <string name="loading">Загрузка…</string>
 
@@ -33,7 +37,17 @@
     <string name="russian" translatable="false">Русский</string>
 
     // Preference fragment
+    <string name="handling">Обращение</string>
+    <string name="sender">Отправитель</string>
+    <string name="recipient">Получатель</string>
+    <string name="name_hint">Имя</string>
+    <string name="title_hint">Заголовок</string>
+    <string name="email_hint">E-mail</string>
+    <string name="send">Отправить</string>
+    <string name="text_handling">Текст обращения: </string>
+
     <string name="send_handling">Написать письмо</string>
     <string name="notifications">Уведомления</string>
+    <string name="handling_error">Не удалось загрузить обращение</string>
 
 </resources>

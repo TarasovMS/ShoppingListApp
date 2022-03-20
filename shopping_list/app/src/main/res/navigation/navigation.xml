@@ -168,7 +168,18 @@
         android:id="@+id/prefFragment"
         android:name="com.persAssistant.shopping_list.ui.fragment.pref.PrefFragment"
         android:label="fragment_pref"
-        tools:layout="@layout/fragment_pref" />
+        tools:layout="@layout/fragment_pref" >
+        <action
+            android:id="@+id/action_send_handling"
+            app:destination="@id/handlingFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/handlingFragment"
+        android:name="com.persAssistant.shopping_list.feature.user_help.handling.ui.HandlingFragment"
+        android:label="HandlingFragment"
+        tools:layout="@layout/fragment_handling"/>
+
 
 </navigation>
 

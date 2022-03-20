@@ -9,9 +9,11 @@
     <color name="black">#FF000000</color>
     <color name="gray">#DDDDDD</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="unfocused_color">#A6A6A6</color>
 
-
+    <color name="toolbar_white">#FFFFFF</color>
     <color name="text_black">#151522</color>
+    <color name="text_gray">#717070</color>
     <color name="divider">#C6C6C6</color>
 
     // Splash fragment

@@ -34,7 +34,6 @@ open class MainActivity : AppBaseActivity() {
             activityMainBottomNav.itemIconTintList = null
             activityMainBottomNav.setupWithNavController(navController)
             activityMainBottomNav.setOnItemReselectedListener {
-                /* no-op */
                 Log.d("BottomNav", "menuItem = $it")
             }
         }

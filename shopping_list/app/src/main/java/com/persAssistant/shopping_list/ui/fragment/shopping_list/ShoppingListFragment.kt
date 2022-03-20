@@ -14,10 +14,6 @@ import java.util.*
 
 abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping_list) {
 
-    companion object {
-        const val SHOPPING_LIST_KEY = "SHOPPING_LIST_ID"
-    }
-
     protected abstract fun createViewModel(): ShoppingListViewModel
     private val binding: FragmentShoppingListBinding by viewBinding(FragmentShoppingListBinding::bind)
 
@@ -51,4 +47,9 @@ abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping
             }
         }
     }
+
+    companion object {
+        const val SHOPPING_LIST_KEY = "SHOPPING_LIST_ID"
+    }
+
 }
