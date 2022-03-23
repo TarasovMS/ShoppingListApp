@@ -10,9 +10,12 @@ open class StringBindingComponent(
     override val fragment: AppBaseFragment,
     @StringRes open val hint: Int,
     open val endIconMode: Int = TextInputLayout.END_ICON_CLEAR_TEXT
-) : BindingComponent<String>(fragment), ImeActionClicker {
+) : BindingComponent<String>(fragment) { // ImeActionClicker
+
+    open lateinit var inputValue: AutoCompleteTextView
 
     override fun initialize() {
+
         binding = TextInputFragmentBinding.inflate(
             fragment.layoutInflater
         ).apply {
@@ -20,7 +23,6 @@ open class StringBindingComponent(
             inputLayout.endIconMode = endIconMode
         }
     }
-
 
     override fun getFieldValue(): String {
         return (binding as TextInputFragmentBinding).inputValue.text.toString()
@@ -30,20 +32,12 @@ open class StringBindingComponent(
         (binding as TextInputFragmentBinding).inputValue.setText(value)
     }
 
-    override fun getFocusView(): AutoCompleteTextView {
-        return (binding as TextInputFragmentBinding).inputValue
-    }
-
-    override fun fieldType(): String {
-//        return fragment.getParameters()?.fieldType ?: EMPTY_STRING
-        return ""
-    }
-}
-
-//fun String.parseDoubleOrNull(): Double? {
-//    return try {
-//        this.toDouble()
-//    } catch (e: Exception) {
-//        null
+//    fun getFocusView(): AutoCompleteTextView {
+//        return (binding as TextInputFragmentBinding).inputValue
 //    }
-//}
+
+//    override fun fieldType(): String {
+////        return fragment.getParameters()?.fieldType ?: EMPTY_STRING
+//        return ""
+//    }
+}

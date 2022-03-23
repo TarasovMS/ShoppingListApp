@@ -13,14 +13,13 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.error.ViewError
 import com.persAssistant.shopping_list.util.NavigationViewModel
 import com.persAssistant.shopping_list.ui.App
 import com.persAssistant.shopping_list.util.UiRouter
 import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
-open class AppBaseFragment(
+abstract class AppBaseFragment(
     @LayoutRes contentLayoutId: Int
 ) : DaggerFragment(contentLayoutId) {
 

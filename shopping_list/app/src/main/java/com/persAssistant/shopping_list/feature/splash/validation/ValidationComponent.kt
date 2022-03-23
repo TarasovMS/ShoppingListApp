@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.feature.splash.validation
 
+import android.view.View
 import androidx.core.widget.doOnTextChanged
 import androidx.viewbinding.ViewBinding
 import com.persAssistant.shopping_list.error.*
@@ -22,15 +23,22 @@ abstract class ValidationComponent<T : Any>(
     override fun initialize() {
         binding = bindingComponent.binding
 
-        getValidationField().doOnTextChanged { text, _, _, _ ->
-            if (!text.isNullOrEmpty())
-                this.allowEmpty = allowEmpty()
+        getValidationField().onFocusChangeListener =
+            View.OnFocusChangeListener { _, hasFocus ->
 
-            validateAndHandle(
-                bindingComponent.getFieldValue().toString(),
-                allowEmpty
-            )
-        }
+                if (!hasFocus) {
+                    if(bindingComponent.getFieldValue().toString().isNotEmpty())
+                        this.allowEmpty = allowEmpty()
+
+                    validateAndHandle(
+                        text = bindingComponent.getFieldValue().toString(),
+                        allowEmpty = allowEmpty,
+                        needRequestFocus = false
+                    )
+                }
+            }
+
+
     }
 
     open fun allowEmpty(): Boolean {
@@ -65,11 +73,13 @@ abstract class ValidationComponent<T : Any>(
 
     override suspend fun onRegistrationNextButtonClicked(): ExecutionResult<Failure, None> {
         allowEmpty = bindingComponent.allowEmpty()
+
         return when (val result = validate(getValidationFieldValue(), allowEmpty)) {
             is ExecutionResult.Fail -> {
                 onValidationError(failure = result.failure)
                 result
             }
+
             is ExecutionResult.Success -> {
                 onValidationSuccess()
                 result
@@ -94,7 +104,7 @@ abstract class ValidationComponent<T : Any>(
         return validationHandler(text, allowEmpty)
     }
 
-    fun validateAndHandle(
+    private fun validateAndHandle(
         text: String?,
         allowEmpty: Boolean = false,
         needRequestFocus: Boolean = true

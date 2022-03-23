@@ -2,6 +2,7 @@ package com.persAssistant.shopping_list.feature.splash.validation
 
 import android.text.InputType
 import android.util.Patterns
+import android.widget.AutoCompleteTextView
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.R
@@ -11,6 +12,7 @@ import com.persAssistant.shopping_list.error.ExecutionResult
 import com.persAssistant.shopping_list.error.Failure
 import com.persAssistant.shopping_list.error.None
 import com.persAssistant.shopping_list.error.RegistrationError
+import com.persAssistant.shopping_list.error.RegistrationError.EmailValidationError.ValidationEmailError
 
 object EmailComponents : ComponentsContainer {
 
@@ -22,13 +24,14 @@ object EmailComponents : ComponentsContainer {
         val validationComponent = EmailValidationComponent(bindingComponent)
 
         return arrayListOf(
-            validationComponent,
+            bindingComponent,
+            validationComponent
         )
     }
 
     class EmailBindingComponent(
         override val fragment: AppBaseFragment
-    ) : DaDataBindingComponent<String>(fragment, R.string.email_hint) {
+    ) : StringBindingComponent(fragment, R.string.email_hint) {
 
         override fun initialize() {
             super.initialize()
@@ -47,10 +50,11 @@ object EmailComponents : ComponentsContainer {
         }
     }
 
+
     class EmailValidationComponent(override val bindingComponent: EmailBindingComponent) :
         ValidationComponent<String>(bindingComponent) {
 
-        override fun getValidationField(): TextView {
+        override fun getValidationField(): AutoCompleteTextView {
             return (binding as TextInputFragmentBinding).inputValue
         }
 
@@ -60,9 +64,7 @@ object EmailComponents : ComponentsContainer {
 
         override fun getErrorMessageResource(failure: Failure): Int {
             return when (failure) {
-                RegistrationError.EmailValidationError.ValidationEmailError ->
-                    R.string.email_validation_incorrect
-
+                ValidationEmailError -> R.string.email_validation_incorrect
                 else -> R.string.email_incorrect
             }
         }
@@ -72,7 +74,7 @@ object EmailComponents : ComponentsContainer {
             allowEmpty: Boolean
         ): ExecutionResult<RegistrationError, None> {
             if (!Patterns.EMAIL_ADDRESS.matcher(text).matches()) {
-                return ExecutionResult.Fail(RegistrationError.EmailValidationError.ValidationEmailError)
+                return ExecutionResult.Fail(ValidationEmailError)
             }
 
             return ExecutionResult.Success(None())
