@@ -24,4 +24,9 @@ open class RegistrationError : Failure {
         object ValidationNameError: RegistrationError()
     }
 
+    object TitleValidationError : RegistrationError() {
+        override fun getErrorMessageResource() = R.string.name_incorrect
+        object ValidationNameError: RegistrationError()
+    }
+
 }

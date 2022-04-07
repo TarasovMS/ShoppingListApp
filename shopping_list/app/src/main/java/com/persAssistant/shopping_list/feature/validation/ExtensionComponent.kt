@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.splash.validation
+package com.persAssistant.shopping_list.feature.validation
 
 import androidx.viewbinding.ViewBinding
 

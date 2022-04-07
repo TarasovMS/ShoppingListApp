@@ -1,9 +1,8 @@
-package com.persAssistant.shopping_list.feature.splash.validation
+package com.persAssistant.shopping_list.feature.validation
 
 import android.text.InputType
 import android.util.Patterns
 import android.widget.AutoCompleteTextView
-import android.widget.TextView
 import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
@@ -14,14 +13,14 @@ import com.persAssistant.shopping_list.error.None
 import com.persAssistant.shopping_list.error.RegistrationError
 import com.persAssistant.shopping_list.error.RegistrationError.EmailValidationError.ValidationEmailError
 
-object EmailComponents : ComponentsContainer {
+object MessageComponents : ComponentsContainer {
 
     override val componentType: String
-        get() = "email"
+        get() = "message"
 
     override fun getComponents(fragment: AppBaseFragment): ArrayList<Component> {
-        val bindingComponent = EmailBindingComponent(fragment)
-        val validationComponent = EmailValidationComponent(bindingComponent)
+        val bindingComponent = MessageBindingComponent(fragment)
+        val validationComponent = MessageValidationComponent(bindingComponent)
 
         return arrayListOf(
             bindingComponent,
@@ -29,7 +28,7 @@ object EmailComponents : ComponentsContainer {
         )
     }
 
-    class EmailBindingComponent(
+    class MessageBindingComponent(
         override val fragment: AppBaseFragment
     ) : StringBindingComponent(fragment, R.string.email_hint) {
 
@@ -51,7 +50,7 @@ object EmailComponents : ComponentsContainer {
     }
 
 
-    class EmailValidationComponent(override val bindingComponent: EmailBindingComponent) :
+    class MessageValidationComponent(override val bindingComponent: MessageBindingComponent) :
         ValidationComponent<String>(bindingComponent) {
 
         override fun getValidationField(): AutoCompleteTextView {

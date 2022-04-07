@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.splash.validation
+package com.persAssistant.shopping_list.feature.validation
 
 import android.widget.AutoCompleteTextView
 import androidx.annotation.StringRes

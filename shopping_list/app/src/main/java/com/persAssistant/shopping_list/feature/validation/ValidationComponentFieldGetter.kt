@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.splash.validation
+package com.persAssistant.shopping_list.feature.validation
 
 import android.widget.TextView
 import com.google.android.material.textfield.TextInputLayout

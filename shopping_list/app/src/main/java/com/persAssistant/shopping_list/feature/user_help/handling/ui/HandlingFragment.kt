@@ -2,9 +2,6 @@ package com.persAssistant.shopping_list.feature.user_help.handling.ui
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ImageView
-import androidx.annotation.ColorRes
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
@@ -12,32 +9,30 @@ import com.persAssistant.shopping_list.databinding.FragmentHandlingBinding
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel
 import com.persAssistant.shopping_list.util.viewBinding
 import android.content.Intent
-import android.util.Log
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
-import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.persAssistant.shopping_list.base.*
 import com.persAssistant.shopping_list.error.ViewError
-import com.persAssistant.shopping_list.feature.splash.validation.Component
-import com.persAssistant.shopping_list.feature.splash.validation.ContainerImpl
-import com.persAssistant.shopping_list.feature.splash.validation.EmailComponents
+import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation
+import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.*
+import com.persAssistant.shopping_list.feature.validation.*
 import com.persAssistant.shopping_list.util.EMAIL_DEVELOPER
+import com.persAssistant.shopping_list.util.getEventProgress
 import com.persAssistant.shopping_list.util.hideKeyboard
-import kotlinx.coroutines.launch
 
 
-class HandlingFragment : ContainerImpl(R.layout.fragment_handling), ViewError {
+class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError {
 
-    override lateinit var components: ArrayList<Component>
     private val binding by viewBinding(FragmentHandlingBinding::bind)
     private val viewModel: HandlingViewModel by viewModels { viewModelFactory }
+
+    override fun statusBarColor() = R.color.purple_200
 
     override fun getToolbarForBackBehavior(): MaterialToolbar {
         return binding.fragmentHandlingToolbar
     }
-
-    override fun statusBarColor() = R.color.white
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,112 +41,92 @@ class HandlingFragment : ContainerImpl(R.layout.fragment_handling), ViewError {
     }
 
     private fun initObservers() {
-        viewModel.isActionEnabled.observe(viewLifecycleOwner, {
-            binding.fragmentHandlingSendButton.isEnabled = it
-            binding.fragmentHandlingSendAction.isEnabled = it
+        viewModel.isActionEnabled.observe(viewLifecycleOwner) { allow ->
+            if (allow) sendEmail()
+        }
 
-            addColorFilterForView(
-                binding.fragmentHandlingSendAction,
-                if (it) R.color.black else R.color.unfocused_color
-            )
-        })
-
-        viewModel.handling.observe(viewLifecycleOwner) {
-            if (it != null) {
-                uiRouter.navigateUp()
+        progressEvent.observe(viewLifecycleOwner) { event ->
+            event.getEventProgress { progressState ->
+                binding.fragmentHandlingSendButton.isEnabled = progressState.isLoading()
+                binding.fragmentHandlingSendAction.isEnabled = progressState.isLoading()
             }
         }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner){
-            showFieldError(it.getErrorMessageResource(),binding.fragmentHandlingNameInputEditText)
+        viewModel.handling.observe(viewLifecycleOwner) {
+            if (it != null) uiRouter.navigateUp()
+        }
+
+        viewModel.errorName.observe(viewLifecycleOwner) {
+            showFieldError(it.getErrorMessageResource(), binding.fragmentHandlingNameInputEditText)
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) {
+            showFieldError(it.getErrorMessageResource(),binding.fragmentHandlingContentInputEditText)
         }
     }
 
-    private fun addColorFilterForView(view: ImageView, @ColorRes color: Int) {
-        view.setColorFilter(
-            ContextCompat.getColor(view.context, color),
-            android.graphics.PorterDuff.Mode.SRC_IN
-        )
+    private fun initViews() {
+        emailFieldText(EMAIL_DEVELOPER)
+
+        binding.fragmentHandlingNameInputEditText.onFocusChangeListener =
+            View.OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus && messageFieldText().isNotEmpty()) validateInputs(NAME)
+            }
+
+        binding.fragmentHandlingContentInputEditText.onFocusChangeListener =
+            View.OnFocusChangeListener { _, hasFocus ->
+                if (!hasFocus && nameFieldText().isNotEmpty()) validateInputs(MESSAGE)
+            }
+
+        binding.fragmentHandlingSendButton.setOnClickListener { sendButtonEmail() }
+        binding.fragmentHandlingSendAction.setOnClickListener { sendButtonEmail() }
+    }
+
+    private fun sendButtonEmail() {
+        validateInputs(ALL_FIELDS)
+        binding.root.hideKeyboard()
+    }
+
+    private fun validateInputs(field: FieldValidation?) {
+        when (field) {
+            NAME -> viewModel.validateName(name = nameFieldText())
+
+            MESSAGE -> viewModel.validateMessage(message = messageFieldText())
+
+            else -> viewModel.validateData(
+                name = nameFieldText(),
+                message = messageFieldText()
+            )
+        }
     }
 
     private fun sendEmail() {
+        updateProgressEvent(ProgressState.LOADING)
+
         val email = Intent(Intent.ACTION_SEND)
 
         email.apply {
-            putExtra(
-                Intent.EXTRA_EMAIL,
-                arrayOf(binding.fragmentHandlingEmailInputEditText.text.toString())
-            )
-
-            putExtra(
-                Intent.EXTRA_SUBJECT,
-                binding.fragmentHandlingNameInputEditText.text.toString()
-            )
-
-            putExtra(
-                Intent.EXTRA_TEXT,
-                binding.fragmentHandlingContentInputEditText.text.toString()
-            )
-
             type = "message/text"
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(emailFieldText()))
+            putExtra(Intent.EXTRA_SUBJECT, nameFieldText())
+            putExtra(Intent.EXTRA_TEXT, messageFieldText())
         }
 
         startActivity(Intent.createChooser(email, "Выберите email клиент :"))
     }
 
-    private fun initViews() {
-        components = EmailComponents.getComponents(this)
-
-        binding.fragmentHandlingEmailInputEditText.text = EMAIL_DEVELOPER
-
-        binding.fragmentHandlingNameInputEditText.onFocusChangeListener =
-            View.OnFocusChangeListener { _, hasFocus ->
-
-            if (!hasFocus) {
-                validateInputs()
-                save()
-            }
-        }
-
-        binding.fragmentHandlingContentInputEditText.onFocusChangeListener =
-            View.OnFocusChangeListener{ _, hasFocus ->
-                if (!hasFocus) {
-                    validateInputs()
-                    save()
-                }
-            }
-
-        binding.fragmentHandlingSendButton.setOnClickListener { sendButtonEmail() }
-        binding.fragmentHandlingSendAction.setOnClickListener { sendButtonEmail() }
-
-        lifecycleScope.launch {
-            components.forEach {
-                try {
-                    it.initialize()
-                } catch (e: Exception) {
-                    Log.w(it.javaClass.canonicalName, e)
-                }
-            }
-        }
+    private fun nameFieldText(): String {
+        return binding.fragmentHandlingNameInputEditText.text.toString()
     }
 
-    private fun sendButtonEmail(){
-        sendEmail()
-        binding.root.hideKeyboard()
+    private fun messageFieldText(): String {
+        return binding.fragmentHandlingContentInputEditText.text.toString()
     }
 
-    private fun validateInputs() {
-        viewModel.validateData(
-            name = binding.fragmentHandlingNameInputEditText.text.toString(),
-            message = binding.fragmentHandlingContentInputEditText.text.toString()
-        )
-    }
-
-    private fun save() {
-        viewModel.saveData(
-            name = binding.fragmentHandlingNameInputEditText.text.toString(),
-            message = binding.fragmentHandlingContentInputEditText.text.toString()
-        )
+    private fun emailFieldText(
+        email: String = binding.fragmentHandlingEmailInputEditText.text.toString()
+    ): String {
+        return email
     }
 
     override fun showFieldError(id: Int, fieldView: View, parentLayout: TextInputLayout?) {
@@ -159,7 +134,7 @@ class HandlingFragment : ContainerImpl(R.layout.fragment_handling), ViewError {
         showFieldError(messageFromId, fieldView, parentLayout)
     }
 
-    fun showFieldError(
+    private fun showFieldError(
         messageFromId: String,
         fieldView: View,
         parentLayout: TextInputLayout? = null

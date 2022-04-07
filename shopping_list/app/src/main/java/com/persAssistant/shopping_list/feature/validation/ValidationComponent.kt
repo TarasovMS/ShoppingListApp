@@ -1,7 +1,6 @@
-package com.persAssistant.shopping_list.feature.splash.validation
+package com.persAssistant.shopping_list.feature.validation
 
 import android.view.View
-import androidx.core.widget.doOnTextChanged
 import androidx.viewbinding.ViewBinding
 import com.persAssistant.shopping_list.error.*
 import com.persAssistant.shopping_list.util.clearError

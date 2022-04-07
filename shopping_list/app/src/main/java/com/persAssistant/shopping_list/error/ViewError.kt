@@ -8,7 +8,4 @@ import com.google.android.material.textfield.TextInputLayout
 interface ViewError {
     fun showFieldError(@StringRes id: Int, fieldView: View, parentLayout: TextInputLayout? = null)
     fun showTextInputFieldError(input: EditText, parentLayout: TextInputLayout?)
-
-    // чтобы был на всякий
-//    fun focusOnView(unusedMessage: String? = null, fieldView: View)
 }

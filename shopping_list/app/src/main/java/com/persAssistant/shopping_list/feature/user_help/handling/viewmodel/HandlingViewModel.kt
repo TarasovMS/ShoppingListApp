@@ -13,77 +13,69 @@ import javax.inject.Inject
 
 class HandlingViewModel @Inject constructor(
     private val useCase: HandlingUseCase
-) : AppBaseViewModel(),
-//    ViewError,
-    HandlingView
-{
+) : AppBaseViewModel() {
+
+    enum class FieldValidation {
+        NAME,
+        MESSAGE,
+        ALL_FIELDS;
+
+        fun isName() = this == NAME
+        fun isMessage() = this == MESSAGE
+        fun isAllFields() = this == ALL_FIELDS
+    }
 
     val isActionEnabled = MutableLiveData(false)
     val handling: MutableLiveData<Handling> = MutableLiveData()
     val errorMessage: MutableLiveData<Failure> = MutableLiveData()
+    val errorName: MutableLiveData<Failure> = MutableLiveData()
 
-    fun validateData( name: String, message: String) {
-        isActionEnabled.postValue(
-             name.isNotBlank() && message.isNotBlank()
-        )
+    //TODO уточнить надо ли
+    fun validateData(name: String, message: String) {
+        updateProgress(true)
+        isActionEnabled.postValue(name.isNotBlank() && message.isNotBlank())
+        validateName(name)
+        validateMessage(message)
     }
 
-    fun saveData( name: String, message: String) {
+    fun validateName(name: String) {
         updateProgress(true)
 
-        useCase.validateName(name).either(
-            functionError = {
-                handleFailure(it)
-                errorMessage.postValue(it)
-            },
+        useCase.validateName(name)
+            .either(
+                functionError = {
+                    handleFailure(it)
+                    errorName.postValue(it)
+                    isActionEnabled.postValue(false)
+                },
 
-            functionSuccess = {
-                Log.d("успех", "успех")
-            }
-        )
+                functionSuccess = {
+                    Log.d("validateName", it)
+//                    isActionEnabled.postValue(true)
+                }
+            )
+    }
 
-        useCase.validateMessage(message).either(
-            functionError = {
-                handleFailure(it)
-                errorMessage.postValue(it)
-            },
+    fun validateMessage(message: String) {
+        updateProgress(true)
 
-            functionSuccess = {
-                Log.d("успех", "успех")
-            }
-        )
+        useCase.validateMessage(message)
+            .either(
+                functionError = {
+                    handleFailure(it)
+                    errorMessage.postValue(it)
+                    isActionEnabled.postValue(false)
+                },
+
+                functionSuccess = {
+                    Log.d("validateMessage", it)
+//                    isActionEnabled.postValue(true)
+                }
+            )
     }
 
     private fun saveHandlingSuccess(data: Handling) {
         handling.postValue(data)
         updateProgress(false)
-    }
-
-//    override fun showFieldError(id: Int, fieldView: View, parentLayout: TextInputLayout?) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun focusOnView(unusedMessage: String?, fieldView: View) {
-//        TODO("Not yet implemented")
-//    }
-//
-//    override fun showTextInputFieldError(input: EditText, parentLayout: TextInputLayout?) {
-//        TODO("Not yet implemented")
-//    }
-
-    override fun tittleError(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun tittleError(id: Int) {
-        TODO("Not yet implemented")
-    }
-
-    override fun messageError(message: String) {
-        TODO("Not yet implemented")
-    }
-
-    override fun messageError(id: Int) {
-        TODO("Not yet implemented")
     }
 }
