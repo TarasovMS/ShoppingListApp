@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.persAssistant.shopping_list.ui.fragment.category.view_model.ListOfCategoryViewModel" />
+            type="com.pers_assistant.shopping_list.ui.fragment.category.view_model.ListOfCategoryViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

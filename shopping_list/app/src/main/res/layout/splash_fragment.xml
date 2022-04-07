@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:background="@color/splash_background_color"
     android:layout_height="match_parent"
-    tools:context="com.persAssistant.shopping_list.feature.splash.ui.SplashFragment">
+    tools:context="com.pers_assistant.shopping_list.feature.splash.ui.SplashFragment">
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/splash_fragment_animation_view"

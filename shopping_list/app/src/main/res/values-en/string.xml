@@ -28,6 +28,7 @@
     <string name="email_incorrect">Invalid email address entered</string>
     <string name="email_validation_incorrect">The mailing address must contain the characters \"@\" and \".\"</string>
     <string name="name_incorrect">Name incorrect</string>
+    <string name="title_incorrect">Title incorrect</string>
     <string name="message_is_empty">Message is empty</string>
     <string name="connection">Connection…</string>
     <string name="loading">Loading…</string>
