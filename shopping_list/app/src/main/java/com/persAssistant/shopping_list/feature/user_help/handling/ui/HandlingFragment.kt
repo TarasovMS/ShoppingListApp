@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.feature.user_help.handling.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -11,13 +12,16 @@ import com.persAssistant.shopping_list.util.viewBinding
 import android.content.Intent
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.base.*
+import com.persAssistant.shopping_list.base.ProgressState.FINISHED
 import com.persAssistant.shopping_list.error.ViewError
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.*
-import com.persAssistant.shopping_list.feature.validation.*
 import com.persAssistant.shopping_list.util.EMAIL_DEVELOPER
 import com.persAssistant.shopping_list.util.getEventProgress
 import com.persAssistant.shopping_list.util.hideKeyboard
@@ -27,6 +31,12 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
 
     private val binding by viewBinding(FragmentHandlingBinding::bind)
     private val viewModel: HandlingViewModel by viewModels { viewModelFactory }
+
+    //TODO избавиться от lateinit
+    // убрать validateInput во viewModel
+    // РАЗБлокировать отправку как ввел данные
+
+    private lateinit var startForResult: ActivityResultLauncher<Intent>
 
     override fun statusBarColor() = R.color.purple_200
 
@@ -38,6 +48,13 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         super.onViewCreated(view, savedInstanceState)
         initObservers()
         initViews()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        startForResult = registerForActivityResult(
+            ActivityResultContracts.StartActivityForResult()
+        ) { updateProgressEvent(FINISHED) }
     }
 
     private fun initObservers() {
@@ -66,7 +83,7 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
     }
 
     private fun initViews() {
-        emailFieldText(EMAIL_DEVELOPER)
+        binding.fragmentHandlingEmailInputEditText.text = EMAIL_DEVELOPER
 
         binding.fragmentHandlingNameInputEditText.onFocusChangeListener =
             View.OnFocusChangeListener { _, hasFocus ->
@@ -75,7 +92,7 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
 
         binding.fragmentHandlingContentInputEditText.onFocusChangeListener =
             View.OnFocusChangeListener { _, hasFocus ->
-                if (!hasFocus && nameFieldText().isNotEmpty()) validateInputs(MESSAGE)
+                if (!hasFocus && titleFieldText().isNotEmpty()) validateInputs(MESSAGE)
             }
 
         binding.fragmentHandlingSendButton.setOnClickListener { sendButtonEmail() }
@@ -89,12 +106,12 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
 
     private fun validateInputs(field: FieldValidation?) {
         when (field) {
-            NAME -> viewModel.validateName(name = nameFieldText())
+            NAME -> viewModel.validateTitle(name = titleFieldText())
 
             MESSAGE -> viewModel.validateMessage(message = messageFieldText())
 
             else -> viewModel.validateData(
-                name = nameFieldText(),
+                name = titleFieldText(),
                 message = messageFieldText()
             )
         }
@@ -108,14 +125,14 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         email.apply {
             type = "message/text"
             putExtra(Intent.EXTRA_EMAIL, arrayOf(emailFieldText()))
-            putExtra(Intent.EXTRA_SUBJECT, nameFieldText())
+            putExtra(Intent.EXTRA_SUBJECT, titleFieldText())
             putExtra(Intent.EXTRA_TEXT, messageFieldText())
         }
 
-        startActivity(Intent.createChooser(email, "Выберите email клиент :"))
+        startForResult.launch(Intent.createChooser(email, titleFieldText()))
     }
 
-    private fun nameFieldText(): String {
+    private fun titleFieldText(): String {
         return binding.fragmentHandlingNameInputEditText.text.toString()
     }
 
@@ -123,10 +140,8 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         return binding.fragmentHandlingContentInputEditText.text.toString()
     }
 
-    private fun emailFieldText(
-        email: String = binding.fragmentHandlingEmailInputEditText.text.toString()
-    ): String {
-        return email
+    private fun emailFieldText(): String {
+        return binding.fragmentHandlingEmailInputEditText.text.toString()
     }
 
     override fun showFieldError(id: Int, fieldView: View, parentLayout: TextInputLayout?) {
@@ -166,5 +181,4 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         parentLayout ?: return
         addErrorClearingEvent(input, parentLayout)
     }
-
 }
