@@ -14,11 +14,11 @@ class HandlingViewModel @Inject constructor(
 ) : AppBaseViewModel() {
 
     enum class FieldValidation {
-        NAME,
+        TITLE,
         MESSAGE,
         ALL_FIELDS;
 
-        fun isName() = this == NAME
+        fun isTitle() = this == TITLE
         fun isMessage() = this == MESSAGE
         fun isAllFields() = this == ALL_FIELDS
     }
@@ -26,30 +26,42 @@ class HandlingViewModel @Inject constructor(
     val isActionEnabled = MutableLiveData(false)
     val handling: MutableLiveData<Handling> = MutableLiveData()
     val errorMessage: MutableLiveData<Failure> = MutableLiveData()
-    val errorName: MutableLiveData<Failure> = MutableLiveData()
+    val errorTitle: MutableLiveData<Failure> = MutableLiveData()
 
-    fun validateData(name: String, message: String) {
-        isActionEnabled.postValue(name.isNotBlank() && message.isNotBlank())
-        validateTitle(name)
+    fun validateInputs(
+        field: FieldValidation?,
+        title: String,
+        message: String
+    ) {
+        when (field) {
+            FieldValidation.TITLE -> validateTitle(title = title)
+            FieldValidation.MESSAGE -> validateMessage(message = message)
+            else -> validateData(title = title, message = message)
+        }
+    }
+
+    private fun validateData(title: String, message: String) {
+        isActionEnabled.postValue(title.isNotBlank() && message.isNotBlank())
+        validateTitle(title)
         validateMessage(message)
     }
 
-    fun validateTitle(name: String) {
-        useCase.validateName(name)
+    private fun validateTitle(title: String) {
+        useCase.validateName(title)
             .either(
                 functionError = {
                     handleFailure(it)
-                    errorName.postValue(it)
+                    errorTitle.postValue(it)
                     isActionEnabled.postValue(false)
                 },
 
                 functionSuccess = {
-                    Log.d("validateName", it)
+                    Log.d("validateTitleSuccess", it)
                 }
             )
     }
 
-    fun validateMessage(message: String) {
+    private fun validateMessage(message: String) {
         useCase.validateMessage(message)
             .either(
                 functionError = {
@@ -59,7 +71,7 @@ class HandlingViewModel @Inject constructor(
                 },
 
                 functionSuccess = {
-                    Log.d("validateMessage", it)
+                    Log.d("validateMessageSuccess", it)
                 }
             )
     }
