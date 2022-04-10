@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.persAssistant.shopping_list.ui.fragment.category.view_model.CategoryViewModel" />
+            type="com.pers_assistant.shopping_list.ui.fragment.category.view_model.CategoryViewModel" />
     </data>
 
 <LinearLayout

@@ -27,6 +27,7 @@
     <string name="email_incorrect">Введен некорректный почтовый адрес</string>
     <string name="email_validation_incorrect">Почтовый адрес должен содержать символы \"@\" и \".\"</string>
     <string name="name_incorrect">Неверное имя</string>
+    <string name="title_incorrect">Введите заголовок</string>
     <string name="message_is_empty">Сообщение пустое</string>
     <string name="connection">Соединение…</string>
     <string name="loading">Загрузка…</string>

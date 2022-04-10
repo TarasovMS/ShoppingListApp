@@ -3,18 +3,17 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
 //    id 'kotlin-android-extensions'
-
     id'kotlin-parcelize'
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.persAssistant.shopping_list"
+        applicationId "com.pers_assistant.shopping_list"
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 32
         versionCode 1
         versionName "1.0"
 

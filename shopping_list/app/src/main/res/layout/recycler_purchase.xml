@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vm"
-            type="com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel" />
+            type="com.pers_assistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel" />
     </data>
 
 
