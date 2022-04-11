@@ -32,7 +32,7 @@
     <string name="loading">Загрузка…</string>
 
     // Language
-    <string name="select_language" translatable="false">Выберите язык</string>
+    <string name="select_language">Выберите язык</string>
     <string name="english" translatable="false">Английский</string>
     <string name="russian" translatable="false">Русский</string>
 

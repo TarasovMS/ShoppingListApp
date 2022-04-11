@@ -20,6 +20,8 @@ import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
+//TODO разделить все фрагменты поотдельности
+
 @Module
 @Suppress(SUPPRESS_UNUSED)
 abstract class FragmentModule {

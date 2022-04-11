@@ -43,9 +43,11 @@
     <string name="send">Send</string>
     <string name="text_handling">Text handling: </string>
 
-    <string name="send_handling">Написать письмо</string>
+    // Preferences
+    <string name="select_language">Select language</string>
+    <string name="send_handling">Send email</string>
     <string name="notifications">Notifications</string>
-    <string name="handling_error">Не удалось загрузить обращение</string>
+    <string name="handling_error">Failed to load handling</string>
 
 
 </resources>

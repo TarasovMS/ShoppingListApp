@@ -11,7 +11,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentPrefBinding
-import com.persAssistant.shopping_list.ui.activity.LanguageActivity
+//import com.persAssistant.shopping_list.ui.activity.LanguageActivity
 import com.persAssistant.shopping_list.ui.fragment.category.view_model.ListOfCategoryViewModel
 import com.persAssistant.shopping_list.util.EMAIL_DEVELOPER
 import com.persAssistant.shopping_list.util.safeGetData
@@ -27,9 +27,9 @@ class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pre
         super.onViewCreated(view, savedInstanceState)
 
         binding.fragmentPrefLanguage.setOnClickListener {
-//            uiRouter.navigateById(R.id.)
-            val intent = Intent(requireContext(), LanguageActivity::class.java)
-            startActivity(intent)
+            uiRouter.navigateById(R.id.languageFragment)
+//            val intent = Intent(requireContext(), LanguageActivity::class.java)
+//            startActivity(intent)
         }
 
         binding.fragmentPrefHandling.setOnClickListener {

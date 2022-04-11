@@ -172,14 +172,24 @@
         <action
             android:id="@+id/action_send_handling"
             app:destination="@id/handlingFragment" />
+
+        <action
+            android:id="@+id/action_select_language"
+            app:destination="@id/languageFragment" />
+
     </fragment>
 
     <fragment
         android:id="@+id/handlingFragment"
         android:name="com.persAssistant.shopping_list.feature.user_help.handling.ui.HandlingFragment"
         android:label="HandlingFragment"
-        tools:layout="@layout/fragment_handling"/>
+        tools:layout="@layout/fragment_handling" />
 
+    <fragment
+        android:id="@+id/languageFragment"
+        android:name="com.persAssistant.shopping_list.feature.language.ui.LanguageFragment"
+        android:label="LanguageFragment"
+        tools:layout="@layout/fragment_language" />
 
 </navigation>
 
