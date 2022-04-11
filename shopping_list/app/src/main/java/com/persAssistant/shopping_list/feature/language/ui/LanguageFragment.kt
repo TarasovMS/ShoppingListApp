@@ -15,7 +15,6 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentLanguageBinding
 import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel
-import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel
 import com.persAssistant.shopping_list.ui.activity.MainActivity
 import com.persAssistant.shopping_list.util.ContextUtils
 import com.persAssistant.shopping_list.util.ENGLISH_USA
@@ -35,11 +34,9 @@ class LanguageFragment @Inject constructor() : AppBaseFragment(R.layout.fragment
     private val binding by viewBinding(FragmentLanguageBinding::bind)
     private val viewModel: LanguageViewModel by viewModels { viewModelFactory }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        currentLanguage = arguments?.getString(currentLang).toString()
+        currentLanguage = requireActivity().intent.getStringExtra(currentLang).toString()
 
         val list = ArrayList<String>()
         list.add(resources.getString(R.string.select_language))
@@ -57,7 +54,7 @@ class LanguageFragment @Inject constructor() : AppBaseFragment(R.layout.fragment
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
-            //TODO обработать минимальную версию и обозначнеие языка в стринг
+            //TODO обработать минимальную версию и обозначнеие языка в стринг c 21 по 24
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onItemSelected(
                 parent: AdapterView<*>,
