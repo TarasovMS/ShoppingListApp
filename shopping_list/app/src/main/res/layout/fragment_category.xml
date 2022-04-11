@@ -1,48 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="vm"
             type="com.persAssistant.shopping_list.ui.fragment.category.view_model.CategoryViewModel" />
     </data>
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
-    >
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/name_of_category"/>
-
-    <EditText
-        android:id="@+id/editTextName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@={vm.name}"/>
-
-    <Button
-        android:id="@+id/btn_save_shoppingList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#4CAF50"
-        android:textColor="@android:color/white"
-        android:onClick="@{view -> vm.save()}"
-        android:text="@string/save"/>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/lotti_activity_category"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/clicks_on_start"
-        />
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/name_of_category" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@={vm.name}" />
+
+        <Button
+            android:id="@+id/btn_save_shoppingList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#4CAF50"
+            android:onClick="@{view -> vm.save()}"
+            android:text="@string/save"
+            android:textColor="@android:color/white" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/lotti_activity_category"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/clicks_on_start" />
 
 
-</LinearLayout>
+    </LinearLayout>
 </layout>

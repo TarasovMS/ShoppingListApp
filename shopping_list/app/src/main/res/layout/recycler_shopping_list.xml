@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
+
         <variable
             name="vm"
             type="com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model.ListOfShoppingListViewModel" />
@@ -8,8 +10,7 @@
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_recyclerShoppingList"
@@ -25,10 +26,8 @@
             android:id="@+id/recycler_view_shopping_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_below="@+id/tv_recyclerShoppingList"
-            >
-        </androidx.recyclerview.widget.RecyclerView>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_add_shoppingList"
@@ -38,7 +37,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="35dp"
             android:layout_marginBottom="48dp"
-            android:src="@drawable/ic_add">
-        </com.google.android.material.floatingactionbutton.FloatingActionButton>
-</RelativeLayout>
+            android:src="@drawable/ic_add"/>
+
+    </RelativeLayout>
 </layout>
