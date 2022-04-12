@@ -9,8 +9,10 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.annotation.ColorRes
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentLanguageBinding
@@ -21,27 +23,36 @@ import com.persAssistant.shopping_list.util.ENGLISH_USA
 import com.persAssistant.shopping_list.util.RUSSIAN
 import com.persAssistant.shopping_list.util.viewBinding
 import java.util.*
-import javax.inject.Inject
-import kotlin.collections.ArrayList
 
-class LanguageFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_language) {
 
-    // TODO переделать переменные
+class LanguageFragment : AppBaseFragment(R.layout.fragment_language) {
 
-    private lateinit var locale: Locale
-    private var currentLanguage = RUSSIAN
-    private var currentLang: String? = null
+    private var currentLanguage: String = RUSSIAN
     private val binding by viewBinding(FragmentLanguageBinding::bind)
     private val viewModel: LanguageViewModel by viewModels { viewModelFactory }
 
+    @ColorRes
+    override fun statusBarColor() = R.color.black
+
+    override fun getToolbarForBackBehavior(): MaterialToolbar {
+        return binding.fragmentLanguageToolbar
+    }
+
+    override fun onAttach(context: Context) {
+        val localeToSwitchTo = Locale(currentLanguage)
+        val localeUpdatedContext: ContextWrapper =
+            ContextUtils.updateLocale(context, localeToSwitchTo)
+        super.onAttach(localeUpdatedContext)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        currentLanguage = requireActivity().intent.getStringExtra(currentLang).toString()
+        currentLanguage = requireActivity().intent.getStringExtra(CURRENT_LANGUAGE).toString()
 
         val list = ArrayList<String>()
-        list.add(resources.getString(R.string.select_language))
-        list.add(resources.getString(R.string.english))
-        list.add(resources.getString(R.string.russian))
+        list.add(getString(R.string.select_language))
+        list.add(getString(R.string.english))
+        list.add(getString(R.string.russian))
 
         val adapter = ArrayAdapter(
             requireContext(),
@@ -50,11 +61,12 @@ class LanguageFragment @Inject constructor() : AppBaseFragment(R.layout.fragment
         )
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter = adapter
+        binding.fragmentLanguageSpinner.adapter = adapter
 
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        binding.fragmentLanguageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             //TODO обработать минимальную версию и обозначнеие языка в стринг c 21 по 24
+
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -76,7 +88,7 @@ class LanguageFragment @Inject constructor() : AppBaseFragment(R.layout.fragment
     @RequiresApi(Build.VERSION_CODES.N)
     private fun setLocale(localeName: String) {
         if (localeName != currentLanguage) {
-            locale = Locale(localeName)
+            val locale = Locale(localeName)
 
             val res = resources
             val dm = res.displayMetrics
@@ -90,21 +102,20 @@ class LanguageFragment @Inject constructor() : AppBaseFragment(R.layout.fragment
                 MainActivity::class.java
             )
 
-            refresh.putExtra(currentLang, localeName)
+            refresh.putExtra(CURRENT_LANGUAGE, localeName)
             startActivity(refresh)
+            requireActivity().finish()
 
         } else {
-
             Toast.makeText(
-                requireContext(), "Language, , already, , selected)!", Toast.LENGTH_SHORT
-            ).show();
+                requireContext(),
+                getString(R.string.language_already_selected),
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
-    override fun onAttach(context: Context) {
-        val localeToSwitchTo = Locale(currentLanguage)
-        val localeUpdatedContext: ContextWrapper =
-            ContextUtils.updateLocale(context, localeToSwitchTo)
-        super.onAttach(localeUpdatedContext)
+    companion object{
+        const val CURRENT_LANGUAGE = "currentLanguage"
     }
 }

@@ -13,6 +13,7 @@ import android.content.Intent
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.ColorRes
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.base.*
@@ -36,6 +37,7 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         ) { updateProgressEvent(FINISHED) }
     }
 
+    @ColorRes
     override fun statusBarColor() = R.color.purple_200
 
     override fun getToolbarForBackBehavior(): MaterialToolbar {

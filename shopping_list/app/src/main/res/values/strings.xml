@@ -32,9 +32,11 @@
     <string name="loading">Загрузка…</string>
 
     // Language
+    <string name="selected_language">Выбран язык : %1$s</string>
     <string name="select_language">Выберите язык</string>
-    <string name="english" translatable="false">Английский</string>
-    <string name="russian" translatable="false">Русский</string>
+    <string name="language">Язык</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
 
     // Preference fragment
     <string name="handling">Обращение</string>
@@ -45,10 +47,12 @@
     <string name="email_hint">E-mail</string>
     <string name="send">Отправить</string>
     <string name="text_handling">Текст обращения: </string>
+    <string name="language_already_selected">Язык уже выбран</string>
 
     <string name="send_handling">Написать письмо</string>
     <string name="notifications">Уведомления</string>
     <string name="handling_error">Не удалось загрузить обращение</string>
+
 
 
 

@@ -20,7 +20,8 @@
         <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/layout/fragment_billing.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.12447916666666667" />
-        <entry key="app/src/main/res/layout/fragment_handling.xml" value="0.29754601226993865" />
+        <entry key="app/src/main/res/layout/fragment_handling.xml" value="0.22429906542056074" />
+        <entry key="app/src/main/res/layout/fragment_language.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/fragment_pref.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_purchase.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.20516304347826086" />

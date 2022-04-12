@@ -42,11 +42,19 @@
     <string name="email_hint">E-mail</string>
     <string name="send">Send</string>
     <string name="text_handling">Text handling: </string>
+    <string name="language_already_selected">Language already selected !</string>
 
-    // Preferences
-    <string name="select_language">Select language</string>
+    // Preference
     <string name="send_handling">Send email</string>
     <string name="notifications">Notifications</string>
     <string name="handling_error">Failed to load handling</string>
+
+    // Language
+    <string name="language">Language</string>
+    <string name="select_language">Select language</string>
+    <string name="selected_language">Selected language : %1$s</string>
+    <string name="english">English</string>
+    <string name="russian">Russian</string>
+
 
 </resources>
