@@ -189,14 +189,7 @@
         android:id="@+id/languageFragment"
         android:name="com.persAssistant.shopping_list.feature.language.ui.LanguageFragment"
         android:label="LanguageFragment"
-        tools:layout="@layout/fragment_language" >
-        <argument
-            android:name="language_args"
-            android:defaultValue="en"
-            app:argType="string"
-            />
-
-    </fragment>
+        tools:layout="@layout/fragment_language" />
 
 </navigation>
 

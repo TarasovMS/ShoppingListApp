@@ -19,7 +19,7 @@
             android:background="@color/toolbar_white"
             android:minHeight="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_arrow_back_ios_new"
-            app:title="@string/select_language"/>
+            app:title="@string/select_language" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
