@@ -9,8 +9,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseActivity
 import com.persAssistant.shopping_list.databinding.ActivityMainBinding
-import com.persAssistant.shopping_list.util.goneWithOutFade
-import com.persAssistant.shopping_list.util.visibleWithOutFade
+import com.persAssistant.shopping_list.util.gone
+import com.persAssistant.shopping_list.util.visible
 
 open class MainActivity : AppBaseActivity() {
 
@@ -62,12 +62,12 @@ open class MainActivity : AppBaseActivity() {
     }
 
     private fun switchBottomNav(menuItem: Int) {
-        if (!binding.activityMainBottomNav.isVisible) binding.activityMainBottomNav.visibleWithOutFade()
+        if (!binding.activityMainBottomNav.isVisible) binding.activityMainBottomNav.visible()
         binding.activityMainBottomNav.selectedItemId = menuItem
     }
 
     private fun hideBottomNav() {
-        binding.activityMainBottomNav.goneWithOutFade()
+        binding.activityMainBottomNav.gone()
     }
 
     override fun onBackPressed() {
