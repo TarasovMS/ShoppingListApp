@@ -1,6 +1,5 @@
 package com.persAssistant.shopping_list.ui.activity
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.viewModels
@@ -10,8 +9,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseActivity
 import com.persAssistant.shopping_list.databinding.ActivityMainBinding
-import com.persAssistant.shopping_list.feature.language.ui.LanguageFragment.Companion.CURRENT_LANGUAGE
-import com.persAssistant.shopping_list.util.RUSSIAN
 import com.persAssistant.shopping_list.util.goneWithOutFade
 import com.persAssistant.shopping_list.util.visibleWithOutFade
 

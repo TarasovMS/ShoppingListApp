@@ -17,11 +17,12 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentLanguageBinding
 import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel
+import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel.Companion.CURRENT_LANGUAGE
 import com.persAssistant.shopping_list.ui.activity.MainActivity
 import com.persAssistant.shopping_list.util.ContextUtils
 import com.persAssistant.shopping_list.util.ENGLISH_USA
 import com.persAssistant.shopping_list.util.RUSSIAN
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 import java.util.*
 
 //TODO не работает кнопка backUp у toolBar
@@ -48,6 +49,10 @@ class LanguageFragment : AppBaseFragment(R.layout.fragment_language) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        init()
+    }
+    
+    private fun init(){
         currentLanguage = requireActivity().intent.getStringExtra(CURRENT_LANGUAGE).toString()
 
         val list = ArrayList<String>()
@@ -67,7 +72,6 @@ class LanguageFragment : AppBaseFragment(R.layout.fragment_language) {
         binding.fragmentLanguageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
 
             //TODO обработать минимальную версию и обозначнеие языка в стринг c 21 по 24
-
             @RequiresApi(Build.VERSION_CODES.N)
             override fun onItemSelected(
                 parent: AdapterView<*>,
@@ -114,9 +118,5 @@ class LanguageFragment : AppBaseFragment(R.layout.fragment_language) {
                 Toast.LENGTH_SHORT
             ).show()
         }
-    }
-
-    companion object{
-        const val CURRENT_LANGUAGE = "currentLanguage"
     }
 }

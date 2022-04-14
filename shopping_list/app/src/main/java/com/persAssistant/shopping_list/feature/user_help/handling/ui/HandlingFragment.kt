@@ -25,7 +25,6 @@ import com.persAssistant.shopping_list.util.EMAIL_DEVELOPER
 import com.persAssistant.shopping_list.util.getEventProgress
 import com.persAssistant.shopping_list.util.hideKeyboard
 
-
 class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError {
 
     private val binding by viewBinding(FragmentHandlingBinding::bind)
@@ -56,10 +55,6 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
     }
 
     private fun initObservers() {
-        viewModel.isActionEnabled.observe(viewLifecycleOwner) { allow ->
-            if (allow) sendEmail()
-        }
-
         progressEvent.observe(viewLifecycleOwner) { event ->
             event.getEventProgress { progressState ->
                 binding.fragmentHandlingSendButton.isEnabled = progressState.isFinished()
@@ -67,37 +62,45 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
             }
         }
 
-        viewModel.handling.observe(viewLifecycleOwner) {
-            if (it != null) uiRouter.navigateUp()
-        }
+        viewModel.apply {
+            isActionEnabled.observe(viewLifecycleOwner) { allow ->
+                if (allow) sendEmail()
+            }
 
-        viewModel.errorTitle.observe(viewLifecycleOwner) {
-            showFieldError(it.getErrorMessageResource(), binding.fragmentHandlingNameInputEditText)
-        }
+            handling.observe(viewLifecycleOwner) {
+                if (it != null) uiRouter.navigateUp()
+            }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) {
-            showFieldError(
-                it.getErrorMessageResource(),
-                binding.fragmentHandlingContentInputEditText
-            )
+            errorTitle.observe(viewLifecycleOwner) {
+                showFieldError(it.getErrorMessageResource(), binding.fragmentHandlingNameInputEditText)
+            }
+
+            errorMessage.observe(viewLifecycleOwner) {
+                showFieldError(
+                    it.getErrorMessageResource(),
+                    binding.fragmentHandlingContentInputEditText
+                )
+            }
         }
     }
 
     private fun initViews() {
-        binding.fragmentHandlingEmailInputEditText.text = EMAIL_DEVELOPER
 
-        binding.fragmentHandlingNameInputEditText.onFocusChangeListener =
-            View.OnFocusChangeListener { _, hasFocus ->
-                if (!hasFocus && messageFieldText().isNotEmpty()) validation(TITLE)
-            }
+        binding.apply {
+            fragmentHandlingNameInputEditText.onFocusChangeListener =
+                View.OnFocusChangeListener { _, hasFocus ->
+                    if (!hasFocus && messageFieldText().isNotEmpty()) validation(TITLE)
+                }
 
-        binding.fragmentHandlingContentInputEditText.onFocusChangeListener =
-            View.OnFocusChangeListener { _, hasFocus ->
-                if (!hasFocus && titleFieldText().isNotEmpty()) validation(MESSAGE)
-            }
+            fragmentHandlingContentInputEditText.onFocusChangeListener =
+                View.OnFocusChangeListener { _, hasFocus ->
+                    if (!hasFocus && titleFieldText().isNotEmpty()) validation(MESSAGE)
+                }
 
-        binding.fragmentHandlingSendAction.setOnClickListener { validation(ALL_FIELDS) }
-        binding.fragmentHandlingSendButton.setOnClickListener { validation(ALL_FIELDS) }
+            fragmentHandlingEmailInputEditText.text = EMAIL_DEVELOPER
+            fragmentHandlingSendAction.setOnClickListener { validation(ALL_FIELDS) }
+            fragmentHandlingSendButton.setOnClickListener { validation(ALL_FIELDS) }
+        }
     }
 
     private fun validation(field: FieldValidation) {

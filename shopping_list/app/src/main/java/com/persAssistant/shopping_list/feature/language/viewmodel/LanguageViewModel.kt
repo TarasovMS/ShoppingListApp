@@ -5,4 +5,8 @@ import javax.inject.Inject
 
 class LanguageViewModel @Inject constructor() : AppBaseViewModel() {
 
+    companion object{
+        const val CURRENT_LANGUAGE = "currentLanguage"
+    }
+
 }

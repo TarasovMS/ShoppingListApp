@@ -20,11 +20,11 @@
         <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/layout/fragment_billing.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.12447916666666667" />
-        <entry key="app/src/main/res/layout/fragment_handling.xml" value="0.22429906542056074" />
-        <entry key="app/src/main/res/layout/fragment_language.xml" value="0.25833333333333336" />
-        <entry key="app/src/main/res/layout/fragment_pref.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_handling.xml" value="0.29754601226993865" />
+        <entry key="app/src/main/res/layout/fragment_language.xml" value="0.21240942028985507" />
+        <entry key="app/src/main/res/layout/fragment_pref.xml" value="0.1814814814814815" />
         <entry key="app/src/main/res/layout/fragment_purchase.xml" value="0.20516304347826086" />
-        <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.20516304347826086" />
+        <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/pref_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recycler_category.xml" value="0.1716485507246377" />
         <entry key="app/src/main/res/layout/recycler_info_category.xml" value="0.335" />
@@ -33,7 +33,7 @@
         <entry key="app/src/main/res/layout/recycler_info_shopping_list.xml" value="0.375" />
         <entry key="app/src/main/res/layout/recycler_purchase.xml" value="0.24583333333333332" />
         <entry key="app/src/main/res/layout/recycler_purchase_list.xml" value="0.16621376811594202" />
-        <entry key="app/src/main/res/layout/recycler_shopping_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/recycler_shopping_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/splash_fragment.xml" value="0.165" />
         <entry key="app/src/main/res/layout/text_input_fragment.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/menu/bottom_navigation_menu.xml" value="0.25" />

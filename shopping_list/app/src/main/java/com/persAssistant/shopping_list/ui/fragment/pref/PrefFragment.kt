@@ -7,7 +7,7 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentPrefBinding
 import com.persAssistant.shopping_list.ui.fragment.category.view_model.ListOfCategoryViewModel
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 import javax.inject.Inject
 
 class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pref) {

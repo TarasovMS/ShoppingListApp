@@ -18,6 +18,8 @@
             android:layout_height="wrap_content"
             android:background="@color/toolbar_white"
             android:minHeight="?attr/actionBarSize"
+            android:clickable="true"
+            android:focusable="true"
             app:navigationIcon="@drawable/ic_arrow_back_ios_new"
             app:title="@string/select_language" />
 

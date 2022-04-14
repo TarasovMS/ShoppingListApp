@@ -14,18 +14,21 @@ import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_list) {
 
+    //TODO избавиться от lateinit через делегат
     private lateinit var shoppingListAdapter: ShoppingListAdapter
     private val binding: RecyclerShoppingListBinding by viewBinding(RecyclerShoppingListBinding::bind)
     private val viewModel: ListOfShoppingListViewModel by viewModels { viewModelFactory }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
+        initObserve()
+    }
 
+    private fun init() {
         shoppingListAdapter = ShoppingListAdapter(object : OnShoppingListClickListener {
             override fun clickedShoppingListItem(shoppingList: ShoppingList) {
-                val bundle = Bundle()
-
-                bundle.apply {
+                val bundle = Bundle().apply {
                     putLong(KEY_PARENT_ID, shoppingList.id!!)
                     putBoolean(KEY_VISIBILITY_BUTTON, true)
                     putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.SHOPPINGLIST.ordinal)
@@ -45,21 +48,24 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
             }
         })
 
+        viewModel.init(this@ListOfShoppingListFragment)
+
         binding.apply {
             recyclerViewShoppingList.adapter = shoppingListAdapter
 
-            btnAddShoppingList.setOnClickListener {
+            recyclerShoppingListBtnAdd.setOnClickListener {
                 uiRouter.navigateById(R.id.createShoppingList)
             }
         }
+    }
 
-        viewModel.apply {
-            init(this@ListOfShoppingListFragment)
-            listOfShoppingList.observe(requireActivity()) { shoppingListAdapter.updateItems(it) }
+    private fun initObserve() {
+        viewModel.listOfShoppingList.observe(viewLifecycleOwner) {
+            shoppingListAdapter.updateItems(it)
+        }
 
-            deleteShoppingListId.observe(requireActivity()) {
-                shoppingListAdapter.removeShoppingList(it)
-            }
+        viewModel.deleteShoppingListId.observe(viewLifecycleOwner) {
+            shoppingListAdapter.removeShoppingList(it)
         }
     }
 }
