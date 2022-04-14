@@ -6,7 +6,7 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentCategoryBinding
 import com.persAssistant.shopping_list.ui.fragment.category.view_model.CategoryViewModel
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 abstract class CategoryFragment : AppBaseFragment(R.layout.fragment_category) {
 

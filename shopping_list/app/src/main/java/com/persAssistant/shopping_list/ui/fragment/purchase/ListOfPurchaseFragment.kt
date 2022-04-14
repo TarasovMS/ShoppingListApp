@@ -11,7 +11,7 @@ import com.persAssistant.shopping_list.ui.fragment.purchase.PurchaseFragment.Com
 import com.persAssistant.shopping_list.ui.fragment.purchase.PurchaseFragment.Companion.KEY_SHOPPING_LIST_ID
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel.*
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 import java.lang.Exception
 
 class ListOfPurchaseFragment: AppBaseFragment(R.layout.recycler_purchase) {

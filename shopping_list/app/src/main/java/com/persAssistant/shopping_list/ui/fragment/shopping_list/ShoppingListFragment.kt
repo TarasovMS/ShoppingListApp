@@ -8,7 +8,7 @@ import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentShoppingListBinding
 import com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model.ShoppingListViewModel
 import com.persAssistant.shopping_list.util.DATE_FORMAT
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,7 +23,7 @@ abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = createViewModel()
-        viewModel.closeEvent.observe(this) { uiRouter.navigateBack() }
+        viewModel.closeEvent.observe(viewLifecycleOwner) { uiRouter.navigateBack() }
 
         binding.apply {
             vmShoppingList = viewModel

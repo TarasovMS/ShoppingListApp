@@ -8,7 +8,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.databinding.FragmentHandlingBinding
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 import android.content.Intent
 import android.widget.AutoCompleteTextView
 import android.widget.EditText

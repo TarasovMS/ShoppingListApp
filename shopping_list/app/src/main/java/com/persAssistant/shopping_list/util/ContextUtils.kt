@@ -21,7 +21,6 @@ class ContextUtils(base: Context) : ContextWrapper(base) {
     companion object {
 
         fun updateLocale(context: Context, localeToSwitchTo: Locale): ContextWrapper {
-//            var context = c
             val resources: Resources = context.resources
             val configuration: Configuration = resources.configuration
 
@@ -30,6 +29,7 @@ class ContextUtils(base: Context) : ContextWrapper(base) {
                 LocaleList.setDefault(localeList)
                 configuration.setLocales(localeList)
             }
+
             else configuration.locale = localeToSwitchTo
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1)

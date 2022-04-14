@@ -12,7 +12,7 @@ import com.persAssistant.shopping_list.ui.activity.LanguageActivity
 import com.persAssistant.shopping_list.ui.fragment.category.CategoryFragment.Companion.KEY_CATEGORY
 import com.persAssistant.shopping_list.ui.fragment.category.view_model.ListOfCategoryViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 class ListOfCategoryFragment: AppBaseFragment(R.layout.recycler_category) {
 

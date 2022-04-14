@@ -10,7 +10,7 @@ import com.persAssistant.shopping_list.databinding.RecyclerShoppingListBinding
 import com.persAssistant.shopping_list.ui.fragment.shopping_list.ShoppingListFragment.Companion.SHOPPING_LIST_KEY
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model.ListOfShoppingListViewModel
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_list) {
 

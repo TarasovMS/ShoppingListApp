@@ -11,7 +11,7 @@ import com.android.billingclient.api.SkuDetails
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentBillingBinding
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 class PricingFragment : AppBaseFragment(R.layout.fragment_billing) {
 

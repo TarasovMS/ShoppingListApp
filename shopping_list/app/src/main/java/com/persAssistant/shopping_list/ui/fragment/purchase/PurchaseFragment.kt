@@ -7,7 +7,7 @@ import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 abstract class PurchaseFragment: AppBaseFragment(R.layout.fragment_purchase) {
 
@@ -28,7 +28,7 @@ abstract class PurchaseFragment: AppBaseFragment(R.layout.fragment_purchase) {
          */
 
         viewModel = createViewModel()
-        viewModel.closeEvent.observe(this) { uiRouter.navigateBack() }
+        viewModel.closeEvent.observe(viewLifecycleOwner) { uiRouter.navigateBack() }
 
         binding.apply {
             vmPurchase = viewModel

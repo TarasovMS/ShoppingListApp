@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.util
+package com.persAssistant.shopping_list.util.delegate
 
 import android.view.LayoutInflater
 import android.view.View

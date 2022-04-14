@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.os.LocaleList
-import android.preference.PreferenceManager
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -18,7 +16,6 @@ import java.util.*
 import kotlin.collections.ArrayList
 import android.content.ContextWrapper
 import com.persAssistant.shopping_list.databinding.ActivityLanguageBinding
-import com.persAssistant.shopping_list.databinding.ActivityMainBinding
 import com.persAssistant.shopping_list.util.ContextUtils
 import com.persAssistant.shopping_list.util.ENGLISH_USA
 import com.persAssistant.shopping_list.util.RUSSIAN
