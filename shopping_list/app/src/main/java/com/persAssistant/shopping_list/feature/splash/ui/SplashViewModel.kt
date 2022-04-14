@@ -24,6 +24,6 @@ class SplashViewModel @Inject constructor() : AppBaseViewModel() {
     }
 
     companion object {
-        private const val TIME_MILLIS = 2000L
+        private const val TIME_MILLIS = 2500L
     }
 }

@@ -48,7 +48,7 @@ class LanguageFragment : AppBaseFragment(R.layout.fragment_language) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        super.onViewCreated(view, savedInstanceState)
         init()
     }
     

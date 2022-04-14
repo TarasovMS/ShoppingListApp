@@ -17,7 +17,10 @@ class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pre
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        init()
+    }
 
+    private fun init(){
         binding.fragmentPrefLanguage.setOnClickListener {
             uiRouter.navigateById(R.id.action_select_language)
         }
@@ -26,5 +29,4 @@ class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pre
             uiRouter.navigateById(R.id.action_send_handling)
         }
     }
-
 }
