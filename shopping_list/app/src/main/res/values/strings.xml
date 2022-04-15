@@ -1,16 +1,23 @@
 <resources>
+    // App name
     <string name="app_name">Shopping list</string>
+
+    // Data base
     <string name="failed_insert">Не удалось выполнить insert</string>
     <string name="failed_getAll">Не удалось выполнить getAll</string>
     <string name="failed_getById">Не удалось выполнить getById</string>
     <string name="failed_update">Не удалось выполнить update</string>
     <string name="failed_delete">Не удалось выполнить delete</string>
 
+    // Bottom Navigation
+
     <string name="lists">Списки</string>
     <string name="shopping_list">Список покупок</string>
     <string name="categories">Категории</string>
     <string name="purchase">Покупки</string>
     <string name="more">Еще</string>
+
+    // Parent fragment
     <string name="select_categories">Выберите категории</string>
     <string name="home">Home</string>
     <string name="list_name">Название списка</string>
@@ -23,6 +30,7 @@
     <string name="price">Цена</string>
     <string name="number">Колличество</string>
 
+    // Validation
     <string name="unknown_error_message">Произошла ошибка</string>
     <string name="email_incorrect">Введен некорректный почтовый адрес</string>
     <string name="email_validation_incorrect">Почтовый адрес должен содержать символы \"@\" и \".\"</string>
@@ -31,14 +39,7 @@
     <string name="connection">Соединение…</string>
     <string name="loading">Загрузка…</string>
 
-    // Language
-    <string name="selected_language">Выбран язык : %1$s</string>
-    <string name="select_language">Выберите язык</string>
-    <string name="language">Язык</string>
-    <string name="english">Английский</string>
-    <string name="russian">Русский</string>
-
-    // Preference fragment
+    // inside a preferences
     <string name="handling">Обращение</string>
     <string name="sender">Отправитель</string>
     <string name="recipient">Получатель</string>
@@ -48,13 +49,20 @@
     <string name="send">Отправить</string>
     <string name="text_handling">Текст обращения: </string>
     <string name="language_already_selected">Язык уже выбран</string>
-
-    <string name="send_handling">Написать письмо</string>
-    <string name="notifications">Уведомления</string>
     <string name="handling_error">Не удалось загрузить обращение</string>
 
+    // Preference fragment
+    <string name="preferences">Настройки</string>
+    <string name="send_handling">Написать письмо</string>
+    <string name="notifications">Уведомления</string>
+    <string name="themes">Темы</string>
 
-
+    // Language
+    <string name="selected_language">Выбран язык : %1$s</string>
+    <string name="select_language">Выберите язык</string>
+    <string name="language">Язык</string>
+    <string name="english">Английский</string>
+    <string name="russian">Русский</string>
 
     <string-array name="months" >
         <item>Январь</item>
@@ -74,7 +82,6 @@
     <string-array name="language" >
         <item>English</item>
         <item>Русский</item>
-
 <!--        <item>Белорусский</item>-->
 <!--        <item>Казахсткий</item>-->
     </string-array>

@@ -19,13 +19,11 @@ import com.persAssistant.shopping_list.databinding.FragmentLanguageBinding
 import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel
 import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel.Companion.CURRENT_LANGUAGE
 import com.persAssistant.shopping_list.ui.activity.MainActivity
-import com.persAssistant.shopping_list.util.ContextUtils
 import com.persAssistant.shopping_list.util.ENGLISH_USA
 import com.persAssistant.shopping_list.util.RUSSIAN
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import java.util.*
 
-//TODO не работает кнопка backUp у toolBar
 
 class LanguageFragment : AppBaseFragment(R.layout.fragment_language) {
 

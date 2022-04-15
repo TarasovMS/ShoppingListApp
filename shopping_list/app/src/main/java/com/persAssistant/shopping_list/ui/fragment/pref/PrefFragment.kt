@@ -10,7 +10,10 @@ import com.persAssistant.shopping_list.ui.fragment.category.view_model.ListOfCat
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import javax.inject.Inject
 
+
 class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pref) {
+
+    // Todo добавить пункты для настроек и заменить иконки
 
     private val binding: FragmentPrefBinding by viewBinding(FragmentPrefBinding::bind)
     private val viewModel: ListOfCategoryViewModel by viewModels { viewModelFactory }

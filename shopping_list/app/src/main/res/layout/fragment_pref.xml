@@ -21,7 +21,9 @@
             android:layout_height="wrap_content"
             android:background="@color/splash_background_color"
             android:minHeight="?attr/actionBarSize"
-            app:title="@string/app_name"
+            app:navigationIcon="@drawable/ic_arrow_back_ios_new"
+            app:title="@string/preferences"
+            app:titleCentered="true"
             app:titleTextColor="@color/text_black" />
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -164,7 +166,7 @@
         android:clickable="true"
         android:drawableEnd="@drawable/ic_menu_arrow"
         android:focusable="true"
-        android:text="@string/send_handling"
+        android:text="@string/themes"
         android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/help_handling_image"

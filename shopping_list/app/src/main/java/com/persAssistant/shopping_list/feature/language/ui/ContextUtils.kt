@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.util
+package com.persAssistant.shopping_list.feature.language.ui
 
 import android.content.Context
 import android.content.ContextWrapper
@@ -12,12 +12,6 @@ class ContextUtils(base: Context) : ContextWrapper(base) {
 
     // TODO
     // https://medium.com/swlh/android-app-specific-language-change-programmatically-using-kotlin-d650a5392220
-
-    // get chosen language from shread preference
-//    val localeToSwitchTo = PreferenceManager(newBase).getAppLanguage()
-//    val localeUpdatedContext: ContextWrapper = ContextUtils.updateLocale(newBase, localeToSwitchTo)
-
-
     companion object {
 
         fun updateLocale(context: Context, localeToSwitchTo: Locale): ContextWrapper {

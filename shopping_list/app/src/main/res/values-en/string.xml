@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    // App name
     <string name="app_name">Shopping list</string>
+
+    // Data base
     <string name="failed_insert">Failed insert</string>
     <string name="failed_getAll">Failed getAll</string>
     <string name="failed_getById">Failed getById</string>
     <string name="failed_update">Failed  update</string>
     <string name="failed_delete">Failed delete</string>
 
+    // Bottom Navigation
     <string name="lists">Lists</string>
     <string name="shopping_list">Shopping list</string>
     <string name="categories">Categories</string>
     <string name="purchase">Purchase</string>
     <string name="more">More</string>
+
+    // Parent fragment
     <string name="select_categories">Select_categories</string>
     <string name="home">Home</string>
     <string name="list_name">List_name</string>
@@ -24,6 +30,7 @@
     <string name="price">Price</string>
     <string name="number">Number</string>
 
+    // Validation
     <string name="unknown_error_message">Unknown error</string>
     <string name="email_incorrect">Invalid email address entered</string>
     <string name="email_validation_incorrect">The mailing address must contain the characters \"@\" and \".\"</string>
@@ -32,8 +39,7 @@
     <string name="connection">Connection…</string>
     <string name="loading">Loading…</string>
 
-    //TODO
-    // Preference fragment
+    // inside a preferences
     <string name="handling">Handling</string>
     <string name="sender">Sender</string>
     <string name="recipient">Recipient</string>
@@ -43,11 +49,14 @@
     <string name="send">Send</string>
     <string name="text_handling">Text handling: </string>
     <string name="language_already_selected">Language already selected !</string>
+    <string name="handling_error">Failed to load handling</string>
 
-    // Preference
+    // Preference fragment
+    <string name="preferences">Preferences</string>
     <string name="send_handling">Send email</string>
     <string name="notifications">Notifications</string>
-    <string name="handling_error">Failed to load handling</string>
+    <string name="themes">Themes</string>
+
 
     // Language
     <string name="language">Language</string>

@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.splash.ui
+package com.persAssistant.shopping_list.feature.splash.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
