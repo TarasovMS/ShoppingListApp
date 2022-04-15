@@ -9,6 +9,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseActivity
 import com.persAssistant.shopping_list.databinding.ActivityMainBinding
+import com.persAssistant.shopping_list.util.UiRouter
 import com.persAssistant.shopping_list.util.gone
 import com.persAssistant.shopping_list.util.visible
 
@@ -27,6 +28,11 @@ open class MainActivity : AppBaseActivity() {
         super.onStart()
         setUpBottomNavigation()
         destinationListener()
+    }
+
+    override fun initNetworkObserver(uiRouter: UiRouter) {
+        initNoInternetShower(viewModel, uiRouter, this)
+        observeNetworkStatus(applicationContext)
     }
 
     private fun setUpBottomNavigation() {

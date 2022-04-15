@@ -31,5 +31,9 @@ class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pre
         binding.fragmentPrefHandling.setOnClickListener {
             uiRouter.navigateById(R.id.action_send_handling)
         }
+
+        binding.fragmentPrefNotifications.setOnClickListener {
+            uiRouter.navigateById(R.id.action_connectionUnavailable_fragment)
+        }
     }
 }

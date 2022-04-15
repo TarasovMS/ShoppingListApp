@@ -177,6 +177,10 @@
             android:id="@+id/action_select_language"
             app:destination="@id/languageFragment" />
 
+        <action
+            android:id="@+id/action_connectionUnavailable_fragment"
+            app:destination="@id/connectionUnavailableFragment" />
+
     </fragment>
 
     <fragment
@@ -190,5 +194,11 @@
         android:name="com.persAssistant.shopping_list.feature.language.ui.LanguageFragment"
         android:label="LanguageFragment"
         tools:layout="@layout/fragment_language" />
+
+    <fragment
+        android:id="@+id/connectionUnavailableFragment"
+        android:name="com.persAssistant.shopping_list.feature.connection_unavailable.ConnectionUnavailableFragment"
+        android:label="ConnectionUnavailableFragment"
+        tools:layout="@layout/fragment_connection_unavailable"/>
 
 </navigation>

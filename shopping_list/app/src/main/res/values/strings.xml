@@ -10,7 +10,6 @@
     <string name="failed_delete">Не удалось выполнить delete</string>
 
     // Bottom Navigation
-
     <string name="lists">Списки</string>
     <string name="shopping_list">Список покупок</string>
     <string name="categories">Категории</string>
@@ -63,6 +62,13 @@
     <string name="language">Язык</string>
     <string name="english">Английский</string>
     <string name="russian">Русский</string>
+
+    // Connection
+    <string name="server_unavailable">Cервер недоступен</string>
+    <string name="please_try_again_later">Пожалуйста повторите попытку позже</string>
+    <string name="no_internet_connection">Отсутствует интернет соединение</string>
+    <string name="check_connection_internet">Проверте наличие интернет</string>
+
 
     <string-array name="months" >
         <item>Январь</item>

@@ -4,6 +4,7 @@ import com.persAssistant.shopping_list.di.contributes.ContributePref
 import com.persAssistant.shopping_list.di.fragment.FragmentModule
 import com.persAssistant.shopping_list.di.scopes.ActivityScope
 import com.persAssistant.shopping_list.di.viewModel.MainActivityVmModule
+import com.persAssistant.shopping_list.feature.connection_unavailable.di.ContributeConnection
 import com.persAssistant.shopping_list.feature.language.di.ContributeLanguage
 import com.persAssistant.shopping_list.feature.splash.di.ContributeSplash
 import com.persAssistant.shopping_list.feature.user_help.handling.di.ContributeHandling
@@ -28,7 +29,8 @@ abstract class MainActivityModule {
          ContributePref::class,
          ContributeHandling::class,
 
-         ContributeLanguage::class
+         ContributeLanguage::class,
+         ContributeConnection::class
       ]
    )
    abstract fun contributeMainActivity(): MainActivity

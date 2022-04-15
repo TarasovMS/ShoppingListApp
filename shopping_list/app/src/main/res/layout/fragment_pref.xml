@@ -21,7 +21,6 @@
             android:layout_height="wrap_content"
             android:background="@color/splash_background_color"
             android:minHeight="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_arrow_back_ios_new"
             app:title="@string/preferences"
             app:titleCentered="true"
             app:titleTextColor="@color/text_black" />
