@@ -25,7 +25,7 @@ fun View.invisible() {
     visibility = View.INVISIBLE
 }
 
-fun View.visible(withFade: Boolean = true) {
+fun View.visible() {
     visibility = View.VISIBLE
 }
 
