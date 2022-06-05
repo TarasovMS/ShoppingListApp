@@ -1,8 +1,6 @@
 package com.persAssistant.shopping_list.feature.billing.ui
 
-import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.android.billingclient.api.BillingFlowParams
@@ -15,32 +13,27 @@ import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 class PricingFragment : AppBaseFragment(R.layout.fragment_billing) {
 
-    companion object{
-        const val TAG = "Billing"
-    }
-
+    //TODO заменить !! и латинит
     private val binding: FragmentBillingBinding by viewBinding(FragmentBillingBinding::bind)
     private val viewModel: PricingViewModel by viewModels { viewModelFactory }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private lateinit var billingClientWrapper: BillingClientWrapper2
+    private lateinit var productAdapter: ProductAdapter
 
+    override fun initObservers() {
         viewModel.purchasedSubscriptionsLiveData.observe(viewLifecycleOwner) { purchases ->
-            if (purchases.isNullOrEmpty()) {
-                viewModel.getSubscriptions()
-            } else {
-                Log.d(TAG, "Существующие покупки: ${purchases.size}")
-            }
+            if (purchases.isNullOrEmpty()) viewModel.getSubscriptions()
+            else Log.d(BILLING, "Существующие покупки: ${purchases.size}")
         }
 
         viewModel.subscriptionsLiveData.observe(viewLifecycleOwner) { subscriptions ->
             if (subscriptions != null) {
                 for (subscription in subscriptions) {
-                    Log.d(TAG, subscription.toString())
+                    Log.d(BILLING, subscription.toString())
                 }
                 setProductsList(subscriptions)
             } else {
-                Log.d(TAG, "По запросу не найден код ")
+                Log.d(BILLING, "По запросу не найден код ")
                 binding.fragmentBillingEmpty.isVisible = true
                 binding.fragmentBillingProgressBar.isVisible = false
             }
@@ -49,7 +42,49 @@ class PricingFragment : AppBaseFragment(R.layout.fragment_billing) {
         viewModel.purchasesUpdateLiveData.observe(viewLifecycleOwner) { purchases ->
             acknowledgePurchases(purchases)
         }
+    }
 
+    override fun initUI() {
+        displayProducts()
+
+        billingClientWrapper = BillingClientWrapper2(requireContext())
+
+        billingClientWrapper.onPurchaseListener = (object : BillingClientWrapper2
+        .OnPurchaseListener {
+
+            override fun onPurchaseSuccess(purchase: Purchase?) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onPurchaseFailure(error: BillingClientWrapper2.Error) {
+                TODO("Not yet implemented")
+            }
+        })
+    }
+
+
+    private fun displayProducts() {
+        billingClientWrapper.queryProducts(object : BillingClientWrapper2.OnQueryProductsListener {
+            override fun onSuccess(products: List<SkuDetails>) {
+//                products.forEach { product ->
+//                    purchaseButtonsMap[product.sku]?.apply {
+//                        text = "${product.description} for ${product.price}"
+//                        setOnClickListener {
+//                            billingClientWrapper.purchase(this@PaywallActivity, product) //will be declared below
+//                        }
+//                    }
+//                }
+
+                productAdapter = ProductAdapter(products)
+                binding.fragmentBillingProductsList.adapter = productAdapter
+
+
+            }
+
+            override fun onFailure(error: BillingClientWrapper2.Error) {
+                //handle error
+            }
+        })
     }
 
     /**
@@ -80,9 +115,12 @@ class PricingFragment : AppBaseFragment(R.layout.fragment_billing) {
     private fun setProductsList(products: List<SkuDetails>) {
         binding.fragmentBillingProgressBar.isVisible = false
         binding.fragmentBillingEmpty.isVisible = false
-        binding.fragmentBillingProductsList.adapter = ProductAdapter(products) { skuDetails ->
-            launchPurchaseFlow(skuDetails)
-        }
+//        binding.fragmentBillingProductsList.adapter = ProductAdapter(products) { skuDetails ->
+//            launchPurchaseFlow(skuDetails)
+//        }
     }
 
+    companion object {
+        const val BILLING = "Billing"
+    }
 }

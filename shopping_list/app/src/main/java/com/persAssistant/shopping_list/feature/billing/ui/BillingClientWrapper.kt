@@ -34,14 +34,6 @@ class BillingClientWrapper(context: Context) : PurchasesUpdatedListener {
         .setListener(this)
         .build()
 
-    private fun queryActivePurchasesForType(
-        @BillingClient.SkuType type: String,
-        listener: PurchasesResponseListener
-    ) {
-        onConnected {
-            billingClient.queryPurchasesAsync(type, listener)
-        }
-    }
 
     private fun queryPurchasesHistoryForType(
         @BillingClient.SkuType type: String,
@@ -90,6 +82,16 @@ class BillingClientWrapper(context: Context) : PurchasesUpdatedListener {
         })
     }
 
+
+    private fun queryActivePurchasesForType(
+        @BillingClient.SkuType type: String,
+        listener: PurchasesResponseListener
+    ) {
+        onConnected {
+            billingClient.queryPurchasesAsync(type, listener)
+        }
+    }
+
     fun queryActivePurchases(listener: OnQueryActivePurchasesListener) {
         queryActivePurchasesForType(
             BillingClient.SkuType.SUBS
@@ -116,6 +118,7 @@ class BillingClientWrapper(context: Context) : PurchasesUpdatedListener {
         }
     }
 
+
     fun purchase(activity: Activity, product: SkuDetails) {
         onConnected {
             activity.runOnUiThread {
@@ -127,8 +130,15 @@ class BillingClientWrapper(context: Context) : PurchasesUpdatedListener {
         }
     }
 
+    /**
+     *  информацию о продуктах ( SkuDetails ),
+     *  где мы можем увидеть локализованные названия, цены, тип продукта,
+     *  а также расчетный период и информацию о начальной цене и пробном периоде
+     *  (если он доступен для этого пользователя) для подписок
+     */
     fun queryProducts(listener: OnQueryProductsListener) {
-        val skusList = listOf("premium_sub_month", "premium_sub_year", "coin_pack_large", "unlock_feature")
+        val skusList =
+            listOf("premium_sub_month", "premium_sub_year", "coin_pack_large", "unlock_feature")
 
         queryProductsForType(
             skusList,
@@ -173,6 +183,7 @@ class BillingClientWrapper(context: Context) : PurchasesUpdatedListener {
         }
     }
 
+    // получаем инфу о продукте
     private fun queryProductsForType(
         skusList: List<String>,
         @BillingClient.SkuType type: String,

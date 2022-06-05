@@ -1,8 +1,6 @@
 package com.persAssistant.shopping_list.ui.fragment.shopping_list
 
 import android.app.DatePickerDialog
-import android.os.Bundle
-import android.view.View
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentShoppingListBinding
@@ -19,12 +17,7 @@ abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping
 
     protected lateinit var viewModel: ShoppingListViewModel
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initUI()
-    }
-
-    private fun initUI(){
+    override fun initUI(){
         viewModel = createViewModel()
         viewModel.closeEvent.observe(viewLifecycleOwner) { uiRouter.navigateBack() }
 

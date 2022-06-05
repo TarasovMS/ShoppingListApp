@@ -3,17 +3,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/splashFragment"
-    >
+    app:startDestination="@+id/splashFragment">
 
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.persAssistant.shopping_list.feature.splash.ui.SplashFragment"
         android:label="splash_fragment"
-        tools:layout="@layout/splash_fragment" >
-            <action
-                android:id="@+id/splash_screen_opens_shoppingList"
-                app:destination="@id/shoppingList" />
+        tools:layout="@layout/splash_fragment">
+        <action
+            android:id="@+id/splash_screen_opens_shoppingList"
+            app:destination="@id/shoppingList" />
     </fragment>
 
     <fragment
@@ -30,10 +29,10 @@
         <action
             android:id="@+id/action_shoppingList_opening_purchase"
             app:destination="@id/purchaseList" />
-<!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
-<!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
-<!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
-<!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
+        <!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+        <!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+        <!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+        <!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
     </fragment>
 
     <fragment
@@ -129,10 +128,10 @@
         <action
             android:id="@+id/action_category_opening_purchase"
             app:destination="@id/purchaseList" />
-<!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
-<!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
-<!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
-<!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
+        <!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
+        <!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
+        <!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
+        <!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
     </fragment>
 
     <fragment
@@ -166,9 +165,9 @@
 
     <fragment
         android:id="@+id/prefFragment"
-        android:name="com.persAssistant.shopping_list.ui.fragment.pref.PrefFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.more.MoreFragment"
         android:label="fragment_pref"
-        tools:layout="@layout/fragment_pref" >
+        tools:layout="@layout/fragment_more">
         <action
             android:id="@+id/action_send_handling"
             app:destination="@id/handlingFragment" />
@@ -199,6 +198,11 @@
         android:id="@+id/connectionUnavailableFragment"
         android:name="com.persAssistant.shopping_list.feature.connection_unavailable.ConnectionUnavailableFragment"
         android:label="ConnectionUnavailableFragment"
-        tools:layout="@layout/fragment_connection_unavailable"/>
+        tools:layout="@layout/fragment_connection_unavailable" />
+
+    <fragment
+        android:id="@+id/pricingFragment"
+        android:name="com.persAssistant.shopping_list.feature.billing.ui.PricingFragment"
+        android:label="PricingFragment" />
 
 </navigation>

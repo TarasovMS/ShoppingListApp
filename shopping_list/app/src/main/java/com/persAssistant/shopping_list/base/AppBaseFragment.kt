@@ -41,6 +41,9 @@ abstract class AppBaseFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initObservers()
+        initUI()
+        initListeners()
         observeNavData()
         handleToolBarBackPressed()
     }
@@ -50,6 +53,10 @@ abstract class AppBaseFragment(
         if (statusBarColor() != DO_NOT_REPAINT_STATUS_BAR)
             updateStatusBarColor(statusBarColor())
     }
+
+    open fun initObservers() {}
+    open fun initUI() {}
+    open fun initListeners() {}
 
     private fun observeNavData() {
         navViewModel.directionData.observe(this.viewLifecycleOwner) {
