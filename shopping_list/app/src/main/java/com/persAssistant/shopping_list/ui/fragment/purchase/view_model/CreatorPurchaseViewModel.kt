@@ -9,7 +9,7 @@ import javax.inject.Inject
 
 class CreatorPurchaseViewModel @Inject constructor(
     val purchaseInteractor: PurchaseInteractor,
-    val categoryInteractor: CategoryInteractor
+    val categoryInteractor: CategoryInteractor,
 ) : PurchaseViewModel() {
 
     fun init(shoppingListId: Long) {

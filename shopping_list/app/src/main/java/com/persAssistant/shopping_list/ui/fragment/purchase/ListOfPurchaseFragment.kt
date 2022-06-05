@@ -25,9 +25,7 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
 
     private val purchaseClick = object : OnPurchaseClickListener {
         override fun clickedPurchaseItem(purchase: Purchase) {}
-        override fun deleteItem(purchase: Purchase) {
-            viewModel.deleteItemPurchase(purchase)
-        }
+        override fun deleteItem(purchase: Purchase) { viewModel.deleteItemPurchase(purchase) }
 
         override fun editItem(purchase: Purchase) {
             val bundle = Bundle().apply {
@@ -44,11 +42,11 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        init()
+        initView()
         initObserve()
     }
 
-    private fun init() {
+    private fun initView() {
         binding.recyclerViewPurchase.adapter = purchaseAdapter
 
         val parentId = arguments?.getLong(KEY_PARENT_ID)

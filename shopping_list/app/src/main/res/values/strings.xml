@@ -69,8 +69,20 @@
     <string name="no_internet_connection">Отсутствует интернет соединение</string>
     <string name="check_connection_internet">Проверте наличие интернет</string>
 
+    // Error
+    <string name="error_idTypeIndex_in_purchase_activity" translatable="false">" Error in ListOfPurchaseActivity absent idTypeIndex "</string>
+    <string name="error_parentId_in_purchase_activity" translatable="false">" Error in ListOfPurchaseActivity absent parentId "</string>
+    <string name="error_id_in_editor_purchase_activity" translatable="false">" Error in EditorPurchaseActivity.getIntent absent Id "</string>
+    <string name="error_id_in_creator_purchase_activity" translatable="false">" Error in CreatorPurchaseActivity.getIntent absent listId "</string>
+    <string name="error_id_in_editor_shopplist_activity" translatable="false">"Error in EditorShoppingListActivity.getIntent absent Id "</string>
+    <string name="error_id_in_editor_category_activity" translatable="false">"Error in EditorCategoryActivity.getIntent absent Id"</string>
 
-    <string-array name="months" >
+
+
+
+
+
+    <string-array name="months">
         <item>Январь</item>
         <item>Февраль</item>
         <item>Март</item>
@@ -85,11 +97,11 @@
         <item>Декабрь</item>
     </string-array>
 
-    <string-array name="language" >
+    <string-array name="language">
         <item>English</item>
         <item>Русский</item>
-<!--        <item>Белорусский</item>-->
-<!--        <item>Казахсткий</item>-->
+        <!--        <item>Белорусский</item>-->
+        <!--        <item>Казахсткий</item>-->
     </string-array>
 
 </resources>

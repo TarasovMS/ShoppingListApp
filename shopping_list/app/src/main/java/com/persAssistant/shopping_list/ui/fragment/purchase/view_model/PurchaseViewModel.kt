@@ -8,6 +8,7 @@ import javax.inject.Inject
 
 open class PurchaseViewModel @Inject constructor(): ViewModel() {
 
+    //TODO убрать !!
     var closeEvent = MutableLiveData<Unit>()
     var name = MutableLiveData<String>()
     var price = MutableLiveData<String>()
@@ -20,7 +21,11 @@ open class PurchaseViewModel @Inject constructor(): ViewModel() {
         categoryName.value = category.name
     }
 
-    fun setPriceDefault() { price.value = "0" }
+    fun setPriceDefault() { price.value = PRICE_DEFAULT }
 
     open fun save() {}
+
+    companion object{
+        const val PRICE_DEFAULT = "0"
+    }
 }

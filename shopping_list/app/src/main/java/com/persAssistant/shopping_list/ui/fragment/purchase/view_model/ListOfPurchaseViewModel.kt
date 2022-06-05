@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class ListOfPurchaseViewModel @Inject constructor(
     val purchaseInteractor: PurchaseInteractorInterface,
-    val fullPurchaseInteractor: FullPurchaseInteractorInterface
+    val fullPurchaseInteractor: FullPurchaseInteractorInterface,
 ) : AppBaseViewModel() {
 
     var fullPurchaseList = MutableLiveData<LinkedList<FullPurchase>>()
@@ -27,7 +27,11 @@ class ListOfPurchaseViewModel @Inject constructor(
         SHOPPINGLIST;
     }
 
-    fun init(lifecycleOwner: LifecycleOwner, parentId: Long, type: IdTypes) {
+    fun init(
+        lifecycleOwner: LifecycleOwner,
+        parentId: Long,
+        type: IdTypes,
+    ) {
         initByIdType(parentId, type)
 
         purchaseInteractor.getChangeSignal().observe(lifecycleOwner) {

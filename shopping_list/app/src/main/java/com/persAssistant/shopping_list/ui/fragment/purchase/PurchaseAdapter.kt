@@ -9,14 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
+import com.persAssistant.shopping_list.util.RUSSIAN_CURRENCY
 import java.util.*
 
-class PurchaseAdapter(private val onPurchaseClickListener: OnPurchaseClickListener) :
-    RecyclerView.Adapter<PurchaseAdapter.ViewHolder>() {
-
-    companion object{
-        private const val RUSSIAN_CURRENCY = "₽"
-    }
+class PurchaseAdapter(
+    private val onPurchaseClickListener: OnPurchaseClickListener,
+) : RecyclerView.Adapter<PurchaseAdapter.ViewHolder>() {
 
     private var items: LinkedList<FullPurchase> = LinkedList()
 
@@ -36,8 +34,7 @@ class PurchaseAdapter(private val onPurchaseClickListener: OnPurchaseClickListen
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater
-            .from(parent.context)
+        val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_info_purchase, parent, false)
 
         return ViewHolder(itemView)
@@ -54,11 +51,8 @@ class PurchaseAdapter(private val onPurchaseClickListener: OnPurchaseClickListen
             price.setOnClickListener { onPurchaseClickListener.clickedPurchaseItem(purchase) }
 
             menu.setOnClickListener {
-                // Creating a popup menu
                 val popup = PopupMenu(it.context, menu)
-                // Inflating menu from xml resource
                 popup.inflate(R.menu.options_menu)
-                // Adding click listener
                 popup.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.menu_delete -> {
@@ -69,9 +63,10 @@ class PurchaseAdapter(private val onPurchaseClickListener: OnPurchaseClickListen
                             onPurchaseClickListener.editItem(purchase)
                         }
                     }
+
                     false
                 }
-                // Displaying the popup
+
                 popup.show()
             }
         }
@@ -88,10 +83,3 @@ class PurchaseAdapter(private val onPurchaseClickListener: OnPurchaseClickListen
         notifyDataSetChanged()
     }
 }
-
-
-
-
-
-
-

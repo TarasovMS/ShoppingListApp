@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class EditorPurchaseViewModel @Inject constructor(
     private val purchaseInteractor: PurchaseInteractor,
-    private val fullPurchaseInteractor: FullPurchaseInteractorInterface
+    private val fullPurchaseInteractor: FullPurchaseInteractorInterface,
 ) : PurchaseViewModel() {
 
     private var purchaseId: Long = 0
@@ -34,7 +34,6 @@ class EditorPurchaseViewModel @Inject constructor(
     }
 
     override fun save() {
-
         if (listId != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
 
             if (price.value == null) setPriceDefault()
@@ -47,6 +46,7 @@ class EditorPurchaseViewModel @Inject constructor(
                 price = price.value?.toDouble(),
                 isCompleted = 0
             )
+
             purchaseInteractor.update(purchase)
                 .subscribeOn(Schedulers.single())
                 .observeOn(AndroidSchedulers.mainThread())

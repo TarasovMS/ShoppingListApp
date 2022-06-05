@@ -12,21 +12,26 @@ import dagger.Provides
 @Module
 class PurchaseViewModelModule {
     @Provides
-    fun provideCreatorPurchaseViewModel(purchaseInteractor: PurchaseInteractor,
-                                        categoryInteractor: CategoryInteractor
+    fun provideCreatorPurchaseViewModel(
+        purchaseInteractor: PurchaseInteractor,
+        categoryInteractor: CategoryInteractor,
     ): CreatorPurchaseViewModel {
         return CreatorPurchaseViewModel(purchaseInteractor, categoryInteractor)
     }
 
     @Provides
-    fun provideEditorPurchaseViewModel(purchaseInteractor: PurchaseInteractor,
-                                       fullPurchaseInteractor: FullPurchaseInteractor): EditorPurchaseViewModel {
+    fun provideEditorPurchaseViewModel(
+        purchaseInteractor: PurchaseInteractor,
+        fullPurchaseInteractor: FullPurchaseInteractor
+    ): EditorPurchaseViewModel {
         return EditorPurchaseViewModel(purchaseInteractor, fullPurchaseInteractor)
     }
 
     @Provides
-    fun provideListOfPurchaseViewModel(purchaseInteractor: PurchaseInteractor,
-                                       fullPurchaseInteractor: FullPurchaseInteractor): ListOfPurchaseViewModel {
+    fun provideListOfPurchaseViewModel(
+        purchaseInteractor: PurchaseInteractor,
+        fullPurchaseInteractor: FullPurchaseInteractor
+    ): ListOfPurchaseViewModel {
         return ListOfPurchaseViewModel(purchaseInteractor, fullPurchaseInteractor)
     }
 }
