@@ -10,15 +10,14 @@ import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-class ListOfCategoryViewModel @Inject constructor(val categoryInteractor: CategoryInteractorInterface) :
-    AppBaseViewModel() {
-
+class ListOfCategoryViewModel @Inject constructor(
+    val categoryInteractor: CategoryInteractorInterface,
+) : AppBaseViewModel() {
 
     var categoryList = MutableLiveData<LinkedList<Category>>()
     var deleteCategoryId = MutableLiveData<Long>()
 
     fun init(lifecycleOwner: LifecycleOwner) {
-
         categoryInteractor.getChangeSignal().observe(lifecycleOwner) {
             initCategoryList()
         }

@@ -6,8 +6,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class EditorCategoryViewModel @Inject constructor(val categoryInteractor: CategoryInteractorInterface) :
-    CategoryViewModel() {
+class EditorCategoryViewModel @Inject constructor(
+    val categoryInteractor: CategoryInteractorInterface,
+) : CategoryViewModel() {
 
     private var categoryId: Long = 0
 
@@ -25,6 +26,7 @@ class EditorCategoryViewModel @Inject constructor(val categoryInteractor: Catego
 
     override fun save() {
         val category = Category(id = categoryId, name = name.value.orEmpty())
+
         categoryInteractor.update(category)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())

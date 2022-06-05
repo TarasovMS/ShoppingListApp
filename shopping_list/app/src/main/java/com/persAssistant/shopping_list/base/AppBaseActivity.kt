@@ -24,7 +24,8 @@ abstract class AppBaseActivity: DaggerAppCompatActivity(),
 
     override fun onResume() {
         super.onResume()
-        initNetworkObserver(UiRouter(navController))
+        //TODO ЕСли надо подключить проверку на интернет и вывести экран
+//        initNetworkObserver(UiRouter(navController))
     }
 
 }

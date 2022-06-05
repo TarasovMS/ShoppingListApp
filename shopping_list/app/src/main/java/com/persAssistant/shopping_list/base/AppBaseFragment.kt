@@ -22,7 +22,7 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 abstract class AppBaseFragment(
-    @LayoutRes contentLayoutId: Int
+    @LayoutRes contentLayoutId: Int,
 ) : DaggerFragment(contentLayoutId) {
 
     @Inject

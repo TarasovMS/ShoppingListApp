@@ -10,8 +10,9 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.Category
 import java.util.*
 
-class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListener) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(
+    private val onCategoryClickListener: OnCategoryClickListener,
+) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     private var items: LinkedList<Category> = LinkedList<Category>()
 
@@ -21,6 +22,7 @@ class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListen
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val categoryRecycleView = items[position]
+
         holder.apply {
             name.text = categoryRecycleView.name
             bindView(categoryRecycleView, onCategoryClickListener)
@@ -28,13 +30,17 @@ class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListen
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.item_info_category, parent, false)
+        val itemView = LayoutInflater.from(parent.context)
+            .inflate(
+                R.layout.item_info_category,
+                parent,
+                false
+            )
 
         return ViewHolder(itemView)
     }
 
+    // TODO убрать findbyid na binding
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.TV_name_recycler_category)
         val menu: TextView = view.findViewById(R.id.TV_category_menu)
@@ -46,26 +52,26 @@ class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListen
             }
 
             menu.setOnClickListener {
-                // Creating a popup menu
-                val popup = PopupMenu(it.context, menu)
-                // Inflating menu from xml resource
-                popup.inflate(R.menu.options_menu)
-                // Adding click listener
-                popup.setOnMenuItemClickListener { item ->
-                    when (item.itemId) {
+                PopupMenu(it.context, menu).apply {
+                    inflate(R.menu.options_menu)
 
-                        R.id.menu_delete -> {
-                            onCategoryClickListener.deleteItem(category)
+                    setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+
+                            R.id.menu_delete -> {
+                                onCategoryClickListener.deleteItem(category)
+                            }
+
+                            R.id.menu_edit -> {
+                                onCategoryClickListener.editItem(category)
+                            }
                         }
 
-                        R.id.menu_edit -> {
-                            onCategoryClickListener.editItem(category)
-                        }
+                        false
                     }
-                    false
+
+                    show()
                 }
-                // Displaying the popup
-                popup.show()
             }
         }
     }
@@ -81,10 +87,3 @@ class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListen
         notifyDataSetChanged()
     }
 }
-
-
-
-
-
-
-
