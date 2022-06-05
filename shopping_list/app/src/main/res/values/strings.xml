@@ -50,11 +50,12 @@
     <string name="language_already_selected">Язык уже выбран</string>
     <string name="handling_error">Не удалось загрузить обращение</string>
 
-    // Preference fragment
+    // More fragment
     <string name="preferences">Настройки</string>
     <string name="send_handling">Написать письмо</string>
     <string name="notifications">Уведомления</string>
     <string name="themes">Темы</string>
+    <string name="remove_ads">Убрать рекламу</string>
 
     // Language
     <string name="selected_language">Выбран язык : %1$s</string>
