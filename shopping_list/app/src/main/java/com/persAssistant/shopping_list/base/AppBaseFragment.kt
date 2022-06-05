@@ -28,7 +28,7 @@ abstract class AppBaseFragment(
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    val navViewModel by viewModels<NavigationViewModel> { viewModelFactory }
+    private val navViewModel by viewModels<NavigationViewModel> { viewModelFactory }
 
     internal val uiRouter: UiRouter by lazy { UiRouter(findNavController()) }
 
@@ -50,8 +50,7 @@ abstract class AppBaseFragment(
 
     override fun onResume() {
         super.onResume()
-        if (statusBarColor() != DO_NOT_REPAINT_STATUS_BAR)
-            updateStatusBarColor(statusBarColor())
+        if (statusBarColor() != DO_NOT_REPAINT_STATUS_BAR) updateStatusBarColor(statusBarColor())
     }
 
     open fun initObservers() {}
