@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
 @Module
-abstract class ContributePref {
+abstract class ContributeMore {
 
     @FragmentScope
     @ContributesAndroidInjector(
@@ -14,5 +14,5 @@ abstract class ContributePref {
             MoreViewModelModule::class
         ]
     )
-    abstract fun contributePrefFragment(): MoreFragment
+    abstract fun contributeMoreFragment(): MoreFragment
 }

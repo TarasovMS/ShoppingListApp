@@ -1,6 +1,6 @@
 package com.persAssistant.shopping_list.di.activity
 
-import com.persAssistant.shopping_list.di.contributes.ContributePref
+import com.persAssistant.shopping_list.di.contributes.ContributeMore
 import com.persAssistant.shopping_list.di.fragment.FragmentModule
 import com.persAssistant.shopping_list.di.scopes.ActivityScope
 import com.persAssistant.shopping_list.di.viewModel.MainActivityVmModule
@@ -26,7 +26,7 @@ abstract class MainActivityModule {
          FragmentModule::class,
 
          ContributeSplash::class,
-         ContributePref::class,
+         ContributeMore::class,
          ContributeHandling::class,
 
          ContributeLanguage::class,
