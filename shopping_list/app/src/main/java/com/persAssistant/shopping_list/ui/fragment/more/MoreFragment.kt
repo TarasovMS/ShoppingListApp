@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.ui.fragment.pref
+package com.persAssistant.shopping_list.ui.fragment.more
 
 import android.os.Bundle
 import android.view.View
@@ -11,7 +11,7 @@ import com.persAssistant.shopping_list.util.delegate.viewBinding
 import javax.inject.Inject
 
 
-class PrefFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_pref) {
+class MoreFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_more) {
 
     // Todo добавить пункты для настроек и заменить иконки
 

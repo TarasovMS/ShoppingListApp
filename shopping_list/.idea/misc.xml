@@ -6,6 +6,7 @@
         <entry key="../../../../../../layout/custom_preview.xml" value="0.21481481481481482" />
         <entry key="../../../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.25833333333333336" />
         <entry key="app/externaltoken/src/main/res/layout/divider.xml" value="0.23233695652173914" />
+        <entry key="app/src/main/res/drawable/ic_ads_off.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/drawable/ic_language.xml" value="0.25794871794871793" />
         <entry key="app/src/main/res/drawable/ic_language_pref.xml" value="0.25794871794871793" />
@@ -20,11 +21,13 @@
         <entry key="app/src/main/res/layout/activity_purchase_list.xml" value="0.19655797101449277" />
         <entry key="app/src/main/res/layout/activity_shopping_list.xml" value="0.16621376811594202" />
         <entry key="app/src/main/res/layout/custom_dialog.xml" value="0.19655797101449277" />
+        <entry key="app/src/main/res/layout/divider.xml" value="0.25833333333333336" />
         <entry key="app/src/main/res/layout/fragment_billing.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.12447916666666667" />
         <entry key="app/src/main/res/layout/fragment_connection_unavailable.xml" value="0.1766304347826087" />
         <entry key="app/src/main/res/layout/fragment_handling.xml" value="0.29754601226993865" />
         <entry key="app/src/main/res/layout/fragment_language.xml" value="0.21240942028985507" />
+        <entry key="app/src/main/res/layout/fragment_more.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_pref.xml" value="0.1814814814814815" />
         <entry key="app/src/main/res/layout/fragment_purchase.xml" value="0.20516304347826086" />
         <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.25" />
