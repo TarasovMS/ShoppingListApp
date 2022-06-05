@@ -23,5 +23,4 @@ open class ShoppingListViewModel @Inject constructor() : ViewModel() {
     }
 
     open fun save() {}
-
 }

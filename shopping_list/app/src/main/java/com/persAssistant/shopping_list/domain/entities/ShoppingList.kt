@@ -7,4 +7,3 @@ data class ShoppingList(
     var date: Date,
     var name: String
 )
-

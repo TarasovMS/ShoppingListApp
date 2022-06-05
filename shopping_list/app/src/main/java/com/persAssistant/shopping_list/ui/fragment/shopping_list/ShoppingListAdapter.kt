@@ -12,8 +12,9 @@ import com.persAssistant.shopping_list.util.DATE_FORMAT
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingListClickListener) :
-    RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
+class ShoppingListAdapter(
+    private val onShoppingListClickListener: OnShoppingListClickListener,
+) : RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
 
     private var items: LinkedList<ShoppingList> = LinkedList()
 
@@ -51,11 +52,9 @@ class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingLis
             }
 
             menu.setOnClickListener {
-                // Creating a popup menu
                 val popup = PopupMenu(it.context, menu)
-                // Inflating menu from xml resource
                 popup.inflate(R.menu.options_menu)
-                // Adding click listener
+
                 popup.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.menu_delete -> {
@@ -66,9 +65,10 @@ class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingLis
                             onShoppingListClickListener.editItem(shoppingList)
                         }
                     }
+
                     false
                 }
-                // Displaying the popup
+
                 popup.show()
             }
         }
@@ -85,10 +85,3 @@ class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingLis
         notifyDataSetChanged()
     }
 }
-
-
-
-
-
-
-

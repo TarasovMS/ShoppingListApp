@@ -6,6 +6,8 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
 
+//TODO interface??
+
 abstract class FullPurchaseInteractorInterface {
     abstract fun getById(id: Long): Maybe<FullPurchase>
     abstract fun getAllByListId(id: Long): Single<LinkedList<FullPurchase>>

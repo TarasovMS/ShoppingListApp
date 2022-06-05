@@ -21,7 +21,10 @@ abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initUI()
+    }
 
+    private fun initUI(){
         viewModel = createViewModel()
         viewModel.closeEvent.observe(viewLifecycleOwner) { uiRouter.navigateBack() }
 
@@ -39,9 +42,9 @@ abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping
                 val day = calendar.get(Calendar.DAY_OF_MONTH)
 
                 val datePickerDialog = DatePickerDialog(requireContext(), { _, yearDPD, monthOfYear, dayOfMonth ->
-                        calendar.set(yearDPD, monthOfYear, dayOfMonth)
-                        viewModel.date = calendar.time
-                    }, year, month, day)
+                    calendar.set(yearDPD, monthOfYear, dayOfMonth)
+                    viewModel.date = calendar.time
+                }, year, month, day)
 
                 datePickerDialog.show()
             }
@@ -51,5 +54,4 @@ abstract class ShoppingListFragment : AppBaseFragment(R.layout.fragment_shopping
     companion object {
         const val SHOPPING_LIST_KEY = "SHOPPING_LIST_ID"
     }
-
 }

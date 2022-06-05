@@ -11,7 +11,7 @@ import java.util.*
 import javax.inject.Inject
 
 class ListOfShoppingListViewModel @Inject constructor(
-    private val shoppingListInteractor: ShoppingListInteractorInterface
+    private val shoppingListInteractor: ShoppingListInteractorInterface,
 ) : AppBaseViewModel() {
 
     var listOfShoppingList = MutableLiveData<LinkedList<ShoppingList>>()
