@@ -31,6 +31,9 @@ class LanguageFragment : AppBaseFragment(R.layout.fragment_language) {
     private val binding by viewBinding(FragmentLanguageBinding::bind)
     private val viewModel: LanguageViewModel by viewModels { viewModelFactory }
 
+    //TODO заместо toast показывать алерт простой фрагмент диалог
+
+
     @ColorRes
     override fun statusBarColor() = R.color.black
 
