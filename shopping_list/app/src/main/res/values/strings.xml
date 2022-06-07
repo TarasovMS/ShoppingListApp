@@ -27,6 +27,7 @@
     <string name="name_of_category">Название категории</string>
     <string name="product_name">Название товара</string>
     <string name="price">Цена</string>
+    <string name="unit">Единица измерения</string>
     <string name="number">Колличество</string>
 
     // Validation
@@ -77,9 +78,6 @@
     <string name="error_id_in_creator_purchase_activity" translatable="false">" Error in CreatorPurchaseActivity.getIntent absent listId "</string>
     <string name="error_id_in_editor_shopplist_activity" translatable="false">"Error in EditorShoppingListActivity.getIntent absent Id "</string>
     <string name="error_id_in_editor_category_activity" translatable="false">"Error in EditorCategoryActivity.getIntent absent Id"</string>
-
-
-
 
 
 

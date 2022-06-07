@@ -8,6 +8,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="gray">#DDDDDD</color>
+    <color name="red">#FF1100</color>
     <color name="white">#FFFFFFFF</color>
     <color name="unfocused_color">#A6A6A6</color>
 
@@ -22,5 +23,8 @@
 
 
     <color name="blue">#01589E</color>
+    <color name="outline_color_tv">#FF000000</color>
+
+
 
 </resources>

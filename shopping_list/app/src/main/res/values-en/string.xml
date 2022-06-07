@@ -28,6 +28,7 @@
     <string name="name_of_category">Name of category</string>
     <string name="product_name">Product name</string>
     <string name="price">Price</string>
+    <string name="unit">Unit</string>
     <string name="number">Number</string>
 
     // Validation
