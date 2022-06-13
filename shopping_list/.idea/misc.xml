@@ -8,6 +8,8 @@
         <entry key="app/externaltoken/src/main/res/layout/divider.xml" value="0.23233695652173914" />
         <entry key="app/src/main/res/drawable/ic_ads_off.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_arrow_back_ios_new.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/ic_arrow_drop_down_24.xml" value="0.104" />
+        <entry key="app/src/main/res/drawable/ic_arrow_right.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.1685185185185185" />
         <entry key="app/src/main/res/drawable/ic_language.xml" value="0.25794871794871793" />
         <entry key="app/src/main/res/drawable/ic_language_pref.xml" value="0.25794871794871793" />
@@ -31,9 +33,11 @@
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_pref.xml" value="0.1814814814814815" />
         <entry key="app/src/main/res/layout/fragment_purchase.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_purchase2.xml" value="0.25833333333333336" />
+        <entry key="app/src/main/res/layout/fragment_purchase2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_info_category.xml" value="0.1897644927536232" />
+        <entry key="app/src/main/res/layout/item_info_purchase.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/item_info_shopping_list.xml" value="0.335" />
         <entry key="app/src/main/res/layout/pref_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recycler_category.xml" value="0.1716485507246377" />
         <entry key="app/src/main/res/layout/recycler_info_category.xml" value="0.335" />

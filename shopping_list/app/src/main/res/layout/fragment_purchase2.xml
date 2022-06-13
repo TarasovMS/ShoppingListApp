@@ -55,13 +55,14 @@
                 app:endIconMode="clear_text"
                 app:errorIconDrawable="@null">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/fragment_purchase_name_product_text"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:completionThreshold="1"
                     android:hint="@string/product_name"
                     android:imeOptions="actionNext"
-                    android:inputType="text"
+                    android:inputType="textCapWords|textNoSuggestions"
                     android:nextFocusRight="@id/fragment_purchase_unit_til"
                     android:text="@={vmPurchase.name}"
                     tools:ignore="LabelFor" />
@@ -77,13 +78,13 @@
                 app:endIconMode="clear_text"
                 app:errorIconDrawable="@null">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/fragment_purchase_unit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/unit"
                     android:imeOptions="actionNext"
-                    android:inputType="text"
+                    android:inputType="textCapWords|textNoSuggestions"
                     android:nextFocusRight="@id/fragment_purchase_price_product_til"
                     tools:ignore="LabelFor" />
 
@@ -110,7 +111,7 @@
                 app:endIconMode="clear_text"
                 app:errorIconDrawable="@null">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/fragment_purchase_price_product_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -131,14 +132,13 @@
                 app:endIconMode="clear_text"
                 app:errorIconDrawable="@null">
 
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
                     android:id="@+id/fragment_purchase_number_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/number"
+                    android:hint="@string/quantity"
                     android:imeOptions="actionNext"
                     android:inputType="numberDecimal"
-                    android:maxLength="1000000"
                     tools:ignore="LabelFor" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -148,24 +148,24 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fragment_purchase_categories_til"
             style="@style/CreateEditProductModule"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:endIconMode="clear_text"
+            app:endIconDrawable="@drawable/ic_arrow_down"
             app:errorIconDrawable="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_purchase_name_product_ll2">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/fragment_purchase_categories_text"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:hint="@string/select_categories"
+                android:paddingStart="@dimen/dp_16"
+                android:paddingEnd="@dimen/dp_16"
                 android:imeOptions="actionNext"
-                android:inputType="numberDecimal"
-                android:maxLength="1000000"
                 android:text="@={vmPurchase.categoryName}"
-                android:textStyle="bold"
+                android:maxLines="1"
                 tools:ignore="LabelFor" />
 
         </com.google.android.material.textfield.TextInputLayout>

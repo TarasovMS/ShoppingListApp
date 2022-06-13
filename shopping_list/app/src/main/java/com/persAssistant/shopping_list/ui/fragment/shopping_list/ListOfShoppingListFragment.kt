@@ -22,13 +22,11 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
 
     private val shoppingListClick = object : OnShoppingListClickListener {
         override fun clickedShoppingListItem(shoppingList: ShoppingList) {
-            val bundle = Bundle().apply {
+            uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
                 putLong(KEY_PARENT_ID, shoppingList.id!!)
                 putBoolean(KEY_VISIBILITY_BUTTON, true)
                 putInt(KEY_INDEX_TYPE, SHOPPINGLIST.ordinal)
-            }
-
-            uiRouter.navigateById(R.id.purchaseList, bundle)
+            })
         }
 
         override fun deleteItem(shoppingList: ShoppingList) {
@@ -36,39 +34,32 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
         }
 
         override fun editItem(shoppingList: ShoppingList) {
-            val bundle = Bundle().apply {
+            uiRouter.navigateById(R.id.editShoppingList, Bundle().apply {
                 putLong(SHOPPING_LIST_KEY, shoppingList.id!!)
-            }
-
-            uiRouter.navigateById(R.id.editShoppingList, bundle)
+            })
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        initObservers()
-    }
-
-    private fun initView() {
+    override fun initUi() {
         viewModel.init(this@ListOfShoppingListFragment)
+        binding.recyclerViewShoppingList.adapter = shoppingListAdapter
+    }
 
-        binding.apply {
-            recyclerViewShoppingList.adapter = shoppingListAdapter
-
-            recyclerShoppingListBtnAdd.setOnClickListener {
-                uiRouter.navigateById(R.id.createShoppingList)
-            }
+    override fun initListeners() {
+        binding.recyclerShoppingListBtnAdd.setOnClickListener {
+            uiRouter.navigateById(R.id.createShoppingList)
         }
     }
 
-    private fun initObservers() {
-        viewModel.listOfShoppingList.observe(viewLifecycleOwner) {
-            shoppingListAdapter.updateItems(it)
-        }
+    override fun initObservers() {
+        viewModel.run {
+            listOfShoppingList.observe(viewLifecycleOwner) {
+                shoppingListAdapter.updateItems(it)
+            }
 
-        viewModel.deleteShoppingListId.observe(viewLifecycleOwner) {
-            shoppingListAdapter.removeShoppingList(it)
+            deleteShoppingListId.observe(viewLifecycleOwner) {
+                shoppingListAdapter.removeShoppingList(it)
+            }
         }
     }
 }

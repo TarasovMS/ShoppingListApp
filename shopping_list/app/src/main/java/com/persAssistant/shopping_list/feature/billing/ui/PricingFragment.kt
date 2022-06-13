@@ -44,7 +44,7 @@ class PricingFragment : AppBaseFragment(R.layout.fragment_billing) {
         }
     }
 
-    override fun initUI() {
+    override fun initUi() {
         displayProducts()
 
         billingClientWrapper = BillingClientWrapper2(requireContext())

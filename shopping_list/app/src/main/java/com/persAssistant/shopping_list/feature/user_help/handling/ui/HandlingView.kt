@@ -7,6 +7,7 @@ interface HandlingView {
 
     fun tittleError(message: String)
     fun tittleError(@StringRes id: Int)
+
     fun messageError(message: String)
     fun messageError(@StringRes id: Int)
 }

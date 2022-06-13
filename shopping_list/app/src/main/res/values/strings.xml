@@ -28,7 +28,9 @@
     <string name="product_name">Название товара</string>
     <string name="price">Цена</string>
     <string name="unit">Единица измерения</string>
-    <string name="number">Колличество</string>
+    <string name="quantity">Колличество</string>
+    <string name="universal_category">Универсальная категория</string>
+
 
     // Validation
     <string name="unknown_error_message">Произошла ошибка</string>

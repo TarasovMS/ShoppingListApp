@@ -29,7 +29,7 @@
     <string name="product_name">Product name</string>
     <string name="price">Price</string>
     <string name="unit">Unit</string>
-    <string name="number">Number</string>
+    <string name="quantity">Quantity</string>
 
     // Validation
     <string name="unknown_error_message">Unknown error</string>
@@ -72,6 +72,7 @@
     <string name="check_connection_internet">Check connection network</string>
     <string name="no_internet_connection">No internet connection</string>
 
-
+    //Other
+    <string name="universal_category">Universal category</string>
 
 </resources>

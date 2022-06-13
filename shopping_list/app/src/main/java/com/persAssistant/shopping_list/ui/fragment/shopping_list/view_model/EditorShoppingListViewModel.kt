@@ -18,7 +18,8 @@ class EditorShoppingListViewModel(
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { name.value = it.name
+                {
+                    name.value = it.name
                     date = it.date
                 },
                 {}

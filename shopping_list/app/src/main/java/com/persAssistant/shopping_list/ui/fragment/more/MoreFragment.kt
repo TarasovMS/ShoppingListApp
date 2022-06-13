@@ -1,7 +1,5 @@
 package com.persAssistant.shopping_list.ui.fragment.more
 
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
@@ -18,22 +16,19 @@ class MoreFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_mor
     private val binding: FragmentMoreBinding by viewBinding(FragmentMoreBinding::bind)
     private val viewModel: ListOfCategoryViewModel by viewModels { viewModelFactory }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initListener()
-    }
+    override fun initListeners() {
+        binding.run {
+            fragmentMoreLanguage.setOnClickListener {
+                uiRouter.navigateById(R.id.action_select_language)
+            }
 
-    private fun initListener(){
-        binding.fragmentMoreLanguage.setOnClickListener {
-            uiRouter.navigateById(R.id.action_select_language)
-        }
+            fragmentMoreHandling.setOnClickListener {
+                uiRouter.navigateById(R.id.action_send_handling)
+            }
 
-        binding.fragmentMoreHandling.setOnClickListener {
-            uiRouter.navigateById(R.id.action_send_handling)
-        }
-
-        binding.fragmentMoreNotifications.setOnClickListener {
-            uiRouter.navigateById(R.id.action_connectionUnavailable_fragment)
+            fragmentMoreNotifications.setOnClickListener {
+                uiRouter.navigateById(R.id.action_connectionUnavailable_fragment)
+            }
         }
     }
 }

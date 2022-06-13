@@ -48,5 +48,12 @@ data class RoomPurchase(
     var price: Double? = null,
 
     @ColumnInfo(name = DbStruct.Purchase.Cols.isCompleted)
-    var isCompleted: Int
+    var isCompleted: Int,
+
+    @ColumnInfo(name = DbStruct.Purchase.Cols.unit)
+    var unit: Long,
+
+    @ColumnInfo(name = DbStruct.Purchase.Cols.quantity)
+    var quantity: Long,
+
 )

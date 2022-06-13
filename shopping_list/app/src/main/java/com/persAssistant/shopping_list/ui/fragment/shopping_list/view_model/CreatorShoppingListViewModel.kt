@@ -10,6 +10,7 @@ class CreatorShoppingListViewModel @Inject constructor(
     private val shoppingListInteractor: ShoppingListInteractorInterface,
 ) : ShoppingListViewModel() {
 
+    //TODO add comonDispossable...
     override fun save() {
         val shoppingList = ShoppingList(name = name.value.orEmpty(), date = date)
 

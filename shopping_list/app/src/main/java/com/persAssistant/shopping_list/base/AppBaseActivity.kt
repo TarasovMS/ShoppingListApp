@@ -16,9 +16,10 @@ abstract class AppBaseActivity: DaggerAppCompatActivity(),
 
     @Inject
     internal lateinit var viewModelFactory: ViewModelProvider.Factory
+
     protected val navController: NavController by lazy { findNavController(R.id.activity_main_nav_host_fragment) }
     protected val uiRouter by lazy { UiRouter(navController) }
-    protected lateinit var app: App
+//    protected lateinit var app: App
 
     abstract fun initNetworkObserver(uiRouter: UiRouter)
 

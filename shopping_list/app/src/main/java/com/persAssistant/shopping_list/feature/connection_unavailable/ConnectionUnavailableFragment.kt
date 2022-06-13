@@ -1,7 +1,5 @@
 package com.persAssistant.shopping_list.feature.connection_unavailable
 
-import android.os.Bundle
-import android.view.View
 import androidx.annotation.ColorRes
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
@@ -17,16 +15,16 @@ class ConnectionUnavailableFragment : AppBaseFragment(R.layout.fragment_connecti
     private val binding by viewBinding(FragmentConnectionUnavailableBinding::bind)
     private val viewModel: ConnectionUnavailableViewModel by viewModels { viewModelFactory }
 
+    private val error by lazy {
+        arguments?.getString(INTERNET)
+            ?: arguments?.getString(SERVER)
+            ?: INTERNET
+    }
+
     @ColorRes
     override fun statusBarColor() = R.color.blue
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val error = arguments?.getString(INTERNET)
-            ?: arguments?.getString(SERVER)
-            ?: INTERNET
-
+    override fun initUi() {
         if (error == INTERNET) showNoInternetConnection() else showNoServerConnection()
     }
 

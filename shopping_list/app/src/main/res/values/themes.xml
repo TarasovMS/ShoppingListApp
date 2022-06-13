@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Shopping_list" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="Theme.Shopping_list" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryDark">@color/purple_700</item>
@@ -20,14 +20,10 @@
         <item name="android:layout_marginEnd">@dimen/dp_8</item>
         <item name="android:layout_marginTop">@dimen/dp_8</item>
         <item name="android:layout_marginBottom">@dimen/dp_8</item>
+        <item name="android:paddingStart">@dimen/dp_16</item>
+        <item name="android:paddingEnd">@dimen/dp_16</item>
     </style>
 
-
-
-
-
-
-    // Base
     <style name="ModuleBase" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
         <!-- Style attributes -->

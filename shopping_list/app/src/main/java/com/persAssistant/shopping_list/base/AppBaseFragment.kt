@@ -41,9 +41,9 @@ abstract class AppBaseFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initObservers()
-        initUI()
+        initUi()
         initListeners()
+        initObservers()
         observeNavData()
         handleToolBarBackPressed()
     }
@@ -54,7 +54,7 @@ abstract class AppBaseFragment(
     }
 
     open fun initObservers() {}
-    open fun initUI() {}
+    open fun initUi() {}
     open fun initListeners() {}
 
     private fun observeNavData() {

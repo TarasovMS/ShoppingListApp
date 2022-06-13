@@ -5,19 +5,19 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.databinding.FragmentPurchase2Binding
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.ui.fragment.purchase.SelectionOfCategoryInDialog.DialogButtonsClickedListener
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 
-abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
+abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
-    // TODO избавиться от lateInit
     protected abstract fun createViewModel(): PurchaseViewModel
-    protected val viewModel: PurchaseViewModel by viewModels { viewModelFactory }
-    private val binding: FragmentPurchaseBinding by viewBinding(FragmentPurchaseBinding::bind)
-//    protected lateinit var viewModel: PurchaseViewModel
+//    protected val viewModel: PurchaseViewModel by viewModels { viewModelFactory }
+    private val binding: FragmentPurchase2Binding by viewBinding(FragmentPurchase2Binding::bind)
+    protected lateinit var viewModel: PurchaseViewModel
 
     private val categoryClicker = object : DialogButtonsClickedListener {
         override fun okClickListener(category: Category) {
@@ -25,26 +25,26 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-        initObservers()
-    }
-
-    private fun initView() {
-//        viewModel = createViewModel()
+    override fun initUi() {
+        viewModel = createViewModel()
 
         binding.apply {
             vmPurchase = viewModel
             lifecycleOwner = this@PurchaseFragment
-
-            llSelectionOfCategoriesForPurchases.setOnClickListener {
-                SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
-            }
         }
     }
 
-    private fun initObservers() {
+    override fun initListeners() {
+//        binding.llSelectionOfCategoriesForPurchases.setOnClickListener {
+//            SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
+//        }
+
+        binding.fragmentPurchaseCategoriesTil.setOnClickListener {
+            SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
+        }
+    }
+
+    override fun initObservers() {
         viewModel.closeEvent.observe(viewLifecycleOwner) {
             uiRouter.navigateBack()
         }

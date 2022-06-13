@@ -1,7 +1,6 @@
 package com.persAssistant.shopping_list.feature.user_help.handling.ui
 
 import android.content.Context
-import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.google.android.material.appbar.MaterialToolbar
@@ -30,7 +29,7 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
     private val binding by viewBinding(FragmentHandlingBinding::bind)
     private val viewModel: HandlingViewModel by viewModels { viewModelFactory }
 
-    private val startForResult by lazy{
+    private val startForResult by lazy {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
         ) { updateProgressEvent(FINISHED) }
@@ -43,26 +42,22 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         return binding.fragmentHandlingToolbar
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initObservers()
-        initViews()
-    }
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         startForResult
     }
 
-    private fun initObservers() {
+    override fun initObservers() {
         progressEvent.observe(viewLifecycleOwner) { event ->
             event.getEventProgress { progressState ->
-                binding.fragmentHandlingSendButton.isEnabled = progressState.isFinished()
-                binding.fragmentHandlingSendAction.isEnabled = progressState.isFinished()
+                binding.run {
+                    fragmentHandlingSendButton.isEnabled = progressState.isFinished()
+                    fragmentHandlingSendAction.isEnabled = progressState.isFinished()
+                }
             }
         }
 
-        viewModel.apply {
+        viewModel.run {
             isActionEnabled.observe(viewLifecycleOwner) { allow ->
                 if (allow) sendEmail()
             }
@@ -72,7 +67,10 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
             }
 
             errorTitle.observe(viewLifecycleOwner) {
-                showFieldError(it.getErrorMessageResource(), binding.fragmentHandlingNameInputEditText)
+                showFieldError(
+                    it.getErrorMessageResource(),
+                    binding.fragmentHandlingNameInputEditText
+                )
             }
 
             errorMessage.observe(viewLifecycleOwner) {
@@ -84,9 +82,8 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         }
     }
 
-    private fun initViews() {
-
-        binding.apply {
+    override fun initUi() {
+        binding.run {
             fragmentHandlingNameInputEditText.onFocusChangeListener =
                 View.OnFocusChangeListener { _, hasFocus ->
                     if (!hasFocus && messageFieldText().isNotEmpty()) validation(TITLE)
@@ -98,6 +95,11 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
                 }
 
             fragmentHandlingEmailInputEditText.text = EMAIL_DEVELOPER
+        }
+    }
+
+    override fun initListeners() {
+        binding.run {
             fragmentHandlingSendAction.setOnClickListener { validation(ALL_FIELDS) }
             fragmentHandlingSendButton.setOnClickListener { validation(ALL_FIELDS) }
         }
@@ -110,22 +112,22 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
             message = messageFieldText()
         )
 
-        if(field.isAllFields()) binding.root.hideKeyboard()
+        if (field.isAllFields()) binding.root.hideKeyboard()
     }
 
     private fun sendEmail() {
         updateProgressEvent(ProgressState.LOADING)
 
-        val email = Intent(Intent.ACTION_SEND)
-
-        email.apply {
-            type = TYPE_EMAIL
-            putExtra(Intent.EXTRA_EMAIL, arrayOf(emailFieldText()))
-            putExtra(Intent.EXTRA_SUBJECT, titleFieldText())
-            putExtra(Intent.EXTRA_TEXT, messageFieldText())
-        }
-
-        startForResult.launch(Intent.createChooser(email, titleFieldText()))
+        startForResult.launch(
+            Intent.createChooser(
+                Intent(Intent.ACTION_SEND).apply {
+                    type = TYPE_EMAIL
+                    putExtra(Intent.EXTRA_EMAIL, arrayOf(emailFieldText()))
+                    putExtra(Intent.EXTRA_SUBJECT, titleFieldText())
+                    putExtra(Intent.EXTRA_TEXT, messageFieldText())
+                }, titleFieldText()
+            )
+        )
     }
 
     private fun titleFieldText(): String {

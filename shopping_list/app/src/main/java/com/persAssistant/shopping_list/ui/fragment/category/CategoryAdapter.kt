@@ -1,18 +1,18 @@
 package com.persAssistant.shopping_list.ui.fragment.category
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.persAssistant.shopping_list.R
+import com.persAssistant.shopping_list.databinding.ItemInfoCategoryBinding
 import com.persAssistant.shopping_list.domain.entities.Category
 import java.util.*
 
 class CategoryAdapter(
     private val onCategoryClickListener: OnCategoryClickListener,
-) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private var items: LinkedList<Category> = LinkedList<Category>()
 
@@ -20,7 +20,7 @@ class CategoryAdapter(
         return items.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val categoryRecycleView = items[position]
 
         holder.apply {
@@ -29,21 +29,19 @@ class CategoryAdapter(
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(
-                R.layout.item_info_category,
-                parent,
-                false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        return CategoryViewHolder(
+            ItemInfoCategoryBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
             )
-
-        return ViewHolder(itemView)
+        )
     }
 
-    // TODO убрать findbyid na binding
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.TV_name_recycler_category)
-        val menu: TextView = view.findViewById(R.id.TV_category_menu)
+    class CategoryViewHolder(
+        val binding: ItemInfoCategoryBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        val name: TextView = binding.itemRecyclerInfoCategoryNameTv
+        val menu: TextView = binding.itemRecyclerInfoCategoryMenuTv
 
         fun bindView(category: Category, onCategoryClickListener: OnCategoryClickListener) {
 

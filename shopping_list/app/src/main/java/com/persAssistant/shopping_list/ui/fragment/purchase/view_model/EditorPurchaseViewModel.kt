@@ -44,7 +44,7 @@ class EditorPurchaseViewModel @Inject constructor(
                 categoryId = categoryId,
                 listId = listId,
                 price = price.value?.toDouble(),
-                isCompleted = 0
+                isCompleted = 0,
             )
 
             purchaseInteractor.update(purchase)
