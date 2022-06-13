@@ -39,6 +39,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 //            SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
 //        }
 
+        // if fragmentPurchase2
         binding.fragmentPurchaseCategoriesTil.setOnClickListener {
             SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
         }

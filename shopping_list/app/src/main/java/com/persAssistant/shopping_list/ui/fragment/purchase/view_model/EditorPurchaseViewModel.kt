@@ -28,6 +28,8 @@ class EditorPurchaseViewModel @Inject constructor(
                     price.value = it.purchase.price.toString()
                     categoryId = it.purchase.categoryId
                     listId = it.purchase.listId
+                    unit.value = it.purchase.unit
+                    quantity.value = it.purchase.quantity
                 },
                 {}
             )
@@ -35,7 +37,6 @@ class EditorPurchaseViewModel @Inject constructor(
 
     override fun save() {
         if (listId != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
-
             if (price.value == null) setPriceDefault()
 
             val purchase = Purchase(
@@ -44,6 +45,8 @@ class EditorPurchaseViewModel @Inject constructor(
                 categoryId = categoryId,
                 listId = listId,
                 price = price.value?.toDouble(),
+                unit = unit.value,
+                quantity = quantity.value,
                 isCompleted = 0,
             )
 

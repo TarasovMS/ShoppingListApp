@@ -6,7 +6,7 @@ import com.persAssistant.shopping_list.data.database.DbStruct
 import com.persAssistant.shopping_list.domain.entities.Category
 import javax.inject.Inject
 
-open class PurchaseViewModel @Inject constructor(): ViewModel() {
+open class PurchaseViewModel @Inject constructor() : ViewModel() {
 
     //TODO убрать !!
     var closeEvent = MutableLiveData<Unit>()
@@ -15,17 +15,21 @@ open class PurchaseViewModel @Inject constructor(): ViewModel() {
     var categoryId: Long = DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
     var listId: Long = DbStruct.ShoppingListTable.Cols.INVALID_ID
     var categoryName = MutableLiveData<String>()
+    var quantity = MutableLiveData<String>()
+    var unit = MutableLiveData<String>()
 
-    fun setCategory(category: Category){
+    fun setCategory(category: Category) {
         categoryId = category.id!!
         categoryName.value = category.name
     }
 
-    fun setPriceDefault() { price.value = PRICE_DEFAULT }
+    fun setPriceDefault() {
+        price.value = PRICE_DEFAULT
+    }
 
     open fun save() {}
 
-    companion object{
+    companion object {
         const val PRICE_DEFAULT = "0"
     }
 }

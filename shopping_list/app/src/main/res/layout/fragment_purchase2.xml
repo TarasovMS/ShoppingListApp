@@ -84,6 +84,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/unit"
                     android:imeOptions="actionNext"
+                    android:text="@={vmPurchase.unit}"
                     android:inputType="textCapWords|textNoSuggestions"
                     android:nextFocusRight="@id/fragment_purchase_price_product_til"
                     tools:ignore="LabelFor" />
@@ -117,6 +118,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/price"
                     android:imeOptions="actionNext"
+                    android:text="@={vmPurchase.price}"
                     android:inputType="numberDecimal"
                     android:nextFocusRight="@id/fragment_purchase_number_til"
                     tools:ignore="LabelFor" />
@@ -137,10 +139,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/quantity"
+                    android:text="@={vmPurchase.quantity}"
                     android:imeOptions="actionNext"
                     android:inputType="numberDecimal"
                     tools:ignore="LabelFor" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
         </LinearLayout>

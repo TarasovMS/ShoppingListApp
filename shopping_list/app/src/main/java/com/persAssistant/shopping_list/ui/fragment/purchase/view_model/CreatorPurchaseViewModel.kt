@@ -35,7 +35,9 @@ class CreatorPurchaseViewModel @Inject constructor(
             categoryId = categoryId,
             listId = listId,
             price = price.value?.toDouble(),
-            isCompleted = 0
+            unit = unit.value,
+            quantity = quantity.value,
+            isCompleted = 0,
         )
 
         purchaseInteractor.insert(purchase)

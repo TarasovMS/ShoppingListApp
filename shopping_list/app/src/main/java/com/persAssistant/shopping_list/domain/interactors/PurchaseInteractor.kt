@@ -10,8 +10,9 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
 
-class PurchaseInteractor(private val purchaseRepositoryInterface: PurchaseRepositoryInterface):
-    PurchaseInteractorInterface() {
+class PurchaseInteractor(
+    private val purchaseRepositoryInterface: PurchaseRepositoryInterface
+) : PurchaseInteractorInterface() {
 
     // сигнал об изменении в таблице
     override fun getChangeSignal(): LiveData<List<RoomPurchase>> {

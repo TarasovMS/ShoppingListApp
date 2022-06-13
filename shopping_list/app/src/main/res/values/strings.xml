@@ -31,7 +31,6 @@
     <string name="quantity">Колличество</string>
     <string name="universal_category">Универсальная категория</string>
 
-
     // Validation
     <string name="unknown_error_message">Произошла ошибка</string>
     <string name="email_incorrect">Введен некорректный почтовый адрес</string>
@@ -80,6 +79,7 @@
     <string name="error_id_in_creator_purchase_activity" translatable="false">" Error in CreatorPurchaseActivity.getIntent absent listId "</string>
     <string name="error_id_in_editor_shopplist_activity" translatable="false">"Error in EditorShoppingListActivity.getIntent absent Id "</string>
     <string name="error_id_in_editor_category_activity" translatable="false">"Error in EditorCategoryActivity.getIntent absent Id"</string>
+    <string name="error_insert_in_purchase_service" translatable="false">"Failed to execute insert"</string>
 
 
 
