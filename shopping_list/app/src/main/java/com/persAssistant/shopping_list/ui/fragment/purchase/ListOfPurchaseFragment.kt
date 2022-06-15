@@ -1,7 +1,6 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase
 
 import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.viewModels
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
@@ -36,9 +35,7 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
         }
 
         override fun editItem(purchase: Purchase) {
-            uiRouter.navigateById(R.id.editPurchase, Bundle().apply {
-                putLong(KEY_PURCHASE_ID, purchase.id ?: DEFAULT_CATEGORIES_COUNT)
-            })
+            editItemAdapter(purchase)
         }
     }
 
@@ -77,5 +74,11 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
                 purchaseAdapter.removePurchase(it)
             }
         }
+    }
+
+    private fun editItemAdapter(purchase: Purchase) {
+        uiRouter.navigateById(R.id.editPurchase, Bundle().apply {
+            putLong(KEY_PURCHASE_ID, purchase.id ?: DEFAULT_CATEGORIES_COUNT)
+        })
     }
 }

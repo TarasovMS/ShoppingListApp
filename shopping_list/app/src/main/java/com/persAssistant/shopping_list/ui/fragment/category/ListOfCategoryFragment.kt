@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.RecyclerCategoryBinding
 import com.persAssistant.shopping_list.ui.fragment.category.CategoryFragment.Companion.KEY_CATEGORY
@@ -20,11 +21,7 @@ class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
 
     private val categoryClick = object : OnCategoryClickListener {
         override fun clickedCategoryItem(category: Category) {
-            uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
-                putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
-                putLong(KEY_PARENT_ID, category.id!!)
-                putBoolean(KEY_VISIBILITY_BUTTON, false)
-            })
+            clickItemAdapter(category)
         }
 
         override fun deleteItem(category: Category) {
@@ -32,9 +29,7 @@ class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
         }
 
         override fun editItem(category: Category) {
-            uiRouter.navigateById(R.id.editCategory, Bundle().apply {
-                putLong(KEY_CATEGORY, category.id!!)
-            })
+            editItemAdapter(category)
         }
     }
 
@@ -59,5 +54,19 @@ class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
                 categoryAdapter.updateItems(it)
             }
         }
+    }
+
+    private fun clickItemAdapter(category: Category){
+        uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
+            putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
+            putLong(KEY_PARENT_ID, category.id ?: DEFAULT_CATEGORIES_COUNT)
+            putBoolean(KEY_VISIBILITY_BUTTON, false)
+        })
+    }
+
+    private fun editItemAdapter(category: Category){
+        uiRouter.navigateById(R.id.editCategory, Bundle().apply {
+            putLong(KEY_CATEGORY, category.id ?: DEFAULT_CATEGORIES_COUNT)
+        })
     }
 }

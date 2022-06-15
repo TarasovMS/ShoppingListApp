@@ -1,16 +1,13 @@
 package com.persAssistant.shopping_list.ui.fragment.shopping_list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.databinding.ItemInfoPurchaseBinding
 import com.persAssistant.shopping_list.databinding.ItemInfoShoppingListBinding
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
-import com.persAssistant.shopping_list.ui.fragment.purchase.PurchaseAdapter
 import com.persAssistant.shopping_list.util.DATE_FORMAT
 import java.text.SimpleDateFormat
 import java.util.*
@@ -54,7 +51,7 @@ class ShoppingListAdapter(
             onShoppingListClickListener: OnShoppingListClickListener
         ) {
             name.setOnClickListener {
-                onShoppingListClickListener.clickedShoppingListItem(shoppingList)
+                onShoppingListClickListener.clickItem(shoppingList)
             }
 
             menu.setOnClickListener {
