@@ -7,7 +7,7 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.databinding.RecyclerPurchaseBinding
 import com.persAssistant.shopping_list.base.AppBaseFragment
-import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
+import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.ui.fragment.purchase.PurchaseFragment.Companion.KEY_PURCHASE_ID
 import com.persAssistant.shopping_list.ui.fragment.purchase.PurchaseFragment.Companion.KEY_SHOPPING_LIST_ID
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
@@ -78,7 +78,7 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
 
     private fun editItemAdapter(purchase: Purchase) {
         uiRouter.navigateById(R.id.editPurchase, Bundle().apply {
-            putLong(KEY_PURCHASE_ID, purchase.id ?: DEFAULT_CATEGORIES_COUNT)
+            putLong(KEY_PURCHASE_ID, purchase.id ?: INVALID_ID)
         })
     }
 }
