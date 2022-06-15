@@ -2,11 +2,12 @@ package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.persAssistant.shopping_list.base.AppBaseViewModel
 import com.persAssistant.shopping_list.data.database.DbStruct
 import com.persAssistant.shopping_list.domain.entities.Category
 import javax.inject.Inject
 
-open class PurchaseViewModel @Inject constructor() : ViewModel() {
+open class PurchaseViewModel @Inject constructor() : AppBaseViewModel() {
 
     //TODO убрать !!
     var closeEvent = MutableLiveData<Unit>()
