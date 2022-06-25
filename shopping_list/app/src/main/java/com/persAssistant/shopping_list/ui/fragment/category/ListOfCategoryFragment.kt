@@ -14,7 +14,6 @@ import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
 
-    //TODO избавиться от !!
     private val binding: RecyclerCategoryBinding by viewBinding(RecyclerCategoryBinding::bind)
     private val viewModel: ListOfCategoryViewModel by viewModels { viewModelFactory }
     private val categoryAdapter by lazy { CategoryAdapter(categoryClick) }

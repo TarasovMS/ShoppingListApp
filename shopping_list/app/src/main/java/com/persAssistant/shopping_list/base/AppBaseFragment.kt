@@ -22,22 +22,23 @@ import dagger.android.support.DaggerFragment
 import javax.inject.Inject
 
 abstract class AppBaseFragment(
-    @LayoutRes contentLayoutId: Int,
+    @LayoutRes contentLayoutId: Int
 ) : DaggerFragment(contentLayoutId) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
+    protected lateinit var app: App
     private val navViewModel by viewModels<NavigationViewModel> { viewModelFactory }
-
     internal val uiRouter: UiRouter by lazy { UiRouter(findNavController()) }
 
     @ColorRes
     open fun statusBarColor(): Int = R.color.teal_700
 
+    open fun initObservers() {}
+    open fun initUi() {}
+    open fun initListeners() {}
     open fun getToolbarForBackBehavior(): MaterialToolbar? = null
-
-    protected lateinit var app: App
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -53,9 +54,17 @@ abstract class AppBaseFragment(
         if (statusBarColor() != DO_NOT_REPAINT_STATUS_BAR) updateStatusBarColor(statusBarColor())
     }
 
-    open fun initObservers() {}
-    open fun initUi() {}
-    open fun initListeners() {}
+    fun addErrorClearingEvent(input: EditText, parentLayout: TextInputLayout) {
+        input.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                parentLayout.error = null
+                parentLayout.isErrorEnabled = false
+            }
+
+            override fun afterTextChanged(s: Editable?) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+    }
 
     private fun observeNavData() {
         navViewModel.directionData.observe(this.viewLifecycleOwner) {
@@ -75,19 +84,7 @@ abstract class AppBaseFragment(
         }
     }
 
-    fun addErrorClearingEvent(input: EditText, parentLayout: TextInputLayout) {
-        input.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                parentLayout.error = null
-                parentLayout.isErrorEnabled = false
-            }
-
-            override fun afterTextChanged(s: Editable?) {}
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
-        })
-    }
-
-    companion object{
+    companion object {
         const val KEY_INDEX_TYPE = "INDEX_TYPE"
         const val KEY_PARENT_ID = "PARENT_ID"
         const val KEY_VISIBILITY_BUTTON = "VISIBILITY_BUTTON"

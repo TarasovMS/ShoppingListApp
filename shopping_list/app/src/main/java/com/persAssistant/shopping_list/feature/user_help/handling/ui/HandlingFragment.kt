@@ -99,7 +99,7 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
     }
 
     override fun initListeners() {
-        binding.run {
+        binding.apply {
             fragmentHandlingSendAction.setOnClickListener { validation(ALL_FIELDS) }
             fragmentHandlingSendButton.setOnClickListener { validation(ALL_FIELDS) }
         }

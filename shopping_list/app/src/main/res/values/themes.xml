@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources >
     <!-- Base application theme. -->
     <style name="Theme.Shopping_list" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -12,16 +12,18 @@
         <item name="android:windowBackground">@drawable/ic_edit</item>
     </style>
 
+    <style name="CreateEditProductModuleTextView">
+        <item name="android:paddingStart">@dimen/dp_16</item>
+        <item name="android:paddingEnd">@dimen/dp_16</item>
+        <item name="android:paddingTop">@dimen/dp_8</item>
+        <item name="android:paddingBottom">@dimen/dp_8</item>
+    </style>
 
-
-
-    <style name="CreateEditProductModule" parent="ModuleBase">
+    <style name="CreateEditProductModuleLayout" parent="ModuleBase">
         <item name="android:layout_marginStart">@dimen/dp_8</item>
         <item name="android:layout_marginEnd">@dimen/dp_8</item>
         <item name="android:layout_marginTop">@dimen/dp_8</item>
         <item name="android:layout_marginBottom">@dimen/dp_8</item>
-        <item name="android:paddingStart">@dimen/dp_16</item>
-        <item name="android:paddingEnd">@dimen/dp_16</item>
     </style>
 
     <style name="ModuleBase" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">

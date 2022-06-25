@@ -2,7 +2,9 @@ package com.persAssistant.shopping_list.ui.fragment.purchase
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.ColorRes
 import androidx.fragment.app.viewModels
+import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentPurchase2Binding
@@ -14,6 +16,8 @@ import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
+    //TODO сделать спинер
+
     protected abstract fun createViewModel(): PurchaseViewModel
 //    protected val viewModel: PurchaseViewModel by viewModels { viewModelFactory }
     private val binding: FragmentPurchase2Binding by viewBinding(FragmentPurchase2Binding::bind)
@@ -23,6 +27,13 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
         override fun okClickListener(category: Category) {
             viewModel.setCategory(category)
         }
+    }
+
+//    @ColorRes
+//    override fun statusBarColor() = R.color.purple_200
+
+    override fun getToolbarForBackBehavior(): MaterialToolbar {
+        return binding.fragmentPurchaseToolbar
     }
 
     override fun initUi() {
@@ -40,8 +51,10 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 //        }
 
         // if fragmentPurchase2
-        binding.fragmentPurchaseCategoriesTil.setOnClickListener {
-            SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
+        binding.apply {
+            fragmentPurchaseCategoriesText.setOnClickListener {
+                SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
+            }
         }
     }
 
