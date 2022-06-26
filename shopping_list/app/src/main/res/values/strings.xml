@@ -27,8 +27,8 @@
     <string name="name_of_category">Название категории</string>
     <string name="product_name">Название товара</string>
     <string name="price">Цена</string>
-    <string name="unit">Единица измерения</string>
-    <string name="quantity">Колличество</string>
+    <string name="unit">Измерение</string>
+    <string name="quantity">Кол-во</string>
     <string name="universal_category">Универсальная категория</string>
 
     // Validation
@@ -96,6 +96,20 @@
         <item>Октябрь</item>
         <item>Ноябрь</item>
         <item>Декабрь</item>
+    </string-array>
+
+    <string-array name="units">
+        <item>штук</item>
+        <item>литр</item>
+        <item>мл</item>
+        <item>кг</item>
+        <item>грамм</item>
+        <item>мг</item>
+        <item>метр</item>
+        <item>дм</item>
+        <item>км</item>
+        <item>мм</item>
+        <item>см</item>
     </string-array>
 
     <string-array name="language">

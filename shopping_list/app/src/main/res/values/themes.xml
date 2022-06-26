@@ -1,4 +1,4 @@
-<resources >
+<resources>
     <!-- Base application theme. -->
     <style name="Theme.Shopping_list" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
@@ -17,6 +17,7 @@
         <item name="android:paddingEnd">@dimen/dp_16</item>
         <item name="android:paddingTop">@dimen/dp_8</item>
         <item name="android:paddingBottom">@dimen/dp_8</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="CreateEditProductModuleLayout" parent="ModuleBase">
@@ -24,10 +25,18 @@
         <item name="android:layout_marginEnd">@dimen/dp_8</item>
         <item name="android:layout_marginTop">@dimen/dp_8</item>
         <item name="android:layout_marginBottom">@dimen/dp_8</item>
+        <item name="materialThemeOverlay">@style/TextInputLayoutOutlinedBox</item>
+    </style>
+
+    <style name="CreateEditProductModuleLayoutExposedDropdown" parent="ModuleBase">
+        <item name="android:layout_marginStart">@dimen/dp_8</item>
+        <item name="android:layout_marginEnd">@dimen/dp_8</item>
+        <item name="android:layout_marginTop">@dimen/dp_8</item>
+        <item name="android:layout_marginBottom">@dimen/dp_8</item>
+        <item name="materialThemeOverlay">@style/TextInputLayoutOutlinedBoxExposedDropdown</item>
     </style>
 
     <style name="ModuleBase" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TextInputLayout</item>
         <!-- Style attributes -->
         <item name="hintTextAppearance">@style/HintText</item>
         <item name="errorTextAppearance">@style/ErrorText</item>
@@ -40,7 +49,11 @@
         <item name="colorControlActivated">@color/black</item>
     </style>
 
-    <style name="ThemeOverlay.App.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+    <style name="TextInputLayoutOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorPrimary">@color/outline_color_tv</item>
+    </style>
+
+    <style name="TextInputLayoutOutlinedBoxExposedDropdown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="colorPrimary">@color/outline_color_tv</item>
     </style>
 

@@ -36,117 +36,128 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_purchase_name_product_til"
-            style="@style/CreateEditProductModuleLayout"
-            android:layout_width="0dp"
+        <LinearLayout
+            android:id="@+id/fragment_purchase_name_and_unit_ll"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:endIconMode="clear_text"
-            app:errorIconDrawable="@null"
-            app:layout_constraintEnd_toStartOf="@id/fragment_purchase_unit_til"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_purchase_appBar_layout">
-
-            <AutoCompleteTextView
-                android:id="@+id/fragment_purchase_name_product_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/product_name"
-                android:imeOptions="actionNext"
-                android:inputType="textCapWords|textNoSuggestions"
-                android:nextFocusRight="@id/fragment_purchase_unit_til"
-                style="@style/CreateEditProductModuleTextView"
-                android:text="@={vmPurchase.name}" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_purchase_unit_til"
-            style="@style/CreateEditProductModuleLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:endIconMode="clear_text"
-            app:errorIconDrawable="@null"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/fragment_purchase_name_product_til"
-            app:layout_constraintTop_toBottomOf="@id/fragment_purchase_appBar_layout">
-
-            <AutoCompleteTextView
-                android:id="@+id/fragment_purchase_unit_text"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:hint="@string/unit"
-                android:imeOptions="actionNext"
-                android:inputType="textCapWords|textNoSuggestions"
-                android:nextFocusRight="@id/fragment_purchase_price_product_til"
-                style="@style/CreateEditProductModuleTextView"
-                android:text="@={vmPurchase.unit}"
-                tools:ignore="LabelFor" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_purchase_price_product_til"
-            style="@style/CreateEditProductModuleLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:endIconMode="clear_text"
-            app:errorIconDrawable="@null"
-            app:layout_constraintEnd_toStartOf="@id/fragment_purchase_number_til"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_purchase_name_product_til">
+            app:layout_constraintTop_toBottomOf="@+id/fragment_purchase_appBar_layout">
 
-            <AutoCompleteTextView
-                android:id="@+id/fragment_purchase_price_product_text"
-                style="@style/CreateEditProductModuleTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/price"
-                android:imeOptions="actionNext"
-                android:inputType="numberDecimal"
-                android:nextFocusRight="@id/fragment_purchase_number_til"
-                android:text="@={vmPurchase.price}"
-                tools:ignore="LabelFor" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_purchase_name_product_til"
+                style="@style/CreateEditProductModuleLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                app:endIconMode="clear_text"
+                app:errorIconDrawable="@null">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <AutoCompleteTextView
+                    android:id="@+id/fragment_purchase_name_product_text"
+                    style="@style/CreateEditProductModuleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/product_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:nextFocusRight="@id/fragment_purchase_unit_til"
+                    android:text="@={vmPurchase.name}" />
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fragment_purchase_number_til"
-            style="@style/CreateEditProductModuleLayout"
-            android:layout_width="0dp"
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_purchase_unit_til"
+                style="@style/CreateEditProductModuleLayoutExposedDropdown"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:endIconDrawable="@drawable/ic_arrow_drop_down_24"
+                app:errorIconDrawable="@null">
+
+                <AutoCompleteTextView
+                    android:id="@+id/fragment_purchase_unit_text"
+                    style="@style/CreateEditProductModuleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/unit"
+                    android:imeOptions="actionNext"
+                    android:inputType="textCapWords|textNoSuggestions"
+                    android:nextFocusRight="@id/fragment_purchase_price_product_til"
+                    android:text="@={vmPurchase.unit}"
+                    tools:ignore="LabelFor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_purchase_price_and_number_ll"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:endIconMode="clear_text"
-            app:errorIconDrawable="@null"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/fragment_purchase_price_product_til"
-            app:layout_constraintTop_toBottomOf="@id/fragment_purchase_unit_til">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_purchase_name_and_unit_ll"
+            android:baselineAligned="false">
 
-            <AutoCompleteTextView
-                android:id="@+id/fragment_purchase_number_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/quantity"
-                android:imeOptions="actionNext"
-                android:inputType="numberDecimal"
-                style="@style/CreateEditProductModuleTextView"
-                android:text="@={vmPurchase.quantity}"
-                tools:ignore="LabelFor" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_purchase_price_product_til"
+                style="@style/CreateEditProductModuleLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                app:endIconMode="clear_text"
+                app:errorIconDrawable="@null">
+
+                <AutoCompleteTextView
+                    android:id="@+id/fragment_purchase_price_product_text"
+                    style="@style/CreateEditProductModuleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/price"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:nextFocusRight="@id/fragment_purchase_number_til"
+                    android:text="@={vmPurchase.price}"
+                    tools:ignore="LabelFor" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_purchase_number_til"
+                style="@style/CreateEditProductModuleLayout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:endIconMode="clear_text"
+                app:errorIconDrawable="@null">
+
+                <AutoCompleteTextView
+                    android:id="@+id/fragment_purchase_number_text"
+                    style="@style/CreateEditProductModuleTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/quantity"
+                    android:imeOptions="actionNext"
+                    android:inputType="numberDecimal"
+                    android:text="@={vmPurchase.quantity}"
+                    tools:ignore="LabelFor" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/fragment_purchase_categories_til"
-            style="@style/CreateEditProductModuleLayout"
+            style="@style/CreateEditProductModuleLayoutExposedDropdown"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:endIconDrawable="@drawable/ic_arrow_down"
             app:errorIconDrawable="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_purchase_number_til">
+            app:layout_constraintTop_toBottomOf="@+id/fragment_purchase_price_and_number_ll">
 
             <AutoCompleteTextView
                 android:id="@+id/fragment_purchase_categories_text"

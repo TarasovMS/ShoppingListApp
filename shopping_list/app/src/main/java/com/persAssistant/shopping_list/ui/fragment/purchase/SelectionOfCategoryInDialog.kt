@@ -22,7 +22,6 @@ class SelectionOfCategoryInDialog {
     }
 
     companion object {
-
         fun show(activity: Activity, showDialog: DialogButtonsClickedListener) {
             val builder = AlertDialog.Builder(activity)
             val inflater: LayoutInflater = activity.layoutInflater

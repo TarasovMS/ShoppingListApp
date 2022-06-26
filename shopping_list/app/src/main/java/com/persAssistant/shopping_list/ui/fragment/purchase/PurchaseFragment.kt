@@ -1,15 +1,11 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase
 
-import android.os.Bundle
-import android.view.View
-import androidx.annotation.ColorRes
-import androidx.fragment.app.viewModels
+import android.widget.ArrayAdapter
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentPurchase2Binding
 import com.persAssistant.shopping_list.domain.entities.Category
-import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.ui.fragment.purchase.SelectionOfCategoryInDialog.DialogButtonsClickedListener
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
 import com.persAssistant.shopping_list.util.delegate.viewBinding
@@ -19,7 +15,8 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
     //TODO сделать спинер
 
     protected abstract fun createViewModel(): PurchaseViewModel
-//    protected val viewModel: PurchaseViewModel by viewModels { viewModelFactory }
+
+    //    protected val viewModel: PurchaseViewModel by viewModels { viewModelFactory }
     private val binding: FragmentPurchase2Binding by viewBinding(FragmentPurchase2Binding::bind)
     protected lateinit var viewModel: PurchaseViewModel
 
@@ -29,8 +26,13 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
         }
     }
 
-//    @ColorRes
-//    override fun statusBarColor() = R.color.purple_200
+    private val unitsSpinnerAdapter by lazy {
+        ArrayAdapter<String>(
+            requireActivity(),
+            android.R.layout.simple_list_item_1,
+            resources.getStringArray(R.array.units)
+        )
+    }
 
     override fun getToolbarForBackBehavior(): MaterialToolbar {
         return binding.fragmentPurchaseToolbar
@@ -39,29 +41,34 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
     override fun initUi() {
         viewModel = createViewModel()
 
-        binding.apply {
+        binding.run {
             vmPurchase = viewModel
             lifecycleOwner = this@PurchaseFragment
+
+            fragmentPurchaseUnitText.apply {
+                setAdapter(unitsSpinnerAdapter)
+
+                setOnItemClickListener { _, _, position, _ ->
+                    unitsSpinnerAdapter.getItem(position).let { this.setText(it) }
+                }
+            }
         }
     }
 
     override fun initListeners() {
-//        binding.llSelectionOfCategoriesForPurchases.setOnClickListener {
-//            SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
-//        }
-
-        // if fragmentPurchase2
         binding.apply {
-            fragmentPurchaseCategoriesText.setOnClickListener {
+            fragmentPurchaseCategoriesTil.setOnClickListener {
                 SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
             }
         }
     }
 
     override fun initObservers() {
-        viewModel.closeEvent.observe(viewLifecycleOwner) {
-            uiRouter.navigateBack()
-        }
+//        viewModel.run {
+//            closeEvent.observe(viewLifecycleOwner) {
+//                uiRouter.navigateBack()
+//            }
+//        }
     }
 
     companion object {
