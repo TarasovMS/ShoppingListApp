@@ -5,6 +5,7 @@ import com.persAssistant.shopping_list.base.AppBaseViewModel
 import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.Category
+import com.persAssistant.shopping_list.util.Event
 import javax.inject.Inject
 
 open class PurchaseViewModel @Inject constructor() : AppBaseViewModel() {
@@ -12,6 +13,7 @@ open class PurchaseViewModel @Inject constructor() : AppBaseViewModel() {
     //TODO  подумать о том , важно ли categoryId,listId делать дефолттными, не нужно ли делать
     // мутаблной лайфдатой
 
+    var closeEvent = MutableLiveData<Unit>()
     var name = MutableLiveData<String>()
     var price = MutableLiveData<String>()
     var categoryId: Long = DEFAULT_CATEGORIES_COUNT

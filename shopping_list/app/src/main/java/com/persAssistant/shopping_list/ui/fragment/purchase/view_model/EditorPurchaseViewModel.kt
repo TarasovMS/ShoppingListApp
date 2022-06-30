@@ -54,7 +54,7 @@ class EditorPurchaseViewModel @Inject constructor(
                 .subscribeOn(Schedulers.single())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                    {},
+                    { closeEvent.value = Unit },
                     {}
                 )
         }

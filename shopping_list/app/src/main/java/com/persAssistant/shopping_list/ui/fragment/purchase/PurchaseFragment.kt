@@ -64,11 +64,11 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
     }
 
     override fun initObservers() {
-//        viewModel.run {
-//            closeEvent.observe(viewLifecycleOwner) {
-//                uiRouter.navigateBack()
-//            }
-//        }
+        viewModel.run {
+            closeEvent.observe(viewLifecycleOwner) {
+                uiRouter.navigateBack()
+            }
+        }
     }
 
     companion object {
