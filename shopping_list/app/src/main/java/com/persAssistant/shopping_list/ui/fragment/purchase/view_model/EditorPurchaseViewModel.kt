@@ -13,6 +13,7 @@ class EditorPurchaseViewModel @Inject constructor(
     private val fullPurchaseInteractor: FullPurchaseInteractorInterface,
 ) : PurchaseViewModel() {
 
+    //TODO доделать isCompleted и убрать по красвоте let двойной
     private var purchaseId: Long = 0
 
     fun init(id: Long) {
@@ -26,37 +27,44 @@ class EditorPurchaseViewModel @Inject constructor(
                     categoryName.value = it.category.name
                     name.value = it.purchase.name
                     price.value = it.purchase.price.toString()
-                    categoryId = it.purchase.categoryId
-                    listId = it.purchase.listId
+                    categoryId.value = it.purchase.categoryId
+                    listId.value = it.purchase.listId
                     unit.value = it.purchase.unit
                     quantity.value = it.purchase.quantity
+                    isCompleted.value = it.purchase.isCompleted
                 },
                 {}
             )
     }
 
     override fun save() {
-        if (listId != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
+        if (listId.value != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
             if (price.value == null) setPriceDefault()
 
-            val purchase = Purchase(
-                id = purchaseId,
-                name = name.value.orEmpty(),
-                categoryId = categoryId,
-                listId = listId,
-                price = price.value?.toDouble(),
-                unit = unit.value,
-                quantity = quantity.value,
-                isCompleted = 0,
-            )
+            categoryId.value?.let { categoryId ->
+                listId.value?.let { listId ->
+                    isCompleted.value?.let { isCompleted ->
+                        val purchase = Purchase(
+                            id = purchaseId,
+                            name = name.value.orEmpty(),
+                            categoryId = categoryId,
+                            listId = listId,
+                            price = price.value?.toDouble(),
+                            unit = unit.value,
+                            quantity = quantity.value,
+                            isCompleted = isCompleted,
+                        )
 
-            purchaseInteractor.update(purchase)
-                .subscribeOn(Schedulers.single())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { closeEvent.value = Unit },
-                    {}
-                )
+                        purchaseInteractor.update(purchase)
+                            .subscribeOn(Schedulers.single())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                { closeEvent.value = Unit },
+                                {}
+                            )
+                    }
+                }
+            }
         }
     }
 }

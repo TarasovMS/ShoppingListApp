@@ -1,6 +1,5 @@
 package com.persAssistant.shopping_list.domain.entities
 
-
 data class Purchase(
     var id: Long? = null,
     var name: String,

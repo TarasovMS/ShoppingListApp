@@ -20,6 +20,11 @@ open class AppBaseViewModel : ViewModel()
         fun isFinished() = this == FINISHED
     }
 
+    enum class IsCompletedState(state: Int) {
+        COMPLETED(1),
+        ACTIVE(0);
+    }
+
     fun handleFailure(failure: Failure) {
         failureData.postValue(Event(failure))
         Log.e("Failure", failure.toString())

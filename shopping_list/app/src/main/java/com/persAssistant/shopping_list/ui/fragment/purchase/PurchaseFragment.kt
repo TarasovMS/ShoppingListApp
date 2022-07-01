@@ -12,7 +12,7 @@ import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
-    //TODO сделать спинер
+    //TODO сделать спинер для категорий, и разобраться со units убрать жесткую привязку к полю
 
     protected abstract fun createViewModel(): PurchaseViewModel
 
@@ -47,6 +47,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
             fragmentPurchaseUnitText.apply {
                 setAdapter(unitsSpinnerAdapter)
+//                setText(unitsSpinnerAdapter.getItem(0),false)
 
                 setOnItemClickListener { _, _, position, _ ->
                     unitsSpinnerAdapter.getItem(position).let { this.setText(it) }

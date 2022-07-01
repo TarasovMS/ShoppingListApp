@@ -146,6 +146,7 @@
                     android:text="@={vmPurchase.quantity}"
                     tools:ignore="LabelFor" />
             </com.google.android.material.textfield.TextInputLayout>
+
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
