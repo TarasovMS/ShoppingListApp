@@ -1,16 +1,16 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 
 import com.persAssistant.shopping_list.domain.entities.Purchase
-import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
-import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
+import com.persAssistant.shopping_list.domain.interactors_impl.CategoryInteractorImpl
+import com.persAssistant.shopping_list.domain.interactors_impl.PurchaseInteractorImpl
 import com.persAssistant.shopping_list.util.QUANTITY_DEFAULT_ONE_STRING
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class CreatorPurchaseViewModel @Inject constructor(
-    val purchaseInteractor: PurchaseInteractor,
-    val categoryInteractor: CategoryInteractor,
+    val purchaseInteractor: PurchaseInteractorImpl,
+    val categoryInteractor: CategoryInteractorImpl,
 ) : PurchaseViewModel() {
 
     // TODO передавать значения при инициализаци в quantity и unit

@@ -6,10 +6,12 @@ import com.persAssistant.shopping_list.base.IsCompletedState
 import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.Category
+import com.persAssistant.shopping_list.util.PRICE_DEFAULT
 import javax.inject.Inject
 
 open class PurchaseViewModel @Inject constructor() : AppBaseViewModel() {
 
+    //TODO протестировать работу isCompleted
     var closeEvent = MutableLiveData<Unit>()
     var name = MutableLiveData<String>()
     var price = MutableLiveData<String>()
@@ -19,6 +21,9 @@ open class PurchaseViewModel @Inject constructor() : AppBaseViewModel() {
     var quantity = MutableLiveData<String>()
     var unit = MutableLiveData<String>()
     var isCompleted = MutableLiveData(IsCompletedState.ACTIVE.ordinal)
+    var categoriesNames = MutableLiveData<Array<String>>()
+
+    open fun save() {}
 
     fun setCategory(category: Category) {
         categoryId.value = category.id ?: DEFAULT_CATEGORIES_COUNT
@@ -29,9 +34,14 @@ open class PurchaseViewModel @Inject constructor() : AppBaseViewModel() {
         price.value = PRICE_DEFAULT
     }
 
-    open fun save() {}
-
-    companion object {
-        const val PRICE_DEFAULT = "0.00"
+    fun getCategoriesNames(){
+//        fullpurchaseInteractor.getAllCategories()
+//            .subscribeOn(Schedulers.single())
+//            .observeOn(AndroidSchedulers.mainThread())
+//            .subscribe(
+//                { },
+//                { }
+//            )
     }
+
 }

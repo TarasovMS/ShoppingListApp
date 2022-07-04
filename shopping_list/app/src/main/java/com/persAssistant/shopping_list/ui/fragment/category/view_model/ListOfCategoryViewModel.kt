@@ -4,14 +4,14 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.persAssistant.shopping_list.base.AppBaseViewModel
 import com.persAssistant.shopping_list.domain.entities.Category
-import com.persAssistant.shopping_list.domain.interactor_interfaces.CategoryInteractorInterface
+import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
 class ListOfCategoryViewModel @Inject constructor(
-    val categoryInteractor: CategoryInteractorInterface,
+    val categoryInteractor: CategoryInteractor,
 ) : AppBaseViewModel() {
 
     var categoryList = MutableLiveData<LinkedList<Category>>()

@@ -10,9 +10,11 @@
         android:name="com.persAssistant.shopping_list.feature.splash.ui.SplashFragment"
         android:label="splash_fragment"
         tools:layout="@layout/splash_fragment">
+
         <action
             android:id="@+id/splash_screen_opens_shoppingList"
             app:destination="@id/shoppingList" />
+
     </fragment>
 
     <fragment
@@ -20,6 +22,7 @@
         android:name="com.persAssistant.shopping_list.ui.fragment.shopping_list.ListOfShoppingListFragment"
         android:label="fragment_shoppingList"
         tools:layout="@layout/recycler_shopping_list">
+
         <action
             android:id="@+id/action_shoppingList_creating_list"
             app:destination="@id/createShoppingList" />

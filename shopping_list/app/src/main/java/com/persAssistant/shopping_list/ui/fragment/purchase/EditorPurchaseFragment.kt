@@ -3,6 +3,7 @@ package com.persAssistant.shopping_list.ui.fragment.purchase
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.EditorPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
+import com.persAssistant.shopping_list.util.KEY_PURCHASE_ID
 import java.lang.Exception
 import javax.inject.Inject
 

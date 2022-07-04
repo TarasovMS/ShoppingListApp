@@ -3,10 +3,10 @@ package com.persAssistant.shopping_list.di.module
 import com.persAssistant.shopping_list.data.repositories.CategoryRepository
 import com.persAssistant.shopping_list.data.repositories.PurchaseRepository
 import com.persAssistant.shopping_list.data.repositories.ShoppingListRepository
-import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
-import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
-import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
-import com.persAssistant.shopping_list.domain.interactors.ShoppingListInteractor
+import com.persAssistant.shopping_list.domain.interactors_impl.CategoryInteractorImpl
+import com.persAssistant.shopping_list.domain.interactors_impl.FullPurchaseInteractorImpl
+import com.persAssistant.shopping_list.domain.interactors_impl.PurchaseInteractorImpl
+import com.persAssistant.shopping_list.domain.interactors_impl.ShoppingListInteractorImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -15,25 +15,25 @@ import javax.inject.Singleton
 class InteractorModule {
     @Provides
     @Singleton
-    fun provideCategoryInteractor(categoryRepository: CategoryRepository): CategoryInteractor {
-        return CategoryInteractor(categoryRepository)
+    fun provideCategoryInteractor(categoryRepository: CategoryRepository): CategoryInteractorImpl {
+        return CategoryInteractorImpl(categoryRepository)
     }
 
     @Provides
     @Singleton
-    fun providePurchaseInteractor(purchaseRepository: PurchaseRepository): PurchaseInteractor {
-        return PurchaseInteractor(purchaseRepository)
+    fun providePurchaseInteractor(purchaseRepository: PurchaseRepository): PurchaseInteractorImpl {
+        return PurchaseInteractorImpl(purchaseRepository)
     }
 
     @Provides
     @Singleton
-    fun provideShoppingListInteractor(shoppingListRepository: ShoppingListRepository): ShoppingListInteractor {
-        return ShoppingListInteractor(shoppingListRepository)
+    fun provideShoppingListInteractor(shoppingListRepository: ShoppingListRepository): ShoppingListInteractorImpl {
+        return ShoppingListInteractorImpl(shoppingListRepository)
     }
 
     @Provides
     @Singleton
-    fun provideFullPurchaseInteractor(purchaseInteractor: PurchaseInteractor, categoryInteractor: CategoryInteractor): FullPurchaseInteractor {
-        return FullPurchaseInteractor(purchaseInteractor, categoryInteractor)
+    fun provideFullPurchaseInteractor(purchaseInteractor: PurchaseInteractorImpl, categoryInteractor: CategoryInteractorImpl): FullPurchaseInteractorImpl {
+        return FullPurchaseInteractorImpl(purchaseInteractor, categoryInteractor)
     }
 }

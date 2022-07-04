@@ -2,15 +2,15 @@ package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 
 import com.persAssistant.shopping_list.data.database.DbStruct
 import com.persAssistant.shopping_list.domain.entities.Purchase
-import com.persAssistant.shopping_list.domain.interactor_interfaces.FullPurchaseInteractorInterface
-import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
+import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
+import com.persAssistant.shopping_list.domain.interactors_impl.PurchaseInteractorImpl
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class EditorPurchaseViewModel @Inject constructor(
-    private val purchaseInteractor: PurchaseInteractor,
-    private val fullPurchaseInteractor: FullPurchaseInteractorInterface,
+    private val purchaseInteractor: PurchaseInteractorImpl,
+    private val fullPurchaseInteractor: FullPurchaseInteractor,
 ) : PurchaseViewModel() {
 
     //TODO доделать isCompleted и убрать по красвоте let двойной

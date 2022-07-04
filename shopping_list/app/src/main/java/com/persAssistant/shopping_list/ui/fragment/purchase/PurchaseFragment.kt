@@ -12,11 +12,10 @@ import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
-    //TODO сделать спинер для категорий, и разобраться со units убрать жесткую привязку к полю
+    //TODO сделать спинер для категорий
 
     protected abstract fun createViewModel(): PurchaseViewModel
 
-    //    protected val viewModel: PurchaseViewModel by viewModels { viewModelFactory }
     private val binding: FragmentPurchase2Binding by viewBinding(FragmentPurchase2Binding::bind)
     protected lateinit var viewModel: PurchaseViewModel
 
@@ -27,12 +26,18 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
     }
 
     private val unitsSpinnerAdapter by lazy {
-        ArrayAdapter<String>(
+        ArrayAdapter(
             requireActivity(),
             android.R.layout.simple_list_item_1,
             resources.getStringArray(R.array.units)
         )
     }
+
+    private var categoriesSpinnerAdapter = ArrayAdapter(
+        requireActivity(),
+        android.R.layout.simple_list_item_1,
+        resources.getStringArray(R.array.units)
+    )
 
     override fun getToolbarForBackBehavior(): MaterialToolbar {
         return binding.fragmentPurchaseToolbar
@@ -47,11 +52,8 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
             fragmentPurchaseUnitText.apply {
                 setAdapter(unitsSpinnerAdapter)
-//                setText(unitsSpinnerAdapter.getItem(0),false)
-
-                setOnItemClickListener { _, _, position, _ ->
-                    unitsSpinnerAdapter.getItem(position).let { this.setText(it) }
-                }
+                if (viewModel.unit.value.isNullOrEmpty())
+                    setText(unitsSpinnerAdapter.getItem(0), false)
             }
         }
     }
@@ -59,7 +61,20 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
     override fun initListeners() {
         binding.apply {
             fragmentPurchaseCategoriesTil.setOnClickListener {
-                SelectionOfCategoryInDialog.show(requireActivity(), categoryClicker)
+                activity?.let { SelectionOfCategoryInDialog.show(it, categoryClicker) }
+            }
+
+            fragmentPurchaseUnitText.run {
+                setOnItemClickListener { _, _, position, _ ->
+                    unitsSpinnerAdapter.getItem(position).let { this.setText(it) }
+                }
+            }
+
+            fragmentPurchaseButtonSaveShoppingList.setOnClickListener {
+                viewModel.run {
+                    unit.value = fragmentPurchaseUnitText.text.toString()
+                    save()
+                }
             }
         }
     }
@@ -69,11 +84,10 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
             closeEvent.observe(viewLifecycleOwner) {
                 uiRouter.navigateBack()
             }
-        }
-    }
 
-    companion object {
-        const val KEY_SHOPPING_LIST_ID = "SHOPPING_LIST_ID"
-        const val KEY_PURCHASE_ID = "PURCHASE_ID"
+            unit.observe(viewLifecycleOwner) {
+                binding.fragmentPurchaseUnitText.setText(it)
+            }
+        }
     }
 }

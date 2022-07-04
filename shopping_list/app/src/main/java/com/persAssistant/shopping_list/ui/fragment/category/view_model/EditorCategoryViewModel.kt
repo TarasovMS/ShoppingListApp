@@ -1,13 +1,13 @@
 package com.persAssistant.shopping_list.ui.fragment.category.view_model
 
 import com.persAssistant.shopping_list.domain.entities.Category
-import com.persAssistant.shopping_list.domain.interactor_interfaces.CategoryInteractorInterface
+import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class EditorCategoryViewModel @Inject constructor(
-    val categoryInteractor: CategoryInteractorInterface,
+    val categoryInteractor: CategoryInteractor,
 ) : CategoryViewModel() {
 
     private var categoryId: Long = 0

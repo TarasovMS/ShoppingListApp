@@ -8,10 +8,10 @@ import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.databinding.RecyclerPurchaseBinding
 import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
-import com.persAssistant.shopping_list.ui.fragment.purchase.PurchaseFragment.Companion.KEY_PURCHASE_ID
-import com.persAssistant.shopping_list.ui.fragment.purchase.PurchaseFragment.Companion.KEY_SHOPPING_LIST_ID
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel.*
+import com.persAssistant.shopping_list.util.KEY_PURCHASE_ID
+import com.persAssistant.shopping_list.util.KEY_SHOPPING_LIST_ID
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import com.persAssistant.shopping_list.util.visible
 import java.lang.Exception

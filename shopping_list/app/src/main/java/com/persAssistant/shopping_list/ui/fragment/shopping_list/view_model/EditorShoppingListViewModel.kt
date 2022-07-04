@@ -1,12 +1,12 @@
 package com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model
 
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
-import com.persAssistant.shopping_list.domain.interactor_interfaces.ShoppingListInteractorInterface
+import com.persAssistant.shopping_list.domain.interactors.ShoppingListInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class EditorShoppingListViewModel(
-    private val shoppingListInteractor: ShoppingListInteractorInterface
+    private val shoppingListInteractor: ShoppingListInteractor
 ) : ShoppingListViewModel() {
 
     private var shoppingListId: Long = 0

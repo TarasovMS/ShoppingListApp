@@ -4,10 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.21481481481481482" />
+        <entry key="../../../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_list_item_1.xml" value="0.12563323201621074" />
         <entry key="../../../../Library/Android/sdk/platforms/android-31/data/res/layout/simple_spinner_dropdown_item.xml" value="0.25833333333333336" />
         <entry key="app/externaltoken/src/main/res/layout/divider.xml" value="0.23233695652173914" />
         <entry key="app/src/main/res/drawable/ic_ads_off.xml" value="0.13" />
         <entry key="app/src/main/res/drawable/ic_arrow_back_ios_new.xml" value="0.149" />
+        <entry key="app/src/main/res/drawable/ic_arrow_down.xml" value="0.168" />
         <entry key="app/src/main/res/drawable/ic_arrow_drop_down_24.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/ic_arrow_right.xml" value="0.104" />
         <entry key="app/src/main/res/drawable/ic_close.xml" value="0.1685185185185185" />
@@ -33,7 +35,7 @@
         <entry key="app/src/main/res/layout/fragment_more.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_pref.xml" value="0.1814814814814815" />
         <entry key="app/src/main/res/layout/fragment_purchase.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_purchase2.xml" value="0.11851851851851852" />
+        <entry key="app/src/main/res/layout/fragment_purchase2.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_shopping_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_info_category.xml" value="0.1897644927536232" />
         <entry key="app/src/main/res/layout/item_info_purchase.xml" value="0.375" />
