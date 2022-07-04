@@ -101,10 +101,10 @@
         <!--                app:exitAnim="@anim/slide_out_left"/>-->
         <!--    </activity>-->
 
-<!--        <argument-->
-<!--            android:id="@+id/listId"-->
-<!--            android:defaultValue=""-->
-<!--            app:argType="string" />-->
+        <argument
+            android:name="listId"
+            android:defaultValue="-1000L"
+            app:argType="long" />
 
     </fragment>
 

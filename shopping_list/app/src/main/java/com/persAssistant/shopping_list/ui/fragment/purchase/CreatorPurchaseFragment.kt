@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase
 
+import androidx.navigation.fragment.navArgs
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.CreatorPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
@@ -9,6 +10,8 @@ import javax.inject.Inject
 
 class CreatorPurchaseFragment: PurchaseFragment() {
 
+    val args: CreatorPurchaseFragmentArgs by navArgs()
+
     @Inject
     lateinit var purchaseViewModel: CreatorPurchaseViewModel
 
@@ -16,7 +19,8 @@ class CreatorPurchaseFragment: PurchaseFragment() {
         val listId = arguments?.getLong(KEY_SHOPPING_LIST_ID)
             ?: throw Exception(getString(R.string.error_id_in_creator_purchase_activity))
 
-        purchaseViewModel.init(listId)
+//        purchaseViewModel.init(listId)
+        purchaseViewModel.init(args.listId)
 
         return purchaseViewModel
     }

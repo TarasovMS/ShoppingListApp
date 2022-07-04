@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.data.repositories
 
 import androidx.lifecycle.LiveData
 import com.persAssistant.shopping_list.data.dao.entity.RoomCategory
-import com.persAssistant.shopping_list.domain.interactor_repositories.CategoryRepositoryInterface
+import com.persAssistant.shopping_list.domain.interactor_repositories.CategoryRepo
 import com.persAssistant.shopping_list.data.service.CategoryService
 import com.persAssistant.shopping_list.domain.entities.Category
 import io.reactivex.Completable
@@ -11,8 +11,9 @@ import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
 
-class CategoryRepository @Inject constructor(private val categoryService: CategoryService):
-    CategoryRepositoryInterface() {
+class CategoryRepoImpl @Inject constructor(
+    private val categoryService: CategoryService
+) : CategoryRepo {
 
     // сигнал об изменении в таблице
     override fun getChangeSignal(): LiveData<List<RoomCategory>> {
@@ -43,5 +44,4 @@ class CategoryRepository @Inject constructor(private val categoryService: Catego
     override fun delete(category: Category): Completable {
         return categoryService.delete(category)
     }
-
 }

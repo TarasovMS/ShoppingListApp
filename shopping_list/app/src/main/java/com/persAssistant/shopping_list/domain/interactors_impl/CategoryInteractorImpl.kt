@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import com.persAssistant.shopping_list.data.dao.entity.RoomCategory
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
-import com.persAssistant.shopping_list.domain.interactor_repositories.CategoryRepositoryInterface
+import com.persAssistant.shopping_list.domain.interactor_repositories.CategoryRepo
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -12,8 +12,8 @@ import java.util.*
 import javax.inject.Inject
 
 class CategoryInteractorImpl @Inject constructor(
-    private val categoryRepositoryInterface: CategoryRepositoryInterface
-) : CategoryInteractor() {
+    private val categoryRepositoryInterface: CategoryRepo
+) : CategoryInteractor {
 
     // сигнал об изменении в таблице
     override fun getChangeSignal(): LiveData<List<RoomCategory>> {

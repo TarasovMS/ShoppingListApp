@@ -14,7 +14,7 @@ import javax.inject.Inject
 class FullPurchaseInteractorImpl @Inject constructor(
     private val purchaseInteractorInterface: PurchaseInteractor,
     private val categoryInteractorInterface: CategoryInteractor
-) : FullPurchaseInteractor() {
+) : FullPurchaseInteractor {
 
     override fun getById(id: Long): Maybe<FullPurchase> {
         return purchaseInteractorInterface.getById(id)

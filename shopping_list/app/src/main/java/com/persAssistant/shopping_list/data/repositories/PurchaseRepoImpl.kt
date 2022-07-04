@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.data.repositories
 
 import androidx.lifecycle.LiveData
 import com.persAssistant.shopping_list.data.dao.entity.RoomPurchase
-import com.persAssistant.shopping_list.domain.interactor_repositories.PurchaseRepositoryInterface
+import com.persAssistant.shopping_list.domain.interactor_repositories.PurchaseRepo
 import com.persAssistant.shopping_list.data.service.PurchaseService
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import io.reactivex.Completable
@@ -10,7 +10,9 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
 
-class PurchaseRepository(private val purchaseService: PurchaseService): PurchaseRepositoryInterface() {
+class PurchaseRepoImpl(
+    private val purchaseService: PurchaseService
+) : PurchaseRepo {
 
     // сигнал об изменении в таблице
     override fun getChangeSignal(): LiveData<List<RoomPurchase>> {

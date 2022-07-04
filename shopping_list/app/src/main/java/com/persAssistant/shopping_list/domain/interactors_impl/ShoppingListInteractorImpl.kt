@@ -4,15 +4,15 @@ import androidx.lifecycle.LiveData
 import com.persAssistant.shopping_list.data.dao.entity.RoomShoppingList
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import com.persAssistant.shopping_list.domain.interactors.ShoppingListInteractor
-import com.persAssistant.shopping_list.domain.interactor_repositories.ShoppingListRepositoryInterface
+import com.persAssistant.shopping_list.domain.interactor_repositories.ShoppingListRepo
 import io.reactivex.Completable
 import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
 
 class ShoppingListInteractorImpl(
-    private val shoppingListRepositoryInterface: ShoppingListRepositoryInterface
-): ShoppingListInteractor() {
+    private val shoppingListRepositoryInterface: ShoppingListRepo
+) : ShoppingListInteractor {
 
     // сигнал об изменении в таблице
     override fun getChangeSignal(): LiveData<List<RoomShoppingList>> {

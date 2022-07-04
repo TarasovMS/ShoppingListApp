@@ -7,9 +7,9 @@ import java.util.*
 
 //TODO interface??
 
-abstract class FullPurchaseInteractor {
-    abstract fun getById(id: Long): Maybe<FullPurchase>
-    abstract fun getAllByListId(id: Long): Single<LinkedList<FullPurchase>>
-    abstract fun getAllByCategoryId(id: Long): Single<LinkedList<FullPurchase>>
-    abstract fun getAllCategory(id: Long): Single<ArrayList<String>>
+interface FullPurchaseInteractor {
+    fun getById(id: Long): Maybe<FullPurchase>
+    fun getAllByListId(id: Long): Single<LinkedList<FullPurchase>>
+    fun getAllByCategoryId(id: Long): Single<LinkedList<FullPurchase>>
+    fun getAllCategory(id: Long): Single<ArrayList<String>>
 }

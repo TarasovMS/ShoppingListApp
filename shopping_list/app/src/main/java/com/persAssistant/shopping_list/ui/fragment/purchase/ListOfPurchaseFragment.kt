@@ -18,6 +18,7 @@ import java.lang.Exception
 
 class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
 
+    //TODO перейти на Direction
     private val purchaseAdapter by lazy { PurchaseAdapter(purchaseClick) }
     private val binding: RecyclerPurchaseBinding by viewBinding(RecyclerPurchaseBinding::bind)
     private val viewModel: ListOfPurchaseViewModel by viewModels { viewModelFactory }
@@ -61,6 +62,10 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
             uiRouter.navigateById(R.id.createPurchase, Bundle().apply {
                 putLong(KEY_SHOPPING_LIST_ID, parentId)
             })
+
+//            uiRouter.navigateByDirection(ListOfPurchaseFragmentDirections.actionPurchaseCreatingList(
+//                listId = parentId
+//            ))
         }
     }
 

@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.domain.interactors
+package com.persAssistant.shopping_list.domain.interactor_repositories
 
 import androidx.lifecycle.LiveData
 import com.persAssistant.shopping_list.data.dao.entity.RoomCategory
@@ -8,7 +8,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
 
-interface CategoryInteractor{
+interface CategoryRepo {
     fun getChangeSignal(): LiveData<List<RoomCategory>>
     fun insert(category: Category): Completable
     fun getAll(): Single<LinkedList<Category>>
