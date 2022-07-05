@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class CreatorPurchaseFragment: PurchaseFragment() {
 
-    val args: CreatorPurchaseFragmentArgs by navArgs()
+//    private val args: CreatorPurchaseFragmentArgs by navArgs()
 
     @Inject
     lateinit var purchaseViewModel: CreatorPurchaseViewModel
@@ -19,8 +19,8 @@ class CreatorPurchaseFragment: PurchaseFragment() {
         val listId = arguments?.getLong(KEY_SHOPPING_LIST_ID)
             ?: throw Exception(getString(R.string.error_id_in_creator_purchase_activity))
 
-//        purchaseViewModel.init(listId)
-        purchaseViewModel.init(args.listId)
+        purchaseViewModel.init(listId)
+//        purchaseViewModel.init(args.listId)
 
         return purchaseViewModel
     }

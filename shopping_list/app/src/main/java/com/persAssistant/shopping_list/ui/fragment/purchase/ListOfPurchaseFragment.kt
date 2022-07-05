@@ -59,13 +59,18 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
 
     override fun initListeners() {
         binding.recyclerPurchaseBtnAdd.setOnClickListener {
+
+            // после добавление saмeAgrs не заходит в сосздание покупки
             uiRouter.navigateById(R.id.createPurchase, Bundle().apply {
                 putLong(KEY_SHOPPING_LIST_ID, parentId)
             })
 
-//            uiRouter.navigateByDirection(ListOfPurchaseFragmentDirections.actionPurchaseCreatingList(
-//                listId = parentId
-//            ))
+//            uiRouter.navigateByDirection(
+//                ListOfPurchaseFragmentDirections.actionPurchaseCreatingList(
+//                    listId = 0
+//                )
+//            )
+
         }
     }
 
