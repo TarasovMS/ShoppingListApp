@@ -15,7 +15,6 @@ class CreatorPurchaseViewModel @Inject constructor(
 
     // TODO передавать значения при инициализаци в quantity и unit
     // разобраться как сделать по красоте в save, убрав 3 let
-
     fun init(shoppingListId: Long) {
         categoryId.value?.let { initCategoryName(it) }
         listId.value = shoppingListId

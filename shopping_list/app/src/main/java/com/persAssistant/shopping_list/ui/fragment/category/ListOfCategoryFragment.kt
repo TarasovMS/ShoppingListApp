@@ -55,15 +55,23 @@ class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
         }
     }
 
-    private fun clickItemAdapter(category: Category){
-        uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
-            putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
-            putLong(KEY_PARENT_ID, category.id ?: DEFAULT_CATEGORIES_COUNT)
-            putBoolean(KEY_VISIBILITY_BUTTON, false)
-        })
+    private fun clickItemAdapter(category: Category) {
+//        uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
+//            putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
+//            putLong(KEY_PARENT_ID, category.id ?: DEFAULT_CATEGORIES_COUNT)
+//            putBoolean(KEY_VISIBILITY_BUTTON, false)
+//        })
+
+        uiRouter.navigateByDirection(
+            ListOfCategoryFragmentDirections.actionCategoryOpeningPurchase(
+                indexType = ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal,
+                parentId = category.id ?: DEFAULT_CATEGORIES_COUNT,
+                visibleButtonFab = false
+            )
+        )
     }
 
-    private fun editItemAdapter(category: Category){
+    private fun editItemAdapter(category: Category) {
         uiRouter.navigateById(R.id.editCategory, Bundle().apply {
             putLong(KEY_CATEGORY, category.id ?: DEFAULT_CATEGORIES_COUNT)
         })

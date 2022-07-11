@@ -1,7 +1,7 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase
 
-import android.os.Bundle
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.Purchase
@@ -10,23 +10,15 @@ import com.persAssistant.shopping_list.base.AppBaseFragment
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel.*
-import com.persAssistant.shopping_list.util.KEY_PURCHASE_ID
-import com.persAssistant.shopping_list.util.KEY_SHOPPING_LIST_ID
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import com.persAssistant.shopping_list.util.visible
-import java.lang.Exception
 
 class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
 
-    //TODO перейти на Direction
     private val purchaseAdapter by lazy { PurchaseAdapter(purchaseClick) }
     private val binding: RecyclerPurchaseBinding by viewBinding(RecyclerPurchaseBinding::bind)
     private val viewModel: ListOfPurchaseViewModel by viewModels { viewModelFactory }
-
-    private val parentId by lazy {
-        arguments?.getLong(KEY_PARENT_ID)
-            ?: throw Exception(getString(R.string.error_parentId_in_purchase_activity))
-    }
+    private val args: ListOfPurchaseFragmentArgs by navArgs()
 
     private val purchaseClick = object : OnPurchaseClickListener {
         override fun clickedPurchaseItem(purchase: Purchase) {}
@@ -45,37 +37,25 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
     }
 
     override fun initUi() {
+        val type = IdTypes.values()[args.indexType]
+        if (args.visibleButtonFab) binding.recyclerPurchaseBtnAdd.visible()
         binding.recyclerViewPurchase.adapter = purchaseAdapter
-
-        val idTypeIndex = arguments?.getInt(KEY_INDEX_TYPE)
-            ?: throw Exception(getString(R.string.error_idTypeIndex_in_purchase_activity))
-
-        val type = IdTypes.values()[idTypeIndex]
-        viewModel.init(this, parentId, type)
-
-        val buttonVisible = arguments?.getBoolean(KEY_VISIBILITY_BUTTON)
-        if (buttonVisible == true) binding.recyclerPurchaseBtnAdd.visible()
+        viewModel.init(this, args.parentId, type)
     }
 
     override fun initListeners() {
         binding.recyclerPurchaseBtnAdd.setOnClickListener {
-
-            // после добавление saмeAgrs не заходит в сосздание покупки
-            uiRouter.navigateById(R.id.createPurchase, Bundle().apply {
-                putLong(KEY_SHOPPING_LIST_ID, parentId)
-            })
-
-//            uiRouter.navigateByDirection(
-//                ListOfPurchaseFragmentDirections.actionPurchaseCreatingList(
-//                    listId = 0
-//                )
-//            )
-
+            uiRouter.navigateByDirection(
+                ListOfPurchaseFragmentDirections.actionPurchaseCreatingList(
+                    listId = args.parentId
+                )
+            )
         }
     }
 
     override fun initObservers() {
         viewModel.run {
+
             fullPurchaseList.observe(viewLifecycleOwner) {
                 purchaseAdapter.updateItems(it)
             }
@@ -87,8 +67,10 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
     }
 
     private fun editItemAdapter(purchase: Purchase) {
-        uiRouter.navigateById(R.id.editPurchase, Bundle().apply {
-            putLong(KEY_PURCHASE_ID, purchase.id ?: INVALID_ID)
-        })
+        uiRouter.navigateByDirection(
+            ListOfPurchaseFragmentDirections.actionPurchaseEditingList(
+                purchaseId = purchase.id ?: INVALID_ID
+            )
+        )
     }
 }

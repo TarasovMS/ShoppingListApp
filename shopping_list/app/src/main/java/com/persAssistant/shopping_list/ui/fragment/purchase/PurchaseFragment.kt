@@ -15,7 +15,6 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
     //TODO сделать спинер для категорий
 
     protected abstract fun createViewModel(): PurchaseViewModel
-
     private val binding: FragmentPurchase2Binding by viewBinding(FragmentPurchase2Binding::bind)
     protected lateinit var viewModel: PurchaseViewModel
 
@@ -26,18 +25,22 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
     }
 
     private val unitsSpinnerAdapter by lazy {
+        context?.let { context ->
+            ArrayAdapter(
+                context,
+                android.R.layout.simple_list_item_1,
+                resources.getStringArray(R.array.units)
+            )
+        }
+    }
+
+    private var categoriesSpinnerAdapter = context?.let { context ->
         ArrayAdapter(
-            requireActivity(),
+            context,
             android.R.layout.simple_list_item_1,
             resources.getStringArray(R.array.units)
         )
     }
-
-    private var categoriesSpinnerAdapter = ArrayAdapter(
-        requireActivity(),
-        android.R.layout.simple_list_item_1,
-        resources.getStringArray(R.array.units)
-    )
 
     override fun getToolbarForBackBehavior(): MaterialToolbar {
         return binding.fragmentPurchaseToolbar
@@ -53,7 +56,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
             fragmentPurchaseUnitText.apply {
                 setAdapter(unitsSpinnerAdapter)
                 if (viewModel.unit.value.isNullOrEmpty())
-                    setText(unitsSpinnerAdapter.getItem(0), false)
+                    setText(unitsSpinnerAdapter?.getItem(0), false)
             }
         }
     }
@@ -66,7 +69,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
             fragmentPurchaseUnitText.run {
                 setOnItemClickListener { _, _, position, _ ->
-                    unitsSpinnerAdapter.getItem(position).let { this.setText(it) }
+                    unitsSpinnerAdapter?.getItem(position).let { this.setText(it) }
                 }
             }
 
@@ -76,6 +79,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
                     save()
                 }
             }
+
         }
     }
 

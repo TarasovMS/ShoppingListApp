@@ -17,6 +17,7 @@
 
     </fragment>
 
+
     <fragment
         android:id="@+id/shoppingList"
         android:name="com.persAssistant.shopping_list.ui.fragment.shopping_list.ListOfShoppingListFragment"
@@ -26,17 +27,17 @@
         <action
             android:id="@+id/action_shoppingList_creating_list"
             app:destination="@id/createShoppingList" />
+
         <action
             android:id="@+id/action_shoppingList_editing_list"
             app:destination="@id/editShoppingList" />
+
         <action
             android:id="@+id/action_shoppingList_opening_purchase"
             app:destination="@id/purchaseList" />
-        <!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
-        <!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
-        <!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
-        <!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
+
     </fragment>
+
 
     <fragment
         android:id="@+id/createShoppingList"
@@ -58,14 +59,7 @@
         android:name="com.persAssistant.shopping_list.ui.fragment.shopping_list.EditorShoppingListFragment"
         android:label="shoppingList_edit"
         tools:layout="@layout/fragment_shopping_list">
-        <!--        <action-->
-        <!--                android:id="@+id/action_register_to_match"-->
-        <!--                app:destination="@id/match"-->
-        <!--                app:popEnterAnim="@anim/slide_in_left"-->
-        <!--                app:popExitAnim="@anim/slide_out_right"-->
-        <!--                app:enterAnim="@anim/slide_in_right"-->
-        <!--                app:exitAnim="@anim/slide_out_left"/>-->
-        <!--    </activity>-->
+
     </fragment>
 
     <fragment
@@ -74,17 +68,26 @@
         android:label="fragment_purchase"
         tools:layout="@layout/recycler_purchase">
 
+        <argument
+            android:name="index_type"
+            app:argType="int" />
+
+        <argument
+            android:name="parentId"
+            app:argType="long" />
+
+        <argument
+            android:name="visible_button_fab"
+            app:argType="boolean" />
+
         <action
             android:id="@+id/action_purchase_creating_list"
             app:destination="@id/createPurchase" />
+
         <action
             android:id="@+id/action_purchase_editing_list"
             app:destination="@id/editPurchase" />
-        <!--        app:destination="@id/user_profile"-->
-        <!--        app:enterAnim="@anim/slide_in_right"-->
-        <!--        app:exitAnim="@anim/slide_out_left"-->
-        <!--        app:popEnterAnim="@anim/slide_in_left"-->
-        <!--        app:popExitAnim="@anim/slide_out_right"-->
+
     </fragment>
 
     <fragment
@@ -92,19 +95,10 @@
         android:name="com.persAssistant.shopping_list.ui.fragment.purchase.CreatorPurchaseFragment"
         android:label="create_Purchase"
         tools:layout="@layout/fragment_purchase">
-        <!--        <action-->
-        <!--                android:id="@+id/action_register_to_match"-->
-        <!--                app:destination="@id/match"-->
-        <!--                app:popEnterAnim="@anim/slide_in_left"-->
-        <!--                app:popExitAnim="@anim/slide_out_right"-->
-        <!--                app:enterAnim="@anim/slide_in_right"-->
-        <!--                app:exitAnim="@anim/slide_out_left"/>-->
-        <!--    </activity>-->
 
-<!--        <argument-->
-<!--            android:name="listId"-->
-<!--            app:argType="long" />-->
-<!--            android:defaultValue="-1000L"-->
+        <argument
+            android:name="listId"
+            app:argType="long" />
 
     </fragment>
 
@@ -113,14 +107,11 @@
         android:name="com.persAssistant.shopping_list.ui.fragment.purchase.EditorPurchaseFragment"
         android:label="edit_Purchase"
         tools:layout="@layout/fragment_purchase">
-        <!--        <action-->
-        <!--                android:id="@+id/action_register_to_match"-->
-        <!--                app:destination="@id/match"-->
-        <!--                app:popEnterAnim="@anim/slide_in_left"-->
-        <!--                app:popExitAnim="@anim/slide_out_right"-->
-        <!--                app:enterAnim="@anim/slide_in_right"-->
-        <!--                app:exitAnim="@anim/slide_out_left"/>-->
-        <!--    </activity>-->
+
+        <argument
+            android:name="purchaseId"
+            app:argType="long" />
+
     </fragment>
 
     <fragment
@@ -128,19 +119,19 @@
         android:name="com.persAssistant.shopping_list.ui.fragment.category.ListOfCategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/recycler_category">
+
         <action
             android:id="@+id/action_creating_category"
             app:destination="@id/createCategory" />
+
         <action
             android:id="@+id/action_editing_category"
             app:destination="@id/editCategory" />
+
         <action
             android:id="@+id/action_category_opening_purchase"
             app:destination="@id/purchaseList" />
-        <!--        &lt;!&ndash;        app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;-->
-        <!--        &lt;!&ndash;        app:popExitAnim="@anim/slide_out_right"&ndash;&gt;-->
-        <!--        &lt;!&ndash;        app:enterAnim="@anim/slide_in_right"&ndash;&gt;-->
-        <!--        &lt;!&ndash;        app:exitAnim="@anim/slide_out_left"&ndash;&gt;-->
+
     </fragment>
 
     <fragment

@@ -18,7 +18,8 @@ class PricingRepositoryImpl(
         if (!connectIfNeeded)
             return null
 
-        return billingClient.queryPurchases(purchaseType).purchasesList
+//        return billingClient.queryPurchases(purchaseType).purchasesList
+        return listOf()
     }
 
     /**

@@ -55,15 +55,23 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
         }
     }
 
-    private fun clickItemAdapter(shoppingList: ShoppingList){
-        uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
-            putLong(KEY_PARENT_ID, shoppingList.id ?: INVALID_ID)
-            putBoolean(KEY_VISIBILITY_BUTTON, true)
-            putInt(KEY_INDEX_TYPE, SHOPPINGLIST.ordinal)
-        })
+    private fun clickItemAdapter(shoppingList: ShoppingList) {
+//        uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
+//            putInt(KEY_INDEX_TYPE, SHOPPINGLIST.ordinal)
+//            putLong(KEY_PARENT_ID, shoppingList.id ?: INVALID_ID)
+//            putBoolean(KEY_VISIBILITY_BUTTON, true)
+//        })
+
+        uiRouter.navigateByDirection(
+            ListOfShoppingListFragmentDirections.actionShoppingListOpeningPurchase(
+                indexType = SHOPPINGLIST.ordinal,
+                parentId = shoppingList.id ?: INVALID_ID,
+                visibleButtonFab = true
+            )
+        )
     }
 
-    private fun editItemAdapter(shoppingList: ShoppingList){
+    private fun editItemAdapter(shoppingList: ShoppingList) {
         uiRouter.navigateById(R.id.editShoppingList, Bundle().apply {
             putLong(SHOPPING_LIST_KEY, shoppingList.id ?: INVALID_ID)
         })
