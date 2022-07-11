@@ -64,7 +64,7 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
 
         uiRouter.navigateByDirection(
             ListOfShoppingListFragmentDirections.actionShoppingListOpeningPurchase(
-                indexType = SHOPPINGLIST.ordinal,
+                indexType = SHOPPINGLIST.ordinal.toLong(),
                 parentId = shoppingList.id ?: INVALID_ID,
                 visibleButtonFab = true
             )

@@ -64,7 +64,7 @@ class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
 
         uiRouter.navigateByDirection(
             ListOfCategoryFragmentDirections.actionCategoryOpeningPurchase(
-                indexType = ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal,
+                indexType = ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal.toLong(),
                 parentId = category.id ?: DEFAULT_CATEGORIES_COUNT,
                 visibleButtonFab = false
             )

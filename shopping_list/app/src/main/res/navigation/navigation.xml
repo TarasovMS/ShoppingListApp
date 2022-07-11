@@ -70,7 +70,7 @@
 
         <argument
             android:name="index_type"
-            app:argType="int" />
+            app:argType="long" />
 
         <argument
             android:name="parentId"

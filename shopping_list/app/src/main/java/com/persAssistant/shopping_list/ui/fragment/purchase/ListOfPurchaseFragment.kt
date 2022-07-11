@@ -37,7 +37,7 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
     }
 
     override fun initUi() {
-        val type = IdTypes.values()[args.indexType]
+        val type = IdTypes.values()[args.indexType.toInt()]
         if (args.visibleButtonFab) binding.recyclerPurchaseBtnAdd.visible()
         binding.recyclerViewPurchase.adapter = purchaseAdapter
         viewModel.init(this, args.parentId, type)
