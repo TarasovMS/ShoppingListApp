@@ -9,6 +9,7 @@ import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
+import kotlin.collections.ArrayList
 
 
 class FullPurchaseInteractorImpl @Inject constructor(
@@ -31,14 +32,19 @@ class FullPurchaseInteractorImpl @Inject constructor(
         return convertToFullPurchasesList(purchaseInteractorInterface.getAllByCategoryId(id))
     }
 
-    override fun getAllCategory(id: Long): Single<ArrayList<String>> {
-        TODO("Not yet implemented")
-    }
-
-    private fun convertToFullPurchase(purchase: Purchase): Maybe<FullPurchase> {
-        return categoryInteractorInterface
-            .getById(purchase.categoryId)
-            .map { FullPurchase(purchase, it) }
+    override fun getNameAllCategories(): Single<ArrayList<String>> {
+        return categoryInteractorInterface.getAll()
+            .toObservable()
+            .flatMapIterable { it }
+            .map { category ->
+                category.name
+            }
+            .toList()
+            .map {
+                val linkedList = ArrayList<String>()
+                linkedList.addAll(it)
+                linkedList
+            }
     }
 
     private fun convertToFullPurchasesList(single: Single<LinkedList<Purchase>>): Single<LinkedList<FullPurchase>> {
@@ -46,8 +52,7 @@ class FullPurchaseInteractorImpl @Inject constructor(
             .toObservable()
             .flatMapIterable { it }
             .flatMap { purchase ->
-                convertToFullPurchase(purchase)
-                    .toObservable()
+                convertToFullPurchase(purchase).toObservable()
             }
             .toList()
             .map {
@@ -56,4 +61,11 @@ class FullPurchaseInteractorImpl @Inject constructor(
                 linkedList
             }
     }
+
+    private fun convertToFullPurchase(purchase: Purchase): Maybe<FullPurchase> {
+        return categoryInteractorInterface
+            .getById(purchase.categoryId)
+            .map { FullPurchase(purchase, it) }
+    }
+
 }

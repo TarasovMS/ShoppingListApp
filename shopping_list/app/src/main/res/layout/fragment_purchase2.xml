@@ -168,8 +168,8 @@
                 android:hint="@string/select_categories"
                 android:imeOptions="actionNext"
                 android:inputType="none"
-                android:maxLines="1"
-                android:text="@={vmPurchase.categoryName}" />
+                android:maxLines="1" />
+<!--            android:text="@={vmPurchase.categoryName}"-->
 
         </com.google.android.material.textfield.TextInputLayout>
 

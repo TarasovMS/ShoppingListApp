@@ -1,6 +1,7 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 
 import com.persAssistant.shopping_list.domain.entities.Purchase
+import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors_impl.CategoryInteractorImpl
 import com.persAssistant.shopping_list.domain.interactors_impl.PurchaseInteractorImpl
 import com.persAssistant.shopping_list.util.QUANTITY_DEFAULT_ONE_STRING
@@ -11,7 +12,8 @@ import javax.inject.Inject
 class CreatorPurchaseViewModel @Inject constructor(
     val purchaseInteractor: PurchaseInteractorImpl,
     val categoryInteractor: CategoryInteractorImpl,
-) : PurchaseViewModel() {
+    override val fullPurchaseInteractor: FullPurchaseInteractor,
+) : PurchaseViewModel(fullPurchaseInteractor) {
 
     // TODO передавать значения при инициализаци в quantity и unit
     // разобраться как сделать по красоте в save, убрав 3 let

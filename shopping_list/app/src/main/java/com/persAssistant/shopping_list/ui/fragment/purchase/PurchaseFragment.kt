@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase
 
+import android.util.Log
 import android.widget.ArrayAdapter
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
@@ -9,10 +10,12 @@ import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.ui.fragment.purchase.SelectionOfCategoryInDialog.DialogButtonsClickedListener
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
 import com.persAssistant.shopping_list.util.delegate.viewBinding
+import java.util.ArrayList
 
 abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
-    //TODO сделать спинер для категорий
+    //TODO сделать спинер для категорий и переименоватаь лаяут надо кастомизировать спинер для
+    // категорий чтобы сохранялся и айди
 
     protected abstract fun createViewModel(): PurchaseViewModel
     private val binding: FragmentPurchase2Binding by viewBinding(FragmentPurchase2Binding::bind)
@@ -34,13 +37,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
         }
     }
 
-    private var categoriesSpinnerAdapter = context?.let { context ->
-        ArrayAdapter(
-            context,
-            android.R.layout.simple_list_item_1,
-            resources.getStringArray(R.array.units)
-        )
-    }
+    private var categoriesSpinnerAdapter: ArrayAdapter<String>? = null
 
     override fun getToolbarForBackBehavior(): MaterialToolbar {
         return binding.fragmentPurchaseToolbar
@@ -48,9 +45,11 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
 
     override fun initUi() {
         viewModel = createViewModel()
+        viewModel.getCategoriesNames()
 
         binding.run {
             vmPurchase = viewModel
+
             lifecycleOwner = this@PurchaseFragment
 
             fragmentPurchaseUnitText.apply {
@@ -79,7 +78,6 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
                     save()
                 }
             }
-
         }
     }
 
@@ -92,6 +90,25 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
             unit.observe(viewLifecycleOwner) {
                 binding.fragmentPurchaseUnitText.setText(it)
             }
+
+            categoriesNames.observe(viewLifecycleOwner) {
+                setAdapterForCategoriesNames(it)
+                Log.w("test"," purchaseFragment initObservers = $it")
+
+                binding.fragmentPurchaseCategoriesText.apply {
+                    setAdapter(categoriesSpinnerAdapter)
+                    Log.w("test"," purchaseFragment setAdapter = $it")
+
+//                    if (viewModel.unit.value.isNullOrEmpty())
+                        setText(categoriesSpinnerAdapter?.getItem(0), false)
+                }
+            }
+        }
+    }
+
+    private fun setAdapterForCategoriesNames(list: ArrayList<String>) {
+        categoriesSpinnerAdapter = context?.let { context ->
+            ArrayAdapter(context, android.R.layout.simple_list_item_1, list)
         }
     }
 }

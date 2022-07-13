@@ -6,6 +6,7 @@ import com.persAssistant.shopping_list.domain.interactors_impl.PurchaseInteracto
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.CreatorPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.EditorPurchaseViewModel
+import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
 import dagger.Module
 import dagger.Provides
 
@@ -15,8 +16,9 @@ class PurchaseViewModelModule {
     fun provideCreatorPurchaseViewModel(
         purchaseInteractor: PurchaseInteractorImpl,
         categoryInteractor: CategoryInteractorImpl,
+        fullPurchaseInteractor: FullPurchaseInteractorImpl
     ): CreatorPurchaseViewModel {
-        return CreatorPurchaseViewModel(purchaseInteractor, categoryInteractor)
+        return CreatorPurchaseViewModel(purchaseInteractor, categoryInteractor, fullPurchaseInteractor)
     }
 
     @Provides
@@ -34,4 +36,12 @@ class PurchaseViewModelModule {
     ): ListOfPurchaseViewModel {
         return ListOfPurchaseViewModel(purchaseInteractor, fullPurchaseInteractor)
     }
+
+    @Provides
+    fun providePurchaseViewModel(
+        fullPurchaseInteractor: FullPurchaseInteractorImpl
+    ): PurchaseViewModel {
+        return PurchaseViewModel(fullPurchaseInteractor)
+    }
+
 }

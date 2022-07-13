@@ -10,8 +10,8 @@ import javax.inject.Inject
 
 class EditorPurchaseViewModel @Inject constructor(
     private val purchaseInteractor: PurchaseInteractorImpl,
-    private val fullPurchaseInteractor: FullPurchaseInteractor,
-) : PurchaseViewModel() {
+    override val fullPurchaseInteractor: FullPurchaseInteractor,
+) : PurchaseViewModel(fullPurchaseInteractor) {
 
     //TODO доделать isCompleted и убрать по красвоте let двойной
     private var purchaseId: Long = 0
