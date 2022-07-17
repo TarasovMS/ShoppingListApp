@@ -15,22 +15,10 @@ class CreatorPurchaseViewModel @Inject constructor(
     override val fullPurchaseInteractor: FullPurchaseInteractor,
 ) : PurchaseViewModel(fullPurchaseInteractor) {
 
-    // TODO передавать значения при инициализаци в quantity и unit
     // разобраться как сделать по красоте в save, убрав 3 let
     fun init(shoppingListId: Long) {
-        categoryId.value?.let { initCategoryName(it) }
         listId.value = shoppingListId
         quantity.value = QUANTITY_DEFAULT_ONE_STRING
-    }
-
-    private fun initCategoryName(categoryId: Long) {
-        categoryInteractor.getById(categoryId)
-            .subscribeOn(Schedulers.single())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { categoryName.value = it.name },
-                {}
-            )
     }
 
     override fun save() {

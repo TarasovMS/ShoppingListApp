@@ -24,7 +24,6 @@ class EditorPurchaseViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    categoryName.value = it.category.name
                     name.value = it.purchase.name
                     price.value = it.purchase.price.toString()
                     categoryId.value = it.purchase.categoryId

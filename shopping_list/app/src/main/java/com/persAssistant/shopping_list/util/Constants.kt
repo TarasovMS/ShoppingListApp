@@ -7,9 +7,7 @@ const val ERROR = "error"
 const val DO_NOT_REPAINT_STATUS_BAR = 0
 const val QUANTITY_DEFAULT_ONE_STRING = "1"
 const val PRICE_DEFAULT = "0.00"
-const val KEY_SHOPPING_LIST_ID = "SHOPPING_LIST_ID"
-const val KEY_PURCHASE_ID = "PURCHASE_ID"
-
+const val ZERO_POSITION = 0
 
 // Currency
 const val RUSSIAN_CURRENCY = "₽"

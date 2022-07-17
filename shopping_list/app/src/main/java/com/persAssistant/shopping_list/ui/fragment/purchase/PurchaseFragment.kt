@@ -1,31 +1,20 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase
 
-import android.util.Log
 import android.widget.ArrayAdapter
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseFragment
-import com.persAssistant.shopping_list.databinding.FragmentPurchase2Binding
-import com.persAssistant.shopping_list.domain.entities.Category
-import com.persAssistant.shopping_list.ui.fragment.purchase.SelectionOfCategoryInDialog.DialogButtonsClickedListener
+import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
+import com.persAssistant.shopping_list.util.ZERO_POSITION
 import com.persAssistant.shopping_list.util.delegate.viewBinding
-import java.util.ArrayList
+import com.persAssistant.shopping_list.util.updateAdapter
 
-abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
-
-    //TODO сделать спинер для категорий и переименоватаь лаяут надо кастомизировать спинер для
-    // категорий чтобы сохранялся и айди
+abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
 
     protected abstract fun createViewModel(): PurchaseViewModel
-    private val binding: FragmentPurchase2Binding by viewBinding(FragmentPurchase2Binding::bind)
+    private val binding: FragmentPurchaseBinding by viewBinding(FragmentPurchaseBinding::bind)
     protected lateinit var viewModel: PurchaseViewModel
-
-    private val categoryClicker = object : DialogButtonsClickedListener {
-        override fun okClickListener(category: Category) {
-            viewModel.setCategory(category)
-        }
-    }
 
     private val unitsSpinnerAdapter by lazy {
         context?.let { context ->
@@ -37,7 +26,15 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
         }
     }
 
-    private var categoriesSpinnerAdapter: ArrayAdapter<String>? = null
+    private val categoriesSpinnerAdapter by lazy {
+        context?.let { context ->
+            CategoriesSpinnerAdapter(
+                context,
+                android.R.layout.simple_list_item_1,
+                mutableListOf()
+            )
+        }
+    }
 
     override fun getToolbarForBackBehavior(): MaterialToolbar {
         return binding.fragmentPurchaseToolbar
@@ -48,23 +45,22 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
         viewModel.getCategoriesNames()
 
         binding.run {
-            vmPurchase = viewModel
 
+            vmPurchase = viewModel
             lifecycleOwner = this@PurchaseFragment
 
             fragmentPurchaseUnitText.apply {
                 setAdapter(unitsSpinnerAdapter)
                 if (viewModel.unit.value.isNullOrEmpty())
-                    setText(unitsSpinnerAdapter?.getItem(0), false)
+                    setText(unitsSpinnerAdapter?.getItem(ZERO_POSITION), false)
             }
+
+            fragmentPurchaseCategoriesText.setAdapter(categoriesSpinnerAdapter)
         }
     }
 
     override fun initListeners() {
         binding.apply {
-            fragmentPurchaseCategoriesTil.setOnClickListener {
-                activity?.let { SelectionOfCategoryInDialog.show(it, categoryClicker) }
-            }
 
             fragmentPurchaseUnitText.run {
                 setOnItemClickListener { _, _, position, _ ->
@@ -78,11 +74,21 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
                     save()
                 }
             }
+
+            fragmentPurchaseCategoriesText.run {
+                setOnItemClickListener { _, _, position, _ ->
+                    categoriesSpinnerAdapter?.getItem(position)?.let {
+                        this.setText(it.name)
+                        viewModel.setCategory(it)
+                    }
+                }
+            }
         }
     }
 
     override fun initObservers() {
         viewModel.run {
+
             closeEvent.observe(viewLifecycleOwner) {
                 uiRouter.navigateBack()
             }
@@ -91,24 +97,9 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase2) {
                 binding.fragmentPurchaseUnitText.setText(it)
             }
 
-            categoriesNames.observe(viewLifecycleOwner) {
-                setAdapterForCategoriesNames(it)
-                Log.w("test"," purchaseFragment initObservers = $it")
-
-                binding.fragmentPurchaseCategoriesText.apply {
-                    setAdapter(categoriesSpinnerAdapter)
-                    Log.w("test"," purchaseFragment setAdapter = $it")
-
-//                    if (viewModel.unit.value.isNullOrEmpty())
-                        setText(categoriesSpinnerAdapter?.getItem(0), false)
-                }
+            allCategories.observe(viewLifecycleOwner) { list ->
+                categoriesSpinnerAdapter?.updateAdapter(list)
             }
-        }
-    }
-
-    private fun setAdapterForCategoriesNames(list: ArrayList<String>) {
-        categoriesSpinnerAdapter = context?.let { context ->
-            ArrayAdapter(context, android.R.layout.simple_list_item_1, list)
         }
     }
 }

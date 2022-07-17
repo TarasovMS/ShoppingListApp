@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.domain.interactors
 
+import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import io.reactivex.Maybe
 import io.reactivex.Single
@@ -13,6 +14,6 @@ interface FullPurchaseInteractor {
 
     fun getAllByCategoryId(id: Long): Single<LinkedList<FullPurchase>>
 
-    fun getNameAllCategories(): Single<ArrayList<String>>
+    fun getAllCategories(): Single<ArrayList<Category>>
 
 }

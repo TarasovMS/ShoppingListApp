@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.domain.interactors_impl
 
+import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
@@ -32,16 +33,14 @@ class FullPurchaseInteractorImpl @Inject constructor(
         return convertToFullPurchasesList(purchaseInteractorInterface.getAllByCategoryId(id))
     }
 
-    override fun getNameAllCategories(): Single<ArrayList<String>> {
+    override fun getAllCategories(): Single<ArrayList<Category>> {
         return categoryInteractorInterface.getAll()
             .toObservable()
             .flatMapIterable { it }
-            .map { category ->
-                category.name
-            }
+            .map { it }
             .toList()
             .map {
-                val linkedList = ArrayList<String>()
+                val linkedList = ArrayList<Category>()
                 linkedList.addAll(it)
                 linkedList
             }

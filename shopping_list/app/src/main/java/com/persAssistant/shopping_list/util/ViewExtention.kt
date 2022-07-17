@@ -2,6 +2,7 @@ package com.persAssistant.shopping_list.util
 
 import android.view.View
 import android.view.WindowManager
+import android.widget.ArrayAdapter
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -11,6 +12,12 @@ import com.google.android.material.textfield.TextInputLayout
 
 fun TextInputLayout.clearError() {
     error = null
+}
+
+fun <T> ArrayAdapter<T>.updateAdapter(list: List<T>) {
+    clear()
+    addAll(list)
+    notifyDataSetChanged()
 }
 
 fun View.hideKeyboard() {
