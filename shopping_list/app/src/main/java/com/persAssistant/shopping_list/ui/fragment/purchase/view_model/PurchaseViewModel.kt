@@ -22,6 +22,7 @@ open class PurchaseViewModel @Inject constructor(
     var price = MutableLiveData<String>()
     var categoryId = MutableLiveData(DEFAULT_CATEGORIES_COUNT)
     var listId = MutableLiveData(INVALID_ID)
+    var selectedCategory = MutableLiveData<Category>()
     var quantity = MutableLiveData<String>()
     var unit = MutableLiveData<String>()
     var isCompleted = MutableLiveData(IsCompletedState.ACTIVE.ordinal)
@@ -31,6 +32,7 @@ open class PurchaseViewModel @Inject constructor(
 
     fun setCategory(category: Category) {
         categoryId.value = category.id ?: DEFAULT_CATEGORIES_COUNT
+        selectedCategory.value = category
     }
 
     fun setPriceDefault() {

@@ -98,7 +98,17 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
             }
 
             allCategories.observe(viewLifecycleOwner) { list ->
-                categoriesSpinnerAdapter?.updateAdapter(list)
+                categoriesSpinnerAdapter?.run {
+                    updateAdapter(list)
+
+                    if (categoriesSpinnerAdapter?.isEmpty == false) selectedCategory.value?.let { selectedCategory ->
+                        val position = this.getPositionItem(selectedCategory)
+
+                        this.getItem(position).let {
+                            binding.fragmentPurchaseCategoriesText.setText(it.name, false)
+                        }
+                    }
+                }
             }
         }
     }
