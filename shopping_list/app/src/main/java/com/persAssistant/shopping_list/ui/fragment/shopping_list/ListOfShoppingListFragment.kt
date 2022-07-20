@@ -14,8 +14,8 @@ import com.persAssistant.shopping_list.util.delegate.viewBinding
 
 class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_list) {
 
+    private val binding by viewBinding(RecyclerShoppingListBinding::bind)
     private val shoppingListAdapter by lazy { ShoppingListAdapter(shoppingListClick) }
-    private val binding: RecyclerShoppingListBinding by viewBinding(RecyclerShoppingListBinding::bind)
     private val viewModel: ListOfShoppingListViewModel by viewModels { viewModelFactory }
 
     private val shoppingListClick = object : OnShoppingListClickListener {
@@ -31,10 +31,10 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
             editItemAdapter(shoppingList)
         }
     }
-
+//TODO пересттали работать ресайклы после мержа
     override fun initUi() {
         viewModel.init(this@ListOfShoppingListFragment)
-        binding.recyclerViewShoppingList.adapter = shoppingListAdapter
+//        binding.recyclerViewShoppingList.adapter = shoppingListAdapter
     }
 
     override fun initListeners() {

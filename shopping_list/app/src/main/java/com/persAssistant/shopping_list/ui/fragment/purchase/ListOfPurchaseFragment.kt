@@ -16,7 +16,7 @@ import com.persAssistant.shopping_list.util.visible
 class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
 
     private val purchaseAdapter by lazy { PurchaseAdapter(purchaseClick) }
-    private val binding: RecyclerPurchaseBinding by viewBinding(RecyclerPurchaseBinding::bind)
+    private val binding by viewBinding(RecyclerPurchaseBinding::bind)
     private val viewModel: ListOfPurchaseViewModel by viewModels { viewModelFactory }
     private val args: ListOfPurchaseFragmentArgs by navArgs()
 
