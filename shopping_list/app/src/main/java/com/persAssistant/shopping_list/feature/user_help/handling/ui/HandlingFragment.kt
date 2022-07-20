@@ -16,7 +16,8 @@ import androidx.annotation.ColorRes
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.base.*
-import com.persAssistant.shopping_list.base.ProgressState.FINISHED
+import com.persAssistant.shopping_list.base.AppBaseViewModel.ProgressState.FINISHED
+import com.persAssistant.shopping_list.base.AppBaseViewModel.ProgressState.LOADING
 import com.persAssistant.shopping_list.error.ViewError
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.*
@@ -32,7 +33,7 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
     private val startForResult by lazy {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
-        ) { updateProgressEvent(FINISHED) }
+        ) { viewModel.updateProgressEvent(FINISHED) }
     }
 
     @ColorRes
@@ -48,16 +49,17 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
     }
 
     override fun initObservers() {
-        progressEvent.observe(viewLifecycleOwner) { event ->
-            event.getEventProgress { progressState ->
-                binding.run {
-                    fragmentHandlingSendButton.isEnabled = progressState.isFinished()
-                    fragmentHandlingSendAction.isEnabled = progressState.isFinished()
+        viewModel.run {
+
+            progressEvent.observe(viewLifecycleOwner) { event ->
+                event.getEventProgress { progressState ->
+                    binding.run {
+                        fragmentHandlingSendButton.isEnabled = progressState.isFinished()
+                        fragmentHandlingSendAction.isEnabled = progressState.isFinished()
+                    }
                 }
             }
-        }
 
-        viewModel.run {
             isActionEnabled.observe(viewLifecycleOwner) { allow ->
                 if (allow) sendEmail()
             }
@@ -116,7 +118,7 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
     }
 
     private fun sendEmail() {
-        updateProgressEvent(ProgressState.LOADING)
+        viewModel.updateProgressEvent(LOADING)
 
         startForResult.launch(
             Intent.createChooser(

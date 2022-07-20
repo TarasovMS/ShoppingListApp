@@ -2,7 +2,6 @@ package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.persAssistant.shopping_list.base.AppBaseViewModel
-import com.persAssistant.shopping_list.base.IsCompletedState
 import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.Category
