@@ -31,7 +31,7 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
             editItemAdapter(shoppingList)
         }
     }
-//TODO пересттали работать ресайклы после мержа
+//TODO перестали работать ресайклы после мержа в покупках в категориях и тут
     override fun initUi() {
         viewModel.init(this@ListOfShoppingListFragment)
 //        binding.recyclerViewShoppingList.adapter = shoppingListAdapter
