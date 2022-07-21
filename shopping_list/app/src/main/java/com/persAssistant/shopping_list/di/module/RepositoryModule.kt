@@ -1,8 +1,8 @@
 package com.persAssistant.shopping_list.di.module
 
-import com.persAssistant.shopping_list.data.repositories.CategoryRepository
-import com.persAssistant.shopping_list.data.repositories.PurchaseRepository
-import com.persAssistant.shopping_list.data.repositories.ShoppingListRepository
+import com.persAssistant.shopping_list.data.repositories.CategoryRepoImpl
+import com.persAssistant.shopping_list.data.repositories.PurchaseRepoImpl
+import com.persAssistant.shopping_list.data.repositories.ShoppingListRepoImpl
 import com.persAssistant.shopping_list.data.service.CategoryService
 import com.persAssistant.shopping_list.data.service.PurchaseService
 import com.persAssistant.shopping_list.data.service.ShoppingListService
@@ -14,19 +14,19 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Provides
     @Singleton
-    fun provideCategoryRepository(categoryService: CategoryService): CategoryRepository {
-        return CategoryRepository(categoryService)
+    fun provideCategoryRepository(categoryService: CategoryService): CategoryRepoImpl {
+        return CategoryRepoImpl(categoryService)
     }
 
     @Provides
     @Singleton
-    fun providePurchaseRepository(purchaseService: PurchaseService): PurchaseRepository {
-        return PurchaseRepository(purchaseService)
+    fun providePurchaseRepository(purchaseService: PurchaseService): PurchaseRepoImpl {
+        return PurchaseRepoImpl(purchaseService)
     }
 
     @Provides
     @Singleton
-    fun provideShoppingListRepository(shoppingListService: ShoppingListService): ShoppingListRepository {
-        return ShoppingListRepository(shoppingListService)
+    fun provideShoppingListRepository(shoppingListService: ShoppingListService): ShoppingListRepoImpl {
+        return ShoppingListRepoImpl(shoppingListService)
     }
 }

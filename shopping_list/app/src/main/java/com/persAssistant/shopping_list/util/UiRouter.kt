@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.navOptions
+import com.persAssistant.shopping_list.R
 import javax.inject.Inject
 
 /**
@@ -30,10 +31,9 @@ class UiRouter @Inject constructor(val navController: NavController) {
         navController.navigateSafeWithOutNavOptions(direction)
     }
 
-//    fun navigateToNoInternetFragment() {
-//        navController.navigateSafe(R.id.noInternetFragment)
-//    }
-
+    fun navigateToNoInternetFragment() {
+        navController.navigateSafe(R.id.connectionUnavailableFragment)
+    }
 
     fun navigateBack() {
         navController.popBackStack()

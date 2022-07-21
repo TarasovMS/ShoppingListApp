@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.persAssistant.shopping_list">
 
+    <uses-permission android:name="com.android.vending.BILLING" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".ui.App"
         android:allowBackup="true"
@@ -10,13 +15,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Shopping_list">
+
         <activity android:name=".ui.activity.MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <meta-data
+            android:name="io.sentry.dsn"
+            android:value="https://5a457b2f51f34a8681b3ab665e46894c@o1168479.ingest.sentry.io/6260469" />
+
     </application>
 
 </manifest>

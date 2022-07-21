@@ -27,3 +27,9 @@ class Event<out T>(private val content: T) {
 fun <T> T.asEvent(): Event<T> {
     return Event<T>(this)
 }
+
+fun <T> Event<T>.getEventProgress(payload: (T) -> Unit) {
+    getContentIfNotHandled()?.let {
+        payload.invoke(it)
+    }
+}

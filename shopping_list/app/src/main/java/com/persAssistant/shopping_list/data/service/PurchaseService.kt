@@ -10,7 +10,11 @@ import io.reactivex.Single
 import java.lang.Exception
 import java.util.*
 
-class PurchaseService(private val purchaseRoomDao: PurchaseRoomDao){
+class PurchaseService(
+    private val purchaseRoomDao: PurchaseRoomDao
+) {
+
+    //TODO получть сттроку из string
 
     // сигнал об изменении в таблице
     fun getChangeSignal(): LiveData<List<RoomPurchase>> {
@@ -19,34 +23,23 @@ class PurchaseService(private val purchaseRoomDao: PurchaseRoomDao){
 
     // добавления записи в таблицу
     fun insert(purchase: Purchase): Completable {
-        val roomPurchase = RoomPurchase(
-            id = purchase.id,
-            name = purchase.name,
-            categoryId = purchase.categoryId,
-            listId = purchase.listId,
-            price = purchase.price,
-            isCompleted = purchase.isCompleted)
-
         return Completable.fromAction {
-            val result = purchaseRoomDao.insert(roomPurchase)
-            if (result != -1L)
-                purchase.id = result
-            else
-                throw Exception("Failed to execute insert")
+            val result = purchaseRoomDao.insert(convertInRoomPurchase(purchase))
+            if (result == -1L) throw Exception("Failed to execute insert")
+            purchase.id = result
         }
     }
 
     //запрос одного списка по айди
     fun getById(id: Long): Maybe<Purchase> {
         return purchaseRoomDao.getById(id)
-            .map {
-                Purchase(it.id, it.name, it.categoryId, it.listId, it.price, it.isCompleted)}
+            .map { convertInPurchase(it) }
     }
 
-    private fun processDaoPurchases(single: Single<List<RoomPurchase>>): Single<LinkedList<Purchase>>{
+    private fun processDaoPurchases(single: Single<List<RoomPurchase>>): Single<LinkedList<Purchase>> {
         return single.toObservable()
-            .flatMapIterable {/*list*/ it}
-            .map {Purchase(it.id, it.name, it.categoryId, it.listId, it.price, it.isCompleted)}
+            .flatMapIterable {/*list*/ it }
+            .map { convertInPurchase(it) }
             .toList()
             .map {
                 val linkedList = LinkedList<Purchase>()
@@ -72,30 +65,41 @@ class PurchaseService(private val purchaseRoomDao: PurchaseRoomDao){
 
     //обновление списка
     fun update(purchase: Purchase): Completable {
-        val roomPurchase = RoomPurchase(
-            id = purchase.id,
-            name = purchase.name,
-            categoryId = purchase.categoryId,
-            listId = purchase.listId,
-            price = purchase.price,
-            isCompleted = purchase.isCompleted)
         return Completable.fromAction {
-            purchaseRoomDao.update(roomPurchase)
+            purchaseRoomDao.update(convertInRoomPurchase(purchase))
         }
     }
 
     //удаление списка
     fun delete(purchase: Purchase): Completable {
-        val roomPurchase = RoomPurchase(
-            id = purchase.id,
-            name = purchase.name,
-            categoryId = purchase.categoryId,
-            listId = purchase.listId,
-            price = purchase.price,
-            isCompleted = purchase.isCompleted)
         return Completable.fromAction {
-            purchaseRoomDao.delete(roomPurchase)
+            purchaseRoomDao.delete(convertInRoomPurchase(purchase))
         }
     }
 
+    private fun convertInPurchase(value: RoomPurchase): Purchase {
+        return Purchase(
+            id = value.id,
+            name = value.name,
+            categoryId = value.categoryId,
+            listId = value.listId,
+            price = value.price,
+            quantity = value.quantity,
+            unit = value.unit,
+            isCompleted = value.isCompleted,
+        )
+    }
+
+    private fun convertInRoomPurchase(value: Purchase): RoomPurchase {
+        return RoomPurchase(
+            id = value.id,
+            name = value.name,
+            categoryId = value.categoryId,
+            listId = value.listId,
+            price = value.price,
+            quantity = value.quantity,
+            unit = value.unit,
+            isCompleted = value.isCompleted,
+        )
+    }
 }

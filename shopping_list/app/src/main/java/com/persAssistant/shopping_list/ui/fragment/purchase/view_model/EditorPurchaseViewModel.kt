@@ -1,18 +1,21 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 
+import android.util.Log
 import com.persAssistant.shopping_list.data.database.DbStruct
 import com.persAssistant.shopping_list.domain.entities.Purchase
-import com.persAssistant.shopping_list.domain.interactor_interfaces.FullPurchaseInteractorInterface
-import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
+import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
+import com.persAssistant.shopping_list.domain.interactors_impl.PurchaseInteractorImpl
+import com.persAssistant.shopping_list.util.ERROR
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class EditorPurchaseViewModel @Inject constructor(
-    private val purchaseInteractor: PurchaseInteractor,
-    private val fullPurchaseInteractor: FullPurchaseInteractorInterface
-) : PurchaseViewModel() {
+    private val purchaseInteractor: PurchaseInteractorImpl,
+    override val fullPurchaseInteractor: FullPurchaseInteractor,
+) : PurchaseViewModel(fullPurchaseInteractor) {
 
+    //TODO доделать isCompleted
     private var purchaseId: Long = 0
 
     fun init(id: Long) {
@@ -23,37 +26,52 @@ class EditorPurchaseViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 {
-                    categoryName.value = it.category.name
                     name.value = it.purchase.name
                     price.value = it.purchase.price.toString()
-                    categoryId = it.purchase.categoryId
-                    listId = it.purchase.listId
+                    categoryId.value = it.purchase.categoryId
+                    listId.value = it.purchase.listId
+                    unit.value = it.purchase.unit
+                    selectedCategory.value = it.category
+                    quantity.value = it.purchase.quantity
+                    isCompleted.value = it.purchase.isCompleted
                 },
                 {}
             )
     }
 
     override fun save() {
+        if (listId.value != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
+            if (price.value.isNullOrEmpty()) setPriceDefault()
 
-        if (listId != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
+            categoryId.value?.let { categoryId ->
+                listId.value?.let { listId ->
+                    isCompleted.value?.let { isCompleted ->
+                        val purchase = Purchase(
+                            id = purchaseId,
+                            name = name.value.orEmpty(),
+                            categoryId = categoryId,
+                            listId = listId,
+                            price = price.value?.toDouble(),
+                            unit = unit.value,
+                            quantity = quantity.value,
+                            isCompleted = isCompleted,
+                        )
 
-            if (price.value == null) setPriceDefault()
+                        purchaseInteractor.update(purchase)
+                            .subscribeOn(Schedulers.single())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                { closeEvent.value = Unit },
+                                {}
+                            )
 
-            val purchase = Purchase(
-                id = purchaseId,
-                name = name.value.orEmpty(),
-                categoryId = categoryId,
-                listId = listId,
-                price = price.value?.toDouble(),
-                isCompleted = 0
-            )
-            purchaseInteractor.update(purchase)
-                .subscribeOn(Schedulers.single())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    { closeEvent.value = Unit },
-                    {}
-                )
+                        return
+                    }
+                }
+            }
+
+            // если отображается эта ошибка значит пустой какое то поле
+            Log.e(ERROR, " error in save EditorPurchaseViewModel")
         }
     }
 }

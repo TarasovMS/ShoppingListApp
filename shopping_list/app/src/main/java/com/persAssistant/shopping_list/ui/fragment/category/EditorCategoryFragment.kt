@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.ui.fragment.category
 
+import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.ui.fragment.category.view_model.CategoryViewModel
 import com.persAssistant.shopping_list.ui.fragment.category.view_model.EditorCategoryViewModel
 import java.lang.Exception
@@ -11,9 +12,8 @@ class EditorCategoryFragment : CategoryFragment() {
     lateinit var categoryInteract: EditorCategoryViewModel
 
     override fun createViewModel(): CategoryViewModel {
-        val id = arguments
-            ?.getLong(KEY_CATEGORY)
-            ?: throw Exception("Ошибка в EditorCategoryActivity.getIntent отсутствует Id")
+        val id = arguments?.getLong(KEY_CATEGORY)
+            ?: throw Exception(getString(R.string.error_id_in_editor_category_activity))
 
         categoryInteract.init(id)
 

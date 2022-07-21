@@ -1,17 +1,18 @@
 package com.persAssistant.shopping_list.ui.fragment.category
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.persAssistant.shopping_list.R
+import com.persAssistant.shopping_list.databinding.ItemInfoCategoryBinding
 import com.persAssistant.shopping_list.domain.entities.Category
 import java.util.*
 
-class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListener) :
-    RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
+class CategoryAdapter(
+    private val onCategoryClickListener: OnCategoryClickListener,
+) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     private var items: LinkedList<Category> = LinkedList<Category>()
 
@@ -19,25 +20,28 @@ class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListen
         return items.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         val categoryRecycleView = items[position]
+
         holder.apply {
             name.text = categoryRecycleView.name
             bindView(categoryRecycleView, onCategoryClickListener)
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.recycler_info_category, parent, false)
-
-        return ViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        return CategoryViewHolder(
+            ItemInfoCategoryBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.TV_name_recycler_category)
-        val menu: TextView = view.findViewById(R.id.TV_category_menu)
+    class CategoryViewHolder(
+        val binding: ItemInfoCategoryBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        val name: TextView = binding.itemRecyclerInfoCategoryNameTv
+        val menu: TextView = binding.itemRecyclerInfoCategoryMenuTv
 
         fun bindView(category: Category, onCategoryClickListener: OnCategoryClickListener) {
 
@@ -46,26 +50,26 @@ class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListen
             }
 
             menu.setOnClickListener {
-                // Creating a popup menu
-                val popup = PopupMenu(it.context, menu)
-                // Inflating menu from xml resource
-                popup.inflate(R.menu.options_menu)
-                // Adding click listener
-                popup.setOnMenuItemClickListener { item ->
-                    when (item.itemId) {
+                PopupMenu(it.context, menu).apply {
+                    inflate(R.menu.options_menu)
 
-                        R.id.menu_delete -> {
-                            onCategoryClickListener.deleteItem(category)
+                    setOnMenuItemClickListener { item ->
+                        when (item.itemId) {
+
+                            R.id.menu_delete -> {
+                                onCategoryClickListener.deleteItem(category)
+                            }
+
+                            R.id.menu_edit -> {
+                                onCategoryClickListener.editItem(category)
+                            }
                         }
 
-                        R.id.menu_edit -> {
-                            onCategoryClickListener.editItem(category)
-                        }
+                        false
                     }
-                    false
+
+                    show()
                 }
-                // Displaying the popup
-                popup.show()
             }
         }
     }
@@ -81,10 +85,3 @@ class CategoryAdapter(private val onCategoryClickListener: OnCategoryClickListen
         notifyDataSetChanged()
     }
 }
-
-
-
-
-
-
-

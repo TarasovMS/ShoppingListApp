@@ -1,19 +1,20 @@
 package com.persAssistant.shopping_list.ui.fragment.shopping_list
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.persAssistant.shopping_list.R
+import com.persAssistant.shopping_list.databinding.ItemInfoShoppingListBinding
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import com.persAssistant.shopping_list.util.DATE_FORMAT
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingListClickListener) :
-    RecyclerView.Adapter<ShoppingListAdapter.ViewHolder>() {
+class ShoppingListAdapter(
+    private val onShoppingListClickListener: OnShoppingListClickListener,
+) : RecyclerView.Adapter<ShoppingListAdapter.ShoppingListViewHolder>() {
 
     private var items: LinkedList<ShoppingList> = LinkedList()
 
@@ -21,7 +22,7 @@ class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingLis
         return items.size
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ShoppingListViewHolder, position: Int) {
         val shoppingListRecycleView = items[position]
         holder.apply {
             name.text = shoppingListRecycleView.name
@@ -30,32 +31,33 @@ class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingLis
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.recycler_info_shopping_list, parent, false)
-
-        return ViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShoppingListViewHolder {
+        return ShoppingListViewHolder(
+            ItemInfoShoppingListBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
+        )
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val name: TextView = view.findViewById(R.id.TV_name_recycler_shoppingList)
-        val date: TextView = view.findViewById(R.id.TV_date_recycler_shoppingList)
-        val menu: TextView = view.findViewById(R.id.TV_list_menu_purchase)
+    class ShoppingListViewHolder(
+        val binding: ItemInfoShoppingListBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        val name: TextView = binding.itemRecyclerInfoShoppingListNameTv
+        val date: TextView = binding.itemRecyclerInfoShoppingListDateTv
+        val menu: TextView = binding.itemRecyclerInfoShoppingListMenuTv
 
         fun bindView(
             shoppingList: ShoppingList,
             onShoppingListClickListener: OnShoppingListClickListener
         ) {
             name.setOnClickListener {
-                onShoppingListClickListener.clickedShoppingListItem(shoppingList)
+                onShoppingListClickListener.clickItem(shoppingList)
             }
 
             menu.setOnClickListener {
-                // Creating a popup menu
                 val popup = PopupMenu(it.context, menu)
-                // Inflating menu from xml resource
                 popup.inflate(R.menu.options_menu)
-                // Adding click listener
+
                 popup.setOnMenuItemClickListener { item ->
                     when (item.itemId) {
                         R.id.menu_delete -> {
@@ -66,9 +68,10 @@ class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingLis
                             onShoppingListClickListener.editItem(shoppingList)
                         }
                     }
+
                     false
                 }
-                // Displaying the popup
+
                 popup.show()
             }
         }
@@ -85,10 +88,3 @@ class ShoppingListAdapter(private val onShoppingListClickListener: OnShoppingLis
         notifyDataSetChanged()
     }
 }
-
-
-
-
-
-
-

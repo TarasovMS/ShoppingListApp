@@ -3,11 +3,8 @@ package com.persAssistant.shopping_list.feature.user_help.handling.viewmodel
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.persAssistant.shopping_list.base.AppBaseViewModel
-import com.persAssistant.shopping_list.base.handleFailure
-import com.persAssistant.shopping_list.base.updateProgress
 import com.persAssistant.shopping_list.error.Failure
 import com.persAssistant.shopping_list.feature.user_help.handling.model.Handling
-import com.persAssistant.shopping_list.feature.user_help.handling.ui.HandlingView
 import com.persAssistant.shopping_list.feature.user_help.handling.usecase.HandlingUseCase
 import javax.inject.Inject
 
@@ -16,11 +13,11 @@ class HandlingViewModel @Inject constructor(
 ) : AppBaseViewModel() {
 
     enum class FieldValidation {
-        NAME,
+        TITLE,
         MESSAGE,
         ALL_FIELDS;
 
-        fun isName() = this == NAME
+        fun isTitle() = this == TITLE
         fun isMessage() = this == MESSAGE
         fun isAllFields() = this == ALL_FIELDS
     }
@@ -28,37 +25,42 @@ class HandlingViewModel @Inject constructor(
     val isActionEnabled = MutableLiveData(false)
     val handling: MutableLiveData<Handling> = MutableLiveData()
     val errorMessage: MutableLiveData<Failure> = MutableLiveData()
-    val errorName: MutableLiveData<Failure> = MutableLiveData()
+    val errorTitle: MutableLiveData<Failure> = MutableLiveData()
 
-    //TODO уточнить надо ли
-    fun validateData(name: String, message: String) {
-        updateProgress(true)
-        isActionEnabled.postValue(name.isNotBlank() && message.isNotBlank())
-        validateName(name)
+    fun validateInputs(
+        field: FieldValidation?,
+        title: String,
+        message: String
+    ) {
+        when (field) {
+            FieldValidation.TITLE -> validateTitle(title = title)
+            FieldValidation.MESSAGE -> validateMessage(message = message)
+            else -> validateData(title = title, message = message)
+        }
+    }
+
+    private fun validateData(title: String, message: String) {
+        isActionEnabled.postValue(title.isNotBlank() && message.isNotBlank())
+        validateTitle(title)
         validateMessage(message)
     }
 
-    fun validateName(name: String) {
-        updateProgress(true)
-
-        useCase.validateName(name)
+    private fun validateTitle(title: String) {
+        useCase.validateName(title)
             .either(
                 functionError = {
                     handleFailure(it)
-                    errorName.postValue(it)
+                    errorTitle.postValue(it)
                     isActionEnabled.postValue(false)
                 },
 
                 functionSuccess = {
-                    Log.d("validateName", it)
-//                    isActionEnabled.postValue(true)
+                    Log.d("validateTitleSuccess", it)
                 }
             )
     }
 
-    fun validateMessage(message: String) {
-        updateProgress(true)
-
+    private fun validateMessage(message: String) {
         useCase.validateMessage(message)
             .either(
                 functionError = {
@@ -68,14 +70,8 @@ class HandlingViewModel @Inject constructor(
                 },
 
                 functionSuccess = {
-                    Log.d("validateMessage", it)
-//                    isActionEnabled.postValue(true)
+                    Log.d("validateMessageSuccess", it)
                 }
             )
-    }
-
-    private fun saveHandlingSuccess(data: Handling) {
-        handling.postValue(data)
-        updateProgress(false)
     }
 }

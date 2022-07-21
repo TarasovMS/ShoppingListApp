@@ -5,10 +5,18 @@
         android:title="@string/shopping_list"
         android:icon="@drawable/ic_list"
         />
+
     <item
         android:id="@+id/categoryList"
         android:enabled="true"
         android:icon="@drawable/ic_list"
         android:title="@string/categories"
+        />
+
+    <item
+        android:id="@+id/prefFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_list"
+        android:title="@string/more"
         />
 </menu>

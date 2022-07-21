@@ -5,6 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.data.dao.CategoryRoomDao
 import com.persAssistant.shopping_list.data.dao.ShoppingListRoomDao
 import com.persAssistant.shopping_list.data.dao.PurchaseRoomDao
@@ -16,8 +17,14 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 @Database(
-    entities = [RoomCategory::class, RoomShoppingList::class, RoomPurchase::class],
-    version = RoomDataBaseHelper.DATABASE_VERSION, exportSchema = false)
+    entities = [
+        RoomCategory::class,
+        RoomShoppingList::class,
+        RoomPurchase::class
+    ],
+    version = RoomDataBaseHelper.DATABASE_VERSION,
+    exportSchema = false
+)
 abstract class RoomDataBaseHelper : RoomDatabase() {
 
     companion object {
@@ -35,10 +42,15 @@ abstract class RoomDataBaseHelper : RoomDatabase() {
                         // creating default category
                         val dataBaseHelper = getInstance(context)
                         val categoryDao = dataBaseHelper.getCategoryRoomDao()
-                        val defaultRoomCategory = RoomCategory(DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT,"Универсальная категория")
+
+                        val defaultRoomCategory = RoomCategory(
+                            DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT,
+                            context.getString(R.string.universal_category)
+                        )
 
                         Completable.fromAction {
-                            categoryDao.insert(defaultRoomCategory)}
+                            categoryDao.insert(defaultRoomCategory)
+                        }
                             .subscribeOn(Schedulers.single())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({ }, { })
