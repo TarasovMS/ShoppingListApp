@@ -23,6 +23,8 @@ object DbStruct {
             const val name = "name_покупок"
             const val listId = "listId"
             const val price = "price"
+            const val quantity = "quantity"
+            const val unit = "unit"
             const val isCompleted = "isCompleted"
         }
     }

@@ -9,8 +9,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.AppBaseActivity
 import com.persAssistant.shopping_list.databinding.ActivityMainBinding
-import com.persAssistant.shopping_list.util.goneWithOutFade
-import com.persAssistant.shopping_list.util.visibleWithOutFade
+import com.persAssistant.shopping_list.util.UiRouter
+import com.persAssistant.shopping_list.util.gone
+import com.persAssistant.shopping_list.util.visible
 
 open class MainActivity : AppBaseActivity() {
 
@@ -29,13 +30,19 @@ open class MainActivity : AppBaseActivity() {
         destinationListener()
     }
 
+    override fun initNetworkObserver(uiRouter: UiRouter) {
+        initNoInternetShower(viewModel, uiRouter, this)
+        observeNetworkStatus(applicationContext)
+    }
+
     private fun setUpBottomNavigation() {
         binding.apply {
             activityMainBottomNav.itemIconTintList = null
             activityMainBottomNav.setupWithNavController(navController)
-            activityMainBottomNav.setOnItemReselectedListener {
-                Log.d("BottomNav", "menuItem = $it")
-            }
+        }
+
+        binding.activityMainBottomNav.setOnItemReselectedListener {
+            Log.d("BottomNav", "menuItem = $it")
         }
     }
 
@@ -62,12 +69,12 @@ open class MainActivity : AppBaseActivity() {
     }
 
     private fun switchBottomNav(menuItem: Int) {
-        if (!binding.activityMainBottomNav.isVisible) binding.activityMainBottomNav.visibleWithOutFade()
+        if (!binding.activityMainBottomNav.isVisible) binding.activityMainBottomNav.visible()
         binding.activityMainBottomNav.selectedItemId = menuItem
     }
 
     private fun hideBottomNav() {
-        binding.activityMainBottomNav.goneWithOutFade()
+        binding.activityMainBottomNav.gone()
     }
 
     override fun onBackPressed() {

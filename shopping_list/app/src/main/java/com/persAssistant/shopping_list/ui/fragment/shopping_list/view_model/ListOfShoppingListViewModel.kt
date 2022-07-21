@@ -4,14 +4,14 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.persAssistant.shopping_list.base.AppBaseViewModel
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
-import com.persAssistant.shopping_list.domain.interactor_interfaces.ShoppingListInteractorInterface
+import com.persAssistant.shopping_list.domain.interactors.ShoppingListInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
 class ListOfShoppingListViewModel @Inject constructor(
-    private val shoppingListInteractor: ShoppingListInteractorInterface
+    private val shoppingListInteractor: ShoppingListInteractor,
 ) : AppBaseViewModel() {
 
     var listOfShoppingList = MutableLiveData<LinkedList<ShoppingList>>()

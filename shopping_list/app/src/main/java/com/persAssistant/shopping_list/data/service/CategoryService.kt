@@ -11,37 +11,40 @@ import java.lang.Exception
 import java.util.*
 import javax.inject.Inject
 
-class CategoryService @Inject constructor( private val categoryDao: CategoryRoomDao){
+class CategoryService @Inject constructor(
+    private val categoryDao: CategoryRoomDao,
+) {
 
     // сигнал об изменении в таблице
-    fun getChangeSignal(): LiveData<List<RoomCategory>>{
+    fun getChangeSignal(): LiveData<List<RoomCategory>> {
         return categoryDao.getChangeSignal()
     }
 
     // добавления записи в таблицу
-    fun insert(category: Category): Completable{
-        val roomCategory = RoomCategory(id = category.id,name = category.name)
+    fun insert(category: Category): Completable {
+        val roomCategory = RoomCategory(id = category.id, name = category.name)
 
         return Completable.fromAction {
             val result = categoryDao.insert(roomCategory)
             if (result != -1L)
                 category.id = result
             else
-                throw Exception("Failed to execute insert")
+                throw Exception("Failed to execute insert in CategoryService")
         }
     }
 
     //запрос всех списков
-    fun getAll(): Single<LinkedList<Category>>{
+    fun getAll(): Single<LinkedList<Category>> {
         return categoryDao.getAll()
             .toObservable()
             .flatMapIterable {
                 /*list*/it
             }
-            .map{
-                Category(it.id, it.name)}
+            .map {
+                Category(it.id, it.name)
+            }
             .toList()
-            .map{
+            .map {
                 val linkedList = LinkedList<Category>()
                 linkedList.addAll(it)
                 linkedList
@@ -49,23 +52,23 @@ class CategoryService @Inject constructor( private val categoryDao: CategoryRoom
     }
 
     //запрос одного списка по айди
-    fun getById(id: Long): Maybe<Category>{
+    fun getById(id: Long): Maybe<Category> {
         return categoryDao.getById(id)
-            .map{Category(id = it.id, name = it.name)}
+            .map { Category(id = it.id, name = it.name) }
     }
 
     //обновление списка
-    fun update(category: Category): Completable{
-        val roomCategory = RoomCategory(id = category.id,name = category.name)
-        return Completable.fromAction{
+    fun update(category: Category): Completable {
+        val roomCategory = RoomCategory(id = category.id, name = category.name)
+        return Completable.fromAction {
             categoryDao.update(roomCategory)
         }
     }
 
     //удаление списка
-    fun delete(category: Category): Completable{
-        val roomCategory = RoomCategory(id = category.id,name = category.name)
-        return Completable.fromAction{
+    fun delete(category: Category): Completable {
+        val roomCategory = RoomCategory(id = category.id, name = category.name)
+        return Completable.fromAction {
             categoryDao.delete(roomCategory)
         }
     }

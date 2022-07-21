@@ -5,17 +5,16 @@ import androidx.lifecycle.MutableLiveData
 import com.persAssistant.shopping_list.base.AppBaseViewModel
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
-import com.persAssistant.shopping_list.domain.interactor_interfaces.FullPurchaseInteractorInterface
-import com.persAssistant.shopping_list.domain.interactor_interfaces.PurchaseInteractorInterface
+import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
+import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
 import javax.inject.Inject
 
-
 class ListOfPurchaseViewModel @Inject constructor(
-    val purchaseInteractor: PurchaseInteractorInterface,
-    val fullPurchaseInteractor: FullPurchaseInteractorInterface
+    val purchaseInteractor: PurchaseInteractor,
+    val fullPurchaseInteractor: FullPurchaseInteractor,
 ) : AppBaseViewModel() {
 
     var fullPurchaseList = MutableLiveData<LinkedList<FullPurchase>>()
@@ -27,7 +26,11 @@ class ListOfPurchaseViewModel @Inject constructor(
         SHOPPINGLIST;
     }
 
-    fun init(lifecycleOwner: LifecycleOwner, parentId: Long, type: IdTypes) {
+    fun init(
+        lifecycleOwner: LifecycleOwner,
+        parentId: Long,
+        type: IdTypes,
+    ) {
         initByIdType(parentId, type)
 
         purchaseInteractor.getChangeSignal().observe(lifecycleOwner) {

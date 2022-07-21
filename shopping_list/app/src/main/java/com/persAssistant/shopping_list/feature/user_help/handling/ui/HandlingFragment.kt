@@ -1,22 +1,23 @@
 package com.persAssistant.shopping_list.feature.user_help.handling.ui
 
 import android.content.Context
-import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.databinding.FragmentHandlingBinding
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel
-import com.persAssistant.shopping_list.util.viewBinding
+import com.persAssistant.shopping_list.util.delegate.viewBinding
 import android.content.Intent
 import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.ColorRes
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.base.*
-import com.persAssistant.shopping_list.base.ProgressState.FINISHED
+import com.persAssistant.shopping_list.base.AppBaseViewModel.ProgressState.FINISHED
+import com.persAssistant.shopping_list.base.AppBaseViewModel.ProgressState.LOADING
 import com.persAssistant.shopping_list.error.ViewError
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.*
@@ -24,28 +25,22 @@ import com.persAssistant.shopping_list.util.EMAIL_DEVELOPER
 import com.persAssistant.shopping_list.util.getEventProgress
 import com.persAssistant.shopping_list.util.hideKeyboard
 
-
 class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError {
 
     private val binding by viewBinding(FragmentHandlingBinding::bind)
     private val viewModel: HandlingViewModel by viewModels { viewModelFactory }
 
-    private val startForResult by lazy{
+    private val startForResult by lazy {
         registerForActivityResult(
             ActivityResultContracts.StartActivityForResult()
-        ) { updateProgressEvent(FINISHED) }
+        ) { viewModel.updateProgressEvent(FINISHED) }
     }
 
+    @ColorRes
     override fun statusBarColor() = R.color.purple_200
 
     override fun getToolbarForBackBehavior(): MaterialToolbar {
         return binding.fragmentHandlingToolbar
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initObservers()
-        initViews()
     }
 
     override fun onAttach(context: Context) {
@@ -53,49 +48,63 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         startForResult
     }
 
-    private fun initObservers() {
-        viewModel.isActionEnabled.observe(viewLifecycleOwner) { allow ->
-            if (allow) sendEmail()
-        }
+    override fun initObservers() {
+        viewModel.run {
 
-        progressEvent.observe(viewLifecycleOwner) { event ->
-            event.getEventProgress { progressState ->
-                binding.fragmentHandlingSendButton.isEnabled = progressState.isFinished()
-                binding.fragmentHandlingSendAction.isEnabled = progressState.isFinished()
+            progressEvent.observe(viewLifecycleOwner) { event ->
+                event.getEventProgress { progressState ->
+                    binding.run {
+                        fragmentHandlingSendButton.isEnabled = progressState.isFinished()
+                        fragmentHandlingSendAction.isEnabled = progressState.isFinished()
+                    }
+                }
             }
-        }
 
-        viewModel.handling.observe(viewLifecycleOwner) {
-            if (it != null) uiRouter.navigateUp()
-        }
+            isActionEnabled.observe(viewLifecycleOwner) { allow ->
+                if (allow) sendEmail()
+            }
 
-        viewModel.errorTitle.observe(viewLifecycleOwner) {
-            showFieldError(it.getErrorMessageResource(), binding.fragmentHandlingNameInputEditText)
-        }
+            handling.observe(viewLifecycleOwner) {
+                if (it != null) uiRouter.navigateUp()
+            }
 
-        viewModel.errorMessage.observe(viewLifecycleOwner) {
-            showFieldError(
-                it.getErrorMessageResource(),
-                binding.fragmentHandlingContentInputEditText
-            )
+            errorTitle.observe(viewLifecycleOwner) {
+                showFieldError(
+                    it.getErrorMessageResource(),
+                    binding.fragmentHandlingNameInputEditText
+                )
+            }
+
+            errorMessage.observe(viewLifecycleOwner) {
+                showFieldError(
+                    it.getErrorMessageResource(),
+                    binding.fragmentHandlingContentInputEditText
+                )
+            }
         }
     }
 
-    private fun initViews() {
-        binding.fragmentHandlingEmailInputEditText.text = EMAIL_DEVELOPER
+    override fun initUi() {
+        binding.run {
+            fragmentHandlingNameInputEditText.onFocusChangeListener =
+                View.OnFocusChangeListener { _, hasFocus ->
+                    if (!hasFocus && messageFieldText().isNotEmpty()) validation(TITLE)
+                }
 
-        binding.fragmentHandlingNameInputEditText.onFocusChangeListener =
-            View.OnFocusChangeListener { _, hasFocus ->
-                if (!hasFocus && messageFieldText().isNotEmpty()) validation(TITLE)
-            }
+            fragmentHandlingContentInputEditText.onFocusChangeListener =
+                View.OnFocusChangeListener { _, hasFocus ->
+                    if (!hasFocus && titleFieldText().isNotEmpty()) validation(MESSAGE)
+                }
 
-        binding.fragmentHandlingContentInputEditText.onFocusChangeListener =
-            View.OnFocusChangeListener { _, hasFocus ->
-                if (!hasFocus && titleFieldText().isNotEmpty()) validation(MESSAGE)
-            }
+            fragmentHandlingEmailInputEditText.text = EMAIL_DEVELOPER
+        }
+    }
 
-        binding.fragmentHandlingSendAction.setOnClickListener { validation(ALL_FIELDS) }
-        binding.fragmentHandlingSendButton.setOnClickListener { validation(ALL_FIELDS) }
+    override fun initListeners() {
+        binding.apply {
+            fragmentHandlingSendAction.setOnClickListener { validation(ALL_FIELDS) }
+            fragmentHandlingSendButton.setOnClickListener { validation(ALL_FIELDS) }
+        }
     }
 
     private fun validation(field: FieldValidation) {
@@ -105,22 +114,22 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
             message = messageFieldText()
         )
 
-        if(field.isAllFields()) binding.root.hideKeyboard()
+        if (field.isAllFields()) binding.root.hideKeyboard()
     }
 
     private fun sendEmail() {
-        updateProgressEvent(ProgressState.LOADING)
+        viewModel.updateProgressEvent(LOADING)
 
-        val email = Intent(Intent.ACTION_SEND)
-
-        email.apply {
-            type = TYPE_EMAIL
-            putExtra(Intent.EXTRA_EMAIL, arrayOf(emailFieldText()))
-            putExtra(Intent.EXTRA_SUBJECT, titleFieldText())
-            putExtra(Intent.EXTRA_TEXT, messageFieldText())
-        }
-
-        startForResult.launch(Intent.createChooser(email, titleFieldText()))
+        startForResult.launch(
+            Intent.createChooser(
+                Intent(Intent.ACTION_SEND).apply {
+                    type = TYPE_EMAIL
+                    putExtra(Intent.EXTRA_EMAIL, arrayOf(emailFieldText()))
+                    putExtra(Intent.EXTRA_SUBJECT, titleFieldText())
+                    putExtra(Intent.EXTRA_TEXT, messageFieldText())
+                }, titleFieldText()
+            )
+        )
     }
 
     private fun titleFieldText(): String {

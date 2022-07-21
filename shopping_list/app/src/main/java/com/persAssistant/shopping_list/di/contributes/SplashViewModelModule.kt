@@ -3,7 +3,7 @@
 //import androidx.lifecycle.ViewModel
 //import com.persAssistant.shopping_list.di.scopes.FragmentScope
 //import com.persAssistant.shopping_list.di.viewModel.ViewModelKey
-//import com.persAssistant.shopping_list.feature.splash.ui.SplashViewModel
+//import com.persAssistant.shopping_list.feature.splash.viewmodel.SplashViewModel
 //import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
 //import dagger.Binds
 //import dagger.Module

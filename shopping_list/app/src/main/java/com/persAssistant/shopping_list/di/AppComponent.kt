@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.di
 
 import android.content.Context
 import com.persAssistant.shopping_list.di.activity.MainActivityModule
-import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
+import com.persAssistant.shopping_list.domain.interactors_impl.CategoryInteractorImpl
 import com.persAssistant.shopping_list.di.module.*
 import com.persAssistant.shopping_list.di.viewModel.categories.CategoryViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseViewModelModule
@@ -45,5 +45,5 @@ interface AppComponent: AndroidInjector<App> {
         fun build(): AppComponent
     }
 
-    fun getCategoryInteractor(): CategoryInteractor
+    fun getCategoryInteractor(): CategoryInteractorImpl
 }

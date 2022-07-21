@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.persAssistant.shopping_list.error.Failure
 import com.persAssistant.shopping_list.util.Event
 
-open class AppBaseViewModel : ViewModel()
+open class AppBaseViewModel : ViewModel() {
 
     var failureData: MutableLiveData<Event<Failure>> = MutableLiveData()
     var progressData: MutableLiveData<Boolean> = MutableLiveData()
@@ -18,6 +18,11 @@ open class AppBaseViewModel : ViewModel()
 
         fun isLoading() = this == LOADING
         fun isFinished() = this == FINISHED
+    }
+
+    enum class IsCompletedState(state: Int) {
+        COMPLETED(1),
+        ACTIVE(0);
     }
 
     fun handleFailure(failure: Failure) {
@@ -33,4 +38,5 @@ open class AppBaseViewModel : ViewModel()
 
     fun updateProgressEvent(state: ProgressState) {
         progressEvent.postValue(Event(state))
+    }
 }
