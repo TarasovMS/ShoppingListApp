@@ -2,8 +2,8 @@ package com.pers_assistant.shopping_list
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.pers_assistant.shopping_list.domain.entities.ShoppingList
-import com.pers_assistant.shopping_list.ui.App
+import com.persAssistant.shopping_list.domain.entities.ShoppingList
+import com.persAssistant.shopping_list.ui.App
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.Assert.*

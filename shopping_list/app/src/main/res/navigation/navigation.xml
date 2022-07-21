@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.pers_assistant.shopping_list.feature.splash.ui.SplashFragment"
+        android:name="com.persAssistant.shopping_list.feature.splash.ui.SplashFragment"
         android:label="splash_fragment"
         tools:layout="@layout/splash_fragment" >
             <action
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/shoppingList"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.shopping_list.ListOfShoppingListFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.shopping_list.ListOfShoppingListFragment"
         android:label="fragment_shoppingList"
         tools:layout="@layout/recycler_shopping_list">
         <action
@@ -38,7 +38,7 @@
 
     <fragment
         android:id="@+id/createShoppingList"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.shopping_list.CreatorShoppingListFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.shopping_list.CreatorShoppingListFragment"
         android:label="shoppingList_create"
         tools:layout="@layout/fragment_shopping_list">
         <!--        <action-->
@@ -53,7 +53,7 @@
 
     <fragment
         android:id="@+id/editShoppingList"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.shopping_list.EditorShoppingListFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.shopping_list.EditorShoppingListFragment"
         android:label="shoppingList_edit"
         tools:layout="@layout/fragment_shopping_list">
         <!--        <action-->
@@ -68,7 +68,7 @@
 
     <fragment
         android:id="@+id/purchaseList"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.purchase.ListOfPurchaseFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.purchase.ListOfPurchaseFragment"
         android:label="fragment_purchase"
         tools:layout="@layout/recycler_purchase">
 
@@ -87,7 +87,7 @@
 
     <fragment
         android:id="@+id/createPurchase"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.purchase.CreatorPurchaseFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.purchase.CreatorPurchaseFragment"
         android:label="create_Purchase"
         tools:layout="@layout/fragment_purchase">
         <!--        <action-->
@@ -102,7 +102,7 @@
 
     <fragment
         android:id="@+id/editPurchase"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.purchase.EditorPurchaseFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.purchase.EditorPurchaseFragment"
         android:label="edit_Purchase"
         tools:layout="@layout/fragment_purchase">
         <!--        <action-->
@@ -117,7 +117,7 @@
 
     <fragment
         android:id="@+id/categoryList"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.category.ListOfCategoryFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.category.ListOfCategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/recycler_category">
         <action
@@ -137,7 +137,7 @@
 
     <fragment
         android:id="@+id/createCategory"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.category.CreatorCategoryFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.category.CreatorCategoryFragment"
         android:label="category_create"
         tools:layout="@layout/fragment_category">
         <!--        <action-->
@@ -152,7 +152,7 @@
 
     <fragment
         android:id="@+id/editCategory"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.category.EditorCategoryFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.category.EditorCategoryFragment"
         android:label="category_edit"
         tools:layout="@layout/fragment_category">
         <!--        <action-->
@@ -166,7 +166,7 @@
 
     <fragment
         android:id="@+id/prefFragment"
-        android:name="com.pers_assistant.shopping_list.ui.fragment.pref.PrefFragment"
+        android:name="com.persAssistant.shopping_list.ui.fragment.pref.PrefFragment"
         android:label="fragment_pref"
         tools:layout="@layout/fragment_pref" >
         <action
@@ -176,7 +176,7 @@
 
     <fragment
         android:id="@+id/handlingFragment"
-        android:name="com.pers_assistant.shopping_list.feature.user_help.handling.ui.HandlingFragment"
+        android:name="com.persAssistant.shopping_list.feature.user_help.handling.ui.HandlingFragment"
         android:label="HandlingFragment"
         tools:layout="@layout/fragment_handling"/>
 

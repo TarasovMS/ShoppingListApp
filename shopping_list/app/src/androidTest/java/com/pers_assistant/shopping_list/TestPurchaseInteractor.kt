@@ -2,10 +2,10 @@ package com.pers_assistant.shopping_list
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.pers_assistant.shopping_list.domain.entities.Category
-import com.pers_assistant.shopping_list.domain.entities.Purchase
-import com.pers_assistant.shopping_list.domain.entities.ShoppingList
-import com.pers_assistant.shopping_list.ui.App
+import com.persAssistant.shopping_list.domain.entities.Category
+import com.persAssistant.shopping_list.domain.entities.Purchase
+import com.persAssistant.shopping_list.domain.entities.ShoppingList
+import com.persAssistant.shopping_list.ui.App
 import org.junit.Test
 import org.junit.runner.RunWith
 

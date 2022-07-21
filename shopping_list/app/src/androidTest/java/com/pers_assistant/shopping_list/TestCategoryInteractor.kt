@@ -2,8 +2,8 @@ package com.pers_assistant.shopping_list
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.pers_assistant.shopping_list.domain.entities.Category
-import com.pers_assistant.shopping_list.ui.App
+import com.persAssistant.shopping_list.domain.entities.Category
+import com.persAssistant.shopping_list.ui.App
 import junit.framework.Assert.assertEquals
 
 import org.junit.Test

@@ -3,7 +3,7 @@
     <data>
         <variable
             name="vmShoppingList"
-            type="com.pers_assistant.shopping_list.ui.fragment.shopping_list.view_model.ShoppingListViewModel" />
+            type="com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model.ShoppingListViewModel" />
     </data>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"

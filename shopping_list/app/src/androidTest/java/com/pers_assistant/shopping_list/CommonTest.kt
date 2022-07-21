@@ -1,7 +1,7 @@
 package com.pers_assistant.shopping_list
 
 import androidx.test.platform.app.InstrumentationRegistry
-import com.pers_assistant.shopping_list.data.database.RoomDataBaseHelper
+import com.persAssistant.shopping_list.data.database.RoomDataBaseHelper
 
 abstract class CommonTest {
 

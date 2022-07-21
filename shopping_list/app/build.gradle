@@ -11,7 +11,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.pers_assistant.shopping_list"
+        applicationId "com.persAssistant.shopping_list"
         minSdkVersion 21
         targetSdkVersion 32
         versionCode 1
