@@ -105,7 +105,9 @@ class PurchaseAdapter(
         this.items = newList
     }
 
+    //TODO удалитьсовсем? есть ли проблемы без это функции?
     // закоментил так как есть диф утил
+
 
 //    fun removePurchase(id: Long?) {
 //        val purchaseToRemove = items.find { it.purchase.id == id }
