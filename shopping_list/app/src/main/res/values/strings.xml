@@ -83,7 +83,7 @@
 
 
     // universal
-    <string name="composite_of_two" translatable="false">"$s $s"</string>
+    <string name="composite_of_two" translatable="false">"%1$s %2$s"</string>
 
 
     <string-array name="months">

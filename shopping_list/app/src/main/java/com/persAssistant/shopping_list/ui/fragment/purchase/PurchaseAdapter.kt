@@ -17,10 +17,7 @@ import kotlin.properties.Delegates
 
 class PurchaseAdapter(
     private val onPurchaseClickListener: OnPurchaseClickListener,
-) : RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder>(),
-    DiffUtils {
-
-    //TODO Переделать по  красоте
+) : RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder>(), DiffUtils {
 
     private var items: LinkedList<FullPurchase> by Delegates.observable(LinkedList()) { prop, old, new ->
         autoNotify(old, new) { oldItem, newItem ->
@@ -28,24 +25,20 @@ class PurchaseAdapter(
         }
     }
 
-//    private var items: LinkedList<FullPurchase> = LinkedList()
-
     override fun getItemCount(): Int {
         return items.size
     }
-
-    //TODO Переделать 1)price.text =  юююю
 
     override fun onBindViewHolder(holder: PurchaseViewHolder, position: Int) {
         val purchaseRecycleView = items[position]
 
         holder.apply {
             name.text = purchaseRecycleView.purchase.name
-            price.text = purchaseRecycleView.purchase.price.toString() + RUSSIAN_CURRENCY
-//            price.text = binding.root.context.getString(
-//                R.string.composite_of_two,purchaseRecycleView.purchase.price.toString(),
-//                RUSSIAN_CURRENCY
-//            )
+            price.text = binding.root.context.getString(
+                R.string.composite_of_two,
+                purchaseRecycleView.purchase.price.toString(),
+                RUSSIAN_CURRENCY
+            )
             category.text = purchaseRecycleView.category.name
             bindView(purchaseRecycleView.purchase, onPurchaseClickListener)
         }
@@ -92,36 +85,31 @@ class PurchaseAdapter(
             purchase: Purchase,
         ) {
             val popup = PopupMenu(context, menu)
-            popup.inflate(R.menu.options_menu)
-            popup.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.menu_delete -> {
-                        onPurchaseClickListener.deleteItem(purchase)
+            popup.run {
+                inflate(R.menu.options_menu)
+                setOnMenuItemClickListener { item ->
+                    when (item.itemId) {
+                        R.id.menu_delete -> onPurchaseClickListener.deleteItem(purchase)
+                        R.id.menu_edit -> onPurchaseClickListener.editItem(purchase)
                     }
 
-                    R.id.menu_edit -> {
-                        onPurchaseClickListener.editItem(purchase)
-                    }
+                    false
                 }
 
-                false
+                show()
             }
-
-            popup.show()
         }
     }
 
     fun updateItems(newList: LinkedList<FullPurchase>) {
         this.items = newList
-
-//        autoNotify(items, newList)
-
-//        notifyDataSetChanged()
     }
 
-    fun removePurchase(id: Long?) {
-        val purchaseToRemove = items.find { it.purchase.id == id }
-        items.remove(purchaseToRemove)
-//        notifyDataSetChanged()
-    }
+    // закоментил так как есть диф утил
+
+//    fun removePurchase(id: Long?) {
+//        val purchaseToRemove = items.find { it.purchase.id == id }
+//        items.remove(purchaseToRemove)
+////        notifyDataSetChanged()
+//    }
 }
