@@ -82,6 +82,9 @@
     <string name="error_insert_in_purchase_service" translatable="false">"Failed to execute insert"</string>
 
 
+    // universal
+    <string name="composite_of_two" translatable="false">"$s $s"</string>
+
 
     <string-array name="months">
         <item>Январь</item>

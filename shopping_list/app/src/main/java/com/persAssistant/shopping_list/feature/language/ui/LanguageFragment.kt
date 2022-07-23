@@ -113,6 +113,7 @@ class LanguageFragment : AppBaseFragment(R.layout.fragment_language) {
             requireActivity().finish()
 
         } else {
+            // toast replase on snackbar
             Toast.makeText(
                 requireContext(),
                 getString(R.string.language_already_selected),
