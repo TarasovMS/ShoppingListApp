@@ -60,9 +60,12 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
                 purchaseAdapter.updateItems(it)
             }
 
-            deletePurchaseId.observe(viewLifecycleOwner) {
-                purchaseAdapter.removePurchase(it)
-            }
+            //TODO закоментил так как есть дифутил
+            // проверить правильно ли заботтает диф утил
+
+//            deletePurchaseId.observe(viewLifecycleOwner) {
+//                purchaseAdapter.removePurchase(it)
+//            }
         }
     }
 
