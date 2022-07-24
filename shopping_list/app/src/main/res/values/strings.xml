@@ -30,6 +30,10 @@
     <string name="unit">Измерение</string>
     <string name="quantity">Кол-во</string>
     <string name="universal_category">Универсальная категория</string>
+    <string name="name">Название</string>
+    <string name="category">Категория</string>
+    <string name="symbol_menu" translatable="false">&#8942;</string>
+    <string name="pattern_price_hint" translatable="false">"-/—"</string>
 
     // Validation
     <string name="unknown_error_message">Произошла ошибка</string>
@@ -81,9 +85,11 @@
     <string name="error_id_in_editor_category_activity" translatable="false">"Error in EditorCategoryActivity.getIntent absent Id"</string>
     <string name="error_insert_in_purchase_service" translatable="false">"Failed to execute insert"</string>
 
-
     // universal
     <string name="composite_of_two" translatable="false">"%1$s %2$s"</string>
+    <string name="composite_of_three_with_brackets" translatable="false">"%1$s %2$s (%3$s")</string>
+    <string name="composite_of_three_with_brackets_and_cost_of_one" translatable="false">
+        %1$s %2$s \n(%3$s x %4$s)</string>
 
 
     <string-array name="months">

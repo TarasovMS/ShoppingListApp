@@ -15,7 +15,7 @@ class CreatorPurchaseViewModel @Inject constructor(
     override val fullPurchaseInteractor: FullPurchaseInteractor,
 ) : PurchaseViewModel(fullPurchaseInteractor) {
 
-    // разобраться как сделать по красоте в save, убрав 3 let
+    //TODO разобраться как сделать по красоте в save, убрав 3 let
     fun init(shoppingListId: Long) {
         listId.value = shoppingListId
         quantity.value = QUANTITY_DEFAULT_ONE_STRING
@@ -33,7 +33,7 @@ class CreatorPurchaseViewModel @Inject constructor(
                         categoryId = categoryId,
                         listId = listId,
                         price = price.value?.toDouble(),
-                        unit = unit.value,
+                        unit = unit.value.orEmpty(),
                         quantity = quantity.value,
                         isCompleted = isCompleted,
                     )

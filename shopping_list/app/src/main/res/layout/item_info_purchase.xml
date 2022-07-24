@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/dp_16"
         android:orientation="horizontal">
 
         <LinearLayout
@@ -20,20 +20,20 @@
             <TextView
                 android:id="@+id/item_recycler_info_purchase_name_tv"
                 android:layout_width="match_parent"
-                android:layout_height="24dp"
+                android:layout_height="@dimen/dp_32"
                 android:gravity="center_vertical"
                 android:lines="1"
-                android:text="Name"
-                android:textSize="16sp"
+                android:hint="@string/name"
+                android:textSize="@dimen/sp_16"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/item_recycler_info_category_in_purchase_tv"
                 android:layout_width="match_parent"
-                android:layout_height="20dp"
+                android:layout_height="@dimen/dp_20"
                 android:gravity="start"
-                android:hint="Категория"
-                android:textSize="12sp" />
+                android:hint="@string/category"
+                android:textSize="@dimen/sp_12" />
 
         </LinearLayout>
 
@@ -43,20 +43,18 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:gravity="center"
-            android:hint="-/--"
-            android:lines="1"
-            android:paddingStart="5dp"
+            android:hint="@string/pattern_price_hint"
+            android:lines="2"
             android:textStyle="bold" />
-
 
         <TextView
             android:id="@+id/item_recycler_info_purchase_menu_tv"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="&#8942;"
-            android:textSize="25sp" />
+            android:text="@string/symbol_menu"
+            android:textSize="@dimen/sp_25" />
 
     </LinearLayout>
 

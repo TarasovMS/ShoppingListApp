@@ -6,7 +6,7 @@ const val EMAIL_DEVELOPER = "AssistantPers163@gmail.com"
 const val ERROR = "error"
 const val DO_NOT_REPAINT_STATUS_BAR = 0
 const val QUANTITY_DEFAULT_ONE_STRING = "1"
-const val PRICE_DEFAULT = "0.00"
+const val PRICE_DEFAULT_STRING = "0.00"
 const val ZERO_POSITION = 0
 
 // Currency

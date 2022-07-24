@@ -6,7 +6,7 @@ import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFA
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
-import com.persAssistant.shopping_list.util.PRICE_DEFAULT
+import com.persAssistant.shopping_list.util.PRICE_DEFAULT_STRING
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -35,7 +35,7 @@ open class PurchaseViewModel @Inject constructor(
     }
 
     fun setPriceDefault() {
-        price.value = PRICE_DEFAULT
+        price.value = PRICE_DEFAULT_STRING
     }
 
     fun getCategoriesNames(){

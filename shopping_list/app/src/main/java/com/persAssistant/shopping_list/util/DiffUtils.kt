@@ -20,6 +20,7 @@ interface DiffUtils {
             }
 
             override fun getOldListSize() = oldList.size
+
             override fun getNewListSize() = newList.size
         })
 

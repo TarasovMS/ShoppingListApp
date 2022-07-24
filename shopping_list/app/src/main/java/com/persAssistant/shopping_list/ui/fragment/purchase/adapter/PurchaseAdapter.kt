@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.ui.fragment.purchase
+package com.persAssistant.shopping_list.ui.fragment.purchase.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -11,6 +11,7 @@ import com.persAssistant.shopping_list.databinding.ItemInfoPurchaseBinding
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.util.DiffUtils
+import com.persAssistant.shopping_list.util.QUANTITY_DEFAULT_ONE_STRING
 import com.persAssistant.shopping_list.util.RUSSIAN_CURRENCY
 import java.util.*
 import kotlin.properties.Delegates
@@ -34,10 +35,9 @@ class PurchaseAdapter(
 
         holder.apply {
             name.text = purchaseRecycleView.purchase.name
-            price.text = binding.root.context.getString(
-                R.string.composite_of_two,
-                purchaseRecycleView.purchase.price.toString(),
-                RUSSIAN_CURRENCY
+            price.text = priceWithConsiderationOfQuantity(
+                binding.root.context,
+                purchaseRecycleView.purchase
             )
             category.text = purchaseRecycleView.category.name
             bindView(purchaseRecycleView.purchase, onPurchaseClickListener)
@@ -105,13 +105,26 @@ class PurchaseAdapter(
         this.items = newList
     }
 
-    //TODO удалитьсовсем? есть ли проблемы без это функции?
-    // закоментил так как есть диф утил
+    private fun priceWithConsiderationOfQuantity(context: Context, purchase: Purchase): String {
+        val pricePurchase = purchase.price
+        val quantity = purchase.quantity ?: QUANTITY_DEFAULT_ONE_STRING
+        val result = pricePurchase?.toFloat()?.times((quantity.toFloat()))
 
+        return if (quantity.toFloat() <= ONE_FLOAT) context.getString(
+            R.string.composite_of_two,
+            pricePurchase.toString(),
+            RUSSIAN_CURRENCY,
+        )
+        else context.getString(
+            R.string.composite_of_three_with_brackets_and_cost_of_one,
+            result.toString(),
+            RUSSIAN_CURRENCY,
+            pricePurchase.toString(),
+            quantity,
+        )
+    }
 
-//    fun removePurchase(id: Long?) {
-//        val purchaseToRemove = items.find { it.purchase.id == id }
-//        items.remove(purchaseToRemove)
-////        notifyDataSetChanged()
-//    }
+    companion object{
+        private const val ONE_FLOAT = 1f
+    }
 }
