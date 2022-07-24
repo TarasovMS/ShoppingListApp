@@ -9,14 +9,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-@Module
-@Suppress(SUPPRESS_UNUSED)
+@[Module Suppress(SUPPRESS_UNUSED)]
 interface ListOfCategoryVmModule {
 
-    @FragmentScope
-    @Binds
-    @IntoMap
-    @ViewModelKey(ListOfCategoryViewModel::class)
+    @[Binds FragmentScope IntoMap ViewModelKey(ListOfCategoryViewModel::class)]
     fun bindListOfCategoryViewModel(viewModel: ListOfCategoryViewModel): ViewModel
 
 }
