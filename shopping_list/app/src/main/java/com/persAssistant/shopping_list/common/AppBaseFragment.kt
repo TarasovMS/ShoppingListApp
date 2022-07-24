@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.base
+package com.persAssistant.shopping_list.common
 
 import android.os.Bundle
 import android.text.Editable

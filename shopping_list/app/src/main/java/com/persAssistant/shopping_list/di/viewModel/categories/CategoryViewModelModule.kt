@@ -9,6 +9,7 @@ import dagger.Provides
 
 @Module
 class CategoryViewModelModule {
+
     @Provides
     fun provideCreatorCategoryViewModel(categoryInteractor: CategoryInteractorImpl): CreatorCategoryViewModel {
         return CreatorCategoryViewModel(categoryInteractor)

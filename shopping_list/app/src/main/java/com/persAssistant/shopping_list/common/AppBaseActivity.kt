@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.base
+package com.persAssistant.shopping_list.common
 
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -6,7 +6,6 @@ import androidx.navigation.findNavController
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.feature.connection_unavailable.delegate.NoInternetShower
 import com.persAssistant.shopping_list.feature.connection_unavailable.delegate.NoInternetShowerImpl
-import com.persAssistant.shopping_list.ui.App
 import com.persAssistant.shopping_list.util.UiRouter
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject

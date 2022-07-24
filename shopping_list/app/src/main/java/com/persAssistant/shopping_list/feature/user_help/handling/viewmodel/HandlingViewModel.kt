@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.feature.user_help.handling.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.persAssistant.shopping_list.base.AppBaseViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel
 import com.persAssistant.shopping_list.error.Failure
 import com.persAssistant.shopping_list.feature.user_help.handling.model.Handling
 import com.persAssistant.shopping_list.feature.user_help.handling.usecase.HandlingUseCase

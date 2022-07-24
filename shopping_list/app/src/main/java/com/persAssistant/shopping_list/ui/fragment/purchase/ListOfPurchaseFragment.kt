@@ -6,7 +6,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.databinding.RecyclerPurchaseBinding
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.ui.fragment.purchase.adapter.OnPurchaseClickListener
 import com.persAssistant.shopping_list.ui.fragment.purchase.adapter.PurchaseAdapter

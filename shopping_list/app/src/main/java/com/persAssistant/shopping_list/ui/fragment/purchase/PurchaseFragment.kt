@@ -3,7 +3,7 @@ package com.persAssistant.shopping_list.ui.fragment.purchase
 import android.widget.ArrayAdapter
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
 import com.persAssistant.shopping_list.util.ZERO_POSITION

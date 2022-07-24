@@ -3,7 +3,7 @@ package com.persAssistant.shopping_list.feature.connection_unavailable
 import androidx.annotation.ColorRes
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentConnectionUnavailableBinding
 import com.persAssistant.shopping_list.feature.connection_unavailable.ConnectionUnavailableViewModel.Companion.INTERNET
 import com.persAssistant.shopping_list.feature.connection_unavailable.ConnectionUnavailableViewModel.Companion.SERVER

@@ -23,7 +23,7 @@ class TestPurchaseInteractor: CommonTest() {
     private val app = appContext.applicationContext as App
     private var getShoppingListInteractor = app.appComponent.getShoppingListInteractor()
     private var getPurchaseInteractor = app.appComponent.getPurchaseInteractor()
-    private var getCategoryInteractor = app.appComponent.getCategoryInteractor()
+//    private var getCategoryInteractor = app.appComponent.getCategoryInteractor()
 
     //---Category---
     private lateinit var  undefinedCategory : Category

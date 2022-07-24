@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.feature.splash.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.persAssistant.shopping_list.base.AppBaseViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch

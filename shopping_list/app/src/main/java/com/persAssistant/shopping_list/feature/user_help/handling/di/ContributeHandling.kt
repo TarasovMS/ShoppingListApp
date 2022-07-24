@@ -6,16 +6,14 @@ import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Suppress(SUPPRESS_UNUSED)
-@Module
+@[Module Suppress(SUPPRESS_UNUSED)]
 abstract class ContributeHandling {
 
-    @FragmentScope
-    @ContributesAndroidInjector(
+    @[FragmentScope ContributesAndroidInjector(
         modules = [
             HandlingVmModule::class,
         ]
-    )
+    )]
     abstract fun contributeHandlingFragment(): HandlingFragment
 
 }

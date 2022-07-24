@@ -3,10 +3,9 @@ package com.persAssistant.shopping_list.feature.billing.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.android.billingclient.api.BillingClient
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.SkuDetails
-import com.persAssistant.shopping_list.base.AppBaseViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel
 import com.persAssistant.shopping_list.feature.billing.domain.AcknowledgePurchaseUseCase
 import com.persAssistant.shopping_list.feature.billing.domain.ConsumeUseCase
 import com.persAssistant.shopping_list.feature.billing.domain.GetPurchasesUseCase

@@ -15,9 +15,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.ColorRes
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.persAssistant.shopping_list.base.*
-import com.persAssistant.shopping_list.base.AppBaseViewModel.ProgressState.FINISHED
-import com.persAssistant.shopping_list.base.AppBaseViewModel.ProgressState.LOADING
+import com.persAssistant.shopping_list.common.*
+import com.persAssistant.shopping_list.common.AppBaseViewModel.ProgressState.FINISHED
+import com.persAssistant.shopping_list.common.AppBaseViewModel.ProgressState.LOADING
 import com.persAssistant.shopping_list.error.ViewError
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.*

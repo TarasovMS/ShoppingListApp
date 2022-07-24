@@ -3,7 +3,7 @@ package com.persAssistant.shopping_list.ui.fragment.category
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.RecyclerCategoryBinding

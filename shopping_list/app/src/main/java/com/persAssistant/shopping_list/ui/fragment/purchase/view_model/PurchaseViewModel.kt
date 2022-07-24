@@ -1,7 +1,7 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.persAssistant.shopping_list.base.AppBaseViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel
 import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.Category
@@ -38,7 +38,11 @@ open class PurchaseViewModel @Inject constructor(
         price.value = PRICE_DEFAULT_STRING
     }
 
-    fun getCategoriesNames(){
+    fun validation(name: String) {
+
+    }
+
+    fun getCategoriesNames() {
         fullPurchaseInteractor.getAllCategories()
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())

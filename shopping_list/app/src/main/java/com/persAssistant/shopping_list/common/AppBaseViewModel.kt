@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.base
+package com.persAssistant.shopping_list.common
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

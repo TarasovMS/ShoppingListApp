@@ -3,7 +3,7 @@ package com.persAssistant.shopping_list.ui.fragment.shopping_list
 import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import com.persAssistant.shopping_list.databinding.RecyclerShoppingListBinding

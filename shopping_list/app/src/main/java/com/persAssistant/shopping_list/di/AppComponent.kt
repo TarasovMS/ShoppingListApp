@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.di
 
 import android.content.Context
 import com.persAssistant.shopping_list.di.activity.MainActivityModule
-import com.persAssistant.shopping_list.domain.interactors_impl.CategoryInteractorImpl
+import com.persAssistant.shopping_list.di.handler.HandlerModule
 import com.persAssistant.shopping_list.di.module.*
 import com.persAssistant.shopping_list.di.viewModel.categories.CategoryViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseViewModelModule
@@ -16,6 +16,8 @@ import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 import javax.inject.Singleton
 
+// TODO переделать по вважности и избавиться от getCategoryInteractor
+
 @Component(
     modules = [
         AndroidInjectionModule::class,
@@ -28,12 +30,15 @@ import javax.inject.Singleton
         PurchaseViewModelModule::class,
         ShoppingListViewModelModule::class,
         MainActivityModule::class,
-        UtilViewModelModule::class
-    ])
+        UtilViewModelModule::class,
+
+        HandlerModule::class,
+    ]
+)
+
 @Singleton
 @Suppress(SUPPRESS_UNUSED)
-interface AppComponent: AndroidInjector<App> {
-
+interface AppComponent : AndroidInjector<App> {
     @Component.Builder
     interface Builder {
         @BindsInstance
@@ -44,6 +49,4 @@ interface AppComponent: AndroidInjector<App> {
 
         fun build(): AppComponent
     }
-
-    fun getCategoryInteractor(): CategoryInteractorImpl
 }

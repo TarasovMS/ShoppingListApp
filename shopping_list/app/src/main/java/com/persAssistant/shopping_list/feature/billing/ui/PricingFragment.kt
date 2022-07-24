@@ -7,7 +7,7 @@ import com.android.billingclient.api.BillingFlowParams
 import com.android.billingclient.api.Purchase
 import com.android.billingclient.api.SkuDetails
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentBillingBinding
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 

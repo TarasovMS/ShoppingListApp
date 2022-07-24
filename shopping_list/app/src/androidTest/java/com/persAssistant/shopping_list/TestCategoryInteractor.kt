@@ -19,7 +19,7 @@ import org.junit.runner.RunWith
 class TestCategoryInteractor : CommonTest() {
     private val appContext = InstrumentationRegistry.getInstrumentation().targetContext
     private val app = appContext.applicationContext as App
-    private var getCategoryInteractor = app.appComponent.getCategoryInteractor()
+//    private var getCategoryInteractor = app.appComponent.getCategoryInteractor()
 
     @Test
     fun categoryTest() {

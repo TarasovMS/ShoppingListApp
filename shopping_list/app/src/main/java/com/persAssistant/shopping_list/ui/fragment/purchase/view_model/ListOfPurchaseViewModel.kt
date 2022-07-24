@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import com.persAssistant.shopping_list.base.AppBaseViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor

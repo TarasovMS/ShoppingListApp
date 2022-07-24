@@ -1,7 +1,7 @@
 package com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model
 
 import androidx.lifecycle.MutableLiveData
-import com.persAssistant.shopping_list.base.AppBaseViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel
 import com.persAssistant.shopping_list.util.DATE_FORMAT
 import java.text.SimpleDateFormat
 import java.util.*

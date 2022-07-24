@@ -9,14 +9,10 @@ import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 
-@Module
-@Suppress(SUPPRESS_UNUSED)
+@[Module Suppress(SUPPRESS_UNUSED)]
 interface HandlingVmModule {
 
-    @Binds
-    @IntoMap
-    @FragmentScope
-    @ViewModelKey(HandlingViewModel::class)
-    fun bindWriteMessageViewModel(handlingViewModel: HandlingViewModel): ViewModel
+    @[Binds IntoMap FragmentScope ViewModelKey(HandlingViewModel::class)]
+    fun bindHandlingViewModel(handlingViewModel: HandlingViewModel): ViewModel
 
 }

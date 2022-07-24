@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.ui.fragment.more
 
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentMoreBinding
 import com.persAssistant.shopping_list.ui.fragment.category.view_model.ListOfCategoryViewModel
 import com.persAssistant.shopping_list.util.delegate.viewBinding

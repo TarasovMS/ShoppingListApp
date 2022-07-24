@@ -1,11 +1,9 @@
 package com.persAssistant.shopping_list.ui.fragment.shopping_list
 
 import android.app.DatePickerDialog
-import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentShoppingListBinding
-import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model.ShoppingListViewModel
 import com.persAssistant.shopping_list.util.DATE_FORMAT
 import com.persAssistant.shopping_list.util.delegate.viewBinding

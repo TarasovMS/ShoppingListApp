@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.feature.splash.ui
 
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.feature.splash.viewmodel.SplashViewModel
 
 class SplashFragment : AppBaseFragment(R.layout.splash_fragment) {

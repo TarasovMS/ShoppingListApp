@@ -6,6 +6,10 @@ import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
+import com.persAssistant.shopping_list.error.ExecutionResult
+import com.persAssistant.shopping_list.error.Failure
+import com.persAssistant.shopping_list.error.RegistrationError
+import com.persAssistant.shopping_list.util.validateFields
 import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
@@ -44,6 +48,13 @@ class FullPurchaseInteractorImpl @Inject constructor(
                 linkedList.addAll(it)
                 linkedList
             }
+    }
+
+    override fun validation(name: String): ExecutionResult<Failure, String> {
+        return if (name.validateFields())
+            ExecutionResult.Success(name)
+        else
+            ExecutionResult.Fail(RegistrationError.NameValidationError)
     }
 
     private fun convertToFullPurchasesList(single: Single<LinkedList<Purchase>>): Single<LinkedList<FullPurchase>> {

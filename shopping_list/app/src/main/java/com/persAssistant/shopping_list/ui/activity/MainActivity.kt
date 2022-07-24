@@ -7,7 +7,7 @@ import androidx.core.view.*
 import androidx.navigation.NavDestination
 import androidx.navigation.ui.setupWithNavController
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseActivity
+import com.persAssistant.shopping_list.common.AppBaseActivity
 import com.persAssistant.shopping_list.databinding.ActivityMainBinding
 import com.persAssistant.shopping_list.util.UiRouter
 import com.persAssistant.shopping_list.util.gone

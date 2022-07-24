@@ -98,11 +98,4 @@ abstract class FragmentModule {
     )
     abstract fun contributeCreatorShoppingListFragment(): CreatorShoppingListFragment
 
-
-//    @Binds
-//    @IntoMap
-//    @FragmentScope
-//    @ContributesAndroidInjector
-//    abstract fun contributeSelectionOfCategoryInDialog(): SelectionOfCategoryInDialog
-
 }

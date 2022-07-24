@@ -13,14 +13,12 @@ import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
-@Module
-@Suppress(SUPPRESS_UNUSED)
+@[Module Suppress(SUPPRESS_UNUSED)]
 abstract class MainActivityModule {
 
    //TODO разделить все фрагменты поотдельности
 
-   @ActivityScope
-   @ContributesAndroidInjector(
+   @[ActivityScope ContributesAndroidInjector(
       modules = [
          MainActivityVmModule::class,
          FragmentModule::class,
@@ -32,6 +30,7 @@ abstract class MainActivityModule {
          ContributeLanguage::class,
          ContributeConnection::class
       ]
-   )
+   )]
    abstract fun contributeMainActivity(): MainActivity
+
 }

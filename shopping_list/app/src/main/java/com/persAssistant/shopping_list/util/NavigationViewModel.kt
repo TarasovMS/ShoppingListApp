@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.util
 
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavDirections
-import com.persAssistant.shopping_list.base.AppBaseViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel
 import javax.inject.Inject
 
 open class NavigationViewModel @Inject constructor() : AppBaseViewModel() {

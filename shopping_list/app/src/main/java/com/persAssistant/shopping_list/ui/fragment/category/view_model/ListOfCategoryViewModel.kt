@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.ui.fragment.category.view_model
 
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
-import com.persAssistant.shopping_list.base.AppBaseViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers

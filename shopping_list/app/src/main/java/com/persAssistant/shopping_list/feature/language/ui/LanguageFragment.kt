@@ -14,7 +14,7 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
-import com.persAssistant.shopping_list.base.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentLanguageBinding
 import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel
 import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel.Companion.CURRENT_LANGUAGE
