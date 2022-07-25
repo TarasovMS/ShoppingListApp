@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.di.module
 
+import com.persAssistant.shopping_list.data.handler.ValidateHandler
 import com.persAssistant.shopping_list.data.repositories.CategoryRepoImpl
 import com.persAssistant.shopping_list.data.repositories.PurchaseRepoImpl
 import com.persAssistant.shopping_list.data.repositories.ShoppingListRepoImpl
@@ -13,27 +14,33 @@ import javax.inject.Singleton
 
 @Module
 class InteractorModule {
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun provideCategoryInteractor(categoryRepository: CategoryRepoImpl): CategoryInteractorImpl {
         return CategoryInteractorImpl(categoryRepository)
     }
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun providePurchaseInteractor(purchaseRepository: PurchaseRepoImpl): PurchaseInteractorImpl {
         return PurchaseInteractorImpl(purchaseRepository)
     }
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun provideShoppingListInteractor(shoppingListRepository: ShoppingListRepoImpl): ShoppingListInteractorImpl {
         return ShoppingListInteractorImpl(shoppingListRepository)
     }
 
-    @Provides
-    @Singleton
-    fun provideFullPurchaseInteractor(purchaseInteractor: PurchaseInteractorImpl, categoryInteractor: CategoryInteractorImpl): FullPurchaseInteractorImpl {
-        return FullPurchaseInteractorImpl(purchaseInteractor, categoryInteractor)
+    @[Provides Singleton]
+    fun provideFullPurchaseInteractor(
+        purchaseInteractor: PurchaseInteractorImpl,
+        categoryInteractor: CategoryInteractorImpl,
+        validateHandler: ValidateHandler,
+    ): FullPurchaseInteractorImpl {
+        return FullPurchaseInteractorImpl(
+            purchaseInteractor,
+            categoryInteractor,
+            validateHandler
+        )
     }
+
 }
