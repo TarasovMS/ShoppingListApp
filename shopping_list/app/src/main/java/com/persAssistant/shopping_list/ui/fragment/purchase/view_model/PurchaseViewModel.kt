@@ -27,7 +27,9 @@ open class PurchaseViewModel @Inject constructor(
     var isCompleted = MutableLiveData(IsCompletedState.ACTIVE.ordinal)
     var allCategories = MutableLiveData<ArrayList<Category>>()
 
-    open fun save() {}
+    open fun save() {
+        name.value?.let { validation(it) }
+    }
 
     fun setCategory(category: Category) {
         categoryId.value = category.id ?: DEFAULT_CATEGORIES_COUNT
@@ -39,7 +41,15 @@ open class PurchaseViewModel @Inject constructor(
     }
 
     fun validation(name: String) {
+        fullPurchaseInteractor.validationName(name).fold(
+            functionLeft = {
+                handleFailure(it)
 
+            },
+            functionRight = {
+                it
+            }
+        )
     }
 
     fun getCategoriesNames() {

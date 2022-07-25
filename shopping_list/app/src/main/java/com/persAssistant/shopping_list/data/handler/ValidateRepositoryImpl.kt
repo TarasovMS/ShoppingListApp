@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.common.handler
+package com.persAssistant.shopping_list.data.handler
 
 import com.persAssistant.shopping_list.error.ExecutionResult
 import com.persAssistant.shopping_list.error.Failure

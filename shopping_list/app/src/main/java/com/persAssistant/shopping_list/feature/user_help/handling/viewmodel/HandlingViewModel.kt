@@ -22,6 +22,7 @@ class HandlingViewModel @Inject constructor(
         fun isAllFields() = this == ALL_FIELDS
     }
 
+    //handling не используется
     val isActionEnabled = MutableLiveData(false)
     val handling: MutableLiveData<Handling> = MutableLiveData()
     val errorMessage: MutableLiveData<Failure> = MutableLiveData()
@@ -46,32 +47,30 @@ class HandlingViewModel @Inject constructor(
     }
 
     private fun validateTitle(title: String) {
-        useCase.validateName(title)
-            .either(
-                functionError = {
-                    handleFailure(it)
-                    errorTitle.postValue(it)
-                    isActionEnabled.postValue(false)
-                },
+        useCase.validateName(title).either(
+            functionError = {
+                handleFailure(it)
+                errorTitle.postValue(it)
+                isActionEnabled.postValue(false)
+            },
 
-                functionSuccess = {
-                    Log.d("validateTitleSuccess", it)
-                }
-            )
+            functionSuccess = {
+                Log.d("validateTitleSuccess", it)
+            }
+        )
     }
 
     private fun validateMessage(message: String) {
-        useCase.validateMessage(message)
-            .either(
-                functionError = {
-                    handleFailure(it)
-                    errorMessage.postValue(it)
-                    isActionEnabled.postValue(false)
-                },
+        useCase.validateMessage(message).either(
+            functionError = {
+                handleFailure(it)
+                errorMessage.postValue(it)
+                isActionEnabled.postValue(false)
+            },
 
-                functionSuccess = {
-                    Log.d("validateMessageSuccess", it)
-                }
-            )
+            functionSuccess = {
+                Log.d("validateMessageSuccess", it)
+            }
+        )
     }
 }

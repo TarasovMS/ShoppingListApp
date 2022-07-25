@@ -40,6 +40,8 @@ class EditorPurchaseViewModel @Inject constructor(
     }
 
     override fun save() {
+        super.save()
+
         if (listId.value != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
             if (price.value.isNullOrEmpty()) setPriceDefault()
 

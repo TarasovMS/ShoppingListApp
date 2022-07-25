@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.domain.interactors_impl
 
+import com.persAssistant.shopping_list.data.handler.ValidateHandler
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
@@ -8,18 +9,16 @@ import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.domain.interactors.PurchaseInteractor
 import com.persAssistant.shopping_list.error.ExecutionResult
 import com.persAssistant.shopping_list.error.Failure
-import com.persAssistant.shopping_list.error.RegistrationError
-import com.persAssistant.shopping_list.util.validateFields
 import io.reactivex.Maybe
 import io.reactivex.Single
 import java.util.*
 import javax.inject.Inject
 import kotlin.collections.ArrayList
 
-
 class FullPurchaseInteractorImpl @Inject constructor(
     private val purchaseInteractorInterface: PurchaseInteractor,
-    private val categoryInteractorInterface: CategoryInteractor
+    private val categoryInteractorInterface: CategoryInteractor,
+    private val validateHandler: ValidateHandler,
 ) : FullPurchaseInteractor {
 
     override fun getById(id: Long): Maybe<FullPurchase> {
@@ -50,11 +49,8 @@ class FullPurchaseInteractorImpl @Inject constructor(
             }
     }
 
-    override fun validation(name: String): ExecutionResult<Failure, String> {
-        return if (name.validateFields())
-            ExecutionResult.Success(name)
-        else
-            ExecutionResult.Fail(RegistrationError.NameValidationError)
+    override fun validationName(name: String): ExecutionResult<Failure, String> {
+        return validateHandler.validationFields(name)
     }
 
     private fun convertToFullPurchasesList(single: Single<LinkedList<Purchase>>): Single<LinkedList<FullPurchase>> {

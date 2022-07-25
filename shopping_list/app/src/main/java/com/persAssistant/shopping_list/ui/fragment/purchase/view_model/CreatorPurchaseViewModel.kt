@@ -22,6 +22,8 @@ class CreatorPurchaseViewModel @Inject constructor(
     }
 
     override fun save() {
+        super.save()
+
         if (price.value.isNullOrEmpty()) setPriceDefault()
 
         // не нравится эта провеерка внутри проверки
