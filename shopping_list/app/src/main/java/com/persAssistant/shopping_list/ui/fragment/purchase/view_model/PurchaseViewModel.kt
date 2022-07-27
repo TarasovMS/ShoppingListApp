@@ -6,6 +6,7 @@ import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFA
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
+import com.persAssistant.shopping_list.error.Failure
 import com.persAssistant.shopping_list.util.PRICE_DEFAULT_STRING
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -27,7 +28,9 @@ open class PurchaseViewModel @Inject constructor(
     var isCompleted = MutableLiveData(IsCompletedState.ACTIVE.ordinal)
     var allCategories = MutableLiveData<ArrayList<Category>>()
 
-    open fun save() {
+    val errorName: MutableLiveData<Failure> = MutableLiveData()
+
+    open fun savePurchase() {
         name.value?.let { validation(it) }
     }
 
@@ -44,10 +47,10 @@ open class PurchaseViewModel @Inject constructor(
         fullPurchaseInteractor.validationName(name).fold(
             functionLeft = {
                 handleFailure(it)
-
+                errorName.postValue(it)
             },
             functionRight = {
-                it
+                updateProgress(it.isNotEmpty())
             }
         )
     }

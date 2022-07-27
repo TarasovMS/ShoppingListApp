@@ -39,38 +39,39 @@ class EditorPurchaseViewModel @Inject constructor(
             )
     }
 
-    override fun save() {
-        super.save()
+    override fun savePurchase() {
+        super.savePurchase()
 
         if (listId.value != DbStruct.ShoppingListTable.Cols.INVALID_ID) {
             if (price.value.isNullOrEmpty()) setPriceDefault()
 
-            categoryId.value?.let { categoryId ->
-                listId.value?.let { listId ->
-                    isCompleted.value?.let { isCompleted ->
-                        val purchase = Purchase(
-                            id = purchaseId,
-                            name = name.value.orEmpty(),
-                            categoryId = categoryId,
-                            listId = listId,
-                            price = price.value?.toDouble(),
-                            unit = unit.value,
-                            quantity = quantity.value,
-                            isCompleted = isCompleted,
-                        )
-
-                        purchaseInteractor.update(purchase)
-                            .subscribeOn(Schedulers.single())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(
-                                { closeEvent.value = Unit },
-                                {}
+            if (progressData.value == true)
+                categoryId.value?.let { categoryId ->
+                    listId.value?.let { listId ->
+                        isCompleted.value?.let { isCompleted ->
+                            val purchase = Purchase(
+                                id = purchaseId,
+                                name = name.value.orEmpty(),
+                                categoryId = categoryId,
+                                listId = listId,
+                                price = price.value?.toDouble(),
+                                unit = unit.value,
+                                quantity = quantity.value,
+                                isCompleted = isCompleted,
                             )
 
-                        return
+                            purchaseInteractor.update(purchase)
+                                .subscribeOn(Schedulers.single())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                    { closeEvent.value = Unit },
+                                    {}
+                                )
+
+                            return
+                        }
                     }
                 }
-            }
 
             // если отображается эта ошибка значит пустой какое то поле
             Log.e(ERROR, " error in save EditorPurchaseViewModel")

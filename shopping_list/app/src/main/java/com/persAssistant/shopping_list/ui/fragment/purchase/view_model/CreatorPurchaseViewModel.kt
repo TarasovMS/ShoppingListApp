@@ -16,17 +16,20 @@ class CreatorPurchaseViewModel @Inject constructor(
 ) : PurchaseViewModel(fullPurchaseInteractor) {
 
     //TODO разобраться как сделать по красоте в save, убрав 3 let
+    //доделать валидацию стобы работала как в отправке письма
     fun init(shoppingListId: Long) {
         listId.value = shoppingListId
         quantity.value = QUANTITY_DEFAULT_ONE_STRING
     }
 
-    override fun save() {
-        super.save()
-
+    override fun savePurchase() {
+        super.savePurchase()
         if (price.value.isNullOrEmpty()) setPriceDefault()
+        if (progressData.value == true) saveData()
+    }
 
-        // не нравится эта провеерка внутри проверки
+    private fun saveData(){
+        //TODO не нравится эта провеерка внутри проверки
         categoryId.value?.let { categoryId ->
             listId.value?.let { listId ->
                 isCompleted.value?.let { isCompleted ->

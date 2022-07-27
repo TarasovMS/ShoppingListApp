@@ -71,7 +71,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
             fragmentPurchaseButtonSaveShoppingList.setOnClickListener {
                 viewModel.run {
                     unit.value = fragmentPurchaseUnitText.text.toString()
-                    save()
+                    savePurchase()
                 }
             }
 
