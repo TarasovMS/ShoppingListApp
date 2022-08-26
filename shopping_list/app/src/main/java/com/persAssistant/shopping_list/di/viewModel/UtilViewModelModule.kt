@@ -3,7 +3,7 @@ package com.persAssistant.shopping_list.di.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.persAssistant.shopping_list.util.NavigationViewModel
-import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
+import com.persAssistant.shopping_list.common.SUPPRESS_UNUSED
 import com.persAssistant.shopping_list.util.ViewModelFactory
 import dagger.Binds
 import dagger.Module

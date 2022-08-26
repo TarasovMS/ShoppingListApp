@@ -1,12 +1,14 @@
 package com.persAssistant.shopping_list.ui.fragment.purchase
 
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel
-import com.persAssistant.shopping_list.util.ZERO_POSITION
+import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel.FieldPurchaseValidation.NAME
+import com.persAssistant.shopping_list.common.ZERO_POSITION
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import com.persAssistant.shopping_list.util.updateAdapter
 
@@ -41,6 +43,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
     }
 
     override fun initUi() {
+        // TODO : мб getCategoriesNames во VM init блок ?
         viewModel = createViewModel()
         viewModel.getCategoriesNames()
 
@@ -51,6 +54,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
 
             fragmentPurchaseUnitText.apply {
                 setAdapter(unitsSpinnerAdapter)
+
                 if (viewModel.unit.value.isNullOrEmpty())
                     setText(unitsSpinnerAdapter?.getItem(ZERO_POSITION), false)
             }
@@ -68,10 +72,16 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
                 }
             }
 
-            fragmentPurchaseButtonSaveShoppingList.setOnClickListener {
+            fragmentPurchaseButtonSavePurchase.setOnClickListener {
                 viewModel.run {
-                    unit.value = fragmentPurchaseUnitText.text.toString()
-                    savePurchase()
+                    if (progressData.value == false) {
+                        updateProgress(true)
+                        unit.value = fragmentPurchaseUnitText.text.toString()
+                        validateInputs(
+                            field = NAME,
+                            name = binding.fragmentPurchaseNameProductText.text.toString()
+                        )
+                    }
                 }
             }
 
@@ -101,15 +111,24 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
                 categoriesSpinnerAdapter?.run {
                     updateAdapter(list)
 
-                    if (categoriesSpinnerAdapter?.isEmpty == false) selectedCategory.value?.let { selectedCategory ->
-                        val position = this.getPositionItem(selectedCategory)
+                    if (categoriesSpinnerAdapter?.isEmpty == false)
+                        selectedCategory.value?.let { selectedCategory ->
+                            val position = this.getPositionItem(selectedCategory)
 
-                        this.getItem(position).let {
-                            binding.fragmentPurchaseCategoriesText.setText(it.name, false)
+                            this.getItem(position).let {
+                                binding.fragmentPurchaseCategoriesText.setText(it.name, false)
+                            }
                         }
-                    }
                 }
             }
+
+            errorValidation.observe(viewLifecycleOwner) { failure ->
+                // TOOO : доделать валидацию
+            }
         }
+    }
+
+    private fun asd() {
+
     }
 }

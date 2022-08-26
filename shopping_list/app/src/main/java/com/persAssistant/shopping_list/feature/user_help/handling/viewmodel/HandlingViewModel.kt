@@ -6,6 +6,8 @@ import com.persAssistant.shopping_list.common.AppBaseViewModel
 import com.persAssistant.shopping_list.error.Failure
 import com.persAssistant.shopping_list.feature.user_help.handling.model.Handling
 import com.persAssistant.shopping_list.feature.user_help.handling.usecase.HandlingUseCase
+import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.MESSAGE
+import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.TITLE
 import javax.inject.Inject
 
 class HandlingViewModel @Inject constructor(
@@ -17,8 +19,6 @@ class HandlingViewModel @Inject constructor(
         MESSAGE,
         ALL_FIELDS;
 
-        fun isTitle() = this == TITLE
-        fun isMessage() = this == MESSAGE
         fun isAllFields() = this == ALL_FIELDS
     }
 
@@ -34,8 +34,8 @@ class HandlingViewModel @Inject constructor(
         message: String
     ) {
         when (field) {
-            FieldValidation.TITLE -> validateTitle(title = title)
-            FieldValidation.MESSAGE -> validateMessage(message = message)
+            TITLE -> validateTitle(title = title)
+            MESSAGE -> validateMessage(message = message)
             else -> validateData(title = title, message = message)
         }
     }

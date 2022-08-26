@@ -9,7 +9,7 @@ import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseViewModelMo
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.UtilViewModelModule
 import com.persAssistant.shopping_list.ui.App
-import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
+import com.persAssistant.shopping_list.common.SUPPRESS_UNUSED
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

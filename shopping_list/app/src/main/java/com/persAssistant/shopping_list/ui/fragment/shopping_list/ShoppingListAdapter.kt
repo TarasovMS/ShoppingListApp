@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.databinding.ItemInfoShoppingListBinding
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
-import com.persAssistant.shopping_list.util.DATE_FORMAT
+import com.persAssistant.shopping_list.common.DATE_FORMAT
 import java.text.SimpleDateFormat
 import java.util.*
 

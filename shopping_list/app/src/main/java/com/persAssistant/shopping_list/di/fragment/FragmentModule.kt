@@ -16,7 +16,7 @@ import com.persAssistant.shopping_list.ui.fragment.shopping_list.EditorShoppingL
 import com.persAssistant.shopping_list.ui.fragment.category.ListOfCategoryFragment
 import com.persAssistant.shopping_list.ui.fragment.purchase.ListOfPurchaseFragment
 import com.persAssistant.shopping_list.ui.fragment.shopping_list.ListOfShoppingListFragment
-import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
+import com.persAssistant.shopping_list.common.SUPPRESS_UNUSED
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

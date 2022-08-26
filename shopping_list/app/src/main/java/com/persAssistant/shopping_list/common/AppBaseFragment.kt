@@ -15,7 +15,6 @@ import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.util.NavigationViewModel
 import com.persAssistant.shopping_list.ui.App
-import com.persAssistant.shopping_list.util.DO_NOT_REPAINT_STATUS_BAR
 import com.persAssistant.shopping_list.util.UiRouter
 import com.persAssistant.shopping_list.util.updateStatusBarColor
 import dagger.android.support.DaggerFragment

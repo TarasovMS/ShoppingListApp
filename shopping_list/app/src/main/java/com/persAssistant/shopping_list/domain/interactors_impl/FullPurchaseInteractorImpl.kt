@@ -49,7 +49,7 @@ class FullPurchaseInteractorImpl @Inject constructor(
             }
     }
 
-    override fun validationName(name: String): ExecutionResult<Failure, String> {
+    override fun validateName(name: String): ExecutionResult<Failure, String> {
         return validateHandler.validationFields(name)
     }
 

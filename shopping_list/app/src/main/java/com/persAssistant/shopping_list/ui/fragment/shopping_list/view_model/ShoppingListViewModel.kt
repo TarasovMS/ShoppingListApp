@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model
 
 import androidx.lifecycle.MutableLiveData
 import com.persAssistant.shopping_list.common.AppBaseViewModel
-import com.persAssistant.shopping_list.util.DATE_FORMAT
+import com.persAssistant.shopping_list.common.DATE_FORMAT
 import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject

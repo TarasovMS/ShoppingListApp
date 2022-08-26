@@ -9,7 +9,7 @@ import com.persAssistant.shopping_list.util.Event
 open class AppBaseViewModel : ViewModel() {
 
     var failureData: MutableLiveData<Event<Failure>> = MutableLiveData()
-    var progressData: MutableLiveData<Boolean> = MutableLiveData()
+    var progressData: MutableLiveData<Boolean> = MutableLiveData(DEFAULT_BOOLEAN)
     var progressEvent: MutableLiveData<Event<ProgressState>> = MutableLiveData()
 
     enum class ProgressState {
@@ -23,6 +23,9 @@ open class AppBaseViewModel : ViewModel() {
     enum class IsCompletedState(state: Int) {
         COMPLETED(1),
         ACTIVE(0);
+
+        fun isActive() = this == ACTIVE
+        fun isComplete() = this == COMPLETED
     }
 
     fun handleFailure(failure: Failure) {

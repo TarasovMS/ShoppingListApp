@@ -11,8 +11,8 @@ import com.persAssistant.shopping_list.databinding.ItemInfoPurchaseBinding
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.util.DiffUtils
-import com.persAssistant.shopping_list.util.QUANTITY_DEFAULT_ONE_STRING
-import com.persAssistant.shopping_list.util.RUSSIAN_CURRENCY
+import com.persAssistant.shopping_list.common.QUANTITY_DEFAULT_ONE_STRING
+import com.persAssistant.shopping_list.common.RUSSIAN_CURRENCY
 import java.util.*
 import kotlin.properties.Delegates
 

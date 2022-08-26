@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.common.AppBaseFragment
-import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
+import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.DEFAULT_INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import com.persAssistant.shopping_list.databinding.RecyclerShoppingListBinding
 import com.persAssistant.shopping_list.ui.fragment.shopping_list.ShoppingListFragment.Companion.SHOPPING_LIST_KEY
@@ -65,7 +65,7 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
         uiRouter.navigateByDirection(
             ListOfShoppingListFragmentDirections.actionShoppingListOpeningPurchase(
                 indexType = SHOPPINGLIST.ordinal.toLong(),
-                parentId = shoppingList.id ?: INVALID_ID,
+                parentId = shoppingList.id ?: DEFAULT_INVALID_ID,
                 visibleButtonFab = true
             )
         )
@@ -73,7 +73,7 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
 
     private fun editItemAdapter(shoppingList: ShoppingList) {
         uiRouter.navigateById(R.id.editShoppingList, Bundle().apply {
-            putLong(SHOPPING_LIST_KEY, shoppingList.id ?: INVALID_ID)
+            putLong(SHOPPING_LIST_KEY, shoppingList.id ?: DEFAULT_INVALID_ID)
         })
     }
 }

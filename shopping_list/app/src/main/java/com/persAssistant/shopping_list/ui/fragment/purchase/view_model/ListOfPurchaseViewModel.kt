@@ -3,6 +3,8 @@ package com.persAssistant.shopping_list.ui.fragment.purchase.view_model
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.persAssistant.shopping_list.common.AppBaseViewModel
+import com.persAssistant.shopping_list.common.DEFAULT_LONG
+import com.persAssistant.shopping_list.common.EMPTY_STRING
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
@@ -18,8 +20,8 @@ class ListOfPurchaseViewModel @Inject constructor(
 ) : AppBaseViewModel() {
 
     var fullPurchaseList = MutableLiveData<LinkedList<FullPurchase>>()
-    var deletePurchaseId = MutableLiveData<Long>()
-    var name = MutableLiveData<String>()
+    var deletePurchaseId = MutableLiveData(DEFAULT_LONG)
+    var name = MutableLiveData(EMPTY_STRING)
 
     enum class IdTypes {
         CATEGORY,
@@ -39,7 +41,10 @@ class ListOfPurchaseViewModel @Inject constructor(
     }
 
     private fun initByIdType(parentId: Long, type: IdTypes) {
-        if (type == IdTypes.SHOPPINGLIST) initByListId(parentId) else initByCategoryId(parentId)
+        if (type == IdTypes.SHOPPINGLIST)
+            initByListId(parentId)
+        else
+            initByCategoryId(parentId)
     }
 
     fun deleteItemPurchase(purchase: Purchase) {

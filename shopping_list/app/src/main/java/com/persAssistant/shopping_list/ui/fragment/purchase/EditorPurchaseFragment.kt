@@ -13,7 +13,7 @@ class EditorPurchaseFragment : PurchaseFragment() {
     private val args: EditorPurchaseFragmentArgs by navArgs()
 
     override fun createViewModel(): PurchaseViewModel {
-        purchaseViewModel.init(args.purchaseId)
+        purchaseViewModel.initPurchase(args.purchaseId)
         return purchaseViewModel
     }
 

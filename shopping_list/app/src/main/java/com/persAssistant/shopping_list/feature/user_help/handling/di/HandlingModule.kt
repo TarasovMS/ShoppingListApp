@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.feature.user_help.handling.di
 
 import com.persAssistant.shopping_list.data.handler.ValidateHandler
 import com.persAssistant.shopping_list.feature.user_help.handling.usecase.HandlingUseCase
-import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
+import com.persAssistant.shopping_list.common.SUPPRESS_UNUSED
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

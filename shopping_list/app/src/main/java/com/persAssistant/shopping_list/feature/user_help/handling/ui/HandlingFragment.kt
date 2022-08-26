@@ -21,7 +21,7 @@ import com.persAssistant.shopping_list.common.AppBaseViewModel.ProgressState.LOA
 import com.persAssistant.shopping_list.error.ViewError
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.*
-import com.persAssistant.shopping_list.util.EMAIL_DEVELOPER
+import com.persAssistant.shopping_list.common.EMAIL_DEVELOPER
 import com.persAssistant.shopping_list.util.getEventProgress
 import com.persAssistant.shopping_list.util.hideKeyboard
 

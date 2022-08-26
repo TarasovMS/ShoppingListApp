@@ -7,12 +7,13 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.databinding.RecyclerPurchaseBinding
 import com.persAssistant.shopping_list.common.AppBaseFragment
-import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.INVALID_ID
+import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.DEFAULT_INVALID_ID
 import com.persAssistant.shopping_list.ui.fragment.purchase.adapter.OnPurchaseClickListener
 import com.persAssistant.shopping_list.ui.fragment.purchase.adapter.PurchaseAdapter
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.ui.fragment.purchase.view_model.ListOfPurchaseViewModel.*
 import com.persAssistant.shopping_list.util.delegate.viewBinding
+import com.persAssistant.shopping_list.util.getOrSet
 import com.persAssistant.shopping_list.util.visible
 
 class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
@@ -74,7 +75,7 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
     private fun editItemAdapter(purchase: Purchase) {
         uiRouter.navigateByDirection(
             ListOfPurchaseFragmentDirections.actionPurchaseEditingList(
-                purchaseId = purchase.id ?: INVALID_ID
+                purchaseId = purchase.id.getOrSet(DEFAULT_INVALID_ID)
             )
         )
     }

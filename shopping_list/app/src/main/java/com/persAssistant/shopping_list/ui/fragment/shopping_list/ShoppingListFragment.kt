@@ -5,7 +5,7 @@ import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.databinding.FragmentShoppingListBinding
 import com.persAssistant.shopping_list.ui.fragment.shopping_list.view_model.ShoppingListViewModel
-import com.persAssistant.shopping_list.util.DATE_FORMAT
+import com.persAssistant.shopping_list.common.DATE_FORMAT
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import java.text.SimpleDateFormat
 import java.util.*

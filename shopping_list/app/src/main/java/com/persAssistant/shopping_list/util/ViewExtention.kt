@@ -14,12 +14,6 @@ fun TextInputLayout.clearError() {
     error = null
 }
 
-fun <T> ArrayAdapter<T>.updateAdapter(list: List<T>) {
-    clear()
-    addAll(list)
-    notifyDataSetChanged()
-}
-
 fun View.hideKeyboard() {
     ViewCompat.getWindowInsetsController(this)?.hide(WindowInsetsCompat.Type.ime())
 }
@@ -36,11 +30,3 @@ fun View.visible() {
     visibility = View.VISIBLE
 }
 
-fun Fragment.updateStatusBarColor(@ColorRes color: Int) {
-    activity?.window?.apply {
-        addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        context?.let {
-            statusBarColor = ContextCompat.getColor(it, color)
-        }
-    }
-}

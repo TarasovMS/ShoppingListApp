@@ -9,7 +9,7 @@ import com.persAssistant.shopping_list.feature.language.di.ContributeLanguage
 import com.persAssistant.shopping_list.feature.splash.di.ContributeSplash
 import com.persAssistant.shopping_list.feature.user_help.handling.di.ContributeHandling
 import com.persAssistant.shopping_list.ui.activity.MainActivity
-import com.persAssistant.shopping_list.util.SUPPRESS_UNUSED
+import com.persAssistant.shopping_list.common.SUPPRESS_UNUSED
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

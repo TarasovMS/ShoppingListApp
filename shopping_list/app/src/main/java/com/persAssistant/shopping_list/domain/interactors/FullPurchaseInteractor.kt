@@ -18,6 +18,6 @@ interface FullPurchaseInteractor {
 
     fun getAllCategories(): Single<ArrayList<Category>>
 
-    fun validationName(name: String): ExecutionResult<Failure, String>
+    fun validateName(name: String): ExecutionResult<Failure, String>
 
 }

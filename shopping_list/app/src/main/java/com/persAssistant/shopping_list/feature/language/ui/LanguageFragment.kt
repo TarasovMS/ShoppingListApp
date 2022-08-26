@@ -19,8 +19,8 @@ import com.persAssistant.shopping_list.databinding.FragmentLanguageBinding
 import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel
 import com.persAssistant.shopping_list.feature.language.viewmodel.LanguageViewModel.Companion.CURRENT_LANGUAGE
 import com.persAssistant.shopping_list.ui.activity.MainActivity
-import com.persAssistant.shopping_list.util.ENGLISH_USA
-import com.persAssistant.shopping_list.util.RUSSIAN
+import com.persAssistant.shopping_list.common.ENGLISH_USA
+import com.persAssistant.shopping_list.common.RUSSIAN
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import java.util.*
 

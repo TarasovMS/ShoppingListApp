@@ -6,6 +6,11 @@ import androidx.room.ForeignKey
 import androidx.room.ForeignKey.*
 import androidx.room.PrimaryKey
 import com.persAssistant.shopping_list.data.database.DbStruct
+import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
+import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.DEFAULT_INVALID_ID
+import com.persAssistant.shopping_list.common.EMPTY_STRING
+import com.persAssistant.shopping_list.common.PRICE_DEFAULT_DOUBLE
+import com.persAssistant.shopping_list.common.ZERO_POSITION
 
 @Entity(
     tableName = DbStruct.Purchase.tableName,
@@ -33,27 +38,27 @@ data class RoomPurchase(
     var id: Long? = null,
 
     @ColumnInfo(name = DbStruct.Purchase.Cols.name)
-    var name: String,
+    var name: String = EMPTY_STRING,
 
     @ColumnInfo(
         name = DbStruct.Purchase.Cols.categoryId,
-        defaultValue = DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT.toString(),
+        defaultValue = DEFAULT_CATEGORIES_COUNT.toString(),
     )
-    var categoryId: Long,
+    var categoryId: Long = DEFAULT_CATEGORIES_COUNT,
 
     @ColumnInfo(name = DbStruct.Purchase.Cols.listId)
-    var listId: Long,
+    var listId: Long = DEFAULT_INVALID_ID,
 
     @ColumnInfo(name = DbStruct.Purchase.Cols.price)
-    var price: Double? = null,
+    var price: Double = PRICE_DEFAULT_DOUBLE,
 
     @ColumnInfo(name = DbStruct.Purchase.Cols.isCompleted)
-    var isCompleted: Int,
+    var isCompleted: Int = ZERO_POSITION,
 
     @ColumnInfo(name = DbStruct.Purchase.Cols.unit)
-    var unit: String? = null,
+    var unit: String = EMPTY_STRING,
 
     @ColumnInfo(name = DbStruct.Purchase.Cols.quantity)
-    var quantity: String? = null,
+    var quantity: String = EMPTY_STRING,
 
-)
+    )
