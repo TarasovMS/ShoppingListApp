@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.purchase
+package com.persAssistant.shopping_list.feature.purchase.fragments
 
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -57,18 +57,8 @@ class ListOfPurchaseFragment : AppBaseFragment(R.layout.recycler_purchase) {
     }
 
     override fun initObservers() {
-        viewModel.run {
-
-            fullPurchaseList.observe(viewLifecycleOwner) {
-                purchaseAdapter.updateItems(it)
-            }
-
-            //TODO закоментил так как есть дифутил
-            // проверить правильно ли заботтает диф утил
-
-//            deletePurchaseId.observe(viewLifecycleOwner) {
-//                purchaseAdapter.removePurchase(it)
-//            }
+        viewModel.fullPurchaseList.observe(viewLifecycleOwner) {
+            purchaseAdapter.updateItems(it)
         }
     }
 

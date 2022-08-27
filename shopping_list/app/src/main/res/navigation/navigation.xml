@@ -64,7 +64,7 @@
 
     <fragment
         android:id="@+id/purchaseList"
-        android:name="com.persAssistant.shopping_list.feature.purchase.ListOfPurchaseFragment"
+        android:name="com.persAssistant.shopping_list.feature.purchase.fragments.ListOfPurchaseFragment"
         android:label="fragment_purchase"
         tools:layout="@layout/recycler_purchase">
 
@@ -92,7 +92,7 @@
 
     <fragment
         android:id="@+id/createPurchase"
-        android:name="com.persAssistant.shopping_list.feature.purchase.CreatorPurchaseFragment"
+        android:name="com.persAssistant.shopping_list.feature.purchase.fragments.CreatorPurchaseFragment"
         android:label="create_Purchase"
         tools:layout="@layout/fragment_purchase">
 
@@ -104,7 +104,7 @@
 
     <fragment
         android:id="@+id/editPurchase"
-        android:name="com.persAssistant.shopping_list.feature.purchase.EditorPurchaseFragment"
+        android:name="com.persAssistant.shopping_list.feature.purchase.fragments.EditorPurchaseFragment"
         android:label="edit_Purchase"
         tools:layout="@layout/fragment_purchase">
 

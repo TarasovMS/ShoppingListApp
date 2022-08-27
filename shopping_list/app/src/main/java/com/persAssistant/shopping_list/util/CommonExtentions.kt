@@ -25,5 +25,6 @@ fun Int?.getOrSet(value: Int) = this ?: value
 fun Long?.getOrSet(value: Long) = this ?: value
 fun Float?.getOrSet(value: Float) = this ?: value
 fun Double?.getOrSet(value: Double) = this ?: value
+fun String?.getOrSet(value: String) = this ?: value
 fun Boolean?.getOrSet(value: Boolean) = this ?: value
 

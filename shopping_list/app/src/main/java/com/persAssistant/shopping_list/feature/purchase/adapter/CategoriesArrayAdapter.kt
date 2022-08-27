@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.purchase
+package com.persAssistant.shopping_list.feature.purchase.adapter
 
 import android.content.Context
 import android.view.LayoutInflater

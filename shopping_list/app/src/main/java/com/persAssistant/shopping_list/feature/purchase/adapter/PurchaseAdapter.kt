@@ -11,7 +11,6 @@ import com.persAssistant.shopping_list.databinding.ItemInfoPurchaseBinding
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
 import com.persAssistant.shopping_list.util.DiffUtils
-import com.persAssistant.shopping_list.common.QUANTITY_DEFAULT_ONE_STRING
 import com.persAssistant.shopping_list.common.RUSSIAN_CURRENCY
 import java.util.*
 import kotlin.properties.Delegates
@@ -20,7 +19,7 @@ class PurchaseAdapter(
     private val onPurchaseClickListener: OnPurchaseClickListener,
 ) : RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder>(), DiffUtils {
 
-    private var items: LinkedList<FullPurchase> by Delegates.observable(LinkedList()) { prop, old, new ->
+    private var items: LinkedList<FullPurchase> by Delegates.observable(LinkedList()) { _, old, new ->
         autoNotify(old, new) { oldItem, newItem ->
             oldItem.purchase.id == newItem.purchase.id
         }
@@ -107,8 +106,8 @@ class PurchaseAdapter(
 
     private fun priceWithConsiderationOfQuantity(context: Context, purchase: Purchase): String {
         val pricePurchase = purchase.price
-        val quantity = purchase.quantity ?: QUANTITY_DEFAULT_ONE_STRING
-        val result = pricePurchase?.toFloat()?.times((quantity.toFloat()))
+        val quantity = purchase.quantity
+        val result = pricePurchase.toFloat().times((quantity.toFloat()))
 
         return if (quantity.toFloat() <= ONE_FLOAT) context.getString(
             R.string.composite_of_two,
@@ -124,7 +123,7 @@ class PurchaseAdapter(
         )
     }
 
-    companion object{
+    companion object {
         private const val ONE_FLOAT = 1f
     }
 }

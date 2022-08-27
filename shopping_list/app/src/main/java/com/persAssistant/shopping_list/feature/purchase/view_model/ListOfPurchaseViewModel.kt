@@ -3,7 +3,6 @@ package com.persAssistant.shopping_list.feature.purchase.view_model
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import com.persAssistant.shopping_list.common.AppBaseViewModel
-import com.persAssistant.shopping_list.common.DEFAULT_LONG
 import com.persAssistant.shopping_list.common.EMPTY_STRING
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
@@ -20,7 +19,6 @@ class ListOfPurchaseViewModel @Inject constructor(
 ) : AppBaseViewModel() {
 
     var fullPurchaseList = MutableLiveData<LinkedList<FullPurchase>>()
-    var deletePurchaseId = MutableLiveData(DEFAULT_LONG)
     var name = MutableLiveData(EMPTY_STRING)
 
     enum class IdTypes {

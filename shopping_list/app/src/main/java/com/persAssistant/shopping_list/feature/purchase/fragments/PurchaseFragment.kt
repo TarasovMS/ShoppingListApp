@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.purchase
+package com.persAssistant.shopping_list.feature.purchase.fragments
 
 import android.widget.ArrayAdapter
 import com.google.android.material.appbar.MaterialToolbar
@@ -8,6 +8,8 @@ import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewModel
 import com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewModel.FieldPurchaseValidation.NAME
 import com.persAssistant.shopping_list.common.ZERO_POSITION
+import com.persAssistant.shopping_list.domain.entities.Category
+import com.persAssistant.shopping_list.feature.purchase.adapter.CategoriesSpinnerAdapter
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import com.persAssistant.shopping_list.util.updateAdapter
 
@@ -53,7 +55,6 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
 
             fragmentPurchaseUnitText.apply {
                 setAdapter(unitsSpinnerAdapter)
-
                 if (viewModel.unit.value.isNullOrEmpty())
                     setText(unitsSpinnerAdapter?.getItem(ZERO_POSITION), false)
             }
@@ -67,21 +68,15 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
 
             fragmentPurchaseUnitText.run {
                 setOnItemClickListener { _, _, position, _ ->
-                    unitsSpinnerAdapter?.getItem(position).let { this.setText(it) }
+                    unitsSpinnerAdapter?.getItem(position).let {
+                        this.setText(it)
+                    }
                 }
             }
 
             fragmentPurchaseButtonSavePurchase.setOnClickListener {
-                viewModel.run {
-                    if (progressData.value == false) {
-                        updateProgress(true)
-                        unit.value = fragmentPurchaseUnitText.text.toString()
-                        validateInputs(
-                            field = NAME,
-                            name = binding.fragmentPurchaseNameProductText.text.toString()
-                        )
-                    }
-                }
+                if (viewModel.progressData.value == false)
+                    onClickButtonSavePurchase()
             }
 
             fragmentPurchaseCategoriesText.run {
@@ -96,7 +91,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
     }
 
     override fun initObservers() {
-        viewModel.run {
+        with(viewModel) {
 
             closeEvent.observe(viewLifecycleOwner) {
                 uiRouter.navigateBack()
@@ -107,18 +102,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
             }
 
             allCategories.observe(viewLifecycleOwner) { list ->
-                categoriesSpinnerAdapter?.run {
-                    updateAdapter(list)
-
-                    if (categoriesSpinnerAdapter?.isEmpty == false)
-                        selectedCategory.value?.let { selectedCategory ->
-                            val position = this.getPositionItem(selectedCategory)
-
-                            this.getItem(position).let {
-                                binding.fragmentPurchaseCategoriesText.setText(it.name, false)
-                            }
-                        }
-                }
+                updateSpinnerAdapter(list)
             }
 
             errorValidation.observe(viewLifecycleOwner) { failure ->
@@ -127,7 +111,33 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
         }
     }
 
-    private fun asd() {
+    private fun updateSpinnerAdapter(list: ArrayList<Category>) {
+        categoriesSpinnerAdapter?.run {
+            updateAdapter(list)
 
+            if (!this.isEmpty)
+                setTextSelectedCategory(this)
+        }
+    }
+
+    private fun setTextSelectedCategory(adapter: CategoriesSpinnerAdapter) {
+        viewModel.selectedCategory.value?.let { selectedCategory ->
+            val position = adapter.getPositionItem(selectedCategory)
+
+            adapter.getItem(position).let {
+                binding.fragmentPurchaseCategoriesText.setText(it.name, false)
+            }
+        }
+    }
+
+    private fun onClickButtonSavePurchase() {
+        with(viewModel) {
+            updateProgress(true)
+            unit.value = binding.fragmentPurchaseUnitText.text.toString()
+            validateInputs(
+                field = NAME,
+                name = binding.fragmentPurchaseNameProductText.text.toString()
+            )
+        }
     }
 }

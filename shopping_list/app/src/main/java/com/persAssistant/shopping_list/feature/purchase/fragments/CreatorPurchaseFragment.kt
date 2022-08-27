@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.purchase
+package com.persAssistant.shopping_list.feature.purchase.fragments
 
 import androidx.navigation.fragment.navArgs
 import com.persAssistant.shopping_list.feature.purchase.view_model.CreatorPurchaseViewModel

@@ -9,12 +9,12 @@ import com.persAssistant.shopping_list.di.viewModel.shopping_list.ListOfShopping
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListVmModule
 import com.persAssistant.shopping_list.feature.category.CreatorCategoryFragment
 import com.persAssistant.shopping_list.feature.category.EditorCategoryFragment
-import com.persAssistant.shopping_list.feature.purchase.CreatorPurchaseFragment
-import com.persAssistant.shopping_list.feature.purchase.EditorPurchaseFragment
+import com.persAssistant.shopping_list.feature.purchase.fragments.CreatorPurchaseFragment
+import com.persAssistant.shopping_list.feature.purchase.fragments.EditorPurchaseFragment
 import com.persAssistant.shopping_list.feature.shopping_list.CreatorShoppingListFragment
 import com.persAssistant.shopping_list.feature.shopping_list.EditorShoppingListFragment
 import com.persAssistant.shopping_list.feature.category.ListOfCategoryFragment
-import com.persAssistant.shopping_list.feature.purchase.ListOfPurchaseFragment
+import com.persAssistant.shopping_list.feature.purchase.fragments.ListOfPurchaseFragment
 import com.persAssistant.shopping_list.feature.shopping_list.ListOfShoppingListFragment
 import com.persAssistant.shopping_list.common.SUPPRESS_UNUSED
 import dagger.Module
