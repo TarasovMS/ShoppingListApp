@@ -1,7 +1,7 @@
 package com.persAssistant.shopping_list.di.contributes
 
 import com.persAssistant.shopping_list.di.scopes.FragmentScope
-import com.persAssistant.shopping_list.ui.fragment.more.MoreFragment
+import com.persAssistant.shopping_list.feature.more.MoreFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

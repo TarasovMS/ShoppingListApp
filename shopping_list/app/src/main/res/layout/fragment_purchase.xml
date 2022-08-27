@@ -7,7 +7,7 @@
 
         <variable
             name="vmPurchase"
-            type="com.persAssistant.shopping_list.ui.fragment.purchase.view_model.PurchaseViewModel" />
+            type="com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
