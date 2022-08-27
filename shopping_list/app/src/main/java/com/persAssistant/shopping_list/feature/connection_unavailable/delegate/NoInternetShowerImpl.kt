@@ -12,8 +12,6 @@ import androidx.lifecycle.LifecycleOwner
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.ui.activity.MainActivityViewModel
 import com.persAssistant.shopping_list.util.UiRouter
-import com.persAssistant.shopping_list.util.asEvent
-import com.persAssistant.shopping_list.util.getEventProgress
 
 class NoInternetShowerImpl : NoInternetShower {
 
@@ -39,10 +37,8 @@ class NoInternetShowerImpl : NoInternetShower {
     }
 
     private fun setObserver() {
-        appBaseViewModel.networkStateLiveData.observe(lifecycleOwner) { isConnected ->
-            isConnected.getEventProgress() {
-                if (it) onConnected() else onLost()
-            }
+        appBaseViewModel.networkStateLiveData.observe(lifecycleOwner) {
+            if (it) onConnected() else onLost()
         }
     }
 
@@ -68,11 +64,11 @@ class NoInternetShowerImpl : NoInternetShower {
             object :
                 ConnectivityManager.NetworkCallback() {
                 override fun onAvailable(network: Network) {
-                    appBaseViewModel.networkStateLiveData.postValue(true.asEvent())
+                    appBaseViewModel.networkStateLiveData.postValue(true)
                 }
 
                 override fun onLost(network: Network) {
-                    appBaseViewModel.networkStateLiveData.postValue(false.asEvent())
+                    appBaseViewModel.networkStateLiveData.postValue(false)
                 }
 
                 override fun onCapabilitiesChanged(

@@ -22,7 +22,6 @@ import com.persAssistant.shopping_list.error.ViewError
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel.FieldValidation.*
 import com.persAssistant.shopping_list.common.EMAIL_DEVELOPER
-import com.persAssistant.shopping_list.util.getEventProgress
 import com.persAssistant.shopping_list.util.hideKeyboard
 
 class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError {
@@ -51,13 +50,12 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
     override fun initObservers() {
         viewModel.run {
 
-            progressEvent.observe(viewLifecycleOwner) { event ->
-                event.getEventProgress { progressState ->
-                    binding.run {
-                        fragmentHandlingSendButton.isEnabled = progressState.isFinished()
-                        fragmentHandlingSendAction.isEnabled = progressState.isFinished()
-                    }
+            progressEvent.observe(viewLifecycleOwner) { progressState ->
+                binding.run {
+                    fragmentHandlingSendButton.isEnabled = progressState.isFinished()
+                    fragmentHandlingSendAction.isEnabled = progressState.isFinished()
                 }
+
             }
 
             isActionEnabled.observe(viewLifecycleOwner) { allow ->
