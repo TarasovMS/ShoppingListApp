@@ -1,6 +1,6 @@
 package com.persAssistant.shopping_list.di.module
 
-import com.persAssistant.shopping_list.data.handler.ValidateHandler
+import com.persAssistant.shopping_list.common.validation_handler.ValidateHandler
 import com.persAssistant.shopping_list.data.repositories.CategoryRepoImpl
 import com.persAssistant.shopping_list.data.repositories.PurchaseRepoImpl
 import com.persAssistant.shopping_list.data.repositories.ShoppingListRepoImpl

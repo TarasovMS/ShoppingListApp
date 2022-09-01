@@ -6,6 +6,13 @@ import androidx.annotation.StringRes
 import com.google.android.material.textfield.TextInputLayout
 
 interface ViewError {
-    fun showFieldError(@StringRes id: Int, fieldView: View, parentLayout: TextInputLayout? = null)
+
+    fun showFieldError(
+        @StringRes stringId: Int,
+        fieldView: View,
+        parentLayout: TextInputLayout? = null
+    )
+
     fun showTextInputFieldError(input: EditText, parentLayout: TextInputLayout?)
+
 }

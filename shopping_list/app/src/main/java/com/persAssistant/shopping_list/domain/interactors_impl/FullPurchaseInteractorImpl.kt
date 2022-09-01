@@ -1,6 +1,6 @@
 package com.persAssistant.shopping_list.domain.interactors_impl
 
-import com.persAssistant.shopping_list.data.handler.ValidateHandler
+import com.persAssistant.shopping_list.common.validation_handler.ValidateHandler
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
@@ -50,7 +50,7 @@ class FullPurchaseInteractorImpl @Inject constructor(
     }
 
     override fun validateName(name: String): ExecutionResult<Failure, String> {
-        return validateHandler.validationFields(name)
+        return validateHandler.validationName(name)
     }
 
     private fun convertToFullPurchasesList(single: Single<LinkedList<Purchase>>): Single<LinkedList<FullPurchase>> {

@@ -13,7 +13,6 @@ import com.persAssistant.shopping_list.error.Failure
 import com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewModel.FieldPurchaseValidation.NAME
 import com.persAssistant.shopping_list.common.PRICE_DEFAULT_STRING
 import com.persAssistant.shopping_list.common.QUANTITY_DEFAULT_ONE_STRING
-import com.persAssistant.shopping_list.error.RegistrationError
 import com.persAssistant.shopping_list.util.getOrSet
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -58,7 +57,7 @@ open class PurchaseViewModel @Inject constructor(
         fullPurchaseInteractor.validateName(nameValue).either(
             functionError = { failure ->
                 handleFailure(failure)
-                errorValidation.postValue(RegistrationError.NameValidationError)
+                errorValidation.postValue(failure)
             },
 
             functionSuccess = {

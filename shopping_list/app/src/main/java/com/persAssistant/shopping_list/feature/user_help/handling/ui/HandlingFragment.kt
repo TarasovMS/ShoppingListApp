@@ -9,12 +9,8 @@ import com.persAssistant.shopping_list.databinding.FragmentHandlingBinding
 import com.persAssistant.shopping_list.feature.user_help.handling.viewmodel.HandlingViewModel
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import android.content.Intent
-import android.widget.AutoCompleteTextView
-import android.widget.EditText
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.ColorRes
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.common.*
 import com.persAssistant.shopping_list.common.AppBaseViewModel.ProgressState.FINISHED
 import com.persAssistant.shopping_list.common.AppBaseViewModel.ProgressState.LOADING
@@ -142,45 +138,7 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
         return binding.fragmentHandlingEmailInputEditText.text.toString()
     }
 
-    override fun showFieldError(id: Int, fieldView: View, parentLayout: TextInputLayout?) {
-        val messageFromId = getString(id)
-        showFieldError(messageFromId, fieldView, parentLayout)
-    }
-
-    private fun showFieldError(
-        messageFromId: String,
-        fieldView: View,
-        parentLayout: TextInputLayout? = null
-    ) {
-        val parent = parentLayout
-            ?: (fieldView.parent as? TextInputLayout)
-            ?: fieldView.parent.parent as? TextInputLayout
-
-        setErrorToParentLayout(parent, messageFromId)
-
-        when (fieldView) {
-            is TextInputEditText -> showTextInputFieldError(fieldView, parent)
-            is AutoCompleteTextView -> showTextInputFieldError(fieldView, parent)
-        }
-    }
-
-    private fun setErrorToParentLayout(parent: TextInputLayout?, msg: String) {
-        parent?.let {
-            parent.isErrorEnabled = true
-            parent.error = msg
-            parent.errorIconDrawable = null
-        }
-    }
-
-    override fun showTextInputFieldError(
-        input: EditText,
-        parentLayout: TextInputLayout?
-    ) {
-        parentLayout ?: return
-        addErrorClearingEvent(input, parentLayout)
-    }
-
     private companion object {
-        const val TYPE_EMAIL = "message/text"
+        private const val TYPE_EMAIL = "message/text"
     }
 }

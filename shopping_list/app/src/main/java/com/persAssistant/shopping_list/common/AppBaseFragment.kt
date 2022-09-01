@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
+import android.widget.AutoCompleteTextView
 import android.widget.EditText
 import androidx.annotation.ColorRes
 import androidx.annotation.LayoutRes
@@ -11,8 +12,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.persAssistant.shopping_list.R
+import com.persAssistant.shopping_list.error.ViewError
 import com.persAssistant.shopping_list.util.NavigationViewModel
 import com.persAssistant.shopping_list.ui.App
 import com.persAssistant.shopping_list.util.UiRouter
@@ -22,7 +25,7 @@ import javax.inject.Inject
 
 abstract class AppBaseFragment(
     @LayoutRes contentLayoutId: Int
-) : DaggerFragment(contentLayoutId) {
+) : DaggerFragment(contentLayoutId), ViewError {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -53,7 +56,49 @@ abstract class AppBaseFragment(
         if (statusBarColor() != DO_NOT_REPAINT_STATUS_BAR) updateStatusBarColor(statusBarColor())
     }
 
-    fun addErrorClearingEvent(input: EditText, parentLayout: TextInputLayout) {
+    override fun showFieldError(
+        stringId: Int,
+        fieldView: View,
+        parentLayout: TextInputLayout?
+    ) {
+        val messageFromId = getString(stringId)
+        showFieldError(messageFromId, fieldView, parentLayout)
+    }
+
+    override fun showTextInputFieldError(
+        input: EditText,
+        parentLayout: TextInputLayout?
+    ) {
+        parentLayout ?: return
+        addErrorClearingEvent(input, parentLayout)
+    }
+
+    private fun showFieldError(
+        messageFromId: String,
+        fieldView: View,
+        parentLayout: TextInputLayout? = null
+    ) {
+        val parent = parentLayout
+            ?: (fieldView.parent as? TextInputLayout)
+            ?: fieldView.parent.parent as? TextInputLayout
+
+        setErrorToParentLayout(parent, messageFromId)
+
+        when (fieldView) {
+            is TextInputEditText -> showTextInputFieldError(fieldView, parent)
+            is AutoCompleteTextView -> showTextInputFieldError(fieldView, parent)
+        }
+    }
+
+    private fun setErrorToParentLayout(parent: TextInputLayout?, msg: String) {
+        parent?.let {
+            parent.isErrorEnabled = true
+            parent.error = msg
+            parent.errorIconDrawable = null
+        }
+    }
+
+    private fun addErrorClearingEvent(input: EditText, parentLayout: TextInputLayout) {
         input.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
                 parentLayout.error = null
@@ -81,11 +126,5 @@ abstract class AppBaseFragment(
                 uiRouter.navigateUp()
             }
         }
-    }
-
-    companion object {
-        const val KEY_INDEX_TYPE = "INDEX_TYPE"
-        const val KEY_PARENT_ID = "PARENT_ID"
-        const val KEY_VISIBILITY_BUTTON = "VISIBILITY_BUTTON"
     }
 }

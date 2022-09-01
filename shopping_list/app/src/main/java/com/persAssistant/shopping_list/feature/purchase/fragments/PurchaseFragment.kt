@@ -9,6 +9,8 @@ import com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewM
 import com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewModel.FieldPurchaseValidation.NAME
 import com.persAssistant.shopping_list.common.ZERO_POSITION
 import com.persAssistant.shopping_list.domain.entities.Category
+import com.persAssistant.shopping_list.error.Failure
+import com.persAssistant.shopping_list.error.RegistrationError.NameValidationError
 import com.persAssistant.shopping_list.feature.purchase.adapter.CategoriesSpinnerAdapter
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import com.persAssistant.shopping_list.util.updateAdapter
@@ -101,12 +103,23 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
                 binding.fragmentPurchaseUnitText.setText(it)
             }
 
-            allCategories.observe(viewLifecycleOwner) { list ->
-                updateSpinnerAdapter(list)
+            allCategories.observe(viewLifecycleOwner) {
+                updateSpinnerAdapter(it)
             }
 
-            errorValidation.observe(viewLifecycleOwner) { failure ->
-                // TOOO : доделать валидацию
+            errorValidation.observe(viewLifecycleOwner) {
+                validationError(it)
+            }
+        }
+    }
+
+    private fun validationError(failure: Failure){
+        when (failure) {
+            is NameValidationError -> {
+                showFieldError(
+                    stringId = failure.getErrorMessageResource(),
+                    fieldView = binding.fragmentPurchaseNameProductText,
+                )
             }
         }
     }
@@ -115,7 +128,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
         categoriesSpinnerAdapter?.run {
             updateAdapter(list)
 
-            if (!this.isEmpty)
+            if (!isEmpty)
                 setTextSelectedCategory(this)
         }
     }

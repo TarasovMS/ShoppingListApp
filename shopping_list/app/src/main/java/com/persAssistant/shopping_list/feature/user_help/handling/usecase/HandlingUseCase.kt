@@ -1,6 +1,6 @@
 package com.persAssistant.shopping_list.feature.user_help.handling.usecase
 
-import com.persAssistant.shopping_list.data.handler.ValidateHandler
+import com.persAssistant.shopping_list.common.validation_handler.ValidateHandler
 import com.persAssistant.shopping_list.error.ExecutionResult
 import com.persAssistant.shopping_list.error.Failure
 import javax.inject.Inject

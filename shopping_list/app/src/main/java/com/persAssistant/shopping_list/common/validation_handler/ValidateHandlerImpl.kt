@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.data.handler
+package com.persAssistant.shopping_list.common.validation_handler
 
 import com.persAssistant.shopping_list.error.ExecutionResult
 import com.persAssistant.shopping_list.error.Failure
@@ -7,7 +7,7 @@ import com.persAssistant.shopping_list.util.validateEmail
 import com.persAssistant.shopping_list.util.validateFields
 import javax.inject.Inject
 
-class ValidateHandlerImpl @Inject constructor(): ValidateHandler {
+class ValidateHandlerImpl @Inject constructor() : ValidateHandler {
 
     override fun validationFields(value: String): ExecutionResult<Failure, String> {
         return if (value.validateFields())
@@ -16,11 +16,18 @@ class ValidateHandlerImpl @Inject constructor(): ValidateHandler {
             ExecutionResult.Fail(RegistrationError.MessageValidationError)
     }
 
+    override fun validationName(value: String): ExecutionResult<Failure, String> {
+        return if (value.validateFields())
+            ExecutionResult.Success(value)
+        else
+            ExecutionResult.Fail(RegistrationError.NameValidationError)
+    }
+
     override fun validationEmail(value: String): ExecutionResult<Failure, String> {
         return if (value.validateEmail())
             ExecutionResult.Success(value)
         else
-            ExecutionResult.Fail(RegistrationError.MessageValidationError)
+            ExecutionResult.Fail(RegistrationError.EmailValidationError)
     }
 
 }

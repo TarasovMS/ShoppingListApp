@@ -9,6 +9,7 @@ class CreatorPurchaseFragment: PurchaseFragment() {
 
     @Inject
     lateinit var purchaseViewModel: CreatorPurchaseViewModel
+
     private val args: CreatorPurchaseFragmentArgs by navArgs()
 
     override fun createViewModel(): PurchaseViewModel {
