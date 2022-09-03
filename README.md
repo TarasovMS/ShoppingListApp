@@ -27,6 +27,18 @@ Shoping_List
 Пларовать закупки со стоимостью этих товаров
 Группировать покупки
 
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/80469992/165174113-675f0515-7082-4e33-9129-dc83813d4d05.png" width="100" />
+  <img src="https://user-images.githubusercontent.com/80469992/165174144-ee011ee6-6e3d-4b96-83b1-33563bc0dcec.png" width="100" /> 
+  <img src="https://user-images.githubusercontent.com/80469992/165174161-1d3b412f-1319-4f66-adfe-49128c2bbc8c.png" width="100" />
+  
+  <img src="https://user-images.githubusercontent.com/80469992/188271168-9ec981af-7194-411d-984a-55756e7e02b7.png" width="100" />
+  <img src="https://user-images.githubusercontent.com/80469992/188271178-a5672b62-96ab-4bab-a894-8592919c1aba.png" width="100" />
+  <img src="https://user-images.githubusercontent.com/80469992/188271193-9cd7ede0-aa2c-4fd8-b007-219002eed342.png" width="100" />
+  <img src="https://user-images.githubusercontent.com/80469992/188271201-f759f5b6-c59f-46fd-9c78-b9557d433f44.png" width="100" />
+
+</p>
+
 ![Screenshot_20220903_131128](https://user-images.githubusercontent.com/80469992/188271168-9ec981af-7194-411d-984a-55756e7e02b7.png)
 ![Screenshot_20220903_131507](https://user-images.githubusercontent.com/80469992/188271178-a5672b62-96ab-4bab-a894-8592919c1aba.png)
 
