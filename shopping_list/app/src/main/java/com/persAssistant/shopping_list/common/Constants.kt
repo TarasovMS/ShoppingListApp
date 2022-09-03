@@ -5,6 +5,7 @@ const val DATE_FORMAT = "dd.MM.yyyy"
 const val EMAIL_DEVELOPER = "AssistantPers163@gmail.com"
 const val ZERO = 0
 const val ONE = 1
+const val ONE_FLOAT = 1f
 const val DEFAULT_INT = 0
 const val DEFAULT_LONG = 0L
 const val DEFAULT_DOUBLE = 0.0

@@ -10,6 +10,7 @@ class CreatorCategoryViewModel @Inject constructor(
     val categoryInteractor: CategoryInteractor,
 ) : CategoryViewModel() {
 
+    //TODO create validationName
     override fun save() {
         val category = Category(name = name.value.orEmpty())
 

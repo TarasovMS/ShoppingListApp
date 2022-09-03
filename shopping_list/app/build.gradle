@@ -92,12 +92,6 @@ dependencies {
     // Navigation component
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
 
-    // Coroutines
-    def coroutines_version = "1.6.1"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-
-
     // Billing v5
     def billing_version = "5.0.0"
     implementation "com.android.billingclient:billing:$billing_version"
