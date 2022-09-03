@@ -33,11 +33,11 @@ class ProductAdapter(private var products: List<SkuDetails>) :
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val name: TextView = view.findViewById(R.id.item_recycler_info_category_name_tv)
-        val price: TextView = view.findViewById(R.id.item_recycler_info_category_price_tv)
+//        val price: TextView = view.findViewById(R.id.item_recycler_info_category_price_tv)
 
         fun bindView(product: SkuDetails) {
             name.text = product.description
-            price.text = product.price
+//            price.text = product.price
         }
     }
 

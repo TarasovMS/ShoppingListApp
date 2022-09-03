@@ -60,6 +60,10 @@
         android:label="shoppingList_edit"
         tools:layout="@layout/fragment_shopping_list">
 
+        <argument
+            android:name="shoppingListId"
+            app:argType="long" />
+
     </fragment>
 
     <fragment
@@ -116,7 +120,7 @@
 
     <fragment
         android:id="@+id/categoryList"
-        android:name="com.persAssistant.shopping_list.feature.category.ListOfCategoryFragment"
+        android:name="com.persAssistant.shopping_list.feature.category.fragments.ListOfCategoryFragment"
         android:label="fragment_category"
         tools:layout="@layout/recycler_category">
 
@@ -136,7 +140,7 @@
 
     <fragment
         android:id="@+id/createCategory"
-        android:name="com.persAssistant.shopping_list.feature.category.CreatorCategoryFragment"
+        android:name="com.persAssistant.shopping_list.feature.category.fragments.CreatorCategoryFragment"
         android:label="category_create"
         tools:layout="@layout/fragment_category">
         <!--        <action-->
@@ -151,7 +155,7 @@
 
     <fragment
         android:id="@+id/editCategory"
-        android:name="com.persAssistant.shopping_list.feature.category.EditorCategoryFragment"
+        android:name="com.persAssistant.shopping_list.feature.category.fragments.EditorCategoryFragment"
         android:label="category_edit"
         tools:layout="@layout/fragment_category">
         <!--        <action-->
@@ -161,6 +165,11 @@
         <!--                app:popExitAnim="@anim/slide_out_right"-->
         <!--                app:enterAnim="@anim/slide_in_right"-->
         <!--                app:exitAnim="@anim/slide_out_left"/>-->
+
+        <argument
+            android:name="categoryId"
+            app:argType="long" />
+
     </fragment>
 
     <fragment

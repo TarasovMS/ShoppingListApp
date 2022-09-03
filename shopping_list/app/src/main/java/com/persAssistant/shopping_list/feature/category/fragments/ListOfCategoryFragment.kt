@@ -1,16 +1,17 @@
-package com.persAssistant.shopping_list.feature.category
+package com.persAssistant.shopping_list.feature.category.fragments
 
-import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.databinding.RecyclerCategoryBinding
-import com.persAssistant.shopping_list.feature.category.CategoryFragment.Companion.KEY_CATEGORY
+import com.persAssistant.shopping_list.feature.category.adapter.CategoryAdapter
+import com.persAssistant.shopping_list.feature.category.adapter.OnCategoryClickListener
 import com.persAssistant.shopping_list.feature.category.view_model.ListOfCategoryViewModel
 import com.persAssistant.shopping_list.feature.purchase.view_model.ListOfPurchaseViewModel
 import com.persAssistant.shopping_list.util.delegate.viewBinding
+import com.persAssistant.shopping_list.util.getOrSet
 
 class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
 
@@ -45,10 +46,10 @@ class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
 
     override fun initObservers() {
         viewModel.run {
-            deleteCategoryId.observe(requireActivity()) {
-                categoryAdapter.removeCategory(it)
-            }
-
+//            deleteCategoryId.observe(requireActivity()) {
+//                categoryAdapter.removeCategory(it)
+//            }
+//
             categoryList.observe(requireActivity()) {
                 categoryAdapter.updateItems(it)
             }
@@ -56,24 +57,20 @@ class ListOfCategoryFragment : AppBaseFragment(R.layout.recycler_category) {
     }
 
     private fun clickItemAdapter(category: Category) {
-//        uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
-//            putInt(KEY_INDEX_TYPE, ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal)
-//            putLong(KEY_PARENT_ID, category.id ?: DEFAULT_CATEGORIES_COUNT)
-//            putBoolean(KEY_VISIBILITY_BUTTON, false)
-//        })
-
         uiRouter.navigateByDirection(
             ListOfCategoryFragmentDirections.actionCategoryOpeningPurchase(
                 indexType = ListOfPurchaseViewModel.IdTypes.CATEGORY.ordinal.toLong(),
-                parentId = category.id ?: DEFAULT_CATEGORIES_COUNT,
+                parentId = category.id.getOrSet(DEFAULT_CATEGORIES_COUNT),
                 visibleButtonFab = false
             )
         )
     }
 
     private fun editItemAdapter(category: Category) {
-        uiRouter.navigateById(R.id.editCategory, Bundle().apply {
-            putLong(KEY_CATEGORY, category.id ?: DEFAULT_CATEGORIES_COUNT)
-        })
+        uiRouter.navigateByDirection(
+            ListOfCategoryFragmentDirections.actionEditingCategory(
+                categoryId = category.id.getOrSet(DEFAULT_CATEGORIES_COUNT)
+            )
+        )
     }
 }

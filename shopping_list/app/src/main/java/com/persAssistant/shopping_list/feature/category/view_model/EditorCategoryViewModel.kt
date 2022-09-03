@@ -1,5 +1,6 @@
 package com.persAssistant.shopping_list.feature.category.view_model
 
+import com.persAssistant.shopping_list.common.DEFAULT_LONG
 import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.interactors.CategoryInteractor
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -10,7 +11,7 @@ class EditorCategoryViewModel @Inject constructor(
     val categoryInteractor: CategoryInteractor,
 ) : CategoryViewModel() {
 
-    private var categoryId: Long = 0
+    private var categoryId: Long = DEFAULT_LONG
 
     fun init(id: Long) {
         categoryId = id

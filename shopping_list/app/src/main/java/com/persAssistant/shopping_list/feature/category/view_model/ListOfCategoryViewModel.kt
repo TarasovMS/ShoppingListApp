@@ -15,7 +15,6 @@ class ListOfCategoryViewModel @Inject constructor(
 ) : AppBaseViewModel() {
 
     var categoryList = MutableLiveData<LinkedList<Category>>()
-    var deleteCategoryId = MutableLiveData<Long>()
 
     fun init(lifecycleOwner: LifecycleOwner) {
         categoryInteractor.getChangeSignal().observe(lifecycleOwner) {
@@ -40,7 +39,7 @@ class ListOfCategoryViewModel @Inject constructor(
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { deleteCategoryId.value = category.id!! },
+                { },
                 { }
             )
     }

@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.category
+package com.persAssistant.shopping_list.feature.category.adapter
 
 import com.persAssistant.shopping_list.domain.entities.Category
 

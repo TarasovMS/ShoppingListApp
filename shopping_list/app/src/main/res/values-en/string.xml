@@ -7,7 +7,7 @@
     <string name="failed_insert">Failed insert</string>
     <string name="failed_getAll">Failed getAll</string>
     <string name="failed_getById">Failed getById</string>
-    <string name="failed_update">Failed  update</string>
+    <string name="failed_update">Failed update</string>
     <string name="failed_delete">Failed delete</string>
 
     // Bottom Navigation

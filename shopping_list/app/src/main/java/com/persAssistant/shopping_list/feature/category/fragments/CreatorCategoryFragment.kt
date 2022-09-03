@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.category
+package com.persAssistant.shopping_list.feature.category.fragments
 
 import com.persAssistant.shopping_list.domain.interactors_impl.CategoryInteractorImpl
 import com.persAssistant.shopping_list.feature.category.view_model.CategoryViewModel
@@ -13,4 +13,5 @@ class CreatorCategoryFragment : CategoryFragment() {
     override fun createViewModel(): CategoryViewModel {
         return CreatorCategoryViewModel(categoryInteract)
     }
+
 }

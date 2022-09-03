@@ -7,13 +7,13 @@ import com.persAssistant.shopping_list.di.viewModel.purchase.ListOfPurchaseVmMod
 import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseVmModule
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ListOfShoppingListVmModule
 import com.persAssistant.shopping_list.di.viewModel.shopping_list.ShoppingListVmModule
-import com.persAssistant.shopping_list.feature.category.CreatorCategoryFragment
-import com.persAssistant.shopping_list.feature.category.EditorCategoryFragment
+import com.persAssistant.shopping_list.feature.category.fragments.CreatorCategoryFragment
+import com.persAssistant.shopping_list.feature.category.fragments.EditorCategoryFragment
 import com.persAssistant.shopping_list.feature.purchase.fragments.CreatorPurchaseFragment
 import com.persAssistant.shopping_list.feature.purchase.fragments.EditorPurchaseFragment
 import com.persAssistant.shopping_list.feature.shopping_list.CreatorShoppingListFragment
 import com.persAssistant.shopping_list.feature.shopping_list.EditorShoppingListFragment
-import com.persAssistant.shopping_list.feature.category.ListOfCategoryFragment
+import com.persAssistant.shopping_list.feature.category.fragments.ListOfCategoryFragment
 import com.persAssistant.shopping_list.feature.purchase.fragments.ListOfPurchaseFragment
 import com.persAssistant.shopping_list.feature.shopping_list.ListOfShoppingListFragment
 import com.persAssistant.shopping_list.common.SUPPRESS_UNUSED

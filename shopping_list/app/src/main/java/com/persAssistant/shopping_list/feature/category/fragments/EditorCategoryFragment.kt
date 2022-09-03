@@ -1,9 +1,8 @@
-package com.persAssistant.shopping_list.feature.category
+package com.persAssistant.shopping_list.feature.category.fragments
 
-import com.persAssistant.shopping_list.R
+import androidx.navigation.fragment.navArgs
 import com.persAssistant.shopping_list.feature.category.view_model.CategoryViewModel
 import com.persAssistant.shopping_list.feature.category.view_model.EditorCategoryViewModel
-import java.lang.Exception
 import javax.inject.Inject
 
 class EditorCategoryFragment : CategoryFragment() {
@@ -11,12 +10,11 @@ class EditorCategoryFragment : CategoryFragment() {
     @Inject
     lateinit var categoryInteract: EditorCategoryViewModel
 
+    private val args: EditorCategoryFragmentArgs by navArgs()
+
     override fun createViewModel(): CategoryViewModel {
-        val id = arguments?.getLong(KEY_CATEGORY)
-            ?: throw Exception(getString(R.string.error_id_in_editor_category_activity))
-
-        categoryInteract.init(id)
-
+        categoryInteract.init(args.categoryId)
         return categoryInteract
     }
+
 }

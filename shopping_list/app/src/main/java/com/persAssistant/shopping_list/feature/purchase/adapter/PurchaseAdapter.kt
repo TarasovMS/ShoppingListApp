@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import com.persAssistant.shopping_list.R
+import com.persAssistant.shopping_list.common.ONE_FLOAT
 import com.persAssistant.shopping_list.databinding.ItemInfoPurchaseBinding
 import com.persAssistant.shopping_list.domain.entities.FullPurchase
 import com.persAssistant.shopping_list.domain.entities.Purchase
@@ -17,12 +18,10 @@ import kotlin.properties.Delegates
 
 class PurchaseAdapter(
     private val onPurchaseClickListener: OnPurchaseClickListener,
-) : RecyclerView.Adapter<PurchaseAdapter.PurchaseViewHolder>(), DiffUtils {
+) : RecyclerView.Adapter<PurchaseViewHolder>(), DiffUtils {
 
     private var items: LinkedList<FullPurchase> by Delegates.observable(LinkedList()) { _, old, new ->
-        autoNotify(old, new) { oldItem, newItem ->
-            oldItem.purchase.id == newItem.purchase.id
-        }
+        autoNotify(old, new) { oldItem, newItem -> oldItem.purchase.id == newItem.purchase.id }
     }
 
     override fun getItemCount(): Int {
@@ -51,57 +50,9 @@ class PurchaseAdapter(
         )
     }
 
-    class PurchaseViewHolder(
-        val binding: ItemInfoPurchaseBinding
-    ) : RecyclerView.ViewHolder(binding.root) {
-
-        val name = binding.itemRecyclerInfoPurchaseNameTv
-        val price = binding.itemRecyclerInfoPurchasePriceTv
-        val menu = binding.itemRecyclerInfoPurchaseMenuTv
-        val category = binding.itemRecyclerInfoCategoryInPurchaseTv
-
-        fun bindView(
-            purchase: Purchase,
-            onPurchaseClickListener: OnPurchaseClickListener,
-        ) {
-            name.setOnClickListener { onPurchaseClickListener.clickedPurchaseItem(purchase) }
-            price.setOnClickListener { onPurchaseClickListener.clickedPurchaseItem(purchase) }
-
-            menu.setOnClickListener {
-                initPopMenu(
-                    context = it.context,
-                    menu = menu,
-                    onPurchaseClickListener = onPurchaseClickListener,
-                    purchase = purchase,
-                )
-            }
-        }
-
-        private fun initPopMenu(
-            context: Context,
-            menu: View,
-            onPurchaseClickListener: OnPurchaseClickListener,
-            purchase: Purchase,
-        ) {
-            val popup = PopupMenu(context, menu)
-            popup.run {
-                inflate(R.menu.options_menu)
-                setOnMenuItemClickListener { item ->
-                    when (item.itemId) {
-                        R.id.menu_delete -> onPurchaseClickListener.deleteItem(purchase)
-                        R.id.menu_edit -> onPurchaseClickListener.editItem(purchase)
-                    }
-
-                    false
-                }
-
-                show()
-            }
-        }
-    }
-
     fun updateItems(newList: LinkedList<FullPurchase>) {
         this.items = newList
+//        notifyDataSetChanged()
     }
 
     private fun priceWithConsiderationOfQuantity(context: Context, purchase: Purchase): String {
@@ -123,7 +74,53 @@ class PurchaseAdapter(
         )
     }
 
-    companion object {
-        private const val ONE_FLOAT = 1f
+}
+
+class PurchaseViewHolder(
+    val binding: ItemInfoPurchaseBinding
+) : RecyclerView.ViewHolder(binding.root) {
+
+    val name = binding.itemRecyclerInfoPurchaseNameTv
+    val price = binding.itemRecyclerInfoPurchasePriceTv
+    val menu = binding.itemRecyclerInfoPurchaseMenuTv
+    val category = binding.itemRecyclerInfoCategoryInPurchaseTv
+
+    fun bindView(
+        purchase: Purchase,
+        onPurchaseClickListener: OnPurchaseClickListener,
+    ) {
+        name.setOnClickListener { onPurchaseClickListener.clickedPurchaseItem(purchase) }
+        price.setOnClickListener { onPurchaseClickListener.clickedPurchaseItem(purchase) }
+
+        menu.setOnClickListener {
+            initPopMenu(
+                context = it.context,
+                menu = menu,
+                onPurchaseClickListener = onPurchaseClickListener,
+                purchase = purchase,
+            )
+        }
+    }
+
+    private fun initPopMenu(
+        context: Context,
+        menu: View,
+        onPurchaseClickListener: OnPurchaseClickListener,
+        purchase: Purchase,
+    ) {
+        val popup = PopupMenu(context, menu)
+        popup.run {
+            inflate(R.menu.options_menu)
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_delete -> onPurchaseClickListener.deleteItem(purchase)
+                    R.id.menu_edit -> onPurchaseClickListener.editItem(purchase)
+                }
+
+                false
+            }
+
+            show()
+        }
     }
 }
