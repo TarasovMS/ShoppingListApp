@@ -11,7 +11,6 @@ import com.persAssistant.shopping_list.domain.entities.Category
 import com.persAssistant.shopping_list.domain.interactors.FullPurchaseInteractor
 import com.persAssistant.shopping_list.error.Failure
 import com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewModel.FieldPurchaseValidation.NAME
-import com.persAssistant.shopping_list.common.PRICE_DEFAULT_STRING
 import com.persAssistant.shopping_list.common.QUANTITY_DEFAULT_ONE_STRING
 import com.persAssistant.shopping_list.util.getOrSet
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,7 +24,7 @@ open class PurchaseViewModel @Inject constructor(
     //TODO протестировать работу isCompleted
     var closeEvent = MutableLiveData<Unit>()
     var name = MutableLiveData(EMPTY_STRING)
-    var price = MutableLiveData(PRICE_DEFAULT_STRING)
+    var price = MutableLiveData(EMPTY_STRING)
     var categoryId = MutableLiveData(DEFAULT_CATEGORIES_COUNT)
     var listId = MutableLiveData(DEFAULT_INVALID_ID)
     var selectedCategory = MutableLiveData<Category>()
@@ -33,7 +32,6 @@ open class PurchaseViewModel @Inject constructor(
     var unit = MutableLiveData(EMPTY_STRING)
     var isCompleted = MutableLiveData(ACTIVE.ordinal)
     var allCategories = MutableLiveData<ArrayList<Category>>()
-
     val errorValidation: MutableLiveData<Failure> = MutableLiveData()
 
     open fun onClickButtonSavePurchase() {}

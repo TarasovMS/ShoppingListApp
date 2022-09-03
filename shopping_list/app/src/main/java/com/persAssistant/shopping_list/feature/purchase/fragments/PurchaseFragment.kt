@@ -70,9 +70,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
 
             fragmentPurchaseUnitText.run {
                 setOnItemClickListener { _, _, position, _ ->
-                    unitsSpinnerAdapter?.getItem(position).let {
-                        this.setText(it)
-                    }
+                    unitsSpinnerAdapter?.getItem(position).let { this.setText(it) }
                 }
             }
 
@@ -113,7 +111,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
         }
     }
 
-    private fun validationError(failure: Failure){
+    private fun validationError(failure: Failure) {
         when (failure) {
             is NameValidationError -> {
                 showFieldError(

@@ -2,6 +2,7 @@ package com.persAssistant.shopping_list.feature.purchase.view_model
 
 import com.persAssistant.shopping_list.common.AppBaseViewModel.IsCompletedState.ACTIVE
 import com.persAssistant.shopping_list.common.DEFAULT_LONG
+import com.persAssistant.shopping_list.common.EMPTY_STRING
 import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.DEFAULT_INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.Purchase
@@ -54,7 +55,7 @@ class EditorPurchaseViewModel @Inject constructor(
             name = name.value.orEmpty(),
             categoryId = categoryId.value.getOrSet(DEFAULT_CATEGORIES_COUNT),
             listId = listId.value.getOrSet(DEFAULT_INVALID_ID),
-            price = price.value?.toDouble().getOrSet(PRICE_DEFAULT_DOUBLE),
+            price = checkPrice(price.value.getOrSet(EMPTY_STRING)),
             unit = unit.value.orEmpty(),
             quantity = quantity.value.getOrSet(QUANTITY_DEFAULT_ONE_STRING),
             isCompleted = isCompleted.value.getOrSet(ACTIVE.ordinal),
@@ -70,5 +71,12 @@ class EditorPurchaseViewModel @Inject constructor(
                 },
                 { }
             )
+    }
+
+    private fun checkPrice(price: String): Double {
+        return if (price.isEmpty() || price.isBlank())
+            PRICE_DEFAULT_DOUBLE
+        else
+            price.toDouble()
     }
 }
