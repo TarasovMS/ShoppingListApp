@@ -22,8 +22,7 @@ import dagger.android.ContributesAndroidInjector
 
 //TODO разделить все фрагменты поотдельности
 
-@Module
-@Suppress(SUPPRESS_UNUSED)
+@[Module Suppress(SUPPRESS_UNUSED)]
 abstract class FragmentModule {
 
     @FragmentScope

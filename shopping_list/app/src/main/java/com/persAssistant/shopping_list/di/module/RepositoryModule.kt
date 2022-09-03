@@ -12,21 +12,17 @@ import javax.inject.Singleton
 
 @Module
 class RepositoryModule {
-    @Provides
-    @Singleton
-    fun provideCategoryRepository(categoryService: CategoryService): CategoryRepoImpl {
-        return CategoryRepoImpl(categoryService)
-    }
 
-    @Provides
-    @Singleton
-    fun providePurchaseRepository(purchaseService: PurchaseService): PurchaseRepoImpl {
-        return PurchaseRepoImpl(purchaseService)
-    }
+    @[Provides Singleton]
+    fun provideCategoryRepository(categoryService: CategoryService) =
+        CategoryRepoImpl(categoryService)
 
-    @Provides
-    @Singleton
-    fun provideShoppingListRepository(shoppingListService: ShoppingListService): ShoppingListRepoImpl {
-        return ShoppingListRepoImpl(shoppingListService)
-    }
+    @[Provides Singleton]
+    fun providePurchaseRepository(purchaseService: PurchaseService) =
+        PurchaseRepoImpl(purchaseService)
+
+    @[Provides Singleton]
+    fun provideShoppingListRepository(shoppingListService: ShoppingListService) =
+        ShoppingListRepoImpl(shoppingListService)
+
 }

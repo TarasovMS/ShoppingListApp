@@ -16,31 +16,26 @@ import javax.inject.Singleton
 class InteractorModule {
 
     @[Provides Singleton]
-    fun provideCategoryInteractor(categoryRepository: CategoryRepoImpl): CategoryInteractorImpl {
-        return CategoryInteractorImpl(categoryRepository)
-    }
+    fun provideCategoryInteractor(categoryRepository: CategoryRepoImpl) =
+        CategoryInteractorImpl(categoryRepository)
 
     @[Provides Singleton]
-    fun providePurchaseInteractor(purchaseRepository: PurchaseRepoImpl): PurchaseInteractorImpl {
-        return PurchaseInteractorImpl(purchaseRepository)
-    }
+    fun providePurchaseInteractor(purchaseRepository: PurchaseRepoImpl) =
+        PurchaseInteractorImpl(purchaseRepository)
 
     @[Provides Singleton]
-    fun provideShoppingListInteractor(shoppingListRepository: ShoppingListRepoImpl): ShoppingListInteractorImpl {
-        return ShoppingListInteractorImpl(shoppingListRepository)
-    }
+    fun provideShoppingListInteractor(shoppingListRepository: ShoppingListRepoImpl) =
+        ShoppingListInteractorImpl(shoppingListRepository)
 
     @[Provides Singleton]
     fun provideFullPurchaseInteractor(
         purchaseInteractor: PurchaseInteractorImpl,
         categoryInteractor: CategoryInteractorImpl,
         validateHandler: ValidateHandler,
-    ): FullPurchaseInteractorImpl {
-        return FullPurchaseInteractorImpl(
-            purchaseInteractor,
-            categoryInteractor,
-            validateHandler
-        )
-    }
+    ) = FullPurchaseInteractorImpl(
+        purchaseInteractor,
+        categoryInteractor,
+        validateHandler
+    )
 
 }

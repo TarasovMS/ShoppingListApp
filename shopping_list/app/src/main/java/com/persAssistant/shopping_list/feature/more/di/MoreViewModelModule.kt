@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.di.contributes
+package com.persAssistant.shopping_list.feature.more.di
 
 import androidx.lifecycle.ViewModel
 import com.persAssistant.shopping_list.di.scopes.FragmentScope

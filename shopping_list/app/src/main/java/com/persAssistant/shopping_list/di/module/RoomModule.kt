@@ -8,9 +8,10 @@ import javax.inject.Singleton
 
 @Module
 class RoomModule  {
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun provideRoomDataBaseHelper (context: Context): RoomDataBaseHelper {
         return RoomDataBaseHelper.getInstance(context)
     }
+
 }

@@ -10,21 +10,20 @@ import javax.inject.Singleton
 
 @Module
 class DaoModule {
-    @Provides
-    @Singleton
+
+    @[Provides Singleton]
     fun provideCategoryRoomDao(roomDataBaseHelper: RoomDataBaseHelper): CategoryRoomDao {
         return roomDataBaseHelper.getCategoryRoomDao()
     }
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun providePurchaseRoomDao(roomDataBaseHelper: RoomDataBaseHelper): PurchaseRoomDao {
         return roomDataBaseHelper.getPurchaseRoomDao()
     }
 
-    @Provides
-    @Singleton
+    @[Provides Singleton]
     fun provideShoppingListRoomDao(roomDataBaseHelper: RoomDataBaseHelper): ShoppingListRoomDao {
         return roomDataBaseHelper.getShoppingListRoomDao()
     }
+
 }

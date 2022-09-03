@@ -8,10 +8,10 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @[Module Suppress(SUPPRESS_UNUSED)]
-class HandlerModule {
+class HandlerValidationModule {
 
     @[Provides Singleton]
-    fun bindHandlerModule2(): ValidateHandler = ValidateHandlerImpl()
+    fun bindValidationHandlerModule(): ValidateHandler = ValidateHandlerImpl()
 
 }
 

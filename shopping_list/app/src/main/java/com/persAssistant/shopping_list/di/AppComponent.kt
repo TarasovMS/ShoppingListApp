@@ -2,7 +2,7 @@ package com.persAssistant.shopping_list.di
 
 import android.content.Context
 import com.persAssistant.shopping_list.di.activity.MainActivityModule
-import com.persAssistant.shopping_list.di.handler.HandlerModule
+import com.persAssistant.shopping_list.di.handler.HandlerValidationModule
 import com.persAssistant.shopping_list.di.module.*
 import com.persAssistant.shopping_list.di.viewModel.categories.CategoryViewModelModule
 import com.persAssistant.shopping_list.di.viewModel.purchase.PurchaseViewModelModule
@@ -32,15 +32,16 @@ import javax.inject.Singleton
         MainActivityModule::class,
         UtilViewModelModule::class,
 
-        HandlerModule::class,
+        HandlerValidationModule::class,
     ]
 )
 
-@Singleton
-@Suppress(SUPPRESS_UNUSED)
+@[Singleton Suppress(SUPPRESS_UNUSED)]
 interface AppComponent : AndroidInjector<App> {
+
     @Component.Builder
     interface Builder {
+
         @BindsInstance
         fun application(application: App): Builder
 
@@ -49,4 +50,5 @@ interface AppComponent : AndroidInjector<App> {
 
         fun build(): AppComponent
     }
+
 }
