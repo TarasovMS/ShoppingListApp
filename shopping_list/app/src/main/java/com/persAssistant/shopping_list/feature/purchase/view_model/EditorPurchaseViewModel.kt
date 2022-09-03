@@ -74,7 +74,7 @@ class EditorPurchaseViewModel @Inject constructor(
             .subscribe(
                 {
                     closeEvent.value = Unit
-                    updateProgress(false)
+                    updateProgressEvent(ProgressState.FINISHED)
                 },
                 { }
             )

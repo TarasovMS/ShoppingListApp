@@ -4,6 +4,7 @@ import android.widget.ArrayAdapter
 import com.google.android.material.appbar.MaterialToolbar
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.common.AppBaseFragment
+import com.persAssistant.shopping_list.common.AppBaseViewModel.ProgressState.FINISHED
 import com.persAssistant.shopping_list.databinding.FragmentPurchaseBinding
 import com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewModel
 import com.persAssistant.shopping_list.feature.purchase.view_model.PurchaseViewModel.FieldPurchaseValidation.NAME
@@ -75,7 +76,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
             }
 
             fragmentPurchaseButtonSavePurchase.setOnClickListener {
-                if (viewModel.progressData.value == false)
+                if (viewModel.progressEvent.value == FINISHED)
                     onClickButtonSavePurchase()
             }
 
@@ -143,7 +144,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
 
     private fun onClickButtonSavePurchase() {
         with(viewModel) {
-            updateProgress(true)
+            updateProgressEvent(FINISHED)
             unit.value = binding.fragmentPurchaseUnitText.text.toString()
             validateInputs(
                 field = NAME,

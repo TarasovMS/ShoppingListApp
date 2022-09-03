@@ -51,7 +51,6 @@ class HandlingFragment : AppBaseFragment(R.layout.fragment_handling), ViewError 
                     fragmentHandlingSendButton.isEnabled = progressState.isFinished()
                     fragmentHandlingSendAction.isEnabled = progressState.isFinished()
                 }
-
             }
 
             isActionEnabled.observe(viewLifecycleOwner) { allow ->

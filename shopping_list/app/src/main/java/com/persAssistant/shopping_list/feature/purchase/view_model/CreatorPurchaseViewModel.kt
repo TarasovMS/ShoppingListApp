@@ -1,6 +1,7 @@
 package com.persAssistant.shopping_list.feature.purchase.view_model
 
 import com.persAssistant.shopping_list.common.AppBaseViewModel.IsCompletedState.ACTIVE
+import com.persAssistant.shopping_list.common.AppBaseViewModel.ProgressState.FINISHED
 import com.persAssistant.shopping_list.common.EMPTY_STRING
 import com.persAssistant.shopping_list.data.database.DbStruct.Category.Cols.DEFAULT_CATEGORIES_COUNT
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.DEFAULT_INVALID_ID
@@ -50,7 +51,7 @@ class CreatorPurchaseViewModel @Inject constructor(
             .subscribe(
                 {
                     closeEvent.value = Unit
-                    updateProgress(false)
+                    updateProgressEvent(FINISHED)
                 },
                 { it }
             )

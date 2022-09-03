@@ -3,13 +3,13 @@ package com.persAssistant.shopping_list.common
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.persAssistant.shopping_list.common.AppBaseViewModel.ProgressState.FINISHED
 import com.persAssistant.shopping_list.error.Failure
 
 open class AppBaseViewModel : ViewModel() {
 
     var failureData: MutableLiveData<Failure> = MutableLiveData()
-    var progressData: MutableLiveData<Boolean> = MutableLiveData(DEFAULT_BOOLEAN)
-    var progressEvent: MutableLiveData<ProgressState> = MutableLiveData()
+    var progressEvent: MutableLiveData<ProgressState> = MutableLiveData(FINISHED)
 
     enum class ProgressState {
         LOADING,
@@ -29,13 +29,8 @@ open class AppBaseViewModel : ViewModel() {
 
     fun handleFailure(failure: Failure) {
         failureData.postValue(failure)
+        updateProgressEvent(FINISHED)
         Log.e("Failure", failure.toString())
-        updateProgressEvent(ProgressState.FINISHED)
-        updateProgress(false)
-    }
-
-    fun updateProgress(progress: Boolean) {
-        progressData.postValue(progress)
     }
 
     fun updateProgressEvent(state: ProgressState) {
