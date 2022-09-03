@@ -8,10 +8,7 @@ import com.persAssistant.shopping_list.feature.category.view_model.ListOfCategor
 import com.persAssistant.shopping_list.util.delegate.viewBinding
 import javax.inject.Inject
 
-
 class MoreFragment @Inject constructor() : AppBaseFragment(R.layout.fragment_more) {
-
-    // Todo добавить пункты для настроек и заменить иконки
 
     private val binding: FragmentMoreBinding by viewBinding(FragmentMoreBinding::bind)
     private val viewModel: ListOfCategoryViewModel by viewModels { viewModelFactory }
