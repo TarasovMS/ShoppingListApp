@@ -31,6 +31,7 @@
     <string name="quantity">Кол-во</string>
     <string name="universal_category">Универсальная категория</string>
     <string name="name">Название</string>
+    <string name="time">Время</string>
     <string name="category">Категория</string>
     <string name="symbol_menu" translatable="false">&#8942;</string>
     <string name="pattern_price_hint" translatable="false">"-/—"</string>

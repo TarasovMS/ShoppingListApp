@@ -15,7 +15,6 @@ class ListOfShoppingListViewModel @Inject constructor(
 ) : AppBaseViewModel() {
 
     var listOfShoppingList = MutableLiveData<LinkedList<ShoppingList>>()
-    var deleteShoppingListId = MutableLiveData<Long>()
 
     fun init(lifecycleOwner: LifecycleOwner) {
         shoppingListInteractor.getChangeSignal().observe(lifecycleOwner) { initShoppingList() }
@@ -27,7 +26,7 @@ class ListOfShoppingListViewModel @Inject constructor(
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {listOfShoppingList.value = it },
+                { listOfShoppingList.value = it },
                 {/*Ошибка*/ }
             )
     }
@@ -37,8 +36,9 @@ class ListOfShoppingListViewModel @Inject constructor(
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                {deleteShoppingListId.value = shoppingList.id!! },
-                {/*Ошибка*/ }
+                { },
+                { }
             )
     }
+
 }

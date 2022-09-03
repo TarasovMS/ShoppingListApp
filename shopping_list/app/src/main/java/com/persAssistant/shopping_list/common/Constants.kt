@@ -2,6 +2,7 @@ package com.persAssistant.shopping_list.common
 
 const val SUPPRESS_UNUSED = "unused"
 const val DATE_FORMAT = "dd.MM.yyyy"
+const val DEFAULT_DATE_FORMAT = "01.01.2022"
 const val EMAIL_DEVELOPER = "AssistantPers163@gmail.com"
 const val ZERO = 0
 const val ONE = 1

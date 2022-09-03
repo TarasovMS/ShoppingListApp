@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/shoppingList"
-        android:name="com.persAssistant.shopping_list.feature.shopping_list.ListOfShoppingListFragment"
+        android:name="com.persAssistant.shopping_list.feature.shopping_list.fragments.ListOfShoppingListFragment"
         android:label="fragment_shoppingList"
         tools:layout="@layout/recycler_shopping_list">
 
@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/createShoppingList"
-        android:name="com.persAssistant.shopping_list.feature.shopping_list.CreatorShoppingListFragment"
+        android:name="com.persAssistant.shopping_list.feature.shopping_list.fragments.CreatorShoppingListFragment"
         android:label="shoppingList_create"
         tools:layout="@layout/fragment_shopping_list">
         <!--        <action-->
@@ -56,7 +56,7 @@
 
     <fragment
         android:id="@+id/editShoppingList"
-        android:name="com.persAssistant.shopping_list.feature.shopping_list.EditorShoppingListFragment"
+        android:name="com.persAssistant.shopping_list.feature.shopping_list.fragments.EditorShoppingListFragment"
         android:label="shoppingList_edit"
         tools:layout="@layout/fragment_shopping_list">
 

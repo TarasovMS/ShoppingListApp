@@ -25,7 +25,15 @@ class EditorPurchaseViewModel @Inject constructor(
 
     fun initPurchase(id: Long) {
         purchaseId = id
+        getFullPurchaseById(purchaseId)
+    }
 
+    override fun onClickButtonSavePurchase() {
+        if (listId.value != DEFAULT_INVALID_ID)
+            saveData()
+    }
+
+    private fun getFullPurchaseById(purchaseId: Long) {
         fullPurchaseInteractor.getById(purchaseId)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
@@ -44,11 +52,6 @@ class EditorPurchaseViewModel @Inject constructor(
             )
     }
 
-    override fun onClickButtonSavePurchase() {
-        if (listId.value != DEFAULT_INVALID_ID)
-            saveData()
-    }
-
     private fun saveData() {
         val purchase = Purchase(
             id = purchaseId,
@@ -61,6 +64,10 @@ class EditorPurchaseViewModel @Inject constructor(
             isCompleted = isCompleted.value.getOrSet(ACTIVE.ordinal),
         )
 
+        updatePurchaseData(purchase)
+    }
+
+    private fun updatePurchaseData(purchase: Purchase){
         purchaseInteractor.update(purchase)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())

@@ -41,7 +41,7 @@
         <entry key="app/src/main/res/layout/item_info_category.xml" value="0.1897644927536232" />
         <entry key="app/src/main/res/layout/item_info_pricing.xml" value="0.13451086956521738" />
         <entry key="app/src/main/res/layout/item_info_purchase.xml" value="0.24277038574218748" />
-        <entry key="app/src/main/res/layout/item_info_shopping_list.xml" value="0.335" />
+        <entry key="app/src/main/res/layout/item_info_shopping_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/pref_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/recycler_category.xml" value="0.1716485507246377" />
         <entry key="app/src/main/res/layout/recycler_info_category.xml" value="0.335" />

@@ -1,16 +1,17 @@
-package com.persAssistant.shopping_list.feature.shopping_list
+package com.persAssistant.shopping_list.feature.shopping_list.fragments
 
-import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.persAssistant.shopping_list.R
 import com.persAssistant.shopping_list.common.AppBaseFragment
 import com.persAssistant.shopping_list.data.database.DbStruct.ShoppingListTable.Cols.DEFAULT_INVALID_ID
 import com.persAssistant.shopping_list.domain.entities.ShoppingList
 import com.persAssistant.shopping_list.databinding.RecyclerShoppingListBinding
-import com.persAssistant.shopping_list.feature.shopping_list.ShoppingListFragment.Companion.SHOPPING_LIST_KEY
 import com.persAssistant.shopping_list.feature.purchase.view_model.ListOfPurchaseViewModel.IdTypes.SHOPPINGLIST
+import com.persAssistant.shopping_list.feature.shopping_list.adapter.OnShoppingListClickListener
+import com.persAssistant.shopping_list.feature.shopping_list.adapter.ShoppingListAdapter
 import com.persAssistant.shopping_list.feature.shopping_list.view_model.ListOfShoppingListViewModel
 import com.persAssistant.shopping_list.util.delegate.viewBinding
+import com.persAssistant.shopping_list.util.getOrSet
 
 class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_list) {
 
@@ -44,24 +45,12 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
     }
 
     override fun initObservers() {
-        viewModel.run {
-            listOfShoppingList.observe(viewLifecycleOwner) {
-                shoppingListAdapter.updateItems(it)
-            }
-
-            deleteShoppingListId.observe(viewLifecycleOwner) {
-                shoppingListAdapter.removeShoppingList(it)
-            }
+        viewModel.listOfShoppingList.observe(viewLifecycleOwner) {
+            shoppingListAdapter.updateItems(it)
         }
     }
 
     private fun clickItemAdapter(shoppingList: ShoppingList) {
-//        uiRouter.navigateById(R.id.purchaseList, Bundle().apply {
-//            putInt(KEY_INDEX_TYPE, SHOPPINGLIST.ordinal)
-//            putLong(KEY_PARENT_ID, shoppingList.id ?: INVALID_ID)
-//            putBoolean(KEY_VISIBILITY_BUTTON, true)
-//        })
-
         uiRouter.navigateByDirection(
             ListOfShoppingListFragmentDirections.actionShoppingListOpeningPurchase(
                 indexType = SHOPPINGLIST.ordinal.toLong(),
@@ -72,8 +61,10 @@ class ListOfShoppingListFragment : AppBaseFragment(R.layout.recycler_shopping_li
     }
 
     private fun editItemAdapter(shoppingList: ShoppingList) {
-        uiRouter.navigateById(R.id.editShoppingList, Bundle().apply {
-            putLong(SHOPPING_LIST_KEY, shoppingList.id ?: DEFAULT_INVALID_ID)
-        })
+        uiRouter.navigateByDirection(
+            ListOfShoppingListFragmentDirections.actionShoppingListEditingList(
+                shoppingListId = shoppingList.id.getOrSet(DEFAULT_INVALID_ID)
+            )
+        )
     }
 }

@@ -40,6 +40,10 @@ class CreatorPurchaseViewModel @Inject constructor(
             isCompleted = isCompleted.value.getOrSet(ACTIVE.ordinal),
         )
 
+        insertPurchaseData(purchase)
+    }
+
+    private fun insertPurchaseData(purchase: Purchase){
         purchaseInteractor.insert(purchase)
             .subscribeOn(Schedulers.single())
             .observeOn(AndroidSchedulers.mainThread())
@@ -51,8 +55,6 @@ class CreatorPurchaseViewModel @Inject constructor(
                 { it }
             )
     }
-
-
 
     private fun checkPrice(price: String): Double {
         return if (price.isEmpty() || price.isBlank())

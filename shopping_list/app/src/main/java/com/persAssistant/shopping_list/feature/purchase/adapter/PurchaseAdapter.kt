@@ -52,7 +52,6 @@ class PurchaseAdapter(
 
     fun updateItems(newList: LinkedList<FullPurchase>) {
         this.items = newList
-//        notifyDataSetChanged()
     }
 
     private fun priceWithConsiderationOfQuantity(context: Context, purchase: Purchase): String {

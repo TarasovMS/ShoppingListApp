@@ -46,7 +46,7 @@ abstract class PurchaseFragment : AppBaseFragment(R.layout.fragment_purchase) {
     }
 
     override fun initUi() {
-        // TODO : мб getCategoriesNames во VM init блок ?
+        // TODO : мб getCategoriesNames можно улучшить
         viewModel = createViewModel()
         viewModel.getCategoriesNames()
 

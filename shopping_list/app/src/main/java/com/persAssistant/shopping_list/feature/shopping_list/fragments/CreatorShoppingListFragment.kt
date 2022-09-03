@@ -1,4 +1,4 @@
-package com.persAssistant.shopping_list.feature.shopping_list
+package com.persAssistant.shopping_list.feature.shopping_list.fragments
 
 import com.persAssistant.shopping_list.feature.shopping_list.view_model.CreatorShoppingListViewModel
 import com.persAssistant.shopping_list.feature.shopping_list.view_model.ShoppingListViewModel
